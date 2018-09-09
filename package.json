@@ -1,0 +1,21 @@
+{
+  "name": "kame-case.com",
+  "version": "1.0.0",
+  "description": "Custom shopify storefront for Kame by Bailey Hikawa",
+  "main": "index.js",
+  "repository": "git@github.com:good-idea/kame-case",
+  "author": "Joseph Thomas & Bailey Hikawa",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "app",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:app": "yarn workspace kame-app dev"
+  },
+  "devDependencies": {
+    "flow-mono-cli": "^1.3.4",
+    "flow-typed": "^2.5.1"
+  }
+}
