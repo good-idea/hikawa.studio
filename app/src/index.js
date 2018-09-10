@@ -4,10 +4,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { ThemeProvider, injectGlobal } from 'styled-components'
 import { BrowserRouter } from 'react-router-dom'
-import { globalStyles } from 'Styles/global'
+import { globalStyles } from './theme/global'
 import ApolloProvider from './services/Apollo'
-import Kame from './Views/Kame'
-import registerServiceWorker from './registerServiceWorker'
+import App from './Views/App'
 import theme from './theme'
 
 /* TODO: Placeholder */
@@ -38,4 +37,3 @@ ReactDOM.render(
 	</BrowserRouter>,
 	document.getElementById('root'),
 )
-registerServiceWorker()

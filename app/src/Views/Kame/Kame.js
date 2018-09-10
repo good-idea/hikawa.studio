@@ -1,6 +1,7 @@
 // @flow
 import React from 'react'
 import Query from 'GraphQL/Query'
+import { CollectionCard } from 'Components/Collection'
 
 import homepageQuery from './homepageQuery'
 
@@ -13,8 +14,8 @@ const Kame = (props: Props) => (
 		<h2>Kame</h2>
 		<Query query={homepageQuery}>
 			{({ data }) => {
-				console.log(data)
-				return null
+				const { collections } = data.shop
+				return collections.map((c) => <CollectionCard key={c.id} collection={c} />)
 			}}
 		</Query>
 	</div>

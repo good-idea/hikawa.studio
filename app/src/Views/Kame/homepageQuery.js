@@ -4,17 +4,18 @@ import gql from 'graphql-tag'
 const query = /* GraphQL */ gql`
 	{
 		shop {
-			products(first: 50) {
-				pageInfo {
-					hasNextPage
-					hasPreviousPage
-				}
+			collections(first: 2) {
 				edges {
-					cursor
 					node {
 						id
-						tags
 						title
+						handle
+						description
+						image {
+							altText
+							id
+							originalSrc
+						}
 					}
 				}
 			}

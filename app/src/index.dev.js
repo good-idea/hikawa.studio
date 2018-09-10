@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 import { ThemeProvider, injectGlobal } from 'styled-components'
 import { BrowserRouter } from 'react-router-dom'
 import ApolloProvider from './services/Apollo'
-import Kame from './Views/Kame'
+import App from './Views/App'
 import { globalStyles } from './theme/global'
 import theme from './theme'
 
@@ -39,12 +39,12 @@ const renderApp = (Component) => {
 	)
 }
 
-renderApp(Kame)
+renderApp(App)
 
 if (module.hot) {
-	module.hot.accept('./Views/Kame/Kame.js', () => {
+	module.hot.accept('./Views/App.js', () => {
 		// eslint-disable-next-line
-		const NewApp = require('./Views/Kame/Kame').default
+		const NewApp = require('./Views/App').default
 		renderApp(NewApp)
 	})
 }
