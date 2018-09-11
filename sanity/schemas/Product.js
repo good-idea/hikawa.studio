@@ -1,11 +1,11 @@
-import { shopifyItem } from './objects/shopify'
+// import { shopifyItem } from './objects/shopify'
 
 const product = {
 	title: 'Products',
 	name: 'product',
 	type: 'document',
 	fields: [
-		shopifyItem,
+		// shopifyItem,
 		{
 			title: 'Name',
 			name: 'name',

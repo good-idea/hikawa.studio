@@ -9,6 +9,8 @@
   "private": true,
   "workspaces": [
     "app",
+    "sanity",
+    "proxy",
     "packages/*"
   ],
   "scripts": {

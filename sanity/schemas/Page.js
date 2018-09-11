@@ -11,14 +11,6 @@ const page = {
 			type: 'string',
 		},
 		{
-			title: 'Something',
-			name: 'something',
-			type: 'text',
-			options: {
-				isHighlighted: true,
-			},
-		},
-		{
 			title: 'Content',
 			name: 'content',
 			type: 'array',
@@ -28,11 +20,11 @@ const page = {
 					name: 'featuredImage',
 					type: 'image',
 				},
+				// {
+				// 	type: 'shopifyItem',
+				// },
 				{
-					type: 'shopifyItem',
-				},
-				{
-					type: 'textBlock',
+					type: 'block',
 				},
 			],
 		},
