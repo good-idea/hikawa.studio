@@ -9,7 +9,7 @@ import homepageQuery from './homepageQuery'
  * Kame
  */
 
-const Kame = (props: Props) => (
+const Kame = () => (
 	<div>
 		<h2>Kame</h2>
 		<Query query={homepageQuery}>

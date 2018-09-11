@@ -1,0 +1,23 @@
+{
+  "root": true,
+  "project": {
+    "name": "kame-test"
+  },
+  "api": {
+    "projectId": "rz3fhq71",
+    "dataset": "test"
+  },
+  "plugins": [
+    "@sanity/base",
+    "@sanity/components",
+    "@sanity/default-layout",
+    "@sanity/default-login",
+    "@sanity/desk-tool"
+  ],
+  "parts": [
+    {
+      "name": "part:@sanity/base/schema",
+      "path": "./schemas/schema.js"
+    }
+  ]
+}
