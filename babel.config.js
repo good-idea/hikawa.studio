@@ -1,3 +1,3 @@
 module.exports = {
-	babelrcRoots: true,
+	babelrcRoots: ['./app', './sanity'],
 }
