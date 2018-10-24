@@ -20,11 +20,11 @@ const page = {
 					name: 'featuredImage',
 					type: 'image',
 				},
-				// {
-				// 	type: 'shopifyItem',
-				// },
 				{
-					type: 'block',
+					type: 'shopifyItem',
+				},
+				{
+					type: 'text',
 				},
 			],
 		},
