@@ -9,8 +9,8 @@ import shopifySelector from 'part:@sanity/form-builder/input/shopifySelector/sch
  * Types
  */
 
-import Product from './Product'
-import Page from './Page'
+import * as objects from './objects'
+import * as documents from './documents'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -18,8 +18,8 @@ export default createSchema({
 	// Then proceed to concatenate our our document type
 	// to the ones provided by any plugins that are installed
 	types: schemaTypes.concat([
-		Product,
-		Page,
+		...Object.values(objects),
+		...Object.values(documents),
 		/* Your types here! */
 		shopifySelector,
 	]),
