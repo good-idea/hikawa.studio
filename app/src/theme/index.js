@@ -1,8 +1,10 @@
 // @flow
-import { z } from './layout'
+import * as layout from './layout'
+import * as type from './type'
 
 const theme = {
-	z,
+	layout,
+	type,
 }
 
 export default theme

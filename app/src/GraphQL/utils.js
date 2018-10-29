@@ -2,8 +2,9 @@
 import * as R from 'ramda'
 import type { LoadingState } from 'Types/GraphQLTypes'
 
-export const unwindEdges = (o: Object): Object =>
-	R.pipe(
+export const unwindEdges = (o: Object): Object => {
+	if (typeof o !== 'object') return o
+	return R.pipe(
 		R.toPairs,
 		// Iterate over the properties and their values
 		R.reduce(
@@ -25,6 +26,7 @@ export const unwindEdges = (o: Object): Object =>
 			{},
 		),
 	)(o)
+}
 
 // Loading States
 

@@ -1,3 +1,3 @@
 // @flow
 
-export const apiRoot = 'https://kame-case.myshopify.com/api/graphql'
+export const apiRoot = 'http://localhost:3000/'

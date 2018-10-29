@@ -1,15 +1,15 @@
 // @flow
 /* eslint-disable */
 
-import { css } from 'styled-components'
+import { css, createGlobalStyle } from 'styled-components'
 import normalized from './normalized'
 
-export const globalStyles = css`
+export const GlobalStyles = createGlobalStyle`
 	${normalized}
 
 	html {
 		font-size: 10px;
-		font-family: ${(props) => props.theme.fontFamily.cormorant};
+		font-family: ${(props) => props.theme.type.fontFamily.sans};
 		font-weight: 300;
 	}
 
@@ -19,7 +19,7 @@ export const globalStyles = css`
 
 	button, input, select, option, textarea {
 		background: white;
-		font-family: ${(props) => props.theme.fontFamily.cormorant};
+		font-family: ${(props) => props.theme.type.fontFamily.sans};
 		font-weight: 300;
 		border: none;
 		outline: none;
@@ -38,7 +38,7 @@ export const globalStyles = css`
 	}
 
 	h1, h2, h3, h4, h5, h6, p, li, ol {
-		font-weight: ${(props) => props.theme.fontWeight.heavy};
+		font-weight: ${(props) => props.theme.type.weight.heavy};
 		margin: 0;
 	}
 

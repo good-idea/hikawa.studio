@@ -1,24 +1,21 @@
 // @flow
 import gql from 'graphql-tag'
+import { seoPartial, contentPartial, bannerPartial } from '../../GraphQL/partials'
 
 const query = /* GraphQL */ gql`
 	{
-		shop {
-			collections(first: 2) {
-				edges {
-					node {
-						id
-						title
-						handle
-						description
-						image {
-							altText
-							id
-							originalSrc
-						}
-					}
-				}
+		homepage {
+			${bannerPartial}
+			${seoPartial}
+			${contentPartial}
+
+		}
+		siteSettings {
+			logo {
+				_ref
+				url
 			}
+			${seoPartial}
 		}
 	}
 `
