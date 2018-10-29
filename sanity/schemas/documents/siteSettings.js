@@ -1,10 +1,19 @@
-import { pageFields } from './shared'
-
 const page = {
 	title: 'Site Settings',
 	name: 'siteSettings',
 	type: 'document',
-	fields: pageFields,
+	fields: [
+		{
+			name: 'logo',
+			label: 'Logo',
+			type: 'image',
+		},
+		{
+			name: 'seo',
+			label: 'Site-wide SEO defaults',
+			type: 'seo-settings',
+		},
+	],
 	preview: {
 		select: {},
 		prepare: () => ({

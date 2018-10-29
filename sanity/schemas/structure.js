@@ -43,8 +43,8 @@ export default () =>
 				.child(
 					S.editor()
 						.id('config')
-						.schemaType('config')
-						.documentId('global-config'),
+						.schemaType('siteSettings')
+						.documentId('site-settings'),
 				),
 
 			// // Static pages: About, Contact
