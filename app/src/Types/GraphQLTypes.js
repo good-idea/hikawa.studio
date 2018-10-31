@@ -5,6 +5,19 @@ import type { QueryRenderProps } from 'react-apollo'
 
 export type LoadingState = 'loading' | 'refetching' | 'passivelyRefetching' | 'fetchingMore' | 'ready' | 'errors'
 
+type Edge<T> = {
+	cursor: string,
+	node: T,
+}
+
+export type Paginated<T> = {
+	pageInfo: {
+		hasNextPage: boolean,
+		hasPreviousPage: boolean,
+	},
+	edges: Array<Edge<T>>,
+}
+
 type LoadingProps = QueryRenderProps<any> & {
 	status: LoadingState,
 }
