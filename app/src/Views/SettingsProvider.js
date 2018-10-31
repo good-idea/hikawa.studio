@@ -12,6 +12,10 @@ const query = gql`
 		siteSettings {
 			logo {
 				url
+				id
+				altText
+				_key
+				_type
 				_ref
 			}
 			seo {
@@ -19,6 +23,11 @@ const query = gql`
 				description
 				image {
 					url
+					id
+					altText
+					_key
+					_type
+					_ref
 				}
 			}
 		}
@@ -26,7 +35,7 @@ const query = gql`
 `
 
 /**
- * SettingsProvidert
+ * SettingsProvider
  */
 
 type Props = {

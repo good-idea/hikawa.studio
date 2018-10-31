@@ -18,10 +18,15 @@ const query = gql`
 							price
 							sku
 							title
+							image {
+								id
+								altText
+								originalSrc
+							}
 						}
 					}
 				}
-				images(first: 1) {
+				images(first: 50) {
 					edges {
 						node {
 							id

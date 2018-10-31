@@ -1,30 +1,50 @@
 // @flow
 import React from 'react'
 import type { Match } from 'react-router-dom'
+import styled from 'styled-components'
+import type { ProductType } from 'Types/ProductTypes'
 import Query from 'GraphQL/Query'
+import { Column } from 'Components/Layout'
+import { InspectorProvider, ImageInspector } from 'Components/ImageInspector'
+import ProductDescription from './ProductDescription'
 import productQuery from './productQuery'
+
+const Layout = styled.div`
+	${({ theme }) => `
+		display: grid;
+		grid-template-columns: 50% 50%;
+		grid-column-gap: ${theme.layout.spacing.single};
+	`};
+`
 
 /**
  * Product
  */
 
-type Props = {
+type BaseProps = {
 	match: Match,
 }
 
-const Product = (props: Props) => (
-	<Query query={productQuery} variables={{ handle: props.match.params.handle }}>
-		{({ data }) => {
-			const product = data.shop.productByHandle
-			console.log(product)
-			return (
-				<React.Fragment>
-					<h1>{product.title}</h1>
-					<h3>{product.description}</h3>
-				</React.Fragment>
-			)
-		}}
+type Props = {
+	product: ProductType,
+}
+
+const Product = (props: Props) => {
+	const { product } = props
+	return (
+		<InspectorProvider images={product.images || []}>
+			<Column width="wide">
+				<Layout>
+					<ImageInspector />
+					<ProductDescription product={product} />
+				</Layout>
+			</Column>
+		</InspectorProvider>
+	)
+}
+
+export default ({ match }: BaseProps) => (
+	<Query query={productQuery} variables={{ handle: match.params.handle }}>
+		{({ data }) => <Product product={data.shop.productByHandle} />}
 	</Query>
 )
-
-export default Product

@@ -1,12 +1,13 @@
 // @flow
 
 export const size = {
-	h1: '25px',
-	h2: '20px',
-	h3: '16px',
+	h1: '42px',
+	h2: '28px',
+	h3: '22px',
 	p: '16px',
-	h4: '14px',
+	h4: '16px',
 	h5: '12px',
+	h6: '10px',
 }
 
 export const weight = {
@@ -19,4 +20,8 @@ export const weight = {
 export const fontFamily = {
 	sans:
 		'-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";',
+}
+
+export const defaults = {
+	align: 'center',
 }

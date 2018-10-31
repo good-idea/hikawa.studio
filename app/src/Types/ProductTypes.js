@@ -2,12 +2,12 @@
 /* eslint-disable no-use-before-define */
 
 import type { CollectionType } from './CollectionTypes'
-import type { ImageType } from './MediaTypes'
+import type { ShopifyImage } from './ContentTypes'
 
-export type Money = {
-	amount: number,
-	currencyCode: string,
-}
+export type Money = string
+// 	amount: number,
+// 	currencyCode: string,
+// }
 
 type ProductOption = {
 	id: string,
@@ -25,25 +25,26 @@ type ProductPriceRange = {
 	minVariantPrice: Money,
 }
 
-type ProductVariant = {
+export type ProductVariant = {
 	id: string,
 	availableForSale: boolean,
-	price: Money,
-	image: Image,
-	product: ProductType,
-	selectedOptions: Array<SelectedOption>,
-	sku: string,
 	title: string,
-	weight: number,
-	weightUnit: string,
+	price: Money,
+	image: ShopifyImage,
+	product?: ProductType,
+	selectedOptions?: Array<SelectedOption>,
+	sku?: string,
+	weight?: number,
+	weightUnit?: string,
 }
 
 export type ProductType = {
 	id: string,
-	availableForSale: boolean,
 	handle: string,
+	title: string,
+	availableForSale?: boolean,
 	collections?: Array<CollectionType>,
-	images?: Array<ImageType>,
+	images?: Array<ShopifyImage>,
 	options?: Array<ProductOption>,
 	priceRange?: ProductPriceRange,
 	variants?: Array<ProductVariant>,
@@ -54,4 +55,5 @@ export type ProductType = {
 	createdAt?: Date,
 	description?: string,
 	descriptionHtml?: string,
+	__typename: 'Product',
 }

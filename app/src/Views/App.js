@@ -7,6 +7,7 @@ import Kame from './Kame'
 import Collection from './Collection'
 import Product from './Product'
 import NotFound from './NotFound'
+import Navigation from './Navigation'
 
 /**
  * App
@@ -15,6 +16,7 @@ import NotFound from './NotFound'
 const App = () => (
 	<SettingsProvider>
 		<Main>
+			<Navigation />
 			<Switch>
 				<Route path="/" exact component={Kame} />
 				<Route path="/collections/:handle" exact component={Collection} />

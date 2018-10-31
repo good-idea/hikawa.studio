@@ -1,6 +1,7 @@
 // @flow
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import { SettingsConsumer } from 'Views/SettingsProvider'
 
 const Image = styled.img`
@@ -13,7 +14,13 @@ const Image = styled.img`
 
 const MyComponent = () => (
 	<SettingsConsumer>
-		{(siteSettings) => siteSettings && <Image src={siteSettings.logo.url} alt={siteSettings.seo.name} />}
+		{(siteSettings) =>
+			siteSettings && (
+				<Link to="/">
+					<Image src={siteSettings.logo.url} alt={siteSettings.seo.name} />
+				</Link>
+			)
+		}
 	</SettingsConsumer>
 )
 

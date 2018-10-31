@@ -8,14 +8,6 @@ const query = /* GraphQL */ gql`
 			${bannerPartial}
 			${seoPartial}
 			${contentPartial}
-
-		}
-		siteSettings {
-			logo {
-				_ref
-				url
-			}
-			${seoPartial}
 		}
 	}
 `

@@ -12,4 +12,16 @@ export const spacing = {
 	half: '6px',
 	single: '12px',
 	double: '24px',
+	triple: '38px',
+}
+
+export const columns = {
+	small: '450px',
+	medium: '600px',
+	wide: '900px',
+	xWide: '1100px',
+}
+
+export const defaults = {
+	columnWidth: columns.medium,
 }
