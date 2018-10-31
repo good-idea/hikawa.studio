@@ -1,11 +1,14 @@
 // @flow
 import React from 'react'
+import { path } from 'ramda'
 import type { Match } from 'react-router-dom'
 import styled from 'styled-components'
+import { adopt } from 'react-adopt'
 import type { ProductType } from 'Types/ProductTypes'
 import Query from 'GraphQL/Query'
 import { Column } from 'Components/Layout'
 import { InspectorProvider, ImageInspector } from 'Components/ImageInspector'
+import { CheckoutConsumer } from 'Views/CheckoutProvider'
 import ProductDescription from './ProductDescription'
 import productQuery from './productQuery'
 
@@ -29,22 +32,36 @@ type Props = {
 	product: ProductType,
 }
 
-const Product = (props: Props) => {
-	const { product } = props
+const Product = ({ product, cart }: Props) => {
 	return (
 		<InspectorProvider images={product.images || []}>
 			<Column width="wide">
 				<Layout>
 					<ImageInspector />
-					<ProductDescription product={product} />
+					<ProductDescription cart={cart} product={product} />
 				</Layout>
 			</Column>
 		</InspectorProvider>
 	)
 }
 
-export default ({ match }: BaseProps) => (
-	<Query query={productQuery} variables={{ handle: match.params.handle }}>
-		{({ data }) => <Product product={data.shop.productByHandle} />}
-	</Query>
+const Composed = adopt(
+	{
+		cart: <CheckoutConsumer />,
+		productData: ({ match, render }) => {
+			return (
+				<Query query={productQuery} variables={{ handle: match.params.handle }}>
+					{render}
+				</Query>
+			)
+		},
+	},
+	({ productData, ...rest }) => ({
+		product: path(['data', 'shop', 'productByHandle'], productData),
+		...rest,
+	}),
 )
+
+export default (props: BaseProps) => {
+	return <Composed {...props}>{({ product, cart }) => <Product product={product} cart={cart} />}</Composed>
+}

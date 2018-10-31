@@ -46,6 +46,12 @@ class ProductDescription extends React.Component<Props, State> {
 		)
 	}
 
+	addSelectedVariantToCart = () => {
+		const { selectedVariant } = this.state
+		const { cart } = this.props
+		cart.addToCart(selectedVariant)
+	}
+
 	render() {
 		const { product } = this.props
 		const { selectedVariant } = this.state
@@ -54,7 +60,9 @@ class ProductDescription extends React.Component<Props, State> {
 				<Header1>{product.title}</Header1>
 				<P>{product.description}</P>
 				<VariantSelector variants={product.variants || []} selectVariant={this.selectVariant} selectedVariant={selectedVariant} />
-				<Button disabled={selectedVariant === undefined}>Add To Cart</Button>
+				<Button onClick={this.addSelectedVariantToCart} disabled={selectedVariant === undefined}>
+					Add To Cart
+				</Button>
 			</Wrapper>
 		)
 	}
