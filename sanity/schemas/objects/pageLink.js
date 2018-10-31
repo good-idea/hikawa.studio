@@ -101,7 +101,7 @@ const pageLink = {
 	type: 'object',
 	fields: [
 		{
-			type: 'image',
+			type: 'imageWithAltText',
 			name: 'image',
 			title: 'Image',
 			description: '(optional) Alternate image',

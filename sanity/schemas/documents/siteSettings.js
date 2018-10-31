@@ -6,7 +6,7 @@ const page = {
 		{
 			name: 'logo',
 			label: 'Logo',
-			type: 'image',
+			type: 'imageWithAltText',
 		},
 		{
 			name: 'seo',

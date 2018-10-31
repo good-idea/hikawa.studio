@@ -23,7 +23,7 @@ const gallery = {
 					type: 'string',
 				},
 				{ type: 'richText' },
-				{ type: 'image' },
+				{ type: 'imageWithAltText' },
 				// { type: 'videoEmbed' },
 				// { type: 'lottie' },
 			],

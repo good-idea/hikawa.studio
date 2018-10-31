@@ -7,7 +7,7 @@ const contentBuilder = {
 		{ type: 'header' },
 		{ type: 'richText' },
 		{ type: 'gallery' },
-		{ type: 'image' },
+		{ type: 'imageWithAltText' },
 		{ type: 'pageLink' },
 		// { type: 'lottie' },
 		// { type: 'videoEmbed' },

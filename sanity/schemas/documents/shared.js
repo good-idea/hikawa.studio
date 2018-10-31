@@ -12,7 +12,7 @@ const pageContent = {
 
 const pageBanner = {
 	title: 'Banner Image',
-	type: 'image',
+	type: 'imageWithAltText',
 	name: 'banner',
 }
 

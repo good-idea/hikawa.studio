@@ -1,5 +1,5 @@
-import { fields } from './shared'
 import { TiDevicePhone } from 'react-icons/ti'
+import { fields } from './shared'
 
 const product = {
 	title: 'Products',
@@ -14,6 +14,8 @@ const product = {
 			options: {
 				collections: false,
 			},
+			// TODO Why is this not working?
+			validation: (Rule) => Rule.required(),
 		},
 		{
 			title: 'Title',
