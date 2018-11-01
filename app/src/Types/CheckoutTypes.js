@@ -1,6 +1,5 @@
 // @flow
 
-import type { Paginated } from 'Types/GraphQLTypes'
 import type { ProductVariant, Money } from 'Types/ProductTypes'
 import type { MailingAddress } from 'Types/CustomerTypes'
 
@@ -53,12 +52,12 @@ type DiscountAllocation = {
 }
 
 export type CheckoutLineItem = {
-	customAttributes: Array<Attribute>,
-	discountAllocations: Array<DiscountAllocation>,
 	id: string,
-	quanity: number,
+	quantity: number, // TODO: Disabling this causes weird propType warnings, why?
 	title: string,
 	variant: ProductVariant,
+	customAttributes?: Array<Attribute>,
+	discountAllocations?: Array<DiscountAllocation>,
 }
 
 export type OrderLineItem = {
@@ -76,34 +75,34 @@ export type Order = {
 	discountApplications: Array<DiscountAllocation>,
 	email: string,
 	id: string,
-	lineItems: Paginated<OrderLineItem>,
+	lineItems: Array<OrderLineItem>,
 }
 
 export type Checkout = {
 	appliedGiftCards?: Array<AppliedGiftCard>,
 	availableShippingRates?: AvailableShippingRates,
 	completedAt?: Date,
-	createdAt: Date,
-	currencyCode: CurrencyCode,
-	customAttributes: Array<Attribute>,
-	discountApplications: Paginated<DiscountApplication>,
-	email: string,
+	createdAt?: Date,
+	currencyCode?: CurrencyCode,
+	customAttributes?: Array<Attribute>,
+	discountApplications?: Array<DiscountApplication>,
+	email?: string,
 	id: string,
-	lineItems: Paginated<CheckoutLineItem>,
-	note: string,
-	order: Order,
-	orderStatusUrl: string | null,
-	paymentDue: Money,
-	ready: boolean,
-	requiresShipping: boolean,
-	shippingAddress: MailingAddress,
-	shippingDiscountAllocations: Array<DiscountAllocation>,
-	shippingLine: ShippingRate,
-	subtotalPrice: Money,
-	taxExempt: boolean,
-	taxesIncluded: boolean,
-	totalPrice: Money,
-	totalTax: Money,
-	updatedAt: Date,
-	webUrl: string,
+	lineItems: Array<CheckoutLineItem>,
+	note?: string,
+	order?: Order,
+	orderStatusUrl?: string | null,
+	paymentDue?: Money,
+	ready?: boolean,
+	requiresShipping?: boolean,
+	shippingAddress?: MailingAddress,
+	shippingDiscountAllocations?: Array<DiscountAllocation>,
+	shippingLine?: ShippingRate,
+	subtotalPrice?: Money,
+	taxExempt?: boolean,
+	taxesIncluded?: boolean,
+	totalPrice?: Money,
+	totalTax?: Money,
+	updatedAt?: Date,
+	webUrl?: string,
 }

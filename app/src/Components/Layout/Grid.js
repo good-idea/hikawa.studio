@@ -3,11 +3,12 @@
 import styled from 'styled-components'
 
 const Grid = styled.div`
-	${({ columns }) => `
+	${({ columns, theme }) => `
 		display: grid;
-		grid-column-gap: 10px;
-		grid-row-gap: 10px;
-		grid-template-columns: ${!columns || typeof columns === 'number' ? '1fr'.repeat(Math.ceil(columns) || 3) : columns};
+		margin: ${theme.layout.spacing.single} 0;
+		grid-column-gap: ${theme.layout.spacing.single};
+		grid-row-gap: ${theme.layout.spacing.single};
+		grid-template-columns: ${!columns || typeof columns === 'number' ? '1fr '.repeat(Math.ceil(columns) || 3) : columns};
 		& > * {
 			min-width: 0;
 		}

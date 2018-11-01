@@ -41,3 +41,17 @@ export const dashedBorder = css`
 	}};
 	animation: ${moveBorder} 1s linear infinite;
 `
+
+export const fixedFullSize = css`
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+`
+
+export const flexCenter = css`
+	display: flex;
+	justify-content: flex-center;
+	align-items: center;
+`

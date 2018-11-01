@@ -4,28 +4,35 @@ import styled from 'styled-components'
 import type { SiteSettings } from 'Types/ContentTypes'
 import Logo from 'Components/Logo'
 import { adopt } from 'react-adopt'
-
-import { SettingsConsumer } from './SettingsProvider'
-import { CheckoutConsumer } from './CheckoutProvider'
+import type { CheckoutConsumerProps } from '../CheckoutProvider'
+import { SettingsConsumer } from '../SettingsProvider'
+import { CheckoutConsumer } from '../CheckoutProvider'
+import Cart from './Cart'
 
 const Nav = styled.nav`
 	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 `
+
+const Menu = styled.div``
 /**
  * Navigation
  */
 
 type Props = {
 	siteSettings?: SiteSettings,
-	cart: any,
+	cart: CheckoutConsumerProps,
 }
 
 const Navigation = ({ cart }: Props) => {
-	// console.log(cart)
 	return (
 		<Nav>
 			<Logo />
-			{cart && cart.items.length ? <p>cart: {cart.items.length}</p> : null}
+			<Menu>
+				<Cart {...cart} />
+			</Menu>
 		</Nav>
 	)
 }

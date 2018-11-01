@@ -24,6 +24,7 @@ const PageLinkBlock = (props: PageLink) => {
 	const url = getLinkUrl(props)
 	const headerText = props.label || props.link.title
 	// const Image = getLinkImage(props)
+	console.log(props.link)
 	return (
 		<FlexChild basis="50%">
 			<Link to={url}>

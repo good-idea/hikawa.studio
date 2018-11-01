@@ -6,6 +6,7 @@ const imageFields = `
 	_ref
 	url
 	id
+	altText
 `
 
 export const seoPartial = `
@@ -13,7 +14,11 @@ export const seoPartial = `
 		name
 		description
 		image {
-			${imageFields}
+			_type
+			_key
+			_ref
+			url
+			id
 		}
 	}
 `

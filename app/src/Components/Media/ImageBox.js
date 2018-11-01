@@ -7,7 +7,7 @@ import Image from './Image'
 const Figure = styled.figure`
 	width: 100%;
 	position: relative;
-	max-height: 70vh;
+	max-height: 100%;
 	overflow: hidden;
 `
 

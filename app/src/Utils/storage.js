@@ -1,7 +1,8 @@
 // @flow
 import Cookies from 'js-cookie'
 
-export const VIEWER_COOKIE_TOKEN = 'true_viewer'
+export const VIEWER_CART_TOKEN = 'kame_cart'
+export const VIEWER_ACCESS_TOKEN = 'kame_viewer'
 
 type CookieConfig = {
 	expires?: number,

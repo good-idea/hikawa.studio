@@ -1,7 +1,8 @@
 // @flow
 import * as React from 'react'
 import styled from 'styled-components'
-import type { ProductType } from 'Types/ProductTypes'
+import type { ProductType, ProductVariant } from 'Types/ProductTypes'
+import type { CheckoutConsumerProps } from 'Views/CheckoutProvider'
 import { Header1, Header4, P } from 'Components/Type'
 // import { InspectorConsumer } from 'Components/ImageInspector'
 import { InspectorConsumer } from 'Components/ImageInspector'
@@ -18,10 +19,11 @@ const Wrapper = styled.div`
 type Props = {
 	product: ProductType,
 	selectImage: (string) => () => void,
+	addToCart: (any) => Promise<void>,
 }
 
 type State = {
-	selectedVariant: void | string,
+	selectedVariant?: ProductVariant,
 }
 
 class ProductDescription extends React.Component<Props, State> {
@@ -33,14 +35,13 @@ class ProductDescription extends React.Component<Props, State> {
 		selectedVariant: undefined,
 	}
 
-	selectVariant = (variantId: string) => () => {
-		const { selectImage, product } = this.props
+	selectVariant = (variant: ProductVariant) => () => {
+		const { selectImage } = this.props
 		this.setState(
 			{
-				selectedVariant: variantId,
+				selectedVariant: variant,
 			},
 			() => {
-				const variant = product.variants && product.variants.find((v) => v.id === variantId)
 				if (variant && variant.image) selectImage(variant.image.id)()
 			},
 		)
@@ -48,8 +49,9 @@ class ProductDescription extends React.Component<Props, State> {
 
 	addSelectedVariantToCart = () => {
 		const { selectedVariant } = this.state
-		const { cart } = this.props
-		cart.addToCart(selectedVariant)
+		const { addToCart } = this.props
+		if (!selectedVariant) return
+		addToCart({ lineItems: [{ variantId: selectedVariant.id, quantity: 1 }] })
 	}
 
 	render() {
@@ -60,7 +62,10 @@ class ProductDescription extends React.Component<Props, State> {
 				<Header1>{product.title}</Header1>
 				<P>{product.description}</P>
 				<VariantSelector variants={product.variants || []} selectVariant={this.selectVariant} selectedVariant={selectedVariant} />
-				<Button onClick={this.addSelectedVariantToCart} disabled={selectedVariant === undefined}>
+				<Button
+					onClick={this.addSelectedVariantToCart}
+					disabled={selectedVariant === undefined || selectedVariant.availableForSale === false}
+				>
 					Add To Cart
 				</Button>
 			</Wrapper>

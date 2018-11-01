@@ -27,10 +27,10 @@ type ProductPriceRange = {
 
 export type ProductVariant = {
 	id: string,
-	availableForSale: boolean,
+	availableForSale?: boolean,
 	title: string,
 	price: Money,
-	image: ShopifyImage,
+	image?: ShopifyImage,
 	product?: ProductType,
 	selectedOptions?: Array<SelectedOption>,
 	sku?: string,

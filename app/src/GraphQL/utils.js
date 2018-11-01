@@ -2,8 +2,9 @@
 import * as R from 'ramda'
 import type { LoadingState } from 'Types/GraphQLTypes'
 
-export const unwindEdges = (o: Object): Object => {
+export const unwindEdges = <T>(o: T): T => {
 	if (typeof o !== 'object') return o
+	// $FlowFixMe
 	return R.pipe(
 		R.toPairs,
 		// Iterate over the properties and their values
@@ -30,8 +31,10 @@ export const unwindEdges = (o: Object): Object => {
 
 // Loading States
 
-export const getNetworkStatus = (num: number): LoadingState => {
+export const getNetworkStatus = (num?: number): LoadingState => {
 	switch (num) {
+		case undefined:
+			return 'pending'
 		case 1:
 			return 'loading'
 		case 4:

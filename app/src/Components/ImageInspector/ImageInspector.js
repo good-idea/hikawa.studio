@@ -18,7 +18,7 @@ const ImageInspector = () => {
 				return (
 					<div>
 						<MainImage image={currentImage} />
-						<Grid columns="100px 100px 100px">
+						<Grid columns={4}>
 							{images.map((image) => (
 								<Thumbnail
 									key={image.id}

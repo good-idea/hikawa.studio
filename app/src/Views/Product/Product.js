@@ -1,13 +1,12 @@
 // @flow
 import React from 'react'
-import { path } from 'ramda'
 import type { Match } from 'react-router-dom'
 import styled from 'styled-components'
-import { adopt } from 'react-adopt'
 import type { ProductType } from 'Types/ProductTypes'
 import Query from 'GraphQL/Query'
 import { Column } from 'Components/Layout'
 import { InspectorProvider, ImageInspector } from 'Components/ImageInspector'
+import type { CheckoutConsumerProps } from 'Views/CheckoutProvider'
 import { CheckoutConsumer } from 'Views/CheckoutProvider'
 import ProductDescription from './ProductDescription'
 import productQuery from './productQuery'
@@ -30,6 +29,7 @@ type BaseProps = {
 
 type Props = {
 	product: ProductType,
+	cart: CheckoutConsumerProps,
 }
 
 const Product = ({ product, cart }: Props) => {
@@ -38,30 +38,23 @@ const Product = ({ product, cart }: Props) => {
 			<Column width="wide">
 				<Layout>
 					<ImageInspector />
-					<ProductDescription cart={cart} product={product} />
+					<ProductDescription addToCart={cart && cart.addToCart} product={product} />
 				</Layout>
 			</Column>
 		</InspectorProvider>
 	)
 }
 
-const Composed = adopt(
-	{
-		cart: <CheckoutConsumer />,
-		productData: ({ match, render }) => {
-			return (
-				<Query query={productQuery} variables={{ handle: match.params.handle }}>
-					{render}
-				</Query>
-			)
-		},
-	},
-	({ productData, ...rest }) => ({
-		product: path(['data', 'shop', 'productByHandle'], productData),
-		...rest,
-	}),
+export default ({ match }: BaseProps) => (
+	<CheckoutConsumer>
+		{(cart) => (
+			<Query query={productQuery} variables={{ handle: match.params.handle }}>
+				{({ data }) => data && data.shop && cart && <Product product={data.shop.productByHandle} cart={cart} />}
+			</Query>
+		)}
+	</CheckoutConsumer>
 )
 
-export default (props: BaseProps) => {
-	return <Composed {...props}>{({ product, cart }) => <Product product={product} cart={cart} />}</Composed>
-}
+// export default (props: BaseProps) => {
+// 	return <Composed {...props}>{({ product, cart }) => <Product product={product} cart={cart} />}</Composed>
+// }

@@ -1,6 +1,13 @@
 // @flow
 import * as React from 'react'
-import type { CheckoutType } from 'Types/CheckoutTypes'
+import { path } from 'ramda'
+import type { Checkout } from 'Types/CheckoutTypes'
+import type { Mutation } from 'Types/GraphQLTypes'
+import { adopt } from 'react-adopt'
+import { setCookie, getCookie, VIEWER_CART_TOKEN } from 'Utils/storage'
+import { CheckoutCreate, CheckoutLineItemsAdd } from './mutations'
+import { CheckoutQuery } from './queries'
+
 const { Consumer, Provider } = React.createContext()
 export const CheckoutConsumer = Consumer
 
@@ -8,40 +15,89 @@ export const CheckoutConsumer = Consumer
  * CheckoutProvider
  */
 
-type Props = {
+type InitialProps = {
 	children: React.Node,
 }
 
-type State = {
-	items: Array<string>,
-	currentCheckout: null | CheckoutType,
+type Props = {
+	children: React.Node,
+	checkoutCreate: Mutation,
+	checkoutLineItemsAdd: Mutation,
+	currentCart?: void | Checkout,
 }
 
-export class CheckoutProvider extends React.Component<Props, State> {
+type AddLineItem = {
+	variantId: string,
+	quantity: number,
+}
+
+type AddToCartArgs = {
+	lineItems: Array<AddLineItem>,
+	email?: string,
+	note?: string,
+}
+
+export type CheckoutConsumerProps = {
+	currentCart: void | Checkout,
+	addToCart: (AddToCartArgs) => Promise<void>,
+}
+
+class CheckoutProviderBase extends React.Component<Props> {
 	static defaultProps = {
 		// ...
+		currentCart: undefined,
 	}
 
-	state = {
-		items: [],
-		currentCheckout: null,
+	componentDidMount = async () => {
+		// const { queryCheckout } = this.props
+		// const id = getCookie(VIEWER_CART_TOKEN)
+		// const r = await queryCheckout({ id })
 	}
 
-	addToCart = async (newItem: string): Promise<void> => {
-		console.log('adding', newItem)
-		this.setState(({ items }) => ({
-			items: [...items, newItem],
-		}))
+	addToCart = async (variables: AddToCartArgs): Promise<void> => {
+		const { currentCart, checkoutLineItemsAdd } = this.props
+		if (!currentCart) return this.createCart(variables)
+		console.log(variables)
+		return checkoutLineItemsAdd({
+			variables: { checkoutId: currentCart.id, ...variables },
+		})
+	}
+
+	createCart = async (variables: AddToCartArgs): Promise<void> => {
+		const { checkoutCreate } = this.props
+		const result = await checkoutCreate({ variables })
+		if (result && result.data) {
+			setCookie(VIEWER_CART_TOKEN, result.data.checkoutCreate.checkout.id)
+		}
 	}
 
 	render() {
-		const { children } = this.props
-		const { items } = this.state
+		const { children, currentCart } = this.props
+		const { addToCart } = this
 		const value = {
-			addToCart: this.addToCart,
-			items,
+			addToCart,
+			currentCart,
+			// items,
 		}
 
 		return <Provider value={value}>{children}</Provider>
 	}
 }
+
+const mappers = ({ checkoutQueryData, ...rest }) => ({
+	currentCart: path(['data', 'node'], checkoutQueryData),
+	...rest,
+})
+
+const Composed = adopt(
+	{
+		checkoutCreate: <CheckoutCreate />,
+		checkoutLineItemsAdd: <CheckoutLineItemsAdd />,
+		checkoutQueryData: <CheckoutQuery variables={{ id: getCookie(VIEWER_CART_TOKEN) }} />,
+	},
+	mappers,
+)
+
+export const CheckoutProvider = (props: InitialProps) => (
+	<Composed>{(composed) => <CheckoutProviderBase {...composed} {...props} />}</Composed>
+)

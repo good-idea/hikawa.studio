@@ -3,7 +3,7 @@ import * as React from 'react'
 import type { DocumentNode } from 'graphql'
 import type { QueryRenderProps } from 'react-apollo'
 
-export type LoadingState = 'loading' | 'refetching' | 'passivelyRefetching' | 'fetchingMore' | 'ready' | 'errors'
+export type LoadingState = 'loading' | 'refetching' | 'passivelyRefetching' | 'fetchingMore' | 'ready' | 'errors' | 'pending'
 
 type Edge<T> = {
 	cursor: string,
