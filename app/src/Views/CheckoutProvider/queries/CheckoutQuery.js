@@ -26,6 +26,15 @@ export const query = gql`
 								id
 								title
 								price
+								product {
+									id
+									title
+								}
+								image {
+									altText
+									id
+									originalSrc
+								}
 							}
 						}
 					}

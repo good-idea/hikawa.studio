@@ -4,7 +4,7 @@ import { Button } from 'Components/Buttons'
 import Modal from 'Components/Modal'
 import type { Checkout } from 'Types/CheckoutTypes'
 import type { CheckoutConsumerProps } from '../CheckoutProvider'
-
+import CartLineItem from './CartLineItem'
 /**
  * Cart
  */
@@ -37,11 +37,14 @@ class Cart extends React.Component<Props, State> {
 		const { currentCart } = this.props
 		const { isOpen } = this.state
 		const count = getCount(currentCart)
+		const { lineItems } = currentCart || {}
 		return (
 			<React.Fragment>
 				<Button onClick={this.openCart}>Cart: {count} items</Button>
-				<Modal open={isOpen} onBackgroundClick={this.closeCart}>
-					p
+				<Modal open={isOpen && lineItems && lineItems.length > 0} onBackgroundClick={this.closeCart}>
+					{lineItems.map((l) => (
+						<CartLineItem key={l.id} item={l} />
+					))}
 				</Modal>
 			</React.Fragment>
 		)

@@ -53,7 +53,7 @@ type DiscountAllocation = {
 
 export type CheckoutLineItem = {
 	id: string,
-	quantity: number, // TODO: Disabling this causes weird propType warnings, why?
+	quantity: number,
 	title: string,
 	variant: ProductVariant,
 	customAttributes?: Array<Attribute>,
