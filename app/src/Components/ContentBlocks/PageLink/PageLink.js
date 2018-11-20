@@ -21,6 +21,7 @@ const Wrapper = styled.div`
 
 const PageLinkBlock = (props: PageLink) => {
 	// const { link } = props
+	if (!props.link) return null
 	const url = getLinkUrl(props)
 	const headerText = props.label || props.link.title
 	// const Image = getLinkImage(props)

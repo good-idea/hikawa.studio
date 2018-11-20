@@ -42,19 +42,15 @@ const mutation = gql`
 
 const config = {
 	update: async (proxy, { data }) => {
-		console.log(data)
 		if (!data) return
 
 		const {
 			checkoutLineItemsAdd: { userErrors, checkout },
 		} = data
-		console.log(checkout)
 		if (userErrors.length !== 0) {
 			console.log(userErrors)
 		}
 		if (checkout) {
-			const q = await proxy.readQuery({ query: checkoutQuery, variables: { id: checkout.id } })
-			console.log(q)
 			proxy.writeQuery({
 				query: checkoutQuery,
 				variables: { id: checkout.id },

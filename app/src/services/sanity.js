@@ -2,9 +2,9 @@
 import sanityClient from '@sanity/client'
 
 const client = sanityClient({
-	projectId: 'okelhmkd',
-	dataset: 'staging',
-	// useCdn: true, // `false` if you want to ensure fresh data
+	projectId: 'rz3fhq71',
+	dataset: process.env.NODE_ENV === 'development' ? 'staging' : 'production',
+	useCdn: process.env.NODE_ENV !== 'development',
 })
 
 export default client

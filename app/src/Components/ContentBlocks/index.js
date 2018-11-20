@@ -8,26 +8,6 @@ import Image from './Image'
 import Video from './Video'
 import Header from './Header'
 import PageLink from './PageLink'
-import PTs from 'prop-types'
-
-// const Wrapper = styled.div`
-// 	outline: 1px solid mediumslateblue;
-// 	padding: 20px 5px 5px;
-// 	margin: 5px 0;
-// 	position: relative;
-
-// 	${({ type }) => `
-// 		&:after {
-// 			content: "${type}";
-// 			position: absolute;
-// 			top: 2px;
-// 			left: 2px;
-// 			font-size: 10px;
-// 			font-family: Consolas, monaco, monospace;
-// 			color: mediumslateblue;
-// 		}
-// 	`};
-// `
 
 /**
  * Block
@@ -38,6 +18,8 @@ type Props = {
 }
 
 const Block = ({ block }: Props) => {
+	// PageLinks to shopifyItems that no longer exist will return `link: null`
+	if (block._type === 'pageLink' && !block.link) return null
 	switch (block._type) {
 		// case 'gallery':
 		// 	return <Gallery {...block} />
@@ -55,19 +37,5 @@ const Block = ({ block }: Props) => {
 			throw new Error(`There is no content component for "${block._type}"`)
 	}
 }
-
-// Block.defaultProps = {
-// 	isRequired: PTs.string.isRequired,
-// }
-
-// const Block = (props: Props) => (
-// 	<Wrapper>
-// 		<BlockByType {...props} />
-// 	</Wrapper>
-// )
-
-// Block.defaultProps = {
-// 	isRequired: null,
-// }
 
 export default Block

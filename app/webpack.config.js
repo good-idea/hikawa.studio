@@ -60,7 +60,7 @@ const development = {
 		new webpack.DefinePlugin({
 			'process.env': {
 				DEBUG: JSON.stringify('web'),
-				ENV: JSON.stringify('development'),
+				NODE_ENV: JSON.stringify('development'),
 			},
 		}),
 	],
@@ -83,7 +83,7 @@ const staging = {
 		new webpack.NamedModulesPlugin(),
 		new webpack.DefinePlugin({
 			'process.env.DEBUG': JSON.stringify('web'),
-			'process.env.ENV': JSON.stringify('staging'),
+			'process.env.NODE_ENV': JSON.stringify('staging'),
 		}),
 	],
 }
@@ -101,7 +101,7 @@ const production = {
 	},
 	plugins: [
 		new webpack.DefinePlugin({
-			'process.env.ENV': JSON.stringify('production'),
+			'process.env.NODE_ENV': JSON.stringify('production'),
 		}),
 	],
 }

@@ -62,7 +62,7 @@ export type Link = Page | ProductType | CollectionType
 export type PageLink = {
 	_type: string,
 	_key: string,
-	link: Link,
+	link?: Link,
 	label?: string,
 	caption?: string,
 	image?: SanityImage,
