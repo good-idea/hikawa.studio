@@ -1,39 +1,42 @@
 // @flow
-
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { ThemeProvider, injectGlobal } from 'styled-components'
+import { ThemeProvider } from 'styled-components'
 import { BrowserRouter } from 'react-router-dom'
-import { globalStyles } from './theme/global'
 import ApolloProvider from './services/Apollo'
 import App from './Views/App'
+import { GlobalStyles } from './theme/global'
 import theme from './theme'
 
-/* TODO: Placeholder */
-injectGlobal`
-	${globalStyles}
-
-	html {
-		font-size: 100%;
-	}
-
-	a {
-		color: blue;
-		display: block;
-	}
-`
-
-if (window.localStorage) {
+if (window.localStorage && process.env.NODE_ENV === 'development') {
 	window.localStorage.debug = process.env.DEBUG
 }
 
-ReactDOM.render(
-	<BrowserRouter>
-		<ApolloProvider>
-			<ThemeProvider theme={theme}>
-				<App />
-			</ThemeProvider>
-		</ApolloProvider>
-	</BrowserRouter>,
-	document.getElementById('root'),
-)
+const renderApp = (Component) => {
+	ReactDOM.render(
+		<BrowserRouter>
+			<ApolloProvider>
+				<ThemeProvider theme={theme}>
+					<React.Fragment>
+						<GlobalStyles />
+						<Component />
+					</React.Fragment>
+				</ThemeProvider>
+			</ApolloProvider>
+		</BrowserRouter>,
+		// $FlowFixme
+		document.getElementById('root'),
+	)
+}
+
+renderApp(App)
+
+// $FlowFixme
+if (module.hot && process.env.NODE_ENV === 'development') {
+	// $FlowIgnore
+	module.hot.accept('./Views/App.js', () => {
+		// eslint-disable-next-line
+		const NewApp = require('./Views/App').default
+		renderApp(NewApp)
+	})
+}
