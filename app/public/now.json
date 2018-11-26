@@ -1,4 +1,5 @@
 {
+	"name": "kame-store",
 	"alias": "kame-beta.now.sh",
 	"scale": {
 		"sfo1": {
