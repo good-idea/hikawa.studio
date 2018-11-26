@@ -19,6 +19,7 @@ app/coverage
 # local dev
 app/.docz
 *.sqlite
+*.tar.gz
 
 # IntelliJ
 .idea/
@@ -26,5 +27,5 @@ app/.docz
 
 # build
 build/
-src/public/js/app.js
-src/public/js/app.js.map
+app/public/js/app.js
+app/public/js/app.js.map
