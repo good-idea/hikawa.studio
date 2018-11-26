@@ -18,7 +18,6 @@ type Props = {
 }
 
 const CartLineItem = ({ item }: Props) => {
-	console.log(item)
 	return (
 		<Wrapper>
 			{item.variant.image && <Image image={item.variant.image} />}

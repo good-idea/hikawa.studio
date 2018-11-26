@@ -12,7 +12,6 @@ type Props = {
 }
 
 const ProductCard = ({ product }: Props) => {
-	console.log(product)
 	return (
 		<div>
 			{product.title}

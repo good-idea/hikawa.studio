@@ -55,7 +55,6 @@ class CheckoutProviderBase extends React.Component<Props> {
 			variables: { checkoutId: currentCart.id, ...variables },
 		})
 
-		console.log(newItems)
 		return newItems
 	}
 

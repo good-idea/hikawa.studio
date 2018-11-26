@@ -71,11 +71,8 @@ const config = {
 	update: (proxy, { data }) => {
 		if (!data) return
 		const {
-			checkoutCreate: { checkoutUserErrors, checkout },
+			checkoutCreate: { checkout },
 		} = data
-		if (checkoutUserErrors.length !== 0) {
-			console.log(checkoutUserErrors)
-		}
 		const id = getCookie(VIEWER_CART_TOKEN) || ''
 		// const prev = proxy.readQuery()
 		if (id && checkout) {

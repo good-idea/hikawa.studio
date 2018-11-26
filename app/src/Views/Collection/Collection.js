@@ -17,7 +17,6 @@ const Collection = (props: Props) => (
 	<Query query={collectionQuery} variables={{ handle: props.match.params.handle }}>
 		{({ data }) => {
 			const collection = data.shop.collectionByHandle
-			console.log(collection)
 			return (
 				<React.Fragment>
 					<h1>{collection.title}</h1>
