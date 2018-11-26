@@ -8,7 +8,8 @@
   "license": "UNLICENSED",
   "scripts": {
     "start": "sanity start",
-    "test": "sanity check"
+    "test": "sanity check",
+    "update-dataset": "sanity dataset export production && sanity dataset import production.tar.gz test"
   },
   "keywords": [
     "sanity"
