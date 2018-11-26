@@ -107,7 +107,6 @@ const production = {
 }
 
 module.exports = (env) => {
-	console.log(env)
 	switch (env) {
 		case 'production':
 			return merge(common, production)
