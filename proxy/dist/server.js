@@ -1,5 +1,9 @@
-require('dotenv').config();
+const path = require('path')
+require('dotenv').config({
+	path: path.resolve(__dirname, '.env'),
+})
 
-const runServer = require('@good-idea/shopify-sanity-proxy-server').default;
+console.log(process.env.NODE_ENV)
+const runServer = require('@good-idea/shopify-sanity-proxy-server').default
 
-runServer();
+runServer()
