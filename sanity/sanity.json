@@ -1,11 +1,11 @@
 {
 	"root": true,
 	"project": {
-		"name": "kame-test"
+		"name": "Kame"
 	},
 	"api": {
 		"projectId": "rz3fhq71",
-		"dataset": "test"
+		"dataset": "production"
 	},
 	"plugins": [
 		"@sanity/base",
@@ -13,7 +13,8 @@
 		"@sanity/default-layout",
 		"@sanity/default-login",
 		"@sanity/desk-tool",
-		"shopify-selector"
+		"shopify-selector",
+		"@sanity/vision"
 	],
 	"parts": [
 		{
@@ -27,7 +28,9 @@
 	],
 	"env": {
 		"development": {
-			"plugins": ["@sanity/vision"]
+			"api": {
+				"dataset": "test"
+			}
 		}
 	}
 }
