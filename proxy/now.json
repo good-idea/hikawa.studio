@@ -1,0 +1,11 @@
+{
+	"version": 1,
+	"alias": "kame-proxy.now.sh",
+	"scale": {
+		"sfo1": {
+			"min": 1,
+			"max": "auto"
+		}
+	},
+	"dotenv": "dist/.env"
+}

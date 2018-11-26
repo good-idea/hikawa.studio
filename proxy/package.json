@@ -1,0 +1,19 @@
+{
+  "name": "kame-proxy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Joseph Thomas | Good Idea Studio",
+  "license": "MIT",
+  "scripts": {
+    "start": "node dist/server.js",
+    "bundle": "babel ./src --out-dir ./dist"
+  },
+  "dependencies": {
+    "@good-idea/shopify-sanity-proxy-server": "^0.0.1",
+    "dotenv": "^6.1.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0"
+  }
+}
