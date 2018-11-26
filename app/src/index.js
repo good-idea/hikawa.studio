@@ -8,7 +8,7 @@ import App from './Views/App'
 import { GlobalStyles } from './theme/global'
 import theme from './theme'
 
-if (window.localStorage && process.env.NODE_ENV === 'development') {
+if (window.localStorage && process.env.DEBUG) {
 	window.localStorage.debug = process.env.DEBUG
 }
 

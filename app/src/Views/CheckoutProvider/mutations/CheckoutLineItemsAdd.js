@@ -31,6 +31,15 @@ const mutation = gql`
 								id
 								title
 								price
+								product {
+									id
+									title
+								}
+								image {
+									altText
+									id
+									originalSrc
+								}
 							}
 						}
 					}

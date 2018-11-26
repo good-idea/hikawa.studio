@@ -16,7 +16,8 @@ type State = {
 }
 
 const getCount = (currentCart?: Checkout): number => {
-	if (!currentCart || !currentCart.lineItems) return 0
+	console.log(currentCart)
+	if (!currentCart || !currentCart.lineItems) return -1
 	return currentCart.lineItems.reduce((acc, item) => acc + item.quantity || 0, 0)
 }
 
@@ -41,7 +42,7 @@ class Cart extends React.Component<Props, State> {
 		return (
 			<React.Fragment>
 				<Button onClick={this.openCart}>Cart: {count} items</Button>
-				<Modal open={isOpen && lineItems && lineItems.length > 0} onBackgroundClick={this.closeCart}>
+				<Modal open={isOpen} onBackgroundClick={this.closeCart}>
 					{lineItems && lineItems.map((l) => <CartLineItem key={l.id} item={l} />)}
 				</Modal>
 			</React.Fragment>

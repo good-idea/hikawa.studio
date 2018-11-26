@@ -51,9 +51,12 @@ class CheckoutProviderBase extends React.Component<Props> {
 	addToCart = async (variables: AddToCartArgs): Promise<void> => {
 		const { currentCart, checkoutLineItemsAdd } = this.props
 		if (!currentCart) return this.createCart(variables)
-		return checkoutLineItemsAdd({
+		const newItems = await checkoutLineItemsAdd({
 			variables: { checkoutId: currentCart.id, ...variables },
 		})
+
+		console.log(newItems)
+		return newItems
 	}
 
 	createCart = async (variables: AddToCartArgs): Promise<void> => {
