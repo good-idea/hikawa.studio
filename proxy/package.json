@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
-    "@babel/core": "^7.0.0"
+    "@babel/core": "^7.0.0",
+    "nodemon": "^1.18.6"
   }
 }
