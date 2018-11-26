@@ -6,7 +6,8 @@
   "author": "Joseph Thomas / Good Idea Studio",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack-dev-server --inline --colors --env development"
+    "dev": "webpack-dev-server --inline --colors --env development",
+    "build": "webpack -p --env production"
   },
   "dependencies": {
     "@sanity/block-content-to-react": "^2.0.5",
