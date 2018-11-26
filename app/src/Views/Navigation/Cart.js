@@ -42,9 +42,7 @@ class Cart extends React.Component<Props, State> {
 			<React.Fragment>
 				<Button onClick={this.openCart}>Cart: {count} items</Button>
 				<Modal open={isOpen && lineItems && lineItems.length > 0} onBackgroundClick={this.closeCart}>
-					{lineItems.map((l) => (
-						<CartLineItem key={l.id} item={l} />
-					))}
+					{lineItems && lineItems.map((l) => <CartLineItem key={l.id} item={l} />)}
 				</Modal>
 			</React.Fragment>
 		)

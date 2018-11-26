@@ -34,18 +34,20 @@ export const ModalContainer = styled.div`
 `
 
 type Props = {
-	children: React.Node,
+	children?: React.Node,
 	onBackgroundClick: () => void,
 	open: boolean,
 }
 
 const Modal = ({ children, onBackgroundClick, open }: Props) =>
-	open ? (
+	open && children ? (
 		<Background onClick={onBackgroundClick}>
 			<ModalContainer>
 				<ModalInner>{children}</ModalInner>
 			</ModalContainer>
 		</Background>
 	) : null
+
+Modal.defaultProps = { children: null }
 
 export default Modal
