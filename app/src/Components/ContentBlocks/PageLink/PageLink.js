@@ -20,17 +20,15 @@ const Wrapper = styled.div`
  */
 
 const PageLinkBlock = (props: PageLink) => {
-	// const { link } = props
 	if (!props.link) return null
 	const url = getLinkUrl(props)
-	const headerText = props.label || props.link.title
-	// const Image = getLinkImage(props)
-	console.log(props.link)
+	const headerText = props.label || (props.link && props.link.title)
+	const image = getLinkImage(props)
 	return (
 		<FlexChild basis="50%">
 			<Link to={url}>
 				<Wrapper borderActiveOnHover>
-					<Image image={getLinkImage(props)} />
+					{image && <Image image={image} />}
 					<Header2>{headerText}</Header2>
 					{props.caption && <Header5>{props.caption}</Header5>}
 				</Wrapper>

@@ -13,6 +13,7 @@ type Props = {
 }
 
 const Image = ({ image }: Props) => {
+	if (!image) return null
 	switch (image.__typename) {
 		case 'Image':
 			return <ShopifyImage image={image} />

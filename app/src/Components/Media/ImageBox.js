@@ -35,11 +35,12 @@ const ImageWrapper = styled.div`
 
 type Props = {
 	ratio?: number,
-	image: ImageType,
+	image?: ImageType,
 	children?: React.Node,
 }
 
 const ImageBox = ({ image, ratio, children }: Props) => {
+	if (!image) return null
 	const pBottom = `${100 * (ratio || 1)}%`
 	return (
 		<Figure>
@@ -55,6 +56,7 @@ const ImageBox = ({ image, ratio, children }: Props) => {
 ImageBox.defaultProps = {
 	ratio: 1,
 	children: null,
+	image: undefined,
 }
 
 export default ImageBox

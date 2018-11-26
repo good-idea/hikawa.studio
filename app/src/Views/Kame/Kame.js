@@ -1,12 +1,11 @@
 // @flow
 import React from 'react'
 import styled from 'styled-components'
-import Query from 'GraphQL/Query'
-import type { ContentBlocks, SanityImage, SiteSettings } from 'Types/ContentTypes'
+import type { ContentBlocks, SanityImage } from 'Types/ContentTypes'
 import Block from 'Components/ContentBlocks'
 import { ImageBox } from 'Components/Media'
 import { FlexContainer, Column } from 'Components/Layout'
-import homepageQuery from './homepageQuery'
+import HomepageQuery from './homepageQuery'
 import { SettingsConsumer } from '../SettingsProvider'
 
 const Hero = styled.div`
@@ -22,17 +21,19 @@ const Hero = styled.div`
 type Props = {
 	homepage: {
 		content: ContentBlocks,
-		banner: SanityImage,
+		banner?: SanityImage,
 	},
-	siteSettings: SiteSettings,
+	// siteSettings: SiteSettings,
 }
 
-const Kame = ({ siteSettings, homepage }: Props) => {
+const Kame = ({ homepage }: Props) => {
 	return (
 		<React.Fragment>
-			<Hero>
-				<ImageBox image={homepage.banner} ratio={0.56} />
-			</Hero>
+			{homepage.banner && (
+				<Hero>
+					<ImageBox image={homepage.banner} ratio={0.56} />
+				</Hero>
+			)}
 			<Column width="xWide">
 				<FlexContainer>
 					{/* $FlowFixMe - bug with union types: https://github.com/facebook/flow/issues/6342 */}
@@ -45,6 +46,6 @@ const Kame = ({ siteSettings, homepage }: Props) => {
 
 export default () => (
 	<SettingsConsumer>
-		{(siteSettings) => <Query query={homepageQuery}>{({ data }) => <Kame siteSettings={siteSettings} {...data} />}</Query>}
+		{(siteSettings) => <HomepageQuery>{({ data }) => <Kame siteSettings={siteSettings} {...data} />}</HomepageQuery>}
 	</SettingsConsumer>
 )
