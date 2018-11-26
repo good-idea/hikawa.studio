@@ -26,3 +26,5 @@ app/.docz
 
 # build
 build/
+src/public/js/app.js
+src/public/js/app.js.map
