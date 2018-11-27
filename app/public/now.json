@@ -1,4 +1,5 @@
 {
+	"version": 2,
 	"name": "kame-store",
 	"alias": "kame-store.now.sh",
 	"scale": {

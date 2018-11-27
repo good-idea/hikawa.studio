@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --inline --colors --env development",
-    "build": "webpack -p --env production --progress --colors"
+    "build": "webpack -p --env production --progress --colors",
+    "deploy": "yarn build && cd public && now && now alias"
   },
   "dependencies": {
     "@sanity/block-content-to-react": "^2.0.5",

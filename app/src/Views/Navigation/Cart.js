@@ -16,7 +16,7 @@ type State = {
 }
 
 const getCount = (currentCart?: Checkout): number => {
-	if (!currentCart || !currentCart.lineItems) return -1
+	if (!currentCart || !currentCart.lineItems) return 0
 	return currentCart.lineItems.reduce((acc, item) => acc + item.quantity || 0, 0)
 }
 
