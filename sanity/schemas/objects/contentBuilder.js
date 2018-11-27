@@ -5,9 +5,9 @@ const contentBuilder = {
 	of: [
 		// Pre-defined types
 		{ type: 'header' },
-		{ type: 'richText' },
-		{ type: 'gallery' },
-		{ type: 'imageWithAltText' },
+		// { type: 'richText' },
+		// { type: 'gallery' },
+		// { type: 'imageWithAltText' },
 		{ type: 'pageLink' },
 		// { type: 'lottie' },
 		// { type: 'videoEmbed' },

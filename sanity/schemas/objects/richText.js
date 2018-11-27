@@ -1,7 +1,7 @@
 import { FaParagraph } from 'react-icons/fa'
 
 const richText = {
-	title: 'Rich Text',
+	title: 'Text',
 	name: 'richText',
 	type: 'object',
 	icon: FaParagraph,

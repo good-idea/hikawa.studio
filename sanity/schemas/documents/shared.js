@@ -11,9 +11,10 @@ const pageContent = {
 }
 
 const pageBanner = {
-	title: 'Banner Image',
-	type: 'imageWithAltText',
+	title: 'Banner Images',
+	type: 'array',
 	name: 'banner',
+	of: [{ type: 'imageWithAltText' }],
 }
 
 const pageSeo = {

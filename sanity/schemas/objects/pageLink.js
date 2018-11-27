@@ -1,6 +1,7 @@
 import * as React from 'react'
 import client from 'part:@sanity/base/client'
 import styled from 'styled-components'
+import { FaParagraph } from 'react-icons/fa'
 
 const Wrapper = styled.div`
 	display: flex;
@@ -41,7 +42,7 @@ const getLinkInfo = async (link) => {
 		const linkedPage = await client.getDocument(link._ref)
 		return {
 			linkTitle: linkedPage.title,
-			subtitle: 'page',
+			subtitle: 'Page',
 		}
 	}
 	return {
@@ -70,10 +71,9 @@ class PageLinkPreview extends React.Component {
 		if (!props || !props.value) return
 		const { link, label, image } = props.value
 		if (!link) return
-		console.log('link', link)
 
 		const { linkTitle, subtitle, linkedSrc } = await getLinkInfo(link[0])
-		const userImage = image ? await client.getDocument(image.asset._ref) : null
+		const userImage = image && image.asset ? await client.getDocument(image.asset._ref) : null
 		const userSrc = userImage ? `${userImage.url}?w=100` : null
 		this.setState({ src: userSrc || linkedSrc, title: label || linkTitle, subtitle })
 	}
@@ -96,52 +96,80 @@ class PageLinkPreview extends React.Component {
 }
 
 const pageLink = {
-	title: 'Page / Product Link',
+	title: 'Link Block',
 	name: 'pageLink',
 	type: 'object',
 	fields: [
 		{
-			type: 'imageWithAltText',
-			name: 'image',
-			title: 'Image',
-			description: '(optional) Alternate image',
+			type: 'string',
+			name: 'label',
+			title: 'Title',
+			description: '(optional) If empty, the title of the linked collection, product, or page will be used.',
+		},
+		{
+			type: 'array',
+			of: [{ type: 'imageWithAltText' }],
+			name: 'images',
+			title: 'Images',
+		},
+		{
+			title: 'Text',
+			name: 'textPreview',
+			icon: FaParagraph,
+			type: 'array',
+			of: [
+				{
+					type: 'block',
+					styles: [
+						// { title: 'Header 2', value: 'h2' },
+						// { title: 'Header 3', value: 'h3' },
+					],
+					lists: [],
+					marks: {
+						annotations: [],
+						decorators: [{ title: 'Strong', value: 'strong' }, { title: 'Emphasis', value: 'em' }],
+					},
+				},
+			],
 		},
 		{
 			title: 'Link',
 			name: 'link',
 			type: 'array',
+			description: 'Link to a Page, Product, Collection, or URL',
 			of: [
 				{ type: 'shopifyItem' },
 				{
 					type: 'reference',
 					name: 'page',
 					title: 'Page',
-					description: 'Link to a Page, Product, or Collection',
 					to: [{ type: 'page' }],
+				},
+				{
+					type: 'url',
+					name: 'url',
+					title: 'URL',
 				},
 			],
 			validation: (Rule) => Rule.max(1).required(),
 		},
 		{
-			type: 'string',
-			name: 'label',
-			title: 'Label',
-			description: '(optional) If empty, the title of the linked page will be used.',
-		},
-		{
-			type: 'string',
-			name: 'caption',
-			title: 'Caption',
+			type: 'boolean',
+			name: 'fullWidth',
+			title: 'Full Width',
 		},
 	],
 	preview: {
 		select: {
 			link: 'link',
 			image: 'image',
+			images: 'images',
 			label: 'label',
 		},
-		prepare: ({ link, label, image }) => {
-			return { link, label, image }
+		prepare: (prepared) => {
+			console.log(prepared)
+			const { link, label, images } = prepared
+			return { link, label, image: images && images[0] }
 		},
 		component: PageLinkPreview,
 	},
