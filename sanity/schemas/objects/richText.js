@@ -8,6 +8,7 @@ const richText = {
 	fields: [
 		{
 			name: 'blocks',
+			title: 'Text',
 			type: 'array',
 			of: [{ type: 'block' }],
 		},

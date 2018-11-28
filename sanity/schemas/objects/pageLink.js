@@ -101,16 +101,52 @@ const pageLink = {
 	type: 'object',
 	fields: [
 		{
+			title: 'Link',
+			name: 'link',
+			type: 'array',
+			description: 'Link to a Page, Product, Collection, or URL',
+			of: [
+				{ type: 'shopifyItem' },
+				{
+					type: 'reference',
+					name: 'page',
+					title: 'Page',
+					to: [{ type: 'page' }],
+				},
+				{
+					type: 'url',
+					name: 'url',
+					title: 'URL',
+				},
+			],
+			validation: (Rule) => Rule.max(1).required(),
+		},
+		{
 			type: 'string',
 			name: 'label',
-			title: 'Title',
-			description: '(optional) If empty, the title of the linked collection, product, or page will be used.',
+			title: 'Alternate Title',
+			description:
+				'(optional) If empty, the title of the linked collection, product, or page will be used. *URL links must have a title*',
 		},
 		{
 			type: 'array',
 			of: [{ type: 'imageWithAltText' }],
 			name: 'images',
-			title: 'Images',
+			title: 'Alternate Images',
+			description: '(optional) If empty, the image of the linked collection, or product will be used. ',
+		},
+		{
+			type: 'string',
+			name: 'layout',
+			label: 'Layout',
+			options: {
+				list: [
+					{ value: 'singleImage', title: 'Full Image (upload multiple images to make a carousel)' },
+					{ value: 'textOnly', title: 'Text Only (ignores all images)' },
+					{ value: 'grid', title: 'Grid' },
+				],
+				layout: 'dropdown',
+			},
 		},
 		{
 			title: 'Text',
@@ -132,27 +168,7 @@ const pageLink = {
 				},
 			],
 		},
-		{
-			title: 'Link',
-			name: 'link',
-			type: 'array',
-			description: 'Link to a Page, Product, Collection, or URL',
-			of: [
-				{ type: 'shopifyItem' },
-				{
-					type: 'reference',
-					name: 'page',
-					title: 'Page',
-					to: [{ type: 'page' }],
-				},
-				{
-					type: 'url',
-					name: 'url',
-					title: 'URL',
-				},
-			],
-			validation: (Rule) => Rule.max(1).required(),
-		},
+
 		{
 			type: 'boolean',
 			name: 'fullWidth',

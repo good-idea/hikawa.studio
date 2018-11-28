@@ -18,21 +18,27 @@ const product = {
 			validation: (Rule) => Rule.required(),
 		},
 		{
-			title: 'Title',
-			name: 'title',
-			type: 'string',
+			title: 'Related',
+			type: 'array',
+			name: 'related',
+			of: [{ type: 'pageLink' }],
 		},
+		// {
+		// 	title: 'Title',
+		// 	name: 'title',
+		// 	type: 'string',
+		// },
 		// fields.pageSlug,
-		{
-			title: 'Description',
-			name: 'description',
-			type: 'text',
-		},
-		{
-			title: 'Additional Content',
-			type: 'contentBuilder',
-			name: 'content',
-		},
+		// {
+		// 	title: 'Description',
+		// 	name: 'description',
+		// 	type: 'text',
+		// },
+		// {
+		// 	title: 'Additional Content',
+		// 	type: 'contentBuilder',
+		// 	name: 'content',
+		// },
 		fields.pageSeo,
 	],
 	preview: {

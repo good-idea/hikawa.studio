@@ -1,5 +1,5 @@
-import { fields } from './shared'
 import { TiThSmallOutline } from 'react-icons/ti'
+import { fields } from './shared'
 
 const page = {
 	title: 'Collection',
@@ -14,22 +14,28 @@ const page = {
 			options: {
 				products: false,
 			},
+			description: 'Select a collection from your Shopify content',
 		},
 		{
-			title: 'Title',
-			name: 'title',
-			type: 'string',
-		},
-		// fields.pageSlug,
-		{
-			title: 'Description',
-			name: 'description',
-			type: 'text',
+			title: 'Background Image',
+			name: 'backgroundImage',
+			type: 'imageWithAltText',
 		},
 		{
-			title: 'Additional Content',
-			type: 'contentBuilder',
-			name: 'content',
+			title: 'Background Color',
+			name: 'backgroundColor',
+			type: 'color',
+		},
+		{
+			title: 'Key Color',
+			name: 'keyColor',
+			type: 'color',
+			description: 'Used for primary text',
+		},
+		{
+			title: 'Secondary Color',
+			name: 'secondaryColor',
+			type: 'color',
 		},
 		fields.pageSeo,
 	],
