@@ -8,7 +8,7 @@ const { Consumer, Provider } = React.createContext()
 export const SettingsConsumer = Consumer
 
 const query = gql`
-	{
+	query SettingsQuery {
 		siteSettings {
 			logo {
 				url

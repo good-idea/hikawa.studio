@@ -43,19 +43,23 @@ const richTextFields = `
 	}
 `
 
+export const bannerPartial = `
+	banner {
+		${imageFields}
+	}
+`
+
 const pageLinkFields = `
 	label
 	caption
-	image {
+	images {
 		${imageFields}
 	}
 	link {
 		...on Page {
 			title
 			slug
-			banner {
-				${imageFields}
-			}
+			${bannerPartial}
 		}
 		...on Product {
 			id
@@ -81,12 +85,6 @@ const pageLinkFields = `
 				originalSrc
 			}
 		}
-	}
-`
-
-export const bannerPartial = `
-	banner {
-		${imageFields}
 	}
 `
 

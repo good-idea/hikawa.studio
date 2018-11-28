@@ -6,7 +6,7 @@ import { withDefaultQuery } from 'GraphQL/Query'
 import { seoPartial, contentPartial, bannerPartial } from '../../GraphQL/partials'
 
 const query = /* GraphQL */ gql`
-	{
+	query HomepageQuery {
 		homepage {
 			${bannerPartial}
 			${seoPartial}

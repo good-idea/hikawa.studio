@@ -16,17 +16,17 @@ export const logQueries = new ApolloLink((operation, forward) => {
 	})
 })
 
-export const logErrors = onError(({ graphQLErrors, networkError }) => {
+export const logErrors = onError(({ operation, graphQLErrors, networkError }) => {
 	if (graphQLErrors) {
 		graphQLErrors.map(({ message, locations, path }) => {
-			debug(`[GraphQL Error] Message: ${message}, Location: ${locations}, Path: ${path}`)
+			debug(`[GraphQL Error: ${operation.operationName}] Message: ${message}, Location: ${locations}, Path: ${path}`)
 			debug('           ⤑ ', message)
 			debug('           ⤑ ', locations)
 			return false
 		})
 	}
 	if (networkError) {
-		debug(`[Network Error] ${networkError}`)
+		debug(`[Network Error: ${operation.operationName}] ${networkError}`)
 		debug(`      body ⤑ ${networkError.bodyText}`)
 	}
 })
