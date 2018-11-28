@@ -1,18 +1,11 @@
 // @flow
 import React from 'react'
-import styled from 'styled-components'
 import type { ContentBlocks, SanityImage } from 'Types/ContentTypes'
 import Block from 'Components/ContentBlocks'
-import { ImageBox } from 'Components/Media'
+import Hero from 'Components/Hero'
 import { FlexContainer, Column } from 'Components/Layout'
 import HomepageQuery from './homepageQuery'
 import { SettingsConsumer } from '../SettingsProvider'
-
-const Hero = styled.div`
-	width: 100%;
-	max-height: 70vh;
-	height: 100%;
-`
 
 /**
  * Kame
@@ -21,7 +14,7 @@ const Hero = styled.div`
 type Props = {
 	homepage: {
 		content: ContentBlocks,
-		banner?: SanityImage,
+		banner?: Array<SanityImage>,
 	},
 	// siteSettings: SiteSettings,
 }
@@ -29,11 +22,7 @@ type Props = {
 const Kame = ({ homepage }: Props) => {
 	return (
 		<React.Fragment>
-			{homepage.banner && (
-				<Hero>
-					<ImageBox image={homepage.banner} ratio={0.56} />
-				</Hero>
-			)}
+			{homepage.banner && <Hero images={homepage.banner} />}
 			<Column width="xWide">
 				<FlexContainer>
 					{/* $FlowFixMe - bug with union types: https://github.com/facebook/flow/issues/6342 */}

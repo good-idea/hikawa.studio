@@ -1,8 +1,6 @@
 // @flow
 import styled from 'styled-components'
 
-const Main = styled.main`
-	padding: 25px;
-`
+const Main = styled.main``
 
 export default Main

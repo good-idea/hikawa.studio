@@ -3,6 +3,26 @@ import * as React from 'react'
 import type { ProductType } from './ProductTypes'
 import type { CollectionType } from './CollectionTypes'
 import type { SEO } from './SharedTypes'
+
+/**
+ * Colors
+ */
+
+export type SanityColor = {
+	rgb?: {
+		r: number,
+		g: number,
+		b: number,
+		a: number,
+	},
+	hsv?: {
+		h: number,
+		s: number,
+		v: number,
+		a: number,
+	},
+}
+
 /**
  * Header
  */

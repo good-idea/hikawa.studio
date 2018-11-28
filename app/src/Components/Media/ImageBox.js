@@ -7,7 +7,6 @@ import Image from './Image'
 const Figure = styled.figure`
 	width: 100%;
 	position: relative;
-	height: 100%;
 	overflow: hidden;
 `
 
@@ -15,6 +14,7 @@ const PaddingRatio = styled.div`
 	${({ pBottom }) => `
 		width: 100%;
 		padding-bottom: ${pBottom};
+		overflow: hidden;
 	`};
 `
 

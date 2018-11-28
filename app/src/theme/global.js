@@ -17,6 +17,12 @@ export const GlobalStyles = createGlobalStyle`
 		margin: 0;
 	}
 
+	${({ theme }) => `
+		body {
+			padding: ${theme.layout.navHeight} 0 0;
+		}
+	`}
+
 	button, input, select, option, textarea {
 		background: white;
 		font-family: ${(props) => props.theme.type.fontFamily.sans};
@@ -51,9 +57,6 @@ export const GlobalStyles = createGlobalStyle`
 		box-sizing: border-box;
 	}
 
-	body {
-		padding: 0;
-	}
 
 	#root,
 	#reactRoot {

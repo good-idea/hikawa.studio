@@ -1,6 +1,12 @@
 // @flow
 
-const imageFields = `
+export const shopifyImageFields = `
+	id
+	altText
+	originalSrc
+`
+
+export const sanityImageFields = `
 	_type
 	_key
 	_ref
@@ -45,7 +51,7 @@ const richTextFields = `
 
 export const bannerPartial = `
 	banner {
-		${imageFields}
+		${sanityImageFields}
 	}
 `
 
@@ -53,7 +59,7 @@ const pageLinkFields = `
 	label
 	caption
 	images {
-		${imageFields}
+		${sanityImageFields}
 	}
 	link {
 		...on Page {
@@ -93,7 +99,7 @@ export const contentPartial = `
 		_type
 		_key
 		...on SanityImage {
-			${imageFields}
+			${sanityImageFields}
 		}
 		...on Header {
 			text

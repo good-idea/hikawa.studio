@@ -5,7 +5,7 @@ import { Main } from 'Components/Layout'
 import { SettingsProvider } from './SettingsProvider'
 import { CheckoutProvider } from './CheckoutProvider'
 import Kame from './Kame'
-import Collection from './Collection'
+import Shop from './Shop'
 import Product from './Product'
 import NotFound from './NotFound'
 import Navigation from './Navigation'
@@ -21,7 +21,7 @@ const App = () => (
 				<Navigation />
 				<Switch>
 					<Route path="/" exact component={Kame} />
-					<Route path="/collections/:handle" exact component={Collection} />
+					<Route path="/shop" component={Shop} />
 					<Route path="/products/:handle" exact component={Product} />
 					<Route component={NotFound} />
 				</Switch>

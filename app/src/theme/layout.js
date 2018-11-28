@@ -25,3 +25,5 @@ export const columns = {
 export const defaults = {
 	columnWidth: columns.medium,
 }
+
+export const navHeight = '160px'

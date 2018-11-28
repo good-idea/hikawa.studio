@@ -9,19 +9,19 @@ const Image = styled.img`
 `
 
 /**
- * MyComponent
+ * Logo
  */
 
-const MyComponent = () => (
+const Logo = () => (
 	<SettingsConsumer>
 		{(siteSettings) =>
-			siteSettings && (
+			siteSettings && siteSettings.logo ? (
 				<Link to="/">
 					<Image src={siteSettings.logo.url} alt={siteSettings.seo.name} />
 				</Link>
-			)
+			) : null
 		}
 	</SettingsConsumer>
 )
 
-export default MyComponent
+export default Logo

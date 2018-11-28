@@ -1,8 +1,8 @@
 // @flow
 
 export const size = {
-	h1: '42px',
-	h2: '28px',
+	h1: '62px',
+	h2: '42px',
 	h3: '22px',
 	p: '16px',
 	h4: '16px',
