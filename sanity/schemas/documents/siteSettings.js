@@ -62,7 +62,14 @@ const page = {
 							name: 'links',
 							title: 'Page Links',
 							type: 'array',
-							of: [{ type: 'pageLink' }],
+							of: [
+								{
+									type: 'reference',
+									name: 'page',
+									title: 'Page',
+									to: [{ type: 'page' }],
+								},
+							],
 						},
 					],
 				},
