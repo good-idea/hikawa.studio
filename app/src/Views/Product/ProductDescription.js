@@ -7,6 +7,7 @@ import { Header1, Header4, P } from 'Components/Type'
 // import { InspectorConsumer } from 'Components/ImageInspector'
 import { InspectorConsumer } from 'Components/ImageInspector'
 import { Button } from 'Components/Buttons'
+import { sleep } from 'Utils'
 import VariantSelector from './VariantSelector'
 /**
  * ProductDescription
@@ -24,6 +25,7 @@ type Props = {
 
 type State = {
 	selectedVariant?: ProductVariant,
+	buttonState: string,
 }
 
 class ProductDescription extends React.Component<Props, State> {
@@ -33,6 +35,7 @@ class ProductDescription extends React.Component<Props, State> {
 
 	state = {
 		selectedVariant: undefined,
+		buttonState: 'normal',
 	}
 
 	selectVariant = (variant: ProductVariant) => () => {
@@ -47,11 +50,29 @@ class ProductDescription extends React.Component<Props, State> {
 		)
 	}
 
-	addSelectedVariantToCart = () => {
+	addSelectedVariantToCart = async () => {
+		this.setState({ buttonState: 'loading' })
 		const { selectedVariant } = this.state
 		const { addToCart } = this.props
 		if (!selectedVariant) return
-		addToCart({ lineItems: [{ variantId: selectedVariant.id, quantity: 1 }] })
+		const added = await addToCart({ lineItems: [{ variantId: selectedVariant.id, quantity: 1 }] })
+		console.log(added)
+		this.setState({ buttonState: 'success' })
+		await sleep(1500)
+		this.setState({ buttonState: 'normal' })
+	}
+
+	renderButtonText = () => {
+		const { buttonState } = this.state
+		switch (buttonState) {
+			case 'loading':
+				return '...'
+			case 'success':
+				return '✓ Added to Cart'
+			case 'normal':
+			default:
+				return 'Add To Cart'
+		}
 	}
 
 	render() {
@@ -66,7 +87,7 @@ class ProductDescription extends React.Component<Props, State> {
 					onClick={this.addSelectedVariantToCart}
 					disabled={selectedVariant === undefined || selectedVariant.availableForSale === false}
 				>
-					Add To Cart
+					{this.renderButtonText()}
 				</Button>
 			</Wrapper>
 		)
