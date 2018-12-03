@@ -133,7 +133,22 @@ export type ContentBlocks = Array<ContentBlock>
  * Site Settings
  */
 
+export type MenuLink = {
+	title: string,
+	slug: string,
+	__typename: string,
+}
+
 export type SiteSettings = {
 	logo: SanityImage,
 	seo: SEO,
+	navigation: {
+		footer: {
+			links: Array<MenuLink>,
+			text: TextBlock,
+		},
+		header: {
+			links: Array<MenuLink>,
+		},
+	},
 }

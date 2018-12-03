@@ -3,7 +3,6 @@ import * as React from 'react'
 import BlockContent from '@sanity/block-content-to-react'
 import { Link } from 'react-router-dom'
 import type { TextBlock, Mark } from 'Types/ContentTypes'
-import { Column } from 'Components/Layout'
 import { parseUrl } from 'Utils/parsing'
 import { TextAnchor, Li, Ul, Ol, Header1, Header2, Header3, Header4, Header5, Header6, P, BlockQuote } from 'Components/Type'
 
@@ -39,10 +38,10 @@ const serializers = {
 		link: ({ mark, children }: Mark) => {
 			const { hostname } = window.location
 			const parsed = parseUrl(mark.href)
-			const isExternal = parsed && parsed.origin.match(hostname) === null
+			const isExternal = parsed && parsed.origin && parsed.origin.match(hostname) === null
 			if (isExternal || !parsed) {
 				return (
-					<TextAnchor href={mark.href} target="_blank" rel="noopener noreferrer">
+					<TextAnchor href={mark.href} target={isExternal ? '_blank' : ''} rel="noopener noreferrer">
 						{children}
 					</TextAnchor>
 				)
@@ -52,10 +51,6 @@ const serializers = {
 	},
 }
 
-const Text = ({ blocks }: TextBlock) => (
-	<Column>
-		<BlockContent blocks={blocks} serializers={serializers} />
-	</Column>
-)
+const Text = ({ blocks }: TextBlock) => <BlockContent blocks={blocks} serializers={serializers} />
 
 export default Text

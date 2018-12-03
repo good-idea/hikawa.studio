@@ -1,5 +1,7 @@
 // @flow
 
+import type { MenuLink } from 'Types/ContentTypes'
+
 type RGB = {
 	r: number,
 	g: number,
@@ -30,4 +32,14 @@ export const sanityColorToRGBA = (sanityColor: SanityColor): string => {
 	return `rgba(${r}, ${g}, ${b}, ${a})`
 }
 
+export const getLinkUrl = (link: MenuLink): string => {
+	switch (link.__typename) {
+		case 'Product':
+			return `/products/${link.slug}`
+		case 'Collection':
+			return `/shop/${link.slug}`
+		default:
+			return `/${link.slug}`
+	}
+}
 // export const sanityColorToRGBA = ({ rgb: { r, g, b, a } }: SanityColor): string =>

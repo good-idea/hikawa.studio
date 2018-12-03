@@ -36,7 +36,35 @@ const query = gql`
 				_type
 				_ref
 			}
-
+			mailer {
+				buttonLabel
+				footerText {
+					${richTextPartial}
+				}
+				popupText {
+					${richTextPartial}
+				}
+			}
+			navigation {
+				footer {
+					links {
+						${linkPartial}
+					}
+					text {
+						${richTextPartial}
+					}
+				}
+				header {
+					links {
+						${linkPartial}
+					}
+				}
+			}
+			product {
+				text {
+					${richTextPartial}
+				}
+			}
 			seo {
 				name
 				description
@@ -52,35 +80,6 @@ const query = gql`
 		}
 	}
 `
-// # mailer {
-// # 	buttonLabel
-// # 	footerText {
-// # 		${richTextPartial}
-// # 	}
-// # 	popupText {
-// # 		${richTextPartial}
-// # 	}
-// # }
-// # navigation {
-// # 	footer {
-// # 		links {
-// # 			${linkPartial}
-// # 		}
-// # 		text {
-// # 			${richTextPartial}
-// # 		}
-// # 	}
-// # 	header {
-// # 		links {
-// # 			${linkPartial}
-// # 		}
-// # 	}
-// # }
-// # product {
-// # 	text {
-// # 		${richTextPartial}
-// # 	}
-// # }
 
 /**
  * SettingsProvider

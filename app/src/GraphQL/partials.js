@@ -80,7 +80,7 @@ export const linkPartial = `
 					originalSrc
 				}
 			}
-			}
+		}
 	}
 	...on Collection {
 		id

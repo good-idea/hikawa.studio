@@ -9,6 +9,7 @@ import Shop from './Shop'
 import Product from './Product'
 import NotFound from './NotFound'
 import Navigation from './Navigation'
+import Footer from './Footer'
 
 /**
  * App
@@ -25,6 +26,7 @@ const App = () => (
 					<Route path="/products/:handle" exact component={Product} />
 					<Route component={NotFound} />
 				</Switch>
+				<Footer />
 			</Main>
 		</CheckoutProvider>
 	</SettingsProvider>

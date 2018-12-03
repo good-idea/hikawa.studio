@@ -1,10 +1,12 @@
 // @flow
 import * as React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import type { SiteSettings } from 'Types/ContentTypes'
 import Logo from 'Components/Logo'
 import { Header3 } from 'Components/Type'
 import { adopt } from 'react-adopt'
+import { getLinkUrl } from 'Utils/sanity'
 import type { CheckoutConsumerProps } from '../CheckoutProvider'
 import { SettingsConsumer } from '../SettingsProvider'
 import { CheckoutConsumer } from '../CheckoutProvider'
@@ -52,13 +54,19 @@ type Props = {
 }
 
 const Navigation = ({ cart, siteSettings }: Props) => {
-	console.log(siteSettings)
+	if (!siteSettings) return null
 	return (
 		<Nav>
 			<Logo />
 			<Menu>
-				<Header3>SHOP</Header3>
-				<Header3>About</Header3>
+				<Header3>
+					<Link to="/shop">Shop</Link>
+				</Header3>
+				{siteSettings.navigation.header.links.map((link) => (
+					<Header3 key={link.slug}>
+						<Link to={getLinkUrl(link)}>{link.title}</Link>
+					</Header3>
+				))}
 			</Menu>
 			<CartWrapper>
 				<Cart {...cart} />
