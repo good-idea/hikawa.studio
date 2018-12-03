@@ -25,6 +25,7 @@ const query = /* GraphQL */ gql`
 							edges {
 								node {
 									id
+									title
 									handle
 									images(first: 1) {
 										edges {

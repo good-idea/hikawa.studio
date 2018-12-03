@@ -1,12 +1,11 @@
 // @flow
 import * as React from 'react'
-import * as R from 'ramda'
 import styled from 'styled-components'
 import { Header2 } from 'Components/Type'
 import type { CollectionType } from 'Types/CollectionTypes'
 import { sanityColorToRGBA } from 'Utils/sanity'
 import { Column } from 'Components/Layout'
-import { ImageBox } from 'Components/Media'
+import ProductThumbnail from './ProductThumbnail'
 
 const Wrapper = styled.div`
 	${({ theme, collection }) => `
@@ -37,12 +36,6 @@ const Products = styled.div`
 	`};
 `
 
-const ImageContainer = styled.div`
-	${({ collection }) => `
-		background-color: ${sanityColorToRGBA(collection.keyColor)};
-	`};
-`
-
 /**
  * Collection
  */
@@ -63,9 +56,7 @@ const Collection = (props: Props) => {
 					{products && products.length > 0 ? (
 						<Products count={products.length}>
 							{products.map((product) => (
-								<ImageContainer key={product.handle} collection={collection}>
-									<ImageBox ratio={1} image={product.images && product.images[0]} />
-								</ImageContainer>
+								<ProductThumbnail key={product.handle} product={product} collection={collection} />
 							))}
 						</Products>
 					) : null}

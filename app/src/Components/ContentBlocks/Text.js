@@ -2,7 +2,7 @@
 import * as React from 'react'
 import BlockContent from '@sanity/block-content-to-react'
 import { Link } from 'react-router-dom'
-import type { TextBlock, Mark } from 'Types/ContentTypes'
+import type { TextNode, Mark } from 'Types/ContentTypes'
 import { parseUrl } from 'Utils/parsing'
 import { TextAnchor, Li, Ul, Ol, Header1, Header2, Header3, Header4, Header5, Header6, P, BlockQuote } from 'Components/Type'
 
@@ -51,6 +51,10 @@ const serializers = {
 	},
 }
 
-const Text = ({ blocks }: TextBlock) => <BlockContent blocks={blocks} serializers={serializers} />
+type Props = {
+	blocks: Array<TextNode>,
+}
+
+const Text = ({ blocks }: Props) => <BlockContent blocks={blocks} serializers={serializers} />
 
 export default Text

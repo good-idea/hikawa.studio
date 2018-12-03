@@ -40,13 +40,12 @@ type Props = {
 }
 
 const ImageBox = ({ image, ratio, children }: Props) => {
-	if (!image) return null
 	const pBottom = `${100 * (ratio || 1)}%`
 	return (
 		<Figure>
 			<PaddingRatio pBottom={pBottom} />
 			<ImageWrapper>
-				<Image image={image} />
+				{image && <Image image={image} />}
 				{children || null}
 			</ImageWrapper>
 		</Figure>

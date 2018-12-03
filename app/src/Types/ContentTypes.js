@@ -104,7 +104,7 @@ type MarkDef = {
 	href: string,
 }
 
-type TextNode = {
+export type TextNode = {
 	children: Array<TextChild>,
 	markDefs: Array<MarkDef>,
 	style: string,
@@ -145,7 +145,7 @@ export type SiteSettings = {
 	navigation: {
 		footer: {
 			links: Array<MenuLink>,
-			text: TextBlock,
+			text: Array<TextNode>,
 		},
 		header: {
 			links: Array<MenuLink>,

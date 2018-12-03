@@ -33,7 +33,6 @@ type Props = {
 }
 
 const Footer = ({ settings }: Props) => {
-	console.log(settings)
 	if (!settings) return null
 	const { footer } = settings.navigation
 	return (
