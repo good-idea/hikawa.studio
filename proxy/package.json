@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node dist/server.js",
-    "dev": "cross-env DEBUG=server nodemon --watch ./src --watch ./node_modules/@good-idea ./src/server.js",
+    "dev": "cross-env DEBUG=server nodemon --delay 1250ms --watch ./src --watch $(realpath ./node_modules/@good-idea/shopify-sanity-proxy-server) ./src/server.js",
     "bundle": "babel ./src --out-dir ./dist"
   },
   "dependencies": {
