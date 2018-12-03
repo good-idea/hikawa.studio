@@ -128,7 +128,7 @@ const page = {
 			],
 		},
 		{
-			name: 'productSettings',
+			name: 'product',
 			type: 'object',
 			fields: [
 				{
@@ -151,7 +151,7 @@ const page = {
 			],
 		},
 		{
-			name: 'checkoutSettings',
+			name: 'checkout',
 			type: 'object',
 			fields: [
 				{
@@ -174,7 +174,7 @@ const page = {
 			],
 		},
 		{
-			name: 'mailerSettings',
+			name: 'mailer',
 			title: 'Mailing List Settings',
 			type: 'object',
 			fields: [
@@ -220,7 +220,6 @@ const page = {
 		},
 		{
 			name: 'seo',
-
 			title: 'SEO & Accessibility',
 			type: 'object',
 			fields: [
