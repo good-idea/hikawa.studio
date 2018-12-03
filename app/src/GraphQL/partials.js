@@ -15,6 +15,15 @@ export const sanityImageFields = `
 	altText
 `
 
+export const colorPartial = `
+	rgb {
+		r
+		g
+		b
+		a
+	}
+`
+
 export const seoPartial = `
 	seo {
 		name
@@ -29,29 +38,59 @@ export const seoPartial = `
 	}
 `
 
-const richTextFields = `
-	blocks {
+export const richTextPartial = `
+	_type
+	style
+	level
+	listItem
+	children {
 		_type
-		style
-		level
-		listItem
-		children {
-			_type
-			_key
-			text
-			marks
-		}
-		markDefs {
-			_type
-			_key
-			href
-		}
+		_key
+		text
+		marks
+	}
+	markDefs {
+		_type
+		_key
+		href
 	}
 `
 
 export const bannerPartial = `
 	banner {
 		${sanityImageFields}
+	}
+`
+
+export const linkPartial = `
+	...on Page {
+		title
+		slug
+		${bannerPartial}
+	}
+	...on Product {
+		id
+		handle
+		title
+		images(first: 50) {
+			edges {
+				node {
+					id
+					altText
+					originalSrc
+				}
+			}
+			}
+	}
+	...on Collection {
+		id
+		handle
+		title
+		image {
+			id
+			altText
+			originalSrc
+		}
 	}
 `
 
@@ -62,35 +101,7 @@ const pageLinkFields = `
 		${sanityImageFields}
 	}
 	link {
-		...on Page {
-			title
-			slug
-			${bannerPartial}
-		}
-		...on Product {
-			id
-			handle
-			title
-			images(first: 50) {
-				edges {
-				  node {
-					 id
-					 altText
-					 originalSrc
-				  }
-				}
-			 }
-		}
-		...on Collection {
-			id
-			handle
-			title
-			image {
-				id
-				altText
-				originalSrc
-			}
-		}
+		${linkPartial}
 	}
 `
 
@@ -105,7 +116,9 @@ export const contentPartial = `
 			text
 		}
 		...on RichText {
-			${richTextFields}
+			blocks {
+				${richTextPartial}
+			}
 		}
       ...on PageLink {
 			${pageLinkFields}

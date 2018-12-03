@@ -51,7 +51,8 @@ type Props = {
 	cart: CheckoutConsumerProps,
 }
 
-const Navigation = ({ cart }: Props) => {
+const Navigation = ({ cart, siteSettings }: Props) => {
+	console.log(siteSettings)
 	return (
 		<Nav>
 			<Logo />
