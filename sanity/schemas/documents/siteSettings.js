@@ -43,7 +43,23 @@ const page = {
 				{
 					title: 'Link',
 					name: 'link',
-					type: 'pageLink',
+					type: 'array',
+					description: 'Link to a Page, Product, Collection, or URL',
+					of: [
+						{ type: 'shopifyItem' },
+						{
+							type: 'reference',
+							name: 'page',
+							title: 'Page',
+							to: [{ type: 'page' }],
+						},
+						{
+							type: 'url',
+							name: 'url',
+							title: 'URL',
+						},
+					],
+					validation: (Rule) => Rule.max(1),
 				},
 			],
 		},
