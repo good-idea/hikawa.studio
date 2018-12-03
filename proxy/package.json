@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node dist/server.js",
-    "dev": "nodemon --watch ./src --watch ./node_modules/@good-idea ./src/server.js",
+    "dev": "cross-env DEBUG=server nodemon --watch ./src --watch ./node_modules/@good-idea ./src/server.js",
     "bundle": "babel ./src --out-dir ./dist"
   },
   "dependencies": {
@@ -16,6 +16,7 @@
   "devDependencies": {
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.0.0",
+    "cross-env": "^5.2.0",
     "nodemon": "^1.18.6"
   }
 }
