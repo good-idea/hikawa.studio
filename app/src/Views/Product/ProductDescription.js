@@ -2,8 +2,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import type { ProductType, ProductVariant } from 'Types/ProductTypes'
-import type { CheckoutConsumerProps } from 'Views/CheckoutProvider'
-import { Header1, Header4, P } from 'Components/Type'
+import { Header1, P } from 'Components/Type'
 // import { InspectorConsumer } from 'Components/ImageInspector'
 import { InspectorConsumer } from 'Components/ImageInspector'
 import { Button } from 'Components/Buttons'
@@ -56,7 +55,6 @@ class ProductDescription extends React.Component<Props, State> {
 		const { addToCart } = this.props
 		if (!selectedVariant) return
 		const added = await addToCart({ lineItems: [{ variantId: selectedVariant.id, quantity: 1 }] })
-		console.log(added)
 		this.setState({ buttonState: 'success' })
 		await sleep(1500)
 		this.setState({ buttonState: 'normal' })
@@ -96,6 +94,7 @@ class ProductDescription extends React.Component<Props, State> {
 
 type BaseProps = {
 	product: ProductType,
+	addToCart: (any) => Promise<void>,
 }
 
 export default (props: BaseProps) => (

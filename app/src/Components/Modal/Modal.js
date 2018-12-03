@@ -41,11 +41,12 @@ type Props = {
 
 const Modal = ({ children, onBackgroundClick, open }: Props) =>
 	open && children ? (
-		<Background onClick={onBackgroundClick}>
+		<React.Fragment>
+			<Background onClick={onBackgroundClick} />
 			<ModalContainer>
 				<ModalInner>{children}</ModalInner>
 			</ModalContainer>
-		</Background>
+		</React.Fragment>
 	) : null
 
 Modal.defaultProps = { children: null }

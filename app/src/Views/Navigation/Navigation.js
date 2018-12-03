@@ -7,10 +7,8 @@ import Logo from 'Components/Logo'
 import { Header3 } from 'Components/Type'
 import { adopt } from 'react-adopt'
 import { getLinkUrl } from 'Utils/sanity'
-import type { CheckoutConsumerProps } from '../CheckoutProvider'
 import { SettingsConsumer } from '../SettingsProvider'
-import { CheckoutConsumer } from '../CheckoutProvider'
-import Cart from './Cart'
+import Cart from '../Cart'
 
 const Nav = styled.nav`
 	${({ theme }) => `
@@ -50,10 +48,9 @@ const CartWrapper = styled.div`
 
 type Props = {
 	siteSettings?: SiteSettings,
-	cart: CheckoutConsumerProps,
 }
 
-const Navigation = ({ cart, siteSettings }: Props) => {
+const Navigation = ({ siteSettings }: Props) => {
 	if (!siteSettings) return null
 	return (
 		<Nav>
@@ -69,7 +66,7 @@ const Navigation = ({ cart, siteSettings }: Props) => {
 				))}
 			</Menu>
 			<CartWrapper>
-				<Cart {...cart} />
+				<Cart />
 			</CartWrapper>
 		</Nav>
 	)
@@ -81,7 +78,6 @@ Navigation.defaultProps = {
 
 const Composed = adopt({
 	siteSettings: <SettingsConsumer />,
-	cart: <CheckoutConsumer />,
 })
 
 export default () => <Composed>{(composedProps) => <Navigation {...composedProps} />}</Composed>

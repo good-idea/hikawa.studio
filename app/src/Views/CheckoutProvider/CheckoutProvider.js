@@ -1,10 +1,10 @@
 // @flow
 import * as React from 'react'
 import { path } from 'ramda'
-import type { Checkout } from 'Types/CheckoutTypes'
+import type { Checkout, CheckoutLineItem } from 'Types/CheckoutTypes'
 import type { Mutation } from 'Types/GraphQLTypes'
 import { adopt } from 'react-adopt'
-import { CheckoutCreate, CheckoutLineItemsAdd } from './mutations'
+import { CheckoutCreate, CheckoutLineItemsAdd, CheckoutLineItemsUpdate } from './mutations'
 import CurrentCart from './CurrentCart'
 
 const { Consumer, Provider } = React.createContext()
@@ -22,6 +22,7 @@ type Props = {
 	children: React.Node,
 	checkoutCreate: Mutation,
 	checkoutLineItemsAdd: Mutation,
+	checkoutLineItemsUpdate: Mutation,
 	currentCart?: void | Checkout,
 	loading: boolean,
 	updateCheckoutId: (string) => void,
@@ -40,12 +41,22 @@ type AddToCartArgs = {
 
 export type CheckoutConsumerProps = {
 	currentCart: void | Checkout,
+	loading: boolean,
 	addToCart: (AddToCartArgs) => Promise<void>,
+	updateQuantity: (CheckoutLineItem) => (number) => Promise<void>,
 }
 
-class CheckoutProviderBase extends React.Component<Props> {
+type State = {
+	loading: boolean,
+}
+
+class CheckoutProviderBase extends React.Component<Props, State> {
 	static defaultProps = {
 		currentCart: undefined,
+	}
+
+	state = {
+		loading: false,
 	}
 
 	addToCart = async (variables: AddToCartArgs): Promise<void> => {
@@ -58,6 +69,19 @@ class CheckoutProviderBase extends React.Component<Props> {
 		return newItems
 	}
 
+	updateQuantity = (lineItem: CheckoutLineItem) => async (quantity: number) => {
+		const { checkoutLineItemsUpdate, currentCart } = this.props
+		if (!currentCart) return
+		await this.setState({ loading: true })
+		await checkoutLineItemsUpdate({
+			variables: {
+				checkoutId: currentCart.id,
+				lineItems: [{ id: lineItem.id, variantId: lineItem.variant.id, quantity }],
+			},
+		})
+		this.setState({ loading: false })
+	}
+
 	createCart = async (variables: AddToCartArgs): Promise<void> => {
 		const { checkoutCreate, updateCheckoutId } = this.props
 		const result = await checkoutCreate({ variables })
@@ -65,14 +89,17 @@ class CheckoutProviderBase extends React.Component<Props> {
 		if (id) updateCheckoutId(id)
 	}
 
+	updateDebounceTimer: TimeoutID
+
 	render() {
-		const { children, currentCart, loading } = this.props
-		const { addToCart } = this
+		const { children, currentCart } = this.props
+		const { addToCart, updateQuantity } = this
 		const value = {
 			//
 			addToCart,
 			currentCart,
-			loading,
+			loading: this.props.loading || this.state.loading || false,
+			updateQuantity,
 		}
 
 		return <Provider value={value}>{children}</Provider>
@@ -89,6 +116,7 @@ const Composed = adopt(
 		currentCart: <CurrentCart />,
 		checkoutCreate: <CheckoutCreate />,
 		checkoutLineItemsAdd: <CheckoutLineItemsAdd />,
+		checkoutLineItemsUpdate: <CheckoutLineItemsUpdate />,
 	},
 	mappers,
 )
