@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@babel/cli@^7.1.5", "@babel/cli@^7.2.0":
+"@babel/cli@^7.2.0":
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.2.0.tgz#505ed8d351daee6a88918da02c046c18c8c5a24f"
   integrity sha512-FLteTkEoony0DX8NbnT51CmwmLBzINdlXmiJCSqCLmqWCDA/xk8EITPWqwDnVLbuK0bsZONt/grqHnQzQ15j0Q==
@@ -26,7 +26,7 @@
   dependencies:
     "@babel/highlight" "^7.0.0"
 
-"@babel/core@7.2.0", "@babel/core@^7.0.0", "@babel/core@^7.1.0", "@babel/core@^7.1.6", "@babel/core@^7.2.0":
+"@babel/core@7.2.0", "@babel/core@^7.1.0", "@babel/core@^7.1.6", "@babel/core@^7.2.0":
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.2.0.tgz#a4dd3814901998e93340f0086e9867fefa163ada"
   integrity sha512-7pvAdC4B+iKjFFp9Ztj0QgBndJ++qaMeonT185wAqUnhipw8idm9Rv1UMyBuKtYjfl6ORNkgEgcsYLfHX/GpLw==
@@ -1001,10 +1001,10 @@
   resolved "https://registry.yarnpkg.com/@emotion/utils/-/utils-0.8.2.tgz#576ff7fb1230185b619a75d258cbc98f0867a8dc"
   integrity sha512-rLu3wcBWH4P5q1CGoSSH/i9hrXs7SlbRLkoq9IGuoPYNGQvDJ3pt/wmOM+XgYjIDRMVIdkUWt0RsfzF50JfnCw==
 
-"@good-idea/shopify-sanity-proxy-server@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@good-idea/shopify-sanity-proxy-server/-/shopify-sanity-proxy-server-0.0.1.tgz#2a51cfd6fc8c91a5d663df26c4d00f20ed07be0c"
-  integrity sha512-j/lgLpceOjFjHlz+2ja7UIVsxtThcwJU2gCiVNAa/b6QTyYHh9rC/b0VpB2OOY3kAHkS+Ut3kccQz2bTonKmdw==
+"@good-idea/shopify-sanity-proxy-server@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@good-idea/shopify-sanity-proxy-server/-/shopify-sanity-proxy-server-0.0.2.tgz#77c7a368a317b87ff24ab7ffaf8b28aa24c7ccee"
+  integrity sha512-HJQqwqLdyCRtWXAfAJOanIYxmtUcG8gBC+Pik2EU9keq0tj1BgN0mVXmUZfUIUyMjIcX+l9OjrMb91uhpRqWcA==
   dependencies:
     "@sanity/client" "^0.135.0"
     apollo-link-http "^1.5.5"
@@ -11335,7 +11335,7 @@ node-version@^1.1.3:
   resolved "https://registry.yarnpkg.com/node-version/-/node-version-1.2.0.tgz#34fde3ffa8e1149bd323983479dda620e1b5060d"
   integrity sha512-ma6oU4Sk0qOoKEAymVoTvk8EdXEobdS7m/mAGhDJ8Rouugho48crHBORAmy5BoOcv8wraPM6xumapQp5hl4iIQ==
 
-nodemon@^1.18.6:
+nodemon@^1.18.7:
   version "1.18.7"
   resolved "https://registry.yarnpkg.com/nodemon/-/nodemon-1.18.7.tgz#716b66bf3e89ac4fcfb38a9e61887a03fc82efbb"
   integrity sha512-xuC1V0F5EcEyKQ1VhHYD13owznQbUw29JKvZ8bVH7TmuvVNHvvbp9pLgE4PjTMRJVe0pJ8fGRvwR2nMiosIsPQ==
