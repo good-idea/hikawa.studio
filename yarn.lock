@@ -1610,7 +1610,7 @@
   version "0.132.10"
   resolved "https://registry.yarnpkg.com/@sanity/generate-help-url/-/generate-help-url-0.132.10.tgz#57aafb6bc2ca3331c3a0edb89b850c3d3e5e1e8b"
 
-"@sanity/image-url@0.136.0":
+"@sanity/image-url@0.136.0", "@sanity/image-url@^0.136.0":
   version "0.136.0"
   resolved "https://registry.yarnpkg.com/@sanity/image-url/-/image-url-0.136.0.tgz#dde56bd43d5a538d1373f9309d1fff7a9878f94a"
 

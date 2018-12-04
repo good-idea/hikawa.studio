@@ -13,6 +13,7 @@
   "dependencies": {
     "@sanity/block-content-to-react": "^2.0.5",
     "@sanity/client": "^0.135.0",
+    "@sanity/image-url": "^0.136.0",
     "apollo-cache-inmemory": "^1.2.9",
     "apollo-client": "^2.4.1",
     "apollo-link": "^1.2.2",

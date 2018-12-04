@@ -20,7 +20,7 @@ app/coverage
 app/.docz
 *.sqlite
 *.tar.gz
-
+stats.json
 # IntelliJ
 .idea/
 *.iml

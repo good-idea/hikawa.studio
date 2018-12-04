@@ -90,7 +90,7 @@ const staging = {
 
 const production = {
 	mode: 'production',
-	entry: ['babel-polyfill', './src/index.js'],
+	entry: ['./src/index.js'],
 	output: {
 		path: path.resolve(__dirname, 'public', 'js'),
 		filename: 'app.js',
