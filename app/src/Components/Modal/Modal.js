@@ -6,9 +6,8 @@ export const ModalInner = styled.div`
 	${({ theme }) => `
 		background-color: white;
 		border: 1px solid lightGray;
-		border-radius: 4px;
 		padding: 20px;
-		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+		box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.4);
 		z-index: ${theme.layout.z.dialog};
 		pointer-events: initial;
 		margin: 50px auto;
@@ -18,8 +17,9 @@ export const ModalInner = styled.div`
 const Background = styled.button`
 	${({ theme }) => `
 		${theme.mixins.fixedFullSize};
+		pointer: cursor;
 	   z-index: ${theme.layout.z.dialog - 1};
-		background-color: rgba(0, 0, 0, 0.2);
+		background-color: rgba(50, 50, 50, 0.4);
 	`};
 `
 

@@ -3,11 +3,12 @@ import gql from 'graphql-tag'
 import { withDefaultMutation } from 'GraphQL/Mutation'
 import type { MutationWrapper } from 'GraphQL/Mutation'
 import type { Checkout } from 'Types/CheckoutTypes'
+import { getCookie, VIEWER_CART_TOKEN } from 'Utils/storage'
 import { query as checkoutQuery, checkoutFields } from '../queries/CheckoutQuery'
 
 const mutation = gql`
-	mutation CheckoutAddItems($lineItems: [CheckoutLineItemInput!]!, $checkoutId: ID!) {
-		checkoutLineItemsAdd(checkoutId: $checkoutId, lineItems: $lineItems) {
+	mutation CheckoutDiscountCodeRemove($checkoutId: ID!) {
+		checkoutDiscountCodeRemove(checkoutId: $checkoutId) {
 			userErrors {
 				field
 				message
@@ -20,19 +21,17 @@ const mutation = gql`
 `
 
 const config = {
-	update: async (proxy, { data }) => {
+	update: (proxy, { data }) => {
 		if (!data) return
-
 		const {
-			checkoutLineItemsAdd: { userErrors, checkout },
+			checkoutDiscountCodeRemove: { checkout },
 		} = data
-		if (userErrors.length !== 0) {
-			console.log(userErrors)
-		}
-		if (checkout) {
+		const id = getCookie(VIEWER_CART_TOKEN) || ''
+		// const prev = proxy.readQuery()
+		if (id && checkout) {
 			proxy.writeQuery({
 				query: checkoutQuery,
-				variables: { id: checkout.id },
+				variables: { id },
 				data: {
 					node: checkout,
 				},
@@ -45,6 +44,6 @@ type MutationResponse = {
 	checkout: Checkout,
 }
 
-const CheckoutAddItems: MutationWrapper<MutationResponse> = withDefaultMutation(mutation, config)
+const CheckoutDiscountCodeApplyMutation: MutationWrapper<MutationResponse> = withDefaultMutation(mutation, config)
 
-export default CheckoutAddItems
+export default CheckoutDiscountCodeApplyMutation

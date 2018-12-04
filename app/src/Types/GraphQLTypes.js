@@ -52,4 +52,4 @@ type MutationOptions = {
 	// update:
 }
 
-export type Mutation = (options?: MutationOptions) => Promise<void>
+export type Mutation = (options?: MutationOptions) => Promise<any>

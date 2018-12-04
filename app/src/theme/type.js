@@ -12,7 +12,7 @@ export const size = {
 
 export const weight = {
 	light: '200',
-	regular: '400',
+	normal: '400',
 	semi: '600',
 	strong: '800',
 }

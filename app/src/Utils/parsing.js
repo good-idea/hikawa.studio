@@ -21,3 +21,9 @@ export const parseUrl = (url: string): ParsedUrl | null => {
 		input: matches.input,
 	}
 }
+
+export const parsePrice = (price: string | number): string => {
+	const [dollars, parsedCents] = price.toString().split('.')
+	const cents = parsedCents ? `${parsedCents}0`.substr(0, 2) : false
+	return cents && /[1-9]/.test(cents) ? `$${dollars}.${cents}` : `$${dollars}`
+}

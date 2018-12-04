@@ -36,7 +36,10 @@ class CurrentCart extends React.Component<Props, State> {
 		if (!children) return null
 		return (
 			<CheckoutQuery LoadingComponent={false} variables={{ id: checkoutId }} delayQuery={!checkoutId}>
-				{({ data, loading }) => children({ loading, currentCart: data && data.node, updateCheckoutId })}
+				{(result) => {
+					const { data, loading, refetch } = result
+					return children({ loading, currentCart: data && data.node, updateCheckoutId, refetchCart: refetch })
+				}}
 			</CheckoutQuery>
 		)
 	}

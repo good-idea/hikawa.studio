@@ -11,6 +11,7 @@ export const spacing = {
 	quarter: '3px',
 	half: '6px',
 	single: '12px',
+	singleHalf: '18px',
 	double: '24px',
 	triple: '38px',
 }

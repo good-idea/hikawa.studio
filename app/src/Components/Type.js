@@ -2,8 +2,9 @@
 import styled, { css } from 'styled-components'
 
 const commonHeaderStyles = css`
-	${({ theme, align }) => `
-		font-weight: ${theme.type.weight.semi};
+	${({ theme, align, weight, color }) => `
+		font-weight: ${theme.type.weight[weight] || theme.type.weight.semi};
+		color: ${theme.color[color] || 'inherit'};
 		text-align: ${align || 'inherit'};
 		margin: 0.3em 0;
 	`};

@@ -4,7 +4,7 @@ import { withDefaultMutation } from 'GraphQL/Mutation'
 import type { MutationWrapper } from 'GraphQL/Mutation'
 import type { Checkout } from 'Types/CheckoutTypes'
 import { getCookie, VIEWER_CART_TOKEN } from 'Utils/storage'
-import { query as checkoutQuery } from '../queries/CheckoutQuery'
+import { query as checkoutQuery, checkoutFields } from '../queries/CheckoutQuery'
 
 const mutation = gql`
 	mutation CheckoutCreate(
@@ -31,37 +31,7 @@ const mutation = gql`
 				message
 			}
 			checkout {
-				id
-				email
-				paymentDue
-				lineItems(first: 50) {
-					pageInfo {
-						hasNextPage
-						hasPreviousPage
-					}
-					edges {
-						cursor
-						node {
-							id
-							quantity
-							title
-							variant {
-								id
-								title
-								price
-								product {
-									id
-									title
-								}
-								image {
-									altText
-									id
-									originalSrc
-								}
-							}
-						}
-					}
-				}
+				${checkoutFields}
 			}
 		}
 	}

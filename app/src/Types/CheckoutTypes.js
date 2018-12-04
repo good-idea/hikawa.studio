@@ -29,7 +29,7 @@ type Attribute = {
 type CurrencyCode = 'USD'
 
 type MoneyV2 = {
-	amount: number,
+	amount: string,
 	currencyCode: CurrencyCode,
 }
 
@@ -39,15 +39,16 @@ type PricingPercentageValue = {
 
 type PricingValue = MoneyV2 | PricingPercentageValue
 
-type DiscountApplication = {
+export type DiscountApplication = {
 	allocationMethod: 'ACROSS' | 'EACH' | 'ONE',
 	targetSelection: 'ALL' | 'ENTITLED' | 'EXPLICIT',
 	targetType: 'LINE_ITEM' | 'SHIPPING_LINE',
 	value: PricingValue,
+	code?: string,
 }
 
 type DiscountAllocation = {
-	allocatedMoneyAmount: MoneyV2,
+	allocatedAmount: MoneyV2,
 	discountApplication: DiscountApplication,
 }
 
