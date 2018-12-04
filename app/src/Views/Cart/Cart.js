@@ -50,7 +50,7 @@ const getCount = (currentCart?: Checkout): number => {
 
 class Cart extends React.Component<Props, State> {
 	state = {
-		isOpen: true,
+		isOpen: false,
 	}
 
 	openCart = () => {
