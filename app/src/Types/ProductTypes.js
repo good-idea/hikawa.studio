@@ -1,8 +1,7 @@
 // @flow
 /* eslint-disable no-use-before-define */
 
-import type { CollectionType } from './CollectionTypes'
-import type { ShopifyImage } from './ContentTypes'
+import type { ShopifyImage } from './MediaTypes'
 
 export type Money = string
 // 	amount: number,
@@ -56,4 +55,18 @@ export type ProductType = {
 	description?: string,
 	descriptionHtml?: string,
 	__typename: 'Product',
+}
+
+export type CollectionType = {
+	id: string,
+	title: string,
+	description?: string,
+	handle: string,
+	image?: ShopifyImage,
+	products?: Array<ProductType>,
+	descriptionHtml?: string,
+	updatedAt?: Date,
+	backgroundColor?: SanityColor,
+	keyColor?: SanityColor,
+	__typename: 'Collection',
 }

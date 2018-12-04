@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const path = require('path')
+const CircularDependencyPlugin = require('circular-dependency-plugin')
 
 const common = {
 	module: {
@@ -36,6 +37,7 @@ const common = {
 		},
 		extensions: ['.mjs', '.js', '.json'],
 	},
+	plugins: [new CircularDependencyPlugin()],
 }
 
 const development = {
@@ -98,6 +100,27 @@ const production = {
 	},
 	optimization: {
 		minimize: true,
+		splitChunks: {
+			chunks: 'async',
+			minSize: 30000,
+			maxSize: 0,
+			minChunks: 1,
+			maxAsyncRequests: 5,
+			maxInitialRequests: 3,
+			automaticNameDelimiter: '~',
+			name: true,
+			cacheGroups: {
+				vendors: {
+					test: /[\\/]node_modules[\\/]/,
+					priority: -10,
+				},
+				default: {
+					minChunks: 2,
+					priority: -20,
+					reuseExistingChunk: true,
+				},
+			},
+		},
 	},
 	plugins: [
 		new webpack.DefinePlugin({

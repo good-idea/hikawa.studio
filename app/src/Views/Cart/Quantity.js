@@ -2,7 +2,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import type { CheckoutLineItem } from 'Types/CheckoutTypes'
-import { Segment } from './CartLineItem'
+import { CartGridSegment, CartLineItemWrapper } from './styled'
 
 const InputWrapper = styled.div`
 	display: flex;
@@ -39,6 +39,10 @@ export const CartButton = styled.button`
 		font-weight: ${theme.type.weight.semi};
 		color: ${theme.color.middleGray};
 
+		${CartLineItemWrapper}:hover & {
+			opacity: 1;
+		}
+		
 		&:hover {
 			color: black;
 		}
@@ -91,7 +95,7 @@ class Quantity extends React.Component<Props, State> {
 	render() {
 		const { quantity } = this.state
 		return (
-			<Segment align="center">
+			<CartGridSegment align="center">
 				<CartButton onClick={this.remove}>remove</CartButton>
 				<InputWrapper>
 					<CartButton onClick={this.adjust(1)}>
@@ -107,7 +111,7 @@ class Quantity extends React.Component<Props, State> {
 					</CartButton>
 				</InputWrapper>
 				<CartButton onClick={this.submitUpdate}>update</CartButton>
-			</Segment>
+			</CartGridSegment>
 		)
 	}
 }

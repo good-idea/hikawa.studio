@@ -11,12 +11,6 @@ import { CheckoutConsumer } from '../CheckoutProvider'
 import CartLineItem from './CartLineItem'
 import CartSummary from './CartSummary'
 
-export const cartGridStyles = css`
-	display: grid;
-	grid-template-columns: repeat(6, 1fr);
-	grid-column-gap: 15px;
-`
-
 const SummaryWrapper = styled.div`
 	${({ theme, loading }) => `
 		width: calc(100% - (${theme.layout.spacing.quadruple} * 2));

@@ -1,6 +1,7 @@
 // @flow
 import React from 'react'
-import type { ContentBlocks, SanityImage } from 'Types/ContentTypes'
+import type { ContentBlocks } from 'Types/ContentTypes'
+import type { SanityImage } from 'Types/MediaTypes'
 import Block from 'Components/ContentBlocks'
 import Hero from 'Components/Hero'
 import { FlexContainer, Column } from 'Components/Layout'

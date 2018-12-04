@@ -1,6 +1,6 @@
 // @flow
 import gql from 'graphql-tag'
-import type { CollectionType } from 'Types/CollectionTypes'
+import type { CollectionType } from 'Types/ProductTypes'
 import type { QueryWrapper } from 'GraphQL/Query'
 import { withDefaultQuery } from 'GraphQL/Query'
 import { colorPartial, shopifyImageFields } from '../../GraphQL/partials'

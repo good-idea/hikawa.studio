@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import type { ShopifyImage as ShopifyImageType } from 'Types/ContentTypes'
+import type { ShopifyImage as ShopifyImageType } from 'Types/MediaTypes'
 
 /**
  * ShopifyImage

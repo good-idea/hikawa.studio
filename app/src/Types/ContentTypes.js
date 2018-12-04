@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react'
-import type { ProductType } from './ProductTypes'
-import type { CollectionType } from './CollectionTypes'
+import type { ProductType, CollectionType } from './ProductTypes'
 import type { SEO } from './SharedTypes'
 
 /**
@@ -36,31 +35,6 @@ export type HeaderBlock = {
 /**
  * Image
  */
-
-export type ShopifyImage = {
-	id: string,
-	originalSrc: string,
-	altText?: string,
-	transformedSrc?: string,
-	__typename: 'Image',
-}
-
-export type SanityImage = {
-	_type: string,
-	_ref: string,
-	_key: string,
-	__typename: 'SanityImage',
-	altText: string,
-	id: string,
-	url: string,
-	metadata?: {
-		dimensions: {
-			width: Number,
-			height: Number,
-			ratio?: Number,
-		},
-	},
-}
 
 export type ImageType = ShopifyImage | SanityImage
 

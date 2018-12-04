@@ -1,6 +1,6 @@
 // @flow
 
-import type { SanityImage } from './ContentTypes'
+import type { SanityImage } from './MediaTypes'
 
 export type SEO = {
 	description: string,

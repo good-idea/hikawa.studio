@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import type { SanityImage as SanityImageType } from 'Types/ContentTypes'
+import type { SanityImage as SanityImageType } from 'Types/MediaTypes'
 
 /**
  * SanityImage

@@ -2,7 +2,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { Header2 } from 'Components/Type'
-import type { CollectionType } from 'Types/CollectionTypes'
+import type { CollectionType } from 'Types/ProductTypes'
 import { sanityColorToRGBA } from 'Utils/sanity'
 import { Column } from 'Components/Layout'
 import ProductThumbnail from './ProductThumbnail'

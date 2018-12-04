@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import styled from 'styled-components'
-import type { SanityImage } from 'Types/ContentTypes'
+import type { SanityImage } from 'Types/MediaTypes'
 import { Image } from 'Components/Media'
 
 const HeroWrapper = styled.div`

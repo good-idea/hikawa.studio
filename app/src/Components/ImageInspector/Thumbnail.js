@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import styled from 'styled-components'
-import type { ShopifyImage } from 'Types/ContentTypes'
+import type { ShopifyImage } from 'Types/MediaTypes'
 import { Image } from 'Components/Media'
 
 const Wrapper = styled.button`
