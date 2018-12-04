@@ -1,11 +1,5 @@
 {
 	"version": 2,
 	"name": "kame-store",
-	"alias": "kame-store.now.sh",
-	"scale": {
-		"sfo1": {
-			"min": 1,
-			"max": "auto"
-		}
-	}
+	"alias": "kame-store.now.sh"
 }
