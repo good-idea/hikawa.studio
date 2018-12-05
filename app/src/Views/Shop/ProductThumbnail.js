@@ -2,8 +2,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import type { CollectionType } from 'Types/ProductTypes'
-import type { ProductType } from 'Types/ProductTypes'
+import type { CollectionType, ProductType } from 'Types/ProductTypes'
 import { ImageBox } from 'Components/Media'
 import { Header3 } from 'Components/Type'
 

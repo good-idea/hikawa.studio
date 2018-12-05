@@ -39,20 +39,26 @@ export const seoPartial = `
 `
 
 export const richTextPartial = `
+	_key
 	_type
-	style
-	level
-	listItem
-	children {
-		_type
-		_key
-		text
-		marks
+	...on TextBlock {
+		style
+		level
+		listItem
+		children {
+			_type
+			_key
+			text
+			marks
+		}
+		markDefs {
+			_type
+			_key
+			href
+		}
 	}
-	markDefs {
-		_type
-		_key
-		href
+	...on SanityImage {
+		${sanityImageFields}
 	}
 `
 

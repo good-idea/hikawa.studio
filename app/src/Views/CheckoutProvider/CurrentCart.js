@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react'
 import { setCookie, getCookie, VIEWER_CART_TOKEN } from 'Utils/storage'
+import type { Checkout, CheckoutLineItem } from 'Types/CheckoutTypes'
 import { CheckoutQuery } from './queries'
 
 /**
@@ -14,6 +15,13 @@ type Props = {
 type State = {
 	checkoutId: string | null,
 }
+
+const stripNoVariants = (lineItem: CheckoutLineItem) => Boolean(lineItem.variant)
+
+const sanitizeCart = (originalCart: Checkout) => ({
+	...originalCart,
+	lineItems: originalCart.lineItems.filter(stripNoVariants),
+})
 
 class CurrentCart extends React.Component<Props, State> {
 	static defaultProps = {
@@ -38,7 +46,8 @@ class CurrentCart extends React.Component<Props, State> {
 			<CheckoutQuery LoadingComponent={false} variables={{ id: checkoutId }} delayQuery={!checkoutId}>
 				{(result) => {
 					const { data, loading, refetch } = result
-					return children({ loading, currentCart: data && data.node, updateCheckoutId, refetchCart: refetch })
+					const currentCart = data && data.node ? sanitizeCart(data.node) : undefined
+					return children({ loading, currentCart, updateCheckoutId, refetchCart: refetch })
 				}}
 			</CheckoutQuery>
 		)
