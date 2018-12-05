@@ -15,6 +15,7 @@ const page = {
 				products: false,
 			},
 			description: 'Select a collection from your Shopify content',
+			validation: (Rule) => Rule.required(),
 		},
 		{
 			title: 'Background Image',

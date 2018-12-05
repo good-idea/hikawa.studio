@@ -11,7 +11,7 @@ const page = {
 		fields.pageBanner,
 		fields.pageSlug,
 		{
-			name: 'blocks',
+			name: 'content',
 			title: 'Text',
 			type: 'array',
 			of: [
