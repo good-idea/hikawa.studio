@@ -21,7 +21,9 @@ const product = {
 			title: 'Related',
 			type: 'array',
 			name: 'related',
-			of: [{ type: 'pageLink' }],
+			description: 'Link to a Page, Product, Collection, or URL',
+			of: [{ type: 'shopifyItem' }],
+			validation: (Rule) => Rule.max(1).required(),
 		},
 		// {
 		// 	title: 'Title',
