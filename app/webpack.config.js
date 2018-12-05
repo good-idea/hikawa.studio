@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const merge = require('webpack-merge')
 const path = require('path')
 const CircularDependencyPlugin = require('circular-dependency-plugin')
+const NgrockWebpackPlugin = require('./ngrokWebpack')
 
 const common = {
 	module: {
@@ -40,12 +41,14 @@ const common = {
 	plugins: [new CircularDependencyPlugin()],
 }
 
+const hotUrl = process.env.SHARE_TUNNEL ? 'http://kame-dev.ngrok.io' : 'http://localhost:8080'
+
 const development = {
 	mode: 'development',
 	entry: [
 		'babel-polyfill',
 		'react-hot-loader/patch',
-		'webpack-dev-server/client?http://localhost:8080',
+		`webpack-dev-server/client?${hotUrl}`,
 		'webpack/hot/only-dev-server',
 		'./src/index.js',
 	],
@@ -63,9 +66,11 @@ const development = {
 			'process.env': {
 				DEBUG: JSON.stringify('web'),
 				NODE_ENV: JSON.stringify('development'),
+				SHARE_TUNNEL: process.env.SHARE_TUNNEL || null,
 			},
 		}),
-	],
+		process.env.SHARE_TUNNEL ? new NgrockWebpackPlugin() : null,
+	].filter(Boolean),
 	devServer: {
 		contentBase: path.resolve(__dirname, 'public'),
 		historyApiFallback: true,

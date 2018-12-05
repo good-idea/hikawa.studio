@@ -1,12 +1,12 @@
 // @flow
 import React from 'react'
 import type { Match } from 'react-router-dom'
-import styled from 'styled-components'
 import type { ProductType } from 'Types/ProductTypes'
+import type { CheckoutConsumerProps } from 'Views/CheckoutProvider'
+import styled from 'styled-components'
 import Query from 'GraphQL/Query'
 import { Column } from 'Components/Layout'
 import { InspectorProvider, ImageInspector } from 'Components/ImageInspector'
-import type { CheckoutConsumerProps } from 'Views/CheckoutProvider'
 import { CheckoutConsumer } from 'Views/CheckoutProvider'
 import ProductDescription from './ProductDescription'
 import productQuery from './productQuery'
@@ -15,7 +15,7 @@ const Layout = styled.div`
 	${({ theme }) => `
 		display: grid;
 		grid-template-columns: 50% 50%;
-		grid-column-gap: ${theme.layout.spacing.single};
+		grid-column-gap: ${theme.layout.spacing.triple};
 	`};
 `
 

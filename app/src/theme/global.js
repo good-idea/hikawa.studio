@@ -3,9 +3,11 @@
 
 import { css, createGlobalStyle } from 'styled-components'
 import normalized from './normalized'
+import fonts from './fonts'
 
 export const GlobalStyles = createGlobalStyle`
 	${normalized}
+	${fonts}
 
 	html {
 		font-size: 10px;

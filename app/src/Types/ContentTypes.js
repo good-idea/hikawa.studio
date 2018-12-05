@@ -125,4 +125,7 @@ export type SiteSettings = {
 			links: Array<MenuLink>,
 		},
 	},
+	product: {
+		text: Array<TextNode>,
+	},
 }

@@ -10,12 +10,24 @@ import { getLinkUrl } from 'Utils/sanity'
 import { SettingsConsumer } from '../SettingsProvider'
 import Cart from '../Cart'
 
+const Announcement = styled.div`
+	${({ theme }) => `
+		background-color: ${theme.color.pink};
+		color: white;
+		width: 100%;
+		text-align: center;
+		padding: 6px;
+		font-size: ${theme.type.size.h5};
+		font-weight: ${theme.type.weight.semi};
+	`}
+`
+
 const Nav = styled.nav`
 	${({ theme }) => `
-		padding: 0 ${theme.layout.spacing.single};
+		padding: 0;
 		height: ${theme.layout.navHeight};
 		z-index: ${theme.layout.z.navigation};
-		position: fixed;
+		position: absolute;
 		top: 0;
 		left: 0;
 		display: flex;
@@ -54,6 +66,7 @@ const Navigation = ({ siteSettings }: Props) => {
 	if (!siteSettings) return null
 	return (
 		<Nav>
+			<Announcement>this is it</Announcement>
 			<Logo />
 			<Menu>
 				<Header3>

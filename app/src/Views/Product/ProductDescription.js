@@ -2,12 +2,27 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import type { ProductType, ProductVariant } from 'Types/ProductTypes'
-import { Header1, P } from 'Components/Type'
+import type { SiteSettings } from 'Types/ContentTypes'
+import { Header2, P } from 'Components/Type'
+import Text from 'Components/ContentBlocks/Text'
 // import { InspectorConsumer } from 'Components/ImageInspector'
 import { InspectorConsumer } from 'Components/ImageInspector'
 import { Button } from 'Components/Buttons'
 import { sleep } from 'Utils'
+import { SettingsConsumer } from 'Views/SettingsProvider'
 import VariantSelector from './VariantSelector'
+
+const Title = styled(Header2)`
+	margin-top: 0;
+`
+
+const ExtraDescription = styled.div`
+	${({ theme }) => `
+		color: ${theme.color.darkGray};
+		margin: ${theme.layout.spacing.double} 0;
+	`}
+`
+
 /**
  * ProductDescription
  */
@@ -18,6 +33,7 @@ const Wrapper = styled.div`
 
 type Props = {
 	product: ProductType,
+	settings: SiteSettings,
 	selectImage: (string) => () => void,
 	addToCart: (any) => Promise<void>,
 }
@@ -74,14 +90,21 @@ class ProductDescription extends React.Component<Props, State> {
 	}
 
 	render() {
-		const { product } = this.props
+		const { product, settings } = this.props
 		const { selectedVariant } = this.state
+
 		return (
 			<Wrapper>
-				<Header1>{product.title}</Header1>
+				<Title>{product.title}</Title>
 				<P>{product.description}</P>
+				{settings && settings.product && settings.product.text ? (
+					<ExtraDescription>
+						<Text blocks={settings.product.text} />
+					</ExtraDescription>
+				) : null}
 				<VariantSelector variants={product.variants || []} selectVariant={this.selectVariant} selectedVariant={selectedVariant} />
 				<Button
+					size="medium"
 					onClick={this.addSelectedVariantToCart}
 					disabled={selectedVariant === undefined || selectedVariant.availableForSale === false}
 				>
@@ -98,5 +121,13 @@ type BaseProps = {
 }
 
 export default (props: BaseProps) => (
-	<InspectorConsumer>{({ selectImage }) => <ProductDescription selectImage={selectImage} {...props} />}</InspectorConsumer>
+	<SettingsConsumer>
+		{(settings) =>
+			settings ? (
+				<InspectorConsumer>
+					{({ selectImage }) => <ProductDescription selectImage={selectImage} settings={settings} {...props} />}
+				</InspectorConsumer>
+			) : null
+		}
+	</SettingsConsumer>
 )

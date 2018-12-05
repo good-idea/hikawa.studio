@@ -20,7 +20,7 @@ const Image = ({ image }: Props) => {
 		case 'SanityImage':
 			return <SanityImage image={image} />
 		default:
-			throw new Error(`Image type "${image.__typename}" is not a valid`)
+			throw new Error(`Image type "${image.__typename}" is not valid`)
 	}
 }
 

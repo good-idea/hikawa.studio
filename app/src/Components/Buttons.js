@@ -2,23 +2,22 @@
 import styled from 'styled-components'
 
 export const Button = styled.button`
-	${({ theme, disabled }) => `
+	${({ theme, disabled, size }) => `
 		padding: ${theme.layout.spacing.half} ${theme.layout.spacing.single};
 		font-size: ${theme.type.size.h5};
-		color: white;
+		color: black;
 		text-transform: uppercase;
+		text-align: center;
 		font-weight: ${theme.type.weight.semi};
-		border: 1px solid transparent;
-		border-bottom-width: 2px;
-		border-bottom-color: rebeccaPurple;
 		border-radius: 5px;
-		background-color: #a76fa7;
+		background-color: ${theme.color.highlight};
 		opacity: ${disabled ? '0.25' : '1'};
-		transition: 0.2s;
+		transition: 0.1s;
 		pointer-events: ${disabled ? 'none' : 'auto'};
+		min-width: ${size === 'medium' ? '120px' : '0'};
 
 		&:hover {
-			background-color: #bd6fbd;
+			background-color: ${theme.color.offset};
 		}
 	`};
 `

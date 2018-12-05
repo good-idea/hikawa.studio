@@ -56,7 +56,6 @@ class Cart extends React.Component<Props, State> {
 	}
 
 	render() {
-		console.log(this.props)
 		const { currentCart, updateQuantity, loading, applyDiscount, removeDiscount, userErrors } = this.props
 		const { isOpen } = this.state
 		const count = getCount(currentCart)

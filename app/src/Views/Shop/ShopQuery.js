@@ -3,7 +3,7 @@ import gql from 'graphql-tag'
 import type { CollectionType } from 'Types/ProductTypes'
 import type { QueryWrapper } from 'GraphQL/Query'
 import { withDefaultQuery } from 'GraphQL/Query'
-import { colorPartial, shopifyImageFields } from '../../GraphQL/partials'
+import { colorPartial, shopifyImageFields, sanityImageFields } from '../../GraphQL/partials'
 
 const query = /* GraphQL */ gql`
 	query ShopQuery {
@@ -15,6 +15,9 @@ const query = /* GraphQL */ gql`
 						title
 						description
 						handle
+						backgroundImage {
+							${sanityImageFields}
+						}
 						backgroundColor {
 							${colorPartial}
 						}

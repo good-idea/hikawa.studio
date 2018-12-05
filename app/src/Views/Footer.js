@@ -11,9 +11,12 @@ import { SettingsConsumer } from './SettingsProvider'
 const Wrapper = styled.footer`
 	${({ theme }) => `
 		border-top: 1px solid black;
-		padding: ${theme.layout.spacing.triple};
+		padding: calc(${theme.layout.spacing.triple} * 3) ${theme.layout.spacing.triple};
 		display: flex;
 		justify-content: space-between;
+		background-image: url('/images/clouds_KAME.jpg');
+		background-size: cover;
+		background-position: center;
 	`};
 `
 

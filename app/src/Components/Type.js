@@ -62,7 +62,7 @@ export const P = styled.p`
 
 export const TextAnchor = styled.a`
 	${({ theme }) => `
-		color: ${theme.color.red};
+		color: ${theme.color.pink};
 	`};
 `
 

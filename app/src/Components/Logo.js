@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { SettingsConsumer } from 'Views/SettingsProvider'
 
 const Image = styled.img`
-	width: 200px;
+	width: 350px;
 `
 
 /**

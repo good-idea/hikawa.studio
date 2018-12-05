@@ -8,7 +8,8 @@ const HeroWrapper = styled.div`
 	position: relative;
 	overflow: hidden;
 	width: 100%;
-	max-height: 70vh;
+	height: 30vh;
+	max-height: 400px;
 	height: 100%;
 `
 
@@ -23,12 +24,15 @@ const ImageWrapper = styled.div`
 
 	`};
 	img {
+		position: absolute;
+		top: 0;
+		left: 0;
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		object-fit: contain;
 	}
 `
+// object-fit: contain;
 
 /**
  * Hero

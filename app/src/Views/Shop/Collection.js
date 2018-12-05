@@ -11,6 +11,9 @@ const Wrapper = styled.div`
 	${({ theme, collection }) => `
 		padding: ${theme.layout.spacing.triple};
 		background-color: ${sanityColorToRGBA(collection.backgroundColor)};
+		background-image: url(${collection.backgroundImage && collection.backgroundImage.url});
+		background-size: cover;
+		background-position: center;
 		color: ${sanityColorToRGBA(collection.keyColor)};
 	`};
 `
@@ -22,7 +25,11 @@ const Inner = styled.div`
 `
 
 const Title = styled(Header2)`
-	flex-basis: 300px;
+	${({ theme }) => `
+		flex-basis: 200px;
+		text-align: right;
+		padding-right: ${theme.layout.spacing.double};
+	`}
 `
 
 const Products = styled.div`

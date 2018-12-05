@@ -21,9 +21,11 @@ const ZoomImage = styled.div`
 		opacity: 0;
 	`};
 
+	/* Disable hover for now
 	&:hover {
 		opacity: 1;
 	}
+	*/
 
 	& > img {
 		width: 100%;
@@ -85,7 +87,7 @@ class ImageInspector extends React.Component<Props, State> {
 		const zoomStyle = { top, left }
 		return (
 			<ImageBox image={image}>
-				<ZoomContainer ref={this.container} onMouseMove={this.handleZoom}>
+				<ZoomContainer ref={this.container}>
 					<ZoomImage style={zoomStyle} zoomAmount={zoomAmount}>
 						<Image image={image} />
 					</ZoomImage>

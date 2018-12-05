@@ -23,14 +23,16 @@ export const getLinkImage = (pageLink: PageLink): ImageType | null => {
 	if (pageLink.image) return pageLink.image
 	const { link } = pageLink
 	const { __typename } = link
-	// return link.image
+	const source = pageLink.images || link.images
 	switch (__typename) {
 		case 'Product':
-			return link.images && link.images.length ? link.images[0] : null
+			// if (pageLink.images)
+			return source && source.length ? source[0] : null
 		case 'Collection':
+			if (pageLink.images && pageLink.images.length) return pageLink.images[0]
 			return link.image ? link.image : null
 		case 'Page':
-			return link.banner ? link.banner : null
+			return link.banner && link.banner.length ? link.banner[0] : null
 		default:
 			return null
 	}
