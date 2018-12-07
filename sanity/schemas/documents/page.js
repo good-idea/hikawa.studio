@@ -29,6 +29,7 @@ const page = {
 							},
 						},
 					],
+					validation: (Rule) => Rule.required(),
 				},
 			],
 		},
