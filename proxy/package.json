@@ -11,7 +11,7 @@
 	"deploy": "yarn bundle && now && now alias"
   },
   "dependencies": {
-    "@good-idea/shopify-sanity-proxy-server": "^0.0.6",
+    "@good-idea/shopify-sanity-proxy-server": "^0.0.7",
     "dotenv": "^6.2.0"
   },
   "devDependencies": {
