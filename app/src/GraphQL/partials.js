@@ -100,7 +100,8 @@ export const linkPartial = `
 	}
 `
 
-const pageLinkFields = `
+export const pageLinkFields = `
+	_key
 	label
 	caption
 	images {

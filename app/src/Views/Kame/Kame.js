@@ -1,12 +1,19 @@
 // @flow
 import React from 'react'
+import styled from 'styled-components'
 import type { ContentBlocks } from 'Types/ContentTypes'
 import type { SanityImage } from 'Types/MediaTypes'
 import Block from 'Components/ContentBlocks'
 import Hero from 'Components/Hero'
-import { FlexContainer, Column } from 'Components/Layout'
+import { FlexContainer, FlexChild, Column } from 'Components/Layout'
 import HomepageQuery from './homepageQuery'
 import { SettingsConsumer } from '../SettingsProvider'
+
+const Wrapper = styled.div`
+	background-image: url('/images/clouds_KAME.jpg');
+	background-attachment: fixed;
+	background-size: cover;
+`
 
 /**
  * Kame
@@ -22,15 +29,20 @@ type Props = {
 
 const Kame = ({ homepage }: Props) => {
 	return (
-		<React.Fragment>
-			{homepage.banner && <Hero images={homepage.banner} />}
-			<Column width="xWide">
+		<Wrapper>
+			{homepage.banner && homepage.banner.length && <Hero images={homepage.banner} />}
+			<Column width="wide">
 				<FlexContainer>
 					{/* $FlowFixMe - bug with union types: https://github.com/facebook/flow/issues/6342 */}
-					{homepage.content && homepage.content.map((block) => <Block key={block._key} block={block} />)}
+					{homepage.content &&
+						homepage.content.map((block) => (
+							<FlexChild basis="50%">
+								<Block key={block._key} block={block} />
+							</FlexChild>
+						))}
 				</FlexContainer>
 			</Column>
-		</React.Fragment>
+		</Wrapper>
 	)
 }
 

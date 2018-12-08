@@ -32,7 +32,7 @@ const Block = ({ block }: Props) => {
 		case 'header':
 			return <Header {...block} />
 		case 'pageLink':
-			return <PageLink {...block} />
+			return <PageLink item={block} />
 		default:
 			throw new Error(`There is no content component for "${block._type}"`)
 	}

@@ -60,6 +60,7 @@ export type PageLink = {
 	link?: Link,
 	label?: string,
 	caption?: string,
+	images?: Array<SanityImage>,
 	image?: SanityImage,
 }
 

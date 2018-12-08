@@ -1,11 +1,8 @@
 // @flow
 import * as React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-import type { ProductType, CollectionType } from 'Types/ProductTypes'
-import { ImageBox } from 'Components/Media'
-import { Header4 } from 'Components/Type'
-import { getLinkUrl } from 'Utils/content'
+import type { PageLink as PageLinkType } from 'Types/ContentTypes'
+import PageLink from 'Components/ContentBlocks/PageLink'
 
 const Wrapper = styled.div`
 	${({ theme }) => `
@@ -19,18 +16,15 @@ const Wrapper = styled.div`
  */
 
 type Props = {
-	item: ProductType | CollectionType,
+	item: PageLinkType,
+	number: number,
 }
 
-const RelatedItem = ({ item }: Props) => {
-	const url = getLinkUrl(item)
-	const image = item.__typename === 'Collection' ? item.image : item.images && item.images[0]
+const RelatedItem = ({ item, number }: Props) => {
+	if (!item.link) return null
 	return (
 		<Wrapper>
-			<Link to={url}>
-				<ImageBox ratio={1} image={image} sizes="200px" />
-				<Header4>{item.title}</Header4>
-			</Link>
+			<PageLink item={item} number={number} />
 		</Wrapper>
 	)
 }
