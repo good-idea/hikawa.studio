@@ -1,8 +1,6 @@
 // @flow
 import sanityClient from '@sanity/client'
 
-process.env.NODE_ENV === 'development' ? 'test' : 'production'
-
 const client = sanityClient({
 	projectId: 'rz3fhq71',
 	dataset: process.env.NODE_ENV === 'development' ? 'test' : 'production',
