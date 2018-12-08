@@ -80,6 +80,7 @@ class PageLinkPreview extends React.Component {
 
 	render() {
 		const { src, title, subtitle } = this.state
+		console.log(this.props)
 		return (
 			<Wrapper>
 				<span role="img" aria-label="Links to:">
@@ -134,20 +135,9 @@ const pageLink = {
 			name: 'images',
 			title: 'Alternate Images',
 			description: '(optional) If empty, the image of the linked collection, or product will be used. ',
+			validation: (Rule) => Rule.max(2),
 		},
-		{
-			type: 'string',
-			name: 'layout',
-			label: 'Layout',
-			options: {
-				list: [
-					{ value: 'singleImage', title: 'Full Image (upload multiple images to make a carousel)' },
-					{ value: 'textOnly', title: 'Text Only (ignores all images)' },
-					{ value: 'grid', title: 'Grid' },
-				],
-				layout: 'dropdown',
-			},
-		},
+
 		{
 			title: 'Text',
 			name: 'textPreview',
