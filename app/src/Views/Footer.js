@@ -14,7 +14,6 @@ const Wrapper = styled.footer`
 		padding: calc(${theme.layout.spacing.triple} * 3) ${theme.layout.spacing.triple};
 		display: flex;
 		justify-content: space-between;
-		background-image: url('/images/clouds_KAME.jpg');
 		background-size: cover;
 		background-position: center;
 	`};

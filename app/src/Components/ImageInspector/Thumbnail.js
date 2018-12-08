@@ -2,14 +2,11 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import type { ShopifyImage } from 'Types/MediaTypes'
-import { Image } from 'Components/Media'
+import { ImageBox } from 'Components/Media'
 
 const Wrapper = styled.button`
-	${() => `
-		position: relative;
-	`};
+	position: relative;
 `
-// padding: ${theme.layout.spacing.half};
 
 /**
  * MyComponent
@@ -23,7 +20,7 @@ type Props = {
 
 const MyComponent = ({ onClick, image, isCurrentImage }: Props) => (
 	<Wrapper isCurrentImage={isCurrentImage} onClick={onClick}>
-		<Image image={image} />
+		<ImageBox ration={1} image={image} />
 	</Wrapper>
 )
 

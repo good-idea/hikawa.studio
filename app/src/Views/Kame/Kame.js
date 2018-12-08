@@ -9,11 +9,7 @@ import { FlexContainer, FlexChild, Column } from 'Components/Layout'
 import HomepageQuery from './homepageQuery'
 import { SettingsConsumer } from '../SettingsProvider'
 
-const Wrapper = styled.div`
-	background-image: url('/images/clouds_KAME.jpg');
-	background-attachment: fixed;
-	background-size: cover;
-`
+export const HomepageWrapper = styled.div``
 
 /**
  * Kame
@@ -29,20 +25,20 @@ type Props = {
 
 const Kame = ({ homepage }: Props) => {
 	return (
-		<Wrapper>
-			{homepage.banner && homepage.banner.length && <Hero images={homepage.banner} />}
+		<HomepageWrapper>
+			{homepage.banner && homepage.banner.length ? <Hero images={homepage.banner} /> : null}
 			<Column width="wide">
 				<FlexContainer>
 					{/* $FlowFixMe - bug with union types: https://github.com/facebook/flow/issues/6342 */}
 					{homepage.content &&
-						homepage.content.map((block) => (
-							<FlexChild basis="50%">
-								<Block key={block._key} block={block} />
+						homepage.content.map((block, index) => (
+							<FlexChild key={block._key} basis="50%">
+								<Block block={block} number={index} />
 							</FlexChild>
 						))}
 				</FlexContainer>
 			</Column>
-		</Wrapper>
+		</HomepageWrapper>
 	)
 }
 

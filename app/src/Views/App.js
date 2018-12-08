@@ -17,21 +17,29 @@ import Footer from './Footer'
  */
 
 const App = () => (
-	<SettingsProvider>
-		<CheckoutProvider>
-			<Main>
-				<Navigation />
-				<Switch>
-					<Route path="/" exact component={Kame} />
-					<Route path="/shop/:handle?" component={Shop} />
-					<Route path="/products/:handle" exact component={Product} />
-					<Route path="/:slug" exact component={Page} />
-					<Route component={NotFound} />
-				</Switch>
-				<Footer />
-			</Main>
-		</CheckoutProvider>
-	</SettingsProvider>
+	<Route
+		render={({ location }) => {
+			const isHomepage = Boolean(location.pathname === '/')
+			console.log(isHomepage)
+			return (
+				<SettingsProvider>
+					<CheckoutProvider>
+						<Navigation isHomepage={isHomepage} />
+						<Main isHomepage={isHomepage}>
+							<Switch>
+								<Route path="/" exact component={Kame} />
+								<Route path="/shop/:handle?" component={Shop} />
+								<Route path="/products/:handle" exact component={Product} />
+								<Route path="/:slug" exact component={Page} />
+								<Route component={NotFound} />
+							</Switch>
+						</Main>
+						<Footer />
+					</CheckoutProvider>
+				</SettingsProvider>
+			)
+		}}
+	/>
 )
 
 export default App

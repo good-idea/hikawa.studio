@@ -33,6 +33,7 @@ module.exports = {
 					Types: './src/Types',
 					Utils: './src/Utils',
 					GraphQL: './src/GraphQL',
+					Services: './src/Services',
 				},
 				cwd: 'babelrc',
 			},

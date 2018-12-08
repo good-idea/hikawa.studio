@@ -10,15 +10,16 @@ import SanityImage from './SanityImage'
 
 type Props = {
 	image: ImageType,
+	sizes: string,
 }
 
-const Image = ({ image }: Props) => {
+const Image = ({ image, sizes }: Props) => {
 	if (!image) return null
 	switch (image.__typename) {
 		case 'Image':
-			return <ShopifyImage image={image} />
+			return <ShopifyImage image={image} sizes={sizes} />
 		case 'SanityImage':
-			return <SanityImage image={image} />
+			return <SanityImage image={image} sizes={sizes} />
 		default:
 			throw new Error(`Image type "${image.__typename}" is not valid`)
 	}

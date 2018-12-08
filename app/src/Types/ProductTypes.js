@@ -55,7 +55,7 @@ export type ProductType = {
 	createdAt?: Date,
 	description?: string,
 	descriptionHtml?: string,
-	related: Array<ProductType | CollectionType>,
+	related?: Array<ProductType | CollectionType>,
 	__typename: 'Product',
 }
 

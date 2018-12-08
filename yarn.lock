@@ -1001,10 +1001,10 @@
   resolved "https://registry.yarnpkg.com/@emotion/utils/-/utils-0.8.2.tgz#576ff7fb1230185b619a75d258cbc98f0867a8dc"
   integrity sha512-rLu3wcBWH4P5q1CGoSSH/i9hrXs7SlbRLkoq9IGuoPYNGQvDJ3pt/wmOM+XgYjIDRMVIdkUWt0RsfzF50JfnCw==
 
-"@good-idea/shopify-sanity-proxy-server@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@good-idea/shopify-sanity-proxy-server/-/shopify-sanity-proxy-server-0.0.2.tgz#77c7a368a317b87ff24ab7ffaf8b28aa24c7ccee"
-  integrity sha512-HJQqwqLdyCRtWXAfAJOanIYxmtUcG8gBC+Pik2EU9keq0tj1BgN0mVXmUZfUIUyMjIcX+l9OjrMb91uhpRqWcA==
+"@good-idea/shopify-sanity-proxy-server@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@good-idea/shopify-sanity-proxy-server/-/shopify-sanity-proxy-server-0.0.6.tgz#debf2193a6077771dcb2122dc37e8fd6e7c8fb46"
+  integrity sha512-dzeJivd9BIpOgwrxYA3S/vMQC3rqaips8o116UT1kPYSXHFWzLpf1nUfKjB27sasoL2AynnspktdR1l3TwKUow==
   dependencies:
     "@sanity/client" "^0.135.0"
     apollo-link-http "^1.5.5"
@@ -1183,7 +1183,7 @@
   resolved "https://registry.yarnpkg.com/@sanity/cli/-/cli-0.136.2.tgz#580e98fe553792dbd090b864de6f3e8d9f137913"
   integrity sha512-7Hyro2xExb6GrP0cN3mWc9magmLHkSKc7YsOGQqpXj4iNSW/LUDTvca8pHkStrGgWSGFxzdNyVq61My6Gh5F1w==
 
-"@sanity/client@0.136.2", "@sanity/client@^0.136.2":
+"@sanity/client@0.136.2":
   version "0.136.2"
   resolved "https://registry.yarnpkg.com/@sanity/client/-/client-0.136.2.tgz#e45befe0091b8ec12037b4eda837c3a336bfc4ec"
   integrity sha512-iKS2KwYOB7NcuBgbqkktfAVNvdvP6Tbe/fTLFXedhc7Ouo6X+884qsf5zn/oo64EQk3A7qe7cYAoeYvXZUir5Q==
@@ -1451,7 +1451,7 @@
   resolved "https://registry.yarnpkg.com/@sanity/generate-help-url/-/generate-help-url-0.132.10.tgz#57aafb6bc2ca3331c3a0edb89b850c3d3e5e1e8b"
   integrity sha512-tXKz0SLDRn7rGzAjjpT7r2sA4FBMPP7RUXUFSC2IdD3QiIMCMWGuDSwhvWOUkz0NF/pAcKEL7cwzio1Qw1VQnQ==
 
-"@sanity/image-url@0.136.0", "@sanity/image-url@^0.136.0":
+"@sanity/image-url@0.136.0":
   version "0.136.0"
   resolved "https://registry.yarnpkg.com/@sanity/image-url/-/image-url-0.136.0.tgz#dde56bd43d5a538d1373f9309d1fff7a9878f94a"
   integrity sha512-nFPQZC7nJSHO+uY9sT5yVOmlZq2hxc/5/OvLTU6DBi4lw69oKwSBLC6sPlhi+1mP+taRRNw50J35MKKGL8n8mw==
@@ -5834,6 +5834,11 @@ dotenv@^6.1.0:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.1.0.tgz#9853b6ca98292acb7dec67a95018fa40bccff42c"
   integrity sha512-/veDn2ztgRlB7gKmE3i9f6CmDIyXAy6d5nBq+whO9SLX+Zs1sXEgFLPi+aSuWqUuusMfbi84fT8j34fs1HaYUw==
+
+dotenv@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.2.0.tgz#941c0410535d942c8becf28d3f357dbd9d476064"
+  integrity sha512-HygQCKUBSFl8wKQZBSemMywRWcEDNidvNbjGVyZu3nbZ8qq9ubiPoGLMdRDpfSrpkkm9BXYFkpKxxFX38o/76w==
 
 duplexer2@~0.1.4:
   version "0.1.4"

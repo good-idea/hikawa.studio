@@ -21,7 +21,10 @@ export const GlobalStyles = createGlobalStyle`
 
 	${({ theme }) => `
 		body {
-			padding: ${theme.layout.navHeight} 0 0;
+			padding: 0;
+			background-image: url('/images/clouds_KAME.jpg');
+			background-attachment: fixed;
+			background-size: cover;
 		}
 	`}
 

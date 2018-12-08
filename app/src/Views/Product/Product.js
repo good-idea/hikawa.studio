@@ -72,8 +72,8 @@ const Product = ({ product, cart, loading }: Props) => {
 					{product.related && product.related.length ? (
 						<RelatedItems>
 							<RelatedTitle>KEEP L@@KING</RelatedTitle>
-							{product.related.map((item) => (
-								<RelatedItem key={item.id} item={item} />
+							{product.related.map((item, index) => (
+								<RelatedItem number={index} key={item.id} item={item} />
 							))}
 						</RelatedItems>
 					) : null}

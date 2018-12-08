@@ -2,7 +2,13 @@
 import * as React from 'react'
 import type { ImageType } from 'Types/ContentTypes'
 
-const { Provider, Consumer } = React.createContext({
+type ContextType = {
+	selectImage: (string) => () => void,
+	images: Array<ImageType>,
+	currentImage: null | ImageType,
+}
+
+const { Provider, Consumer } = React.createContext<ContextType>({
 	// eslint-disable-next-line
 	selectImage: (a) => () => {},
 	images: [],

@@ -7,7 +7,7 @@ import PageLink from 'Components/ContentBlocks/PageLink'
 const Wrapper = styled.div`
 	${({ theme }) => `
 		margin: 0 ${theme.layout.spacing.single};
-		width: 200px;
+		width: 240px;
 	`}
 `
 
@@ -24,7 +24,7 @@ const RelatedItem = ({ item, number }: Props) => {
 	if (!item.link) return null
 	return (
 		<Wrapper>
-			<PageLink item={item} number={number} />
+			<PageLink item={item} number={number} imageSizes="240px" />
 		</Wrapper>
 	)
 }

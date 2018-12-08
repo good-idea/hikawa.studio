@@ -33,7 +33,7 @@ const common = {
 			Utils: path.resolve(__dirname, 'src', 'Utils'),
 			Types: path.resolve(__dirname, 'src', 'Types'),
 			GraphQL: path.resolve(__dirname, 'src', 'GraphQL'),
-			Mocked: path.resolve(__dirname, 'src', 'Mocked'),
+			Services: path.resolve(__dirname, 'src', 'Services'),
 			Shared: path.resolve(__dirname, '..', 'shared'),
 		},
 		extensions: ['.mjs', '.js', '.json'],

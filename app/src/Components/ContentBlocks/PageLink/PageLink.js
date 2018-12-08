@@ -6,6 +6,7 @@ import type { PageLink } from 'Types/ContentTypes'
 import { Header3, Header5 } from 'Components/Type'
 import { Image } from 'Components/Media'
 import { getLinkUrl } from 'Utils/content'
+import { HomepageWrapper } from 'Views/Kame'
 
 const ImageWrapper = styled.div`
 	position: relative;
@@ -18,7 +19,7 @@ const Text = styled.div`
 
 const PrimaryImage = styled.div``
 
-const HoverWrapper = styled.div`
+const HoverImage = styled.div`
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -28,15 +29,17 @@ const HoverWrapper = styled.div`
 `
 
 const orbit = keyframes`
-    from { transform: rotate(0deg) translateX(3%) translateZ(0) rotate(0deg); }
-    to   { transform: rotate(360deg) translateX(3%) translateZ(0) rotate(-360deg); }
+	from { transform: rotate(0deg) translateX(3%) translateZ(0) rotate(0deg); }
+	to   { transform: rotate(360deg) translateX(3%) translateZ(0) rotate(-360deg); }
 `
 
 const Orbit = styled.div`
+	${({ offset }) => css`
+		animation: ${orbit} calc(5s + (${(offset * 9) % 5}s) * 3) infinite linear;
+	`}
 	&:hover {
 		animation-play-state: paused;
 	}
-	animation: ${orbit} 5s infinite linear;
 `
 
 const Wrapper = styled.div`
@@ -47,13 +50,17 @@ const Wrapper = styled.div`
 		&:hover {
 			color: ${theme.color.pink};
 
-			${HoverWrapper} + ${PrimaryImage} {
+			${HoverImage} ~ ${PrimaryImage} {
 				opacity: 0;
 			}
 
-			${HoverWrapper}, {
+			${HoverImage} {
 				opacity: 1;
 			}
+		}
+
+		${HomepageWrapper} &:hover {
+			color: white;
 		}
 	`};
 `
@@ -64,11 +71,11 @@ const Wrapper = styled.div`
 
 type Props = {
 	item: PageLink,
-	index?: number,
+	number?: number,
+	imageSizes: string,
 }
 
-const PageLinkBlock = ({ item, index }: Props) => {
-	console.log(item.link)
+const PageLinkBlock = ({ item, number, imageSizes }: Props) => {
 	const { link, images, caption, label } = item
 	if (!link) return null
 	const url = getLinkUrl(link)
@@ -77,30 +84,35 @@ const PageLinkBlock = ({ item, index }: Props) => {
 		link.__typename === 'Collection' ? link.image : link.__typename === 'Product' ? link.images && link.images[0] : null
 	const primaryImage = images && images.length ? images[0] : fallbackImage
 	const hoverImage = images && images.length > 1 ? images[1] : null
+	console.log(imageSizes)
 	return (
-		<Orbit>
+		<Orbit offset={number}>
 			<Link to={url}>
 				<Wrapper>
 					<ImageWrapper>
+						{hoverImage && (
+							<HoverImage>
+								<Image image={hoverImage} sizes={imageSizes} />
+							</HoverImage>
+						)}
 						{primaryImage && (
 							<PrimaryImage>
-								<Image image={primaryImage} />
+								<Image image={primaryImage} sizes={imageSizes} />
 							</PrimaryImage>
-						)}
-						{hoverImage && false && (
-							<HoverWrapper>
-								<Image image={hoverImage} />
-							</HoverWrapper>
 						)}
 					</ImageWrapper>
 					<Text>
-						<Header3>{headerText}</Header3>
+						<Header3 align="center">{headerText}</Header3>
 						{caption && <Header5>{caption}</Header5>}
 					</Text>
 				</Wrapper>
 			</Link>
 		</Orbit>
 	)
+}
+
+PageLinkBlock.defaultProps = {
+	number: 0,
 }
 
 export default PageLinkBlock

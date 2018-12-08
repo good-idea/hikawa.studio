@@ -38,6 +38,14 @@ const Nav = styled.nav`
 	`};
 `
 
+const NavLink = styled(Header3)`
+	${({ theme, isHomepage }) => `
+		&:hover {
+			color: ${isHomepage ? 'white' : theme.color.pink};
+		}
+	`}
+`
+
 const Menu = styled.div`
 	display: flex;
 	justify-content: center;
@@ -60,22 +68,24 @@ const CartWrapper = styled.div`
 
 type Props = {
 	siteSettings?: SiteSettings,
+	isHomepage: boolean,
 }
 
-const Navigation = ({ siteSettings }: Props) => {
+const Navigation = ({ siteSettings, isHomepage }: Props) => {
 	if (!siteSettings) return null
+	console.log(isHomepage)
 	return (
 		<Nav>
 			<Announcement>this is it</Announcement>
 			<Logo />
 			<Menu>
-				<Header3>
+				<NavLink isHomepage={isHomepage}>
 					<Link to="/shop">Shop</Link>
-				</Header3>
+				</NavLink>
 				{siteSettings.navigation.header.links.map((link) => (
-					<Header3 key={link.slug}>
+					<NavLink isHomepage={isHomepage} key={link.slug}>
 						<Link to={getLinkUrl(link)}>{link.title}</Link>
-					</Header3>
+					</NavLink>
 				))}
 			</Menu>
 			<CartWrapper>
@@ -93,4 +103,8 @@ const Composed = adopt({
 	siteSettings: <SettingsConsumer />,
 })
 
-export default () => <Composed>{(composedProps) => <Navigation {...composedProps} />}</Composed>
+type BaseProps = {
+	isHomepage: boolean,
+}
+
+export default (props: BaseProps) => <Composed>{(composedProps) => <Navigation {...props} {...composedProps} />}</Composed>
