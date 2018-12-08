@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react'
 import type { ProductType, CollectionType } from './ProductTypes'
+import type { ShopifyImage, SanityImage } from './MediaTypes'
 import type { SEO } from './SharedTypes'
 
 /**

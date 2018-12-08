@@ -1,8 +1,8 @@
 // @flow
-import type { PageLink, ImageType } from 'Types/ContentTypes'
+import type { PageLink, ImageType, Page } from 'Types/ContentTypes'
+import type { ProductType, CollectionType } from 'Types/ProductTypes'
 
-export const getLinkUrl = (pageLink: PageLink): string => {
-	const { link } = pageLink
+export const getLinkUrl = (link: ProductType | CollectionType | Page): string => {
 	const { __typename } = link
 	switch (__typename) {
 		case 'Product':
@@ -10,7 +10,7 @@ export const getLinkUrl = (pageLink: PageLink): string => {
 			return `/products/${link.handle}`
 		case 'Collection':
 			if (!link.handle || typeof link.handle !== 'string') throw new Error('Collections must have a handle')
-			return `/collections/${link.handle}`
+			return `/shop/${link.handle}`
 		case 'Page':
 		default:
 			if (!link.slug || typeof link.slug !== 'string') throw new Error(`Pages must have a slug`)

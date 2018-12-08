@@ -2,6 +2,7 @@
 /* eslint-disable no-use-before-define */
 
 import type { ShopifyImage } from './MediaTypes'
+import type { SanityColor } from './ContentTypes'
 
 export type Money = string
 // 	amount: number,
@@ -54,6 +55,7 @@ export type ProductType = {
 	createdAt?: Date,
 	description?: string,
 	descriptionHtml?: string,
+	related: Array<ProductType | CollectionType>,
 	__typename: 'Product',
 }
 

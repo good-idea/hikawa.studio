@@ -1,25 +1,8 @@
 // @flow
 
-import type { MenuLink } from 'Types/ContentTypes'
+import type { MenuLink, SanityColor } from 'Types/ContentTypes'
 
-type RGB = {
-	r: number,
-	g: number,
-	b: number,
-	a: number,
-}
 
-type HSV = {
-	h: number,
-	s: number,
-	v: number,
-	a: number,
-}
-
-type SanityColor = {
-	rgb: RGB,
-	hsv: HSV,
-}
 
 // format === 'rgb' ?
 // : format === 'hsv' ? '': ''

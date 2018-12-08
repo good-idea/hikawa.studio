@@ -23,7 +23,7 @@ const App = () => (
 				<Navigation />
 				<Switch>
 					<Route path="/" exact component={Kame} />
-					<Route path="/shop" component={Shop} />
+					<Route path="/shop/:handle?" component={Shop} />
 					<Route path="/products/:handle" exact component={Product} />
 					<Route path="/:slug" exact component={Page} />
 					<Route component={NotFound} />

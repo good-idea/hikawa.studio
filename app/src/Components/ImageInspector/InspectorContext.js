@@ -34,6 +34,14 @@ export class InspectorProvider extends React.Component<Props, State> {
 		currentImage: this.props.initialImage ? this.getImageById(this.props.initialImage) : this.props.images[0],
 	}
 
+	componentWillReceiveProps(nextProps: Props) {
+		const { currentImage } = this.state
+		const { images } = nextProps
+		if (!images.find((i) => i === currentImage)) {
+			this.setState({ currentImage: images[0] })
+		}
+	}
+
 	getImageById = (imageId: string): ImageType => {
 		const image = this.props.images.find((i) => i.id === imageId)
 		if (!image) {

@@ -6,7 +6,7 @@ import type { PageLink } from 'Types/ContentTypes'
 import { Header3, Header5 } from 'Components/Type'
 import { FlexChild } from 'Components/Layout'
 import { Image } from 'Components/Media'
-import { getLinkUrl, getLinkImage } from './pageLinkUtils'
+import { getLinkUrl, getLinkImage } from 'Utils/content'
 
 const Wrapper = styled.div`
 	${({ theme }) => `
@@ -23,7 +23,7 @@ const Wrapper = styled.div`
 
 const PageLinkBlock = (props: PageLink) => {
 	if (!props.link) return null
-	const url = getLinkUrl(props)
+	const url = getLinkUrl(props.link)
 	const headerText = props.label || (props.link && props.link.title)
 	const image = getLinkImage(props)
 	return (

@@ -1,5 +1,6 @@
 // @flow
 import gql from 'graphql-tag'
+import { linkPartial } from '../../GraphQL/partials'
 
 const query = gql`
 	query ProductQuery($handle: String!) {
@@ -34,6 +35,9 @@ const query = gql`
 							originalSrc
 						}
 					}
+				}
+				related {
+					${linkPartial}
 				}
 			}
 		}
