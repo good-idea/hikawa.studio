@@ -15,7 +15,7 @@ const page = {
 			fields: [
 				{
 					name: 'enabled',
-					title: 'Enabled',
+					title: 'Enable Announcement',
 					type: 'boolean',
 				},
 				{
@@ -53,11 +53,6 @@ const page = {
 							title: 'Page',
 							to: [{ type: 'page' }],
 						},
-						{
-							type: 'url',
-							name: 'url',
-							title: 'URL',
-						},
 					],
 					validation: (Rule) => Rule.max(1),
 				},
@@ -85,6 +80,24 @@ const page = {
 									title: 'Page',
 									to: [{ type: 'page' }],
 								},
+								{
+									type: 'object',
+									name: 'urlLink',
+									title: 'External URL',
+									fields: [
+										{
+											type: 'string',
+											title: 'Label',
+											name: 'label',
+											validation: (Rule) => Rule.required(),
+										},
+										{
+											type: 'url',
+											label: 'URL',
+											name: 'url',
+										},
+									],
+								},
 							],
 						},
 					],
@@ -104,6 +117,24 @@ const page = {
 									name: 'page',
 									title: 'Page',
 									to: [{ type: 'page' }],
+								},
+								{
+									type: 'object',
+									name: 'urlLink',
+									title: 'External URL',
+									fields: [
+										{
+											type: 'string',
+											title: 'Label',
+											name: 'label',
+											validation: (Rule) => Rule.required(),
+										},
+										{
+											type: 'url',
+											label: 'URL',
+											name: 'url',
+										},
+									],
 								},
 							],
 						},
@@ -178,6 +209,11 @@ const page = {
 			title: 'Mailing List Settings',
 			type: 'object',
 			fields: [
+				{
+					name: 'popupEnabled',
+					title: 'Enable Popup',
+					type: 'boolean',
+				},
 				{
 					name: 'popupText',
 					title: 'Popup Text',
