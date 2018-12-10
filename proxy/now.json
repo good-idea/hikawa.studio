@@ -1,0 +1,19 @@
+{
+	"version": 1,
+	"alias": "kame-proxy",
+	"name": "kame-proxy",
+	"env": {
+		"ENV": "staging",
+		"DEBUG": "api"
+	},
+	"dotenv": "./dist/.env",
+	"engines": {
+		"node": "10.x.x"
+	},
+	"scale": {
+		"sfo1": {
+			"min": 1,
+			"max": "auto"
+		}
+	}
+}
