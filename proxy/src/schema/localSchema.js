@@ -6,6 +6,8 @@ import { homepageSchema, homepageResolvers } from '../GraphQl/Homepage'
 import { pageSchema, pageResolvers } from '../GraphQl/Page'
 import { settingsSchema, settingsResolvers } from '../GraphQl/SiteSettings'
 import { sharedTypeDefs } from '../GraphQl/sharedTypes'
+import { customTypeDefs } from '../GraphQl/customTypeDefs'
+import customTypeResolvers from '../GraphQl/customTypeResolvers'
 import { sharedResolvers } from '../GraphQl/sharedTypeResolvers'
 
 export const typeDefs = [
@@ -16,6 +18,7 @@ export const typeDefs = [
 	pageSchema,
 	settingsSchema,
 	sharedTypeDefs,
+	customTypeDefs,
 ].join('\n')
 
 export const resolvers = merge(
@@ -27,4 +30,5 @@ export const resolvers = merge(
 	pageResolvers,
 	settingsResolvers,
 	sharedResolvers,
+	customTypeResolvers,
 )
