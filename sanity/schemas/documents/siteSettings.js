@@ -95,6 +95,7 @@ const page = {
 											type: 'url',
 											label: 'URL',
 											name: 'url',
+											validation: (Rule) => Rule.required(),
 										},
 									],
 								},
