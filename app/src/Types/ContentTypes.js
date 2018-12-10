@@ -124,4 +124,9 @@ export type SiteSettings = {
 	product: {
 		text: Array<TextNode>,
 	},
+	mailer: {
+		buttonLabel: string,
+		footerText: Array<TextNode>,
+		popupText: Array<TextNode>,
+	},
 }

@@ -8,7 +8,6 @@ import { Header3 } from 'Components/Type'
 import { adopt } from 'react-adopt'
 import { getLinkUrl } from 'Utils/sanity'
 import Announcement from 'Components/Announcement'
-import { setCookie, getCookie } from 'Utils/storage'
 import { SettingsConsumer } from '../SettingsProvider'
 import Cart from '../Cart'
 
@@ -100,9 +99,6 @@ class Navigation extends React.Component<Props, State> {
 				<MenuWrapper>
 					<Logo />
 					<Menu>
-						<NavLink isHomepage={isHomepage}>
-							<Link to="/shop">Shop</Link>
-						</NavLink>
 						{siteSettings &&
 							siteSettings.navigation.header.links.map((link) =>
 								link.__typename === 'Page' ? (

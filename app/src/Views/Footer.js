@@ -5,6 +5,7 @@ import type { SiteSettings } from 'Types/ContentTypes'
 import styled from 'styled-components'
 import { Header4 } from 'Components/Type'
 import Text from 'Components/ContentBlocks/Text'
+import MailerForm from 'Components/Mailer'
 import { getLinkUrl } from 'Utils/sanity'
 import { SettingsConsumer } from './SettingsProvider'
 
@@ -16,12 +17,14 @@ const Wrapper = styled.footer`
 		justify-content: space-between;
 		background-size: cover;
 		background-position: center;
+		font-weight: ${theme.type.weight.semi};
 	`};
 `
 
 const FooterSection = styled.div`
 	${({ theme }) => `
 		flex-grow: 1;
+		flex-basis: calc(100% / 3);
 		margin: 0 ${theme.layout.spacing.double};
 	`};
 `
@@ -36,10 +39,15 @@ type Props = {
 
 const Footer = ({ settings }: Props) => {
 	if (!settings) return null
-	const { footer } = settings.navigation
+	const { mailer, navigation } = settings
+	const { footer } = navigation
 	return (
 		<Wrapper>
-			<FooterSection>Mailing List</FooterSection>
+			<FooterSection>
+				<Text blocks={mailer.footerText} />
+
+				<MailerForm />
+			</FooterSection>
 			{footer.text && (
 				<FooterSection>
 					<Text blocks={footer.text} />
