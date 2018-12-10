@@ -45,7 +45,6 @@ const Footer = ({ settings }: Props) => {
 		<Wrapper>
 			<FooterSection>
 				<Text blocks={mailer.footerText} />
-
 				<MailerForm />
 			</FooterSection>
 			{footer.text && (

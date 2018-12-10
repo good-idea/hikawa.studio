@@ -128,5 +128,6 @@ export type SiteSettings = {
 		buttonLabel: string,
 		footerText: Array<TextNode>,
 		popupText: Array<TextNode>,
+		popupEnabled: boolean,
 	},
 }

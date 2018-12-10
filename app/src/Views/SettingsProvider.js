@@ -45,6 +45,7 @@ const query = gql`
 				popupText {
 					${richTextPartial}
 				}
+				popupEnabled
 			}
 			navigation {
 				footer {

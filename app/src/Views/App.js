@@ -8,6 +8,7 @@ import Kame from './Kame'
 import Shop from './Shop'
 import Product from './Product'
 import NotFound from './NotFound'
+import MailerPopup from './MailerPopup'
 import Navigation from './Navigation'
 import Page from './Page'
 import Footer from './Footer'
@@ -23,6 +24,7 @@ const App = () => (
 			return (
 				<SettingsProvider>
 					<CheckoutProvider>
+						<MailerPopup />
 						<Navigation isHomepage={isHomepage} />
 						<Main isHomepage={isHomepage}>
 							<Switch>
