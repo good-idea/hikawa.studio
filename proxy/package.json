@@ -7,8 +7,8 @@
 		"scripts": {
 				"start": "node dist/server.js",
 				"dev": "cross-env DEBUG=server cross-env NODE_ENV=development nodemon --watch ./src ./src/server.js --exec babel-node",
-				"bundle": "babel ./src --out-dir ./dist",
-				"deploy": "yarn bundle && now && now alias"
+				"build": "babel ./src --out-dir ./dist",
+				"deploy": "yarn build && now && now alias"
 		},
 		"dependencies": {
 				"@babel/cli": "^7.0.0",
