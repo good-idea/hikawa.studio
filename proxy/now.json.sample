@@ -1,0 +1,8 @@
+{
+	"version": 2,
+	"alias": "kame-proxy.now.sh",
+	"builds": [{ "src": "*.js", "use": "@now/node" }]
+	"env": {
+		"KEY": "value"
+	}
+}
