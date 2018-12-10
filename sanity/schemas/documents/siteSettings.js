@@ -38,7 +38,11 @@ const page = {
 					title: 'Background Color',
 					name: 'backgroundColor',
 					type: 'color',
-					description: 'Used for primary text',
+				},
+				{
+					title: 'Text Color',
+					name: 'textColor',
+					type: 'color',
 				},
 				{
 					title: 'Link',
