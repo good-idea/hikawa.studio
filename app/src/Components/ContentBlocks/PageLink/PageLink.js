@@ -84,7 +84,6 @@ const PageLinkBlock = ({ item, number, imageSizes }: Props) => {
 		link.__typename === 'Collection' ? link.image : link.__typename === 'Product' ? link.images && link.images[0] : null
 	const primaryImage = images && images.length ? images[0] : fallbackImage
 	const hoverImage = images && images.length > 1 ? images[1] : null
-	console.log(imageSizes)
 	return (
 		<Orbit offset={number}>
 			<Link to={url}>

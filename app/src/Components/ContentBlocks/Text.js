@@ -34,9 +34,9 @@ const serializers = {
 			case 'blockquote':
 				return <BlockQuote {...props} />
 			case 'normal':
-				return <P {...props} align="left" />
+				return <P {...props} />
 			default:
-				return <P {...props} align="left" />
+				return <P {...props} />
 		}
 	},
 	marks: {

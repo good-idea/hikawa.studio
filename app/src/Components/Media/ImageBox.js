@@ -37,15 +37,16 @@ type Props = {
 	ratio?: number,
 	image?: ImageType,
 	children?: React.Node,
+	sizes: string,
 }
 
-const ImageBox = ({ image, ratio, children }: Props) => {
+const ImageBox = ({ image, ratio, children, sizes }: Props) => {
 	const pBottom = `${100 * (ratio || 1)}%`
 	return (
 		<Figure>
 			<PaddingRatio pBottom={pBottom} />
 			<ImageWrapper>
-				{image && <Image image={image} />}
+				{image && <Image sizes={sizes} image={image} />}
 				{children || null}
 			</ImageWrapper>
 		</Figure>

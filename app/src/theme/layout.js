@@ -28,3 +28,4 @@ export const defaults = {
 }
 
 export const navHeight = '180px'
+export const announcementHeight = '45px'

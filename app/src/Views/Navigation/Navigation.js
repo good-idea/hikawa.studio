@@ -7,35 +7,31 @@ import Logo from 'Components/Logo'
 import { Header3 } from 'Components/Type'
 import { adopt } from 'react-adopt'
 import { getLinkUrl } from 'Utils/sanity'
+import Announcement from 'Components/Announcement'
+import { setCookie, getCookie } from 'Utils/storage'
 import { SettingsConsumer } from '../SettingsProvider'
 import Cart from '../Cart'
 
-const Announcement = styled.div`
-	${({ theme }) => `
-		background-color: ${theme.color.pink};
-		color: white;
-		width: 100%;
-		text-align: center;
-		padding: 6px;
-		font-size: ${theme.type.size.h5};
-		font-weight: ${theme.type.weight.semi};
-	`}
-`
-
+// height: ${theme.layout.navHeight};
 const Nav = styled.nav`
 	${({ theme }) => `
 		padding: 0;
-		height: ${theme.layout.navHeight};
 		z-index: ${theme.layout.z.navigation};
 		position: absolute;
 		top: 0;
 		left: 0;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
 		width: 100%;
+		overflow: hidden;
 	`};
+`
+
+const MenuWrapper = styled.div`
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
 `
 
 const NavLink = styled(Header3)`
@@ -71,37 +67,64 @@ type Props = {
 	isHomepage: boolean,
 }
 
-const Navigation = ({ siteSettings, isHomepage }: Props) => {
-	if (!siteSettings) return null
-	return (
-		<Nav>
-			<Announcement>this is it</Announcement>
-			<Logo />
-			<Menu>
-				<NavLink isHomepage={isHomepage}>
-					<Link to="/shop">Shop</Link>
-				</NavLink>
-				{siteSettings.navigation.header.links.map((link) =>
-					link.__typename === 'Page' ? (
-						<NavLink isHomepage={isHomepage} key={link.slug}>
-							<Link to={getLinkUrl(link)}>{link.title}</Link>
-						</NavLink>
-					) : (
-						<NavLink isHomepage={isHomepage} key={link.url}>
-							<a href={link.url}>{link.label}</a>
-						</NavLink>
-					),
-				)}
-			</Menu>
-			<CartWrapper>
-				<Cart />
-			</CartWrapper>
-		</Nav>
-	)
+type State = {
+	announcementOpen: boolean,
 }
 
-Navigation.defaultProps = {
-	siteSettings: undefined,
+class Navigation extends React.Component<Props, State> {
+	static defaultProps = {
+		siteSettings: undefined,
+	}
+
+	state = {
+		announcementOpen: true,
+	}
+
+	closeAnnouncement = () => {
+		this.setState({ announcementOpen: false })
+	}
+
+	render() {
+		const { siteSettings, isHomepage } = this.props
+		const { announcementOpen } = this.state
+		if (!siteSettings) return null
+		return (
+			<Nav>
+				{siteSettings && siteSettings.announcement && (
+					<Announcement
+						open={announcementOpen}
+						closeAnnouncement={this.closeAnnouncement}
+						announcement={siteSettings.announcement}
+					/>
+				)}
+				<MenuWrapper>
+					<Logo />
+					<Menu>
+						<NavLink isHomepage={isHomepage}>
+							<Link to="/shop">Shop</Link>
+						</NavLink>
+						{siteSettings &&
+							siteSettings.navigation.header.links.map((link) =>
+								link.__typename === 'Page' ? (
+									<NavLink isHomepage={isHomepage} key={link.slug}>
+										<Link to={getLinkUrl(link)}>{link.title}</Link>
+									</NavLink>
+								) : (
+									<NavLink isHomepage={isHomepage} key={link.url}>
+										<a href={link.url} target="_blank" rel="noreferrer noopener">
+											{link.label}
+										</a>
+									</NavLink>
+								),
+							)}
+					</Menu>
+					<CartWrapper>
+						<Cart />
+					</CartWrapper>
+				</MenuWrapper>
+			</Nav>
+		)
+	}
 }
 
 const Composed = adopt({

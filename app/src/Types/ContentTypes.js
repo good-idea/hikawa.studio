@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import type { ProductType, CollectionType } from './ProductTypes'
+import type { ProductType, CollectionType, SanityColor } from './ProductTypes'
 import type { ShopifyImage, SanityImage } from './MediaTypes'
 import type { SEO } from './SharedTypes'
 
@@ -106,6 +106,12 @@ export type MenuLink = InternalLink | UrlLink
 export type SiteSettings = {
 	logo: SanityImage,
 	seo: SEO,
+	announcement: {
+		enabled: boolean,
+		backgroundColor: SanityColor,
+		link: MenuLink,
+		text: Array<TextNode>,
+	},
 	navigation: {
 		footer: {
 			links: Array<MenuLink>,

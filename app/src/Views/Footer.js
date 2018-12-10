@@ -54,7 +54,9 @@ const Footer = ({ settings }: Props) => {
 							</Header4>
 						) : (
 							<Header4 key={link.url}>
-								<a href={link.url}>{link.label}</a>
+								<a target="_blank" rel="noreferrer noopener" href={link.url}>
+									{link.label}
+								</a>
 							</Header4>
 						),
 					)}
