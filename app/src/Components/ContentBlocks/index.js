@@ -21,21 +21,29 @@ type Props = {
 const Block = ({ block, number }: Props) => {
 	// PageLinks to shopifyItems that no longer exist will return `link: null`
 	if (block._type === 'pageLink' && !block.link) return null
+	const contentBlock =
+		block._type === 'pageLink'
+			? {
+					...block,
+					// $FlowFixMe
+					images: block.images.filter((i) => Boolean(i._ref)),
+			  }
+			: block
 	switch (block._type) {
 		// case 'gallery':
 		// 	return <Gallery {...block} />
 		// case 'image':
 		// 	return <Image {...block} />
 		case 'videoEmbed':
-			return <Video {...block} />
+			return <Video {...contentBlock} />
 		case 'richText':
-			return <Text {...block} />
+			return <Text {...contentBlock} />
 		case 'header':
-			return <Header {...block} />
+			return <Header {...contentBlock} />
 		case 'pageLink':
-			return <PageLink number={number} item={block} imageSizes="450px" />
+			return <PageLink number={number} item={contentBlock} imageSizes="450px" />
 		default:
-			throw new Error(`There is no content component for "${block._type}"`)
+			throw new Error(`There is no content component for "${contentBlock._type}"`)
 	}
 }
 

@@ -11,6 +11,7 @@ import MailerPopup from './MailerPopup'
 import Navigation from './Navigation'
 import Page from './Page'
 import Footer from './Footer'
+import ScrollToTop from './ScrollToTop'
 
 /**
  * App
@@ -23,6 +24,7 @@ const App = () => (
 			return (
 				<SettingsProvider>
 					<CheckoutProvider>
+						<ScrollToTop />
 						<MailerPopup />
 						<Navigation isHomepage={isHomepage} />
 						<Main isHomepage={isHomepage}>
