@@ -73,7 +73,6 @@ type Props = {
 
 const Navigation = ({ siteSettings, isHomepage }: Props) => {
 	if (!siteSettings) return null
-	console.log(isHomepage)
 	return (
 		<Nav>
 			<Announcement>this is it</Announcement>

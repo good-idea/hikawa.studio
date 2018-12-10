@@ -98,7 +98,7 @@ export type Mark = {
 export type TextBlock = {
 	_type: string,
 	_key: string,
-	blocks?: Array<TextNode>,
+	blocks?: Array<TextNode | SanityImage>,
 }
 
 export type ContentBlock = SanityImage | TextBlock | HeaderBlock | PageLink
@@ -109,11 +109,18 @@ export type ContentBlocks = Array<ContentBlock>
  * Site Settings
  */
 
-export type MenuLink = {
+type InternalLink = {
 	title: string,
 	slug: string,
 	__typename: string,
 }
+
+type UrlLink = {
+	label: string,
+	url: string,
+}
+
+export type MenuLink = InternalLink | UrlLink
 
 export type SiteSettings = {
 	logo: SanityImage,

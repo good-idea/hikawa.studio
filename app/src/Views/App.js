@@ -20,7 +20,6 @@ const App = () => (
 	<Route
 		render={({ location }) => {
 			const isHomepage = Boolean(location.pathname === '/')
-			console.log(isHomepage)
 			return (
 				<SettingsProvider>
 					<CheckoutProvider>

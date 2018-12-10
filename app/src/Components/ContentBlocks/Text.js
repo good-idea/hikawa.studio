@@ -3,6 +3,7 @@ import * as React from 'react'
 import BlockContent from '@sanity/block-content-to-react'
 import { Link } from 'react-router-dom'
 import type { TextNode, Mark } from 'Types/ContentTypes'
+import type { SanityImage } from 'Types/MediaTypes'
 import { parseUrl } from 'Utils/parsing'
 import { TextAnchor, Li, Ul, Ol, Header1, Header2, Header3, Header4, Header5, Header6, P, BlockQuote } from 'Components/Type'
 
@@ -14,6 +15,7 @@ const serializers = {
 	listItem: (props) => <Li {...props} />,
 	block: (props): React.Node => {
 		const style = props.node.style || 'normal'
+
 		switch (style) {
 			case 'h1':
 				return <Header1 {...props} />
@@ -30,6 +32,7 @@ const serializers = {
 			case 'blockquote':
 				return <BlockQuote {...props} />
 			case 'normal':
+				return <P {...props} align="left" />
 			default:
 				return <P {...props} align="left" />
 		}
@@ -52,7 +55,7 @@ const serializers = {
 }
 
 type Props = {
-	blocks: Array<TextNode>,
+	blocks: Array<TextNode | SanityImage>,
 }
 
 const Text = ({ blocks }: Props) => <BlockContent blocks={blocks} serializers={serializers} />

@@ -1,6 +1,5 @@
 // @flow
 import React from 'react'
-import styled from 'styled-components'
 import type { ContentBlocks } from 'Types/ContentTypes'
 import type { SanityImage } from 'Types/MediaTypes'
 import Block from 'Components/ContentBlocks'
@@ -8,8 +7,7 @@ import Hero from 'Components/Hero'
 import { FlexContainer, FlexChild, Column } from 'Components/Layout'
 import HomepageQuery from './homepageQuery'
 import { SettingsConsumer } from '../SettingsProvider'
-
-export const HomepageWrapper = styled.div``
+import { HomepageWrapper } from './styled'
 
 /**
  * Kame

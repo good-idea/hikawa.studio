@@ -98,6 +98,10 @@ export const linkPartial = `
 			originalSrc
 		}
 	}
+	...on UrlLink {
+		label
+		url
+	}
 `
 
 export const pageLinkFields = `

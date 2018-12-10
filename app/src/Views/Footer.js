@@ -47,11 +47,17 @@ const Footer = ({ settings }: Props) => {
 			)}
 			{footer.links && (
 				<FooterSection>
-					{footer.links.map((link) => (
-						<Header4 key={link.slug}>
-							<Link to={getLinkUrl(link)}>{link.title}</Link>
-						</Header4>
-					))}
+					{footer.links.map((link) =>
+						link.__typename === 'Page' ? (
+							<Header4 key={link.slug}>
+								<Link to={getLinkUrl(link)}>{link.title}</Link>
+							</Header4>
+						) : (
+							<Header4 key={link.url}>
+								<a href={link.url}>{link.label}</a>
+							</Header4>
+						),
+					)}
 				</FooterSection>
 			)}
 		</Wrapper>

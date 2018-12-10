@@ -6,7 +6,7 @@ import type { PageLink } from 'Types/ContentTypes'
 import { Header3, Header5 } from 'Components/Type'
 import { Image } from 'Components/Media'
 import { getLinkUrl } from 'Utils/content'
-import { HomepageWrapper } from 'Views/Kame'
+import { HomepageWrapper } from 'Views/Kame/styled'
 
 const ImageWrapper = styled.div`
 	position: relative;
