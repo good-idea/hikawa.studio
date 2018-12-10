@@ -2,25 +2,19 @@
 import * as R from 'ramda'
 import client from '../services/sanity'
 
-const getCustomField = (method: 'getCollection' | 'getProduct') => (
-	field: string,
-) => async (parent: any): any => {
+const getCustomField = (method: 'getCollection' | 'getProduct') => (field: string) => async (parent: any): any => {
 	const fetchedItem = await client[method](parent.itemId || parent.id)
 	if (!fetchedItem) return parent[field]
 	const item = fetchedItem[field] || parent[field]
 	if (!item) return undefined
-	if (
-		(item._type === 'image' || item._type === 'imageWithAltText') &&
-		!item.asset
-	)
-		return null
+	if ((item._type === 'image' || item._type === 'imageWithAltText') && !item.asset) return null
 	return item
 }
 
 export const getCollectionField = getCustomField('getCollection')
 export const getProductField = getCustomField('getProduct')
 
-export const getRefField = (field: string) => async parent => {
+export const getRefField = (field: string) => async (parent) => {
 	const id = parent._id || parent._ref
 	if (!id) throw new Error('This item does not have a ref or id')
 	const fetched = await client.getById(id)
@@ -29,7 +23,8 @@ export const getRefField = (field: string) => async parent => {
 	return R.path(fieldPath, fetched) || R.path(fieldPath, parent)
 }
 
-export const getAssetField = (field: string) => async parent => {
+export const getAssetField = (field: string) => async (parent) => {
+	if (!parent.asset || !parent.asset._ref) return null
 	const fetched = await client.getById(parent.asset._ref)
 	if (!fetched) return parent[field]
 	return fetched[field] || parent[field]

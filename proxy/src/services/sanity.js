@@ -14,7 +14,7 @@ const dummyCache = {
 
 type Cache = {
 	set: (string, string) => ?string,
-	get: string => void,
+	get: (string) => void,
 }
 
 type Config = {
@@ -43,10 +43,7 @@ class SanityClient {
 		this.cache = (process.env.NODE_ENV !== 'development' && cache) || dummyCache
 	}
 
-	getByType = (_type: string) => async (
-		itemId: string,
-		fields?: Array<string>,
-	): Promise<Product | Collection | null> => {
+	getByType = (_type: string) => async (itemId: string, fields?: Array<string>): Promise<Product | Collection | null> => {
 		const cacheId = `${this.projectId}-${itemId}`
 		const cached = this.cache.get(cacheId)
 		if (cached) return JSON.parse(cached)

@@ -52,13 +52,13 @@ export const sharedTypeDefs = /* GraphQL */ `
 	type SanityImage implements ContentBlock & TextNode {
 		_key: String!
 		_type: String!
-		_ref: String!
+		_ref: String
 		altText: String!
-		id: String!
-		asset: SanityAsset!
-		url: String!
-		metadata: ImageMetadata!
-		size: Int!
+		id: String
+		asset: SanityAsset
+		url: String
+		metadata: ImageMetadata
+		size: Int
 	}
 
 	type RichText implements ContentBlock {
