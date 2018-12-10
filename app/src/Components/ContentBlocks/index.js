@@ -33,7 +33,7 @@ const Block = ({ block, number }: Props) => {
 		case 'header':
 			return <Header {...block} />
 		case 'pageLink':
-			return <PageLink number={number} item={block} imageSizes="45vw" />
+			return <PageLink number={number} item={block} imageSizes="450px" />
 		default:
 			throw new Error(`There is no content component for "${block._type}"`)
 	}

@@ -60,7 +60,6 @@ type Props = {
 }
 
 const Product = ({ product, cart, loading }: Props) => {
-	console.log(product.related)
 	return (
 		<Wrapper loading={loading}>
 			<InspectorProvider images={product.images}>

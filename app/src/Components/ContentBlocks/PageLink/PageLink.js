@@ -89,7 +89,7 @@ const PageLinkBlock = ({ item, number, imageSizes }: Props) => {
 			<Link to={url}>
 				<Wrapper>
 					<ImageWrapper>
-						{hoverImage && (
+						{hoverImage && false && (
 							<HoverImage>
 								<Image image={hoverImage} sizes={imageSizes} />
 							</HoverImage>

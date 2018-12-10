@@ -3,6 +3,7 @@ import * as React from 'react'
 import gql from 'graphql-tag'
 import Query from 'GraphQL/Query'
 import { colorPartial, linkPartial, richTextPartial } from 'GraphQL/partials'
+import { FadeIn } from 'Components/Effects'
 
 const { Consumer, Provider } = React.createContext()
 
@@ -91,6 +92,10 @@ type Props = {
 
 export const SettingsProvider = ({ children }: Props) => (
 	<Query LoadingComponent={false} query={query}>
-		{({ data }) => <Provider value={data.siteSettings}>{children}</Provider>}
+		{({ data }) => (
+			<Provider value={data.siteSettings}>
+				<FadeIn delay={1000}>{children}</FadeIn>
+			</Provider>
+		)}
 	</Query>
 )

@@ -6,6 +6,7 @@ const Main = styled.main`
 		background-color: ${isHomepage ? 'rgba(255, 255, 255, 0)' : 'rgba(255, 255, 255, 1)'};
 		transition: 1s;
 		padding: ${theme.layout.navHeight} ${theme.layout.spacing.triple} ${theme.layout.spacing.triple};
+		min-height: 90vh;
 	`}
 `
 
