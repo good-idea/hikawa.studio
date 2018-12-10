@@ -5,25 +5,6 @@ import type { ShopifyImage, SanityImage } from './MediaTypes'
 import type { SEO } from './SharedTypes'
 
 /**
- * Colors
- */
-
-export type SanityColor = {
-	rgb?: {
-		r: number,
-		g: number,
-		b: number,
-		a: number,
-	},
-	hsv?: {
-		h: number,
-		s: number,
-		v: number,
-		a: number,
-	},
-}
-
-/**
  * Header
  */
 

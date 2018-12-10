@@ -2,7 +2,25 @@
 /* eslint-disable no-use-before-define */
 
 import type { ShopifyImage } from './MediaTypes'
-import type { SanityColor } from './ContentTypes'
+
+/**
+ * Colors
+ */
+
+export type SanityColor = {
+	rgb?: {
+		r: number,
+		g: number,
+		b: number,
+		a: number,
+	},
+	hsv?: {
+		h: number,
+		s: number,
+		v: number,
+		a: number,
+	},
+}
 
 export type Money = string
 // 	amount: number,
