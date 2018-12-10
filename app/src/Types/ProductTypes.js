@@ -2,6 +2,7 @@
 /* eslint-disable no-use-before-define */
 
 import type { ShopifyImage } from './MediaTypes'
+import type { PageLink } from './ContentTypes'
 
 /**
  * Colors
@@ -73,7 +74,7 @@ export type ProductType = {
 	createdAt?: Date,
 	description?: string,
 	descriptionHtml?: string,
-	related?: Array<ProductType | CollectionType>,
+	related?: Array<PageLink>,
 	__typename: 'Product',
 }
 

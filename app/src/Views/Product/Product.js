@@ -60,6 +60,7 @@ type Props = {
 }
 
 const Product = ({ product, cart, loading }: Props) => {
+	console.log(product.related)
 	return (
 		<Wrapper loading={loading}>
 			<InspectorProvider images={product.images}>
@@ -72,7 +73,7 @@ const Product = ({ product, cart, loading }: Props) => {
 						<RelatedItems>
 							<RelatedTitle>KEEP L@@KING</RelatedTitle>
 							{product.related.map((item, index) => (
-								<RelatedItem number={index} key={item.id} item={item} />
+								<RelatedItem number={index} key={item._key} item={item} />
 							))}
 						</RelatedItems>
 					) : null}

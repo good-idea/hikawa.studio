@@ -105,6 +105,7 @@ export const linkPartial = `
 `
 
 export const pageLinkFields = `
+	_type
 	_key
 	label
 	caption

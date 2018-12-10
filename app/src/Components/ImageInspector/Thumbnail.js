@@ -20,7 +20,7 @@ type Props = {
 
 const MyComponent = ({ onClick, image, isCurrentImage }: Props) => (
 	<Wrapper isCurrentImage={isCurrentImage} onClick={onClick}>
-		<ImageBox ration={1} image={image} />
+		<ImageBox ration={1} image={image} sizes="100px" />
 	</Wrapper>
 )
 

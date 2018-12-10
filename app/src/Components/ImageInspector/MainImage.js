@@ -86,10 +86,10 @@ class ImageInspector extends React.Component<Props, State> {
 		const { top, left } = this.state
 		const zoomStyle = { top, left }
 		return (
-			<ImageBox image={image}>
+			<ImageBox image={image} sizes="500px">
 				<ZoomContainer ref={this.container}>
 					<ZoomImage style={zoomStyle} zoomAmount={zoomAmount}>
-						<Image image={image} />
+						<Image image={image} sizes="60vw" />
 					</ZoomImage>
 				</ZoomContainer>
 			</ImageBox>
