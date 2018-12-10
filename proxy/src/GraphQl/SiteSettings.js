@@ -26,6 +26,7 @@ export const settingsSchema = /* GraphQL */ `
 		buttonLabel: String
 		footerText: [TextNode]
 		popupText: [TextNode]
+		popupEnabled: Boolean
 	}
 
 	type FooterNavigationSettings {
