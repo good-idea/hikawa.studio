@@ -81,11 +81,17 @@ const Navigation = ({ siteSettings, isHomepage }: Props) => {
 				<NavLink isHomepage={isHomepage}>
 					<Link to="/shop">Shop</Link>
 				</NavLink>
-				{siteSettings.navigation.header.links.map((link) => (
-					<NavLink isHomepage={isHomepage} key={link.slug}>
-						<Link to={getLinkUrl(link)}>{link.title}</Link>
-					</NavLink>
-				))}
+				{siteSettings.navigation.header.links.map((link) =>
+					link.__typename === 'Page' ? (
+						<NavLink isHomepage={isHomepage} key={link.slug}>
+							<Link to={getLinkUrl(link)}>{link.title}</Link>
+						</NavLink>
+					) : (
+						<NavLink isHomepage={isHomepage} key={link.url}>
+							<a href={link.url}>{link.label}</a>
+						</NavLink>
+					),
+				)}
 			</Menu>
 			<CartWrapper>
 				<Cart />
