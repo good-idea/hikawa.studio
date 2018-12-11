@@ -27,6 +27,7 @@ export const settingsSchema = /* GraphQL */ `
 		footerText: [TextNode]
 		popupText: [TextNode]
 		popupEnabled: Boolean
+		popupBackground: SanityImage
 	}
 
 	type FooterNavigationSettings {
