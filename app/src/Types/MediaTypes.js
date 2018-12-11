@@ -20,7 +20,7 @@ export type SanityImage = {
 	_ref: string,
 	_key: string,
 	__typename: 'SanityImage',
-	altText: string,
+	altText?: string,
 	id: string,
 	url: string,
 	metadata?: {

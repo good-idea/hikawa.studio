@@ -9,6 +9,7 @@ import { Column } from 'Components/Layout'
 import { InspectorProvider, ImageInspector } from 'Components/ImageInspector'
 import { CheckoutConsumer } from 'Views/CheckoutProvider'
 import { Header2 } from 'Components/Type'
+import Helmet from 'Components/Helmet'
 import ProductDescription from './ProductDescription'
 import productQuery from './productQuery'
 import RelatedItem from './RelatedItem'
@@ -73,8 +74,14 @@ type Props = {
 }
 
 const Product = ({ product, cart, loading }: Props) => {
+	console.log(product)
+	const seo = {
+		name: product.title,
+		image: product.images ? product.images[0] : null,
+	}
 	return (
 		<Wrapper loading={loading}>
+			<Helmet seo={seo} />
 			<InspectorProvider images={product.images}>
 				<Column width="wide">
 					<Layout>

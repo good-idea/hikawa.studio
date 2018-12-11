@@ -11,6 +11,7 @@ import MailerPopup from './MailerPopup'
 import Navigation from './Navigation'
 import Page from './Page'
 import Footer from './Footer'
+import BaseSEO from './BaseSEO'
 
 /**
  * App
@@ -23,6 +24,7 @@ const App = () => (
 			return (
 				<SettingsProvider>
 					<CheckoutProvider>
+						<BaseSEO />
 						<MailerPopup />
 						<Navigation isHomepage={isHomepage} />
 						<Main isHomepage={isHomepage}>
