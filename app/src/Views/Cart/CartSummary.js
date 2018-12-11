@@ -5,7 +5,6 @@ import type { Checkout } from 'Types/CheckoutTypes'
 import { parsePrice } from 'Utils/parsing'
 import { Header4 } from 'Components/Type'
 import CouponCode from './CouponCode'
-import type { DiscountApplication } from 'Types/CheckoutTypes'
 
 const Wrapper = styled.div`
 	${({ theme }) => `

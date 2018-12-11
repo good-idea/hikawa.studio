@@ -37,13 +37,16 @@ const CartLineItem = ({ item, updateQuantity }: Props) => {
 	const basePrice = parseFloat(item.variant.price)
 	const discountAmount =
 		discountAllocations && discountAllocations.length ? parseFloat(discountAllocations[0].allocatedAmount.amount) : 0
-	const discountedPrice = basePrice - discountAmount
+	const discountedPrice = basePrice * item.quantity - discountAmount
+	console.log(discountedPrice, basePrice, discountAmount, item.quantity)
 	return (
 		<CartLineItemWrapper>
 			{item.variant.image && (
-				<ImageWrapper>
-					<ImageBox ratio={1} image={item.variant.image} />
-				</ImageWrapper>
+				<div>
+					<ImageWrapper>
+						<ImageBox ratio={1} image={item.variant.image} />
+					</ImageWrapper>
+				</div>
 			)}
 			<CartGridSegment span={3}>
 				<Header4>{item.variant.product && item.variant.product.title}</Header4>
@@ -58,7 +61,7 @@ const CartLineItem = ({ item, updateQuantity }: Props) => {
 			</CartGridSegment>
 			<Quantity item={item} updateQuantity={updateQuantity} />
 			<CartGridSegment align="center">
-				<Header4>{parsePrice(discountedPrice * item.quantity)}</Header4>
+				<Header4>{parsePrice(discountedPrice)}</Header4>
 			</CartGridSegment>
 		</CartLineItemWrapper>
 	)

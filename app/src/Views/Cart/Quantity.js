@@ -69,10 +69,11 @@ class Quantity extends React.Component<Props, State> {
 		this.setState({ quantity })
 	}
 
-	adjust = (adjustment: number) => () => {
+	adjust = (adjustment: number) => async () => {
+		// console.log(adjustment)
 		clearTimeout(this.debounceTimeout)
-		this.setState(({ quantity }) => ({ quantity: Math.max(1, quantity + adjustment) }))
-		this.debounceTimeout = setTimeout(this.submitUpdate, 400)
+		await this.setState(({ quantity }) => ({ quantity: Math.max(1, quantity + adjustment) }))
+		this.debounceTimeout = setTimeout(this.submitUpdate, 500)
 	}
 
 	remove = async () => {

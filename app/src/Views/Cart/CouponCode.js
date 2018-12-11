@@ -69,6 +69,12 @@ class CouponCode extends React.Component<Props, State> {
 		applyDiscount(this.state.value)
 	}
 
+	removeDiscount = () => {
+		const { removeDiscount } = this.props
+		this.setState({ value: '' })
+		removeDiscount()
+	}
+
 	render() {
 		const { cart, removeDiscount } = this.props
 		const { discountApplications } = cart
@@ -85,7 +91,7 @@ class CouponCode extends React.Component<Props, State> {
 					name="coupon"
 					ref={this.inputRef}
 				/>
-				<Button type="button" enabled={hasDiscount || value.length > 0} onClick={hasDiscount ? removeDiscount : this.submit}>
+				<Button type="button" enabled={hasDiscount || value.length > 0} onClick={hasDiscount ? this.removeDiscount : this.submit}>
 					{hasDiscount && discount ? 'Remove' : 'Apply'}
 				</Button>
 			</Wrapper>
