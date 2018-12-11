@@ -34,7 +34,6 @@ const serializers = {
 			case 'blockquote':
 				return <BlockQuote {...props} />
 			case 'normal':
-				console.log(props)
 				return <P {...props} />
 			default:
 				return <P {...props} />
