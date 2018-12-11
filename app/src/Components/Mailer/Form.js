@@ -1,10 +1,12 @@
 // @flow
 import * as React from 'react'
 import styled from 'styled-components'
+import LogRocket from 'logrocket'
 import { Button } from 'Components/Buttons'
 import type { Mutation } from 'Types/GraphQLTypes'
 import { Input } from 'Components/Forms'
 import { Header5 } from 'Components/Type'
+import { setCookie, VIEWER_EMAIL } from 'Utils/storage'
 import MailerMutation from './MailerMutation'
 
 const Form = styled.form`
@@ -57,6 +59,12 @@ class MailerForm extends React.Component<Props, State> {
 		this.setState({ loading: true })
 		const { email } = this.state
 		const result = await this.props.submit({ variables: { email } })
+		if (process.env.NODE_ENV === 'production') {
+			LogRocket.identify(email, {
+				email,
+			})
+			setCookie(VIEWER_EMAIL, email)
+		}
 		setTimeout(() => {
 			if (result.data.mcSubscribe.success) {
 				this.setState({

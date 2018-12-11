@@ -4,13 +4,22 @@ import ReactDOM from 'react-dom'
 import LogRocket from 'logrocket'
 import { ThemeProvider } from 'styled-components'
 import { BrowserRouter } from 'react-router-dom'
+import { getCookie, VIEWER_EMAIL } from 'Utils/storage'
 import ApolloProvider from './Services/Apollo'
 import LocationMonitor from './Views/LocationMonitor'
 import App from './Views/App'
 import { GlobalStyles } from './theme/global'
 import theme from './theme'
 
-if (process.env.NODE_ENV === 'production') LogRocket.init('ulpljc/kame')
+if (process.env.NODE_ENV === 'production') {
+	LogRocket.init('ulpljc/kame')
+	const email = getCookie(VIEWER_EMAIL)
+	if (email) {
+		LogRocket.identify(email, {
+			email,
+		})
+	}
+}
 
 if (window.localStorage && process.env.DEBUG) {
 	window.localStorage.debug = process.env.DEBUG
