@@ -11,10 +11,13 @@ import { SecondaryButton } from 'Components/Buttons'
 import { SettingsConsumer } from './SettingsProvider'
 
 const Wrapper = styled.div`
-	text-align: center;
-	position: relative;
-
-	padding-bottom: 50px;
+	${({ theme }) => css`
+		text-align: center;
+		position: relative;
+		${theme.media.queries.phone`	
+			padding-bottom: 50px;
+		`}
+	`}
 `
 
 const TextWrapper = styled.div`
