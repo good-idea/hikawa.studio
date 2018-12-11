@@ -30,7 +30,7 @@ const Page = (props: Props) => (
 
 			return (
 				<Wrapper>
-					<Helmet seo={seo} />
+					{seo && <Helmet seo={seo} />}
 					<Column>{content && <Text blocks={content} />}</Column>
 					{gallery && gallery.length ? (
 						<Column width="xWide">

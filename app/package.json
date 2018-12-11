@@ -24,6 +24,7 @@
     "graphql-tag": "^2.10.0",
     "graphql-tools": "^4.0.3",
     "js-cookie": "^2.2.0",
+    "logrocket": "^0.6.17",
     "node-fetch": "^2.3.0",
     "ramda": "^0.26.1",
     "react": "^16.6.3",

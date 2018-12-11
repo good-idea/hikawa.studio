@@ -1,6 +1,7 @@
 // @flow
 import React from 'react'
 import ReactDOM from 'react-dom'
+import LogRocket from 'logrocket'
 import { ThemeProvider } from 'styled-components'
 import { BrowserRouter } from 'react-router-dom'
 import ApolloProvider from './Services/Apollo'
@@ -8,6 +9,8 @@ import LocationMonitor from './Views/LocationMonitor'
 import App from './Views/App'
 import { GlobalStyles } from './theme/global'
 import theme from './theme'
+
+if (process.env.NODE_ENV === 'production') LogRocket.init('ulpljc/kame')
 
 if (window.localStorage && process.env.DEBUG) {
 	window.localStorage.debug = process.env.DEBUG
@@ -26,16 +29,16 @@ const renderApp = (Component) => {
 				</ThemeProvider>
 			</ApolloProvider>
 		</BrowserRouter>,
-		// $FlowFixme
+		// $FlowFixMe
 		document.getElementById('root'),
 	)
 }
 
 renderApp(App)
 
-// $FlowFixme
+// $FlowFixMe
 if (module.hot && process.env.NODE_ENV === 'development') {
-	// $FlowIgnore
+	// $FlowFixMe
 	module.hot.accept('./Views/App.js', () => {
 		// eslint-disable-next-line
 		const NewApp = require('./Views/App').default
