@@ -1,18 +1,23 @@
 // @flow
 import * as React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import type { CheckoutLineItem } from 'Types/CheckoutTypes'
 import { ImageBox } from 'Components/Media'
 import { Header4, Header5 } from 'Components/Type'
 import { parsePrice } from 'Utils/parsing'
 import { CartLineItemWrapper, CartGridSegment, MainSegment } from './styled'
 import Quantity from './Quantity'
+import CouponTag from './CouponTag'
 
 const ImageWrapper = styled.div`
-	${({ theme }) => `
+	${({ theme }) => css`
 		display: flex;
 		justify-content: center;
 		align-items: center;
+
+		${theme.media.queries.phone`
+			display: none;
+		`}
 	`};
 `
 
@@ -63,7 +68,7 @@ const CartLineItem = ({ item, updateQuantity }: Props) => {
 				{discountAllocations &&
 					discountAllocations.map((a) => (
 						<Header5 key={a.discountApplication.code} weight="normal">
-							<PromoCode>{a.discountApplication.code}</PromoCode>-{parsePrice(a.allocatedAmount.amount)}
+							<CouponTag />-{parsePrice(a.allocatedAmount.amount)}
 						</Header5>
 					))}
 			</MainSegment>

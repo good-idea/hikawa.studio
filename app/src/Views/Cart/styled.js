@@ -30,8 +30,6 @@ export const CartGridSegment = styled.div`
 export const MainSegment = styled(CartGridSegment)`
 	${({ theme }) => css`
 		grid-column: span 3;
-
-		${theme.media.queries.tablet` grid-column: span 2;`}
 	`}
 `
 

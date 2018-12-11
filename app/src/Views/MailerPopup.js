@@ -7,6 +7,7 @@ import Text from 'Components/ContentBlocks/Text'
 import MailerForm from 'Components/Mailer'
 import type { SiteSettings } from 'Types/ContentTypes'
 import SanityImage from 'Components/Media/SanityImage'
+import { SecondaryButton } from 'Components/Buttons'
 import { SettingsConsumer } from './SettingsProvider'
 
 const Wrapper = styled.div`
@@ -19,18 +20,6 @@ const Wrapper = styled.div`
 const TextWrapper = styled.div`
 	${({ theme }) => `
 		margin: ${theme.layout.spacing.single} auto;
-	`}
-`
-
-const CloseButton = styled.button`
-	${({ theme }) => `
-		color: ${theme.color.middleGray};
-		padding: 6px;
-		font-size: ${theme.type.size.h4};
-		margin-top: ${theme.layout.spacing.single};
-		&:hover {
-			color: ${theme.color.darkGray};
-		}
 	`}
 `
 
@@ -62,7 +51,7 @@ type Props = {
 
 const MailerPopup = ({ settings }: Props) => {
 	const hasSeenPopup = getCookie(cookieName)
-	// if (hasSeenPopup || settings.mailer.popupEnabled !== true) return null
+	if (hasSeenPopup || settings.mailer.popupEnabled !== true) return null
 
 	const onClose = () => {
 		setCookie(cookieName, true, { expires: 21 })
@@ -80,7 +69,7 @@ const MailerPopup = ({ settings }: Props) => {
 							<Text blocks={settings.mailer.popupText} />
 						</TextWrapper>
 						<MailerForm />
-						<CloseButton onClick={closeDialog}>Close</CloseButton>
+						<SecondaryButton onClick={closeDialog}>Close</SecondaryButton>
 					</MainText>
 				</Wrapper>
 			)}

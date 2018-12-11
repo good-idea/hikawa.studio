@@ -2,7 +2,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { adopt } from 'react-adopt'
-import { Button } from 'Components/Buttons'
+import { Button, SecondaryButton } from 'Components/Buttons'
 import Modal from 'Components/Modal'
 import type { Checkout } from 'Types/CheckoutTypes'
 import { Header1, Header3, Header4, Header5 } from 'Components/Type'
@@ -13,7 +13,7 @@ import CartSummary from './CartSummary'
 import Tote from './Tote'
 
 const SummaryWrapper = styled.div`
-	${({ theme, loading }) => `
+	${({ loading }) => `
 		opacity: ${loading ? '0.5' : '1'};
 		pointer-events: ${loading ? 'none' : 'auto'};
 	`};
@@ -91,6 +91,9 @@ const Cart = (props: Props) => {
 							</span>
 						</Header3>
 					)}
+					<div>
+						<SecondaryButton onClick={closeCart}>Close</SecondaryButton>
+					</div>
 				</SummaryWrapper>
 			</Modal>
 		</React.Fragment>

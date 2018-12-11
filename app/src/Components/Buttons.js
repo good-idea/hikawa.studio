@@ -21,3 +21,15 @@ export const Button = styled.button`
 		}
 	`};
 `
+
+export const SecondaryButton = styled.button`
+	${({ theme }) => `
+		color: ${theme.color.middleGray};
+		padding: 6px;
+		font-size: ${theme.type.size.h4};
+		margin-top: ${theme.layout.spacing.single};
+		&:hover {
+			color: ${theme.color.darkGray};
+		}
+	`}
+`
