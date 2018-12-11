@@ -4,9 +4,13 @@ import styled from 'styled-components'
 import type { SanityImage as SanityImageType } from 'Types/MediaTypes'
 import SanityImage from 'Components/Media/SanityImage'
 
-/**
- * Gallery
- */
+const Grid = styled.div`
+	${({ theme }) => `
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-column-gap: ${theme.layout.spacing.single};
+	`}
+`
 
 const ImageWrapper = styled.div`
 	${({ theme }) => `
@@ -14,19 +18,23 @@ const ImageWrapper = styled.div`
 	`}
 `
 
+/**
+ * Gallery
+ */
+
 type Props = {
 	images: Array<SanityImageType>,
 }
 
 const Gallery = ({ images }: Props) => {
 	return (
-		<React.Fragment>
+		<Grid>
 			{images.map((image) => (
 				<ImageWrapper key={image.url}>
-					<SanityImage image={image} sizes="100vw" />
+					<SanityImage image={image} sizes="50vw" />
 				</ImageWrapper>
 			))}
-		</React.Fragment>
+		</Grid>
 	)
 }
 

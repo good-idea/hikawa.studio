@@ -28,12 +28,12 @@ const Page = (props: Props) => (
 			const { content, gallery } = data.page
 			return (
 				<Wrapper>
+					<Column>{content && <Text blocks={content} />}</Column>
 					{gallery && gallery.length ? (
 						<Column width="xWide">
 							<Gallery images={gallery} />
 						</Column>
 					) : null}
-					<Column>{content && <Text blocks={content} />}</Column>
 				</Wrapper>
 			)
 		}}

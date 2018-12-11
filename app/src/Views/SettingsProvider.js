@@ -2,7 +2,7 @@
 import * as React from 'react'
 import gql from 'graphql-tag'
 import Query from 'GraphQL/Query'
-import { colorPartial, linkPartial, richTextPartial } from 'GraphQL/partials'
+import { colorPartial, linkPartial, richTextPartial, sanityImageFields } from 'GraphQL/partials'
 import { FadeIn } from 'Components/Effects'
 
 const { Consumer, Provider } = React.createContext()
@@ -46,6 +46,9 @@ const query = gql`
 					${richTextPartial}
 				}
 				popupEnabled
+				popupBackground {
+					${sanityImageFields}
+				}
 			}
 			navigation {
 				footer {
