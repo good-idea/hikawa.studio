@@ -7,10 +7,17 @@ const debug = require('debug')('web')
 export const logQueries = new ApolloLink((operation, forward) => {
 	const labelStyle = 'color: deepskyblue; font-weight: 800'
 	const messageStyle = 'color: gray'
+	const start = new Date()
 	debug(`%c[GraphQL Logger] %c(link) Called ${operation.operationName}`, labelStyle, messageStyle)
 	if (operation.variables) debug(' variables ⤑ ', operation.variables)
 	return forward(operation).map((result) => {
-		debug(`%c[GraphQL Logger]%c (link) received result from ${operation.operationName}:`, labelStyle, messageStyle)
+		const end = new Date()
+		const duration = end - start
+		debug(
+			`%c[GraphQL Logger]%c (link) received result from ${operation.operationName} in ${duration}ms:`,
+			labelStyle,
+			messageStyle,
+		)
 		debug('           ⤑ ', result)
 		return result
 	})
