@@ -1,8 +1,9 @@
 // @flow
 import * as React from 'react'
 import { Grid } from 'Components/Layout'
+import { ImageBox } from 'Components/Media'
 import Thumbnail from './Thumbnail'
-import MainImage from './MainImage'
+// import MainImage from './MainImage'
 import { InspectorConsumer } from './InspectorContext'
 
 /**
@@ -16,7 +17,7 @@ const ImageInspector = () => (
 			if (!images.length || !currentImage) return null
 			return (
 				<div>
-					<MainImage image={currentImage} />
+					<ImageBox ratio={1} image={currentImage} sizes="(min-width: 700px) 100vw, 450px" />
 					<Grid columns={4}>
 						{images.map((image) => (
 							<Thumbnail

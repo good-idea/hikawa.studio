@@ -1,14 +1,19 @@
 // @flow
 import React from 'react'
+import styled from 'styled-components'
 import type { ContentBlocks } from 'Types/ContentTypes'
 import type { SanityImage } from 'Types/MediaTypes'
 import Block from 'Components/ContentBlocks'
 import Hero from 'Components/Hero'
-import { FlexContainer, FlexChild, Column } from 'Components/Layout'
+import { FlexContainer, Column } from 'Components/Layout'
 import { FadeIn } from 'Components/Effects'
 import HomepageQuery from './homepageQuery'
 import { SettingsConsumer } from '../SettingsProvider'
 import { HomepageWrapper } from './styled'
+
+const BlockWrapper = styled.div`
+	flex-basis: 50%;
+`
 
 /**
  * Kame
@@ -32,9 +37,9 @@ const Kame = ({ homepage }: Props) => {
 						{/* $FlowFixMe - bug with union types: https://github.com/facebook/flow/issues/6342 */}
 						{homepage.content &&
 							homepage.content.map((block, index) => (
-								<FlexChild key={block._key} basis="50%">
+								<BlockWrapper key={block._key}>
 									<Block block={block} number={index} />
-								</FlexChild>
+								</BlockWrapper>
 							))}
 					</FlexContainer>
 				</FadeIn>

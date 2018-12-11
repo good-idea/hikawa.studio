@@ -1,13 +1,12 @@
 // @flow
 import * as React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import type { PageLink as PageLinkType } from 'Types/ContentTypes'
 import PageLink from 'Components/ContentBlocks/PageLink'
 
 const Wrapper = styled.div`
-	${({ theme }) => `
+	${({ theme }) => css`
 		margin: 0 ${theme.layout.spacing.single};
-		width: 240px;
 	`}
 `
 

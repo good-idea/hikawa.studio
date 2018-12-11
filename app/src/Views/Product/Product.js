@@ -1,9 +1,9 @@
 // @flow
 import React from 'react'
+import styled, { css } from 'styled-components'
 import type { Match } from 'react-router-dom'
 import type { ProductType } from 'Types/ProductTypes'
 import type { CheckoutConsumerProps } from 'Views/CheckoutProvider'
-import styled from 'styled-components'
 import Query from 'GraphQL/Query'
 import { Column } from 'Components/Layout'
 import { InspectorProvider, ImageInspector } from 'Components/ImageInspector'
@@ -15,26 +15,34 @@ import RelatedItem from './RelatedItem'
 
 const Wrapper = styled.div`
 	${({ loading }) => `
-		opacity: ${loading ? '0.3' : '1'};
+		opacity: ${loading ? '0.1' : '1'};
 		transition: 0.3s;
 	`}
 `
 
 const Layout = styled.div`
-	${({ theme }) => `
+	${({ theme }) => css`
 		display: grid;
 		grid-template-columns: 50% 50%;
 		grid-column-gap: ${theme.layout.spacing.triple};
+
+		${theme.media.queries.tablet`
+			grid-template-columns: 100%;
+			grid-row-gap: ${theme.layout.spacing.triple};
+
+		`}
 	`};
 `
 
-const RelatedItems = styled.div`
+const RelatedWrapper = styled.div`
 	${({ theme }) => `
 		margin: calc(${theme.layout.spacing.triple} * 2) 0;
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
 	`}
+`
+
+const RelatedItems = styled.div`
+	display: flex;
+	justify-content: center;
 `
 
 const RelatedTitle = styled(Header3)`
@@ -70,12 +78,14 @@ const Product = ({ product, cart, loading }: Props) => {
 						<ProductDescription addToCart={cart && cart.addToCart} product={product} />
 					</Layout>
 					{product.related && product.related.length ? (
-						<RelatedItems>
+						<RelatedWrapper>
 							<RelatedTitle>KEEP L@@KING</RelatedTitle>
-							{product.related.map((item, index) => (
-								<RelatedItem number={index} key={item._key} item={item} />
-							))}
-						</RelatedItems>
+							<RelatedItems>
+								{product.related.map((item, index) => (
+									<RelatedItem number={index} key={item._key} item={item} />
+								))}
+							</RelatedItems>
+						</RelatedWrapper>
 					) : null}
 				</Column>
 			</InspectorProvider>

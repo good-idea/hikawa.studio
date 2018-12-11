@@ -1,8 +1,8 @@
 // @flow
 import * as React from 'react'
+import styled, { css } from 'styled-components'
 import { Link } from 'react-router-dom'
 import type { SiteSettings } from 'Types/ContentTypes'
-import styled from 'styled-components'
 import { Header4 } from 'Components/Type'
 import Text from 'Components/ContentBlocks/Text'
 import MailerForm from 'Components/Mailer'
@@ -10,7 +10,7 @@ import { getLinkUrl } from 'Utils/sanity'
 import { SettingsConsumer } from './SettingsProvider'
 
 const Wrapper = styled.footer`
-	${({ theme }) => `
+	${({ theme }) => css`
 		border-top: 1px solid black;
 		padding: calc(${theme.layout.spacing.triple} * 3) ${theme.layout.spacing.triple};
 		display: flex;
@@ -18,14 +18,26 @@ const Wrapper = styled.footer`
 		background-size: cover;
 		background-position: center;
 		font-weight: ${theme.type.weight.semi};
+
+		${theme.media.queries.tablet`
+			flex-direction: column;
+			text-align: center;
+			padding: ${theme.layout.spacing.triple}; 
+		`}
 	`};
 `
 
 const FooterSection = styled.div`
-	${({ theme }) => `
+	${({ theme }) => css`
 		flex-grow: 1;
 		flex-basis: calc(100% / 3);
 		margin: 0 ${theme.layout.spacing.double};
+
+		${theme.media.queries.tablet`
+			flex-grow: auto;
+			flex-basis: auto;
+			margin: ${theme.layout.spacing.double} 0;
+		`}
 	`};
 `
 

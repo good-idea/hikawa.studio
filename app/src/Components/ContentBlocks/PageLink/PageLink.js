@@ -14,7 +14,7 @@ const ImageWrapper = styled.div`
 `
 
 const Text = styled.div`
-	transform: rotate(1deg);
+	transform: rotate(-4deg);
 `
 
 const PrimaryImage = styled.div``
@@ -85,9 +85,9 @@ const PageLinkBlock = ({ item, number, imageSizes }: Props) => {
 	const primaryImage = images && images.length ? images[0] : fallbackImage
 	const hoverImage = images && images.length > 1 ? images[1] : null
 	return (
-		<Orbit offset={number}>
-			<Link to={url}>
-				<Wrapper>
+		<Link to={url}>
+			<Wrapper>
+				<Orbit offset={number}>
 					<ImageWrapper>
 						{hoverImage && false && (
 							<HoverImage>
@@ -100,13 +100,13 @@ const PageLinkBlock = ({ item, number, imageSizes }: Props) => {
 							</PrimaryImage>
 						)}
 					</ImageWrapper>
-					<Text>
-						<Header3 align="center">{headerText}</Header3>
-						{caption && <Header5>{caption}</Header5>}
-					</Text>
-				</Wrapper>
-			</Link>
-		</Orbit>
+				</Orbit>
+				<Text>
+					<Header3 align="center">{headerText}</Header3>
+					{caption && <Header5>{caption}</Header5>}
+				</Text>
+			</Wrapper>
+		</Link>
 	)
 }
 
