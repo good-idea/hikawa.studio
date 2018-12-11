@@ -12,6 +12,6 @@ type Props = {
 	settings: SiteSettings,
 }
 
-const BaseSEO = ({ settings }: Props) => <Helmet seo={settings.seo} />
+const BaseSEO = ({ settings }: Props) => <Helmet isHomepage seo={settings.seo} />
 
 export default () => <SettingsConsumer>{(settings) => (settings ? <BaseSEO settings={settings} /> : null)}</SettingsConsumer>
