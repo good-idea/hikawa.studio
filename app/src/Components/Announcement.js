@@ -9,6 +9,7 @@ const AnnouncementWrapper = styled.div`
 	${({ theme, announcement, open }) => `
 		background-color: ${announcement.backgroundColor ? sanityColorToRGBA(announcement.backgroundColor) : theme.color.pink};
 		color: ${announcement.textColor ? sanityColorToRGBA(announcement.textColor) : 'black'};
+		padding: 0 45px;
 		position: relative;
 		width: 100%;
 		display: flex;

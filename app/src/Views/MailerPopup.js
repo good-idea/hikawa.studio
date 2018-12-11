@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { setCookie, getCookie } from 'Utils/storage'
 import { Dialog } from 'Components/Layout'
 import Text from 'Components/ContentBlocks/Text'
@@ -12,6 +12,8 @@ import { SettingsConsumer } from './SettingsProvider'
 const Wrapper = styled.div`
 	text-align: center;
 	position: relative;
+
+	padding-bottom: 50px;
 `
 
 const TextWrapper = styled.div`
@@ -33,12 +35,19 @@ const CloseButton = styled.button`
 `
 
 const MainText = styled.div`
-	position: absolute;
-	bottom: 20px;
-	left: 20px;
-	width: calc(100% - 40px);
-	background-color: white;
-	padding: 10px;
+	${({ theme }) => css`
+		position: absolute;
+		bottom: 20px;
+		left: 20px;
+		width: calc(100% - 40px);
+		background-color: white;
+
+		${theme.media.queries.phone`
+			bottom: 0;
+			left: 0;
+			width: 100%;
+		`}
+	`}
 `
 
 /**
@@ -53,16 +62,14 @@ type Props = {
 
 const MailerPopup = ({ settings }: Props) => {
 	const hasSeenPopup = getCookie(cookieName)
-	if (hasSeenPopup || settings.mailer.popupEnabled !== true) return null
+	// if (hasSeenPopup || settings.mailer.popupEnabled !== true) return null
 
 	const onClose = () => {
 		setCookie(cookieName, true, { expires: 21 })
 	}
 
-	console.log(settings.mailer)
-
 	return (
-		<Dialog onClose={onClose}>
+		<Dialog onClose={onClose} delay={1000}>
 			{({ closeDialog }) => (
 				<Wrapper>
 					{settings.mailer.popupBackground ? (

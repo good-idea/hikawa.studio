@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const Wrapper = styled.div`
 	${({ theme, open }) => `
@@ -30,14 +30,19 @@ const Background = styled.button`
 `
 
 const Inner = styled.div`
-	${({ theme }) => `
+	${({ theme }) => css`
 		z-index: 10;
 		width: calc(100% - 5rem);
 		max-width: 500px;
 		padding: ${theme.layout.spacing.triple};
 		background: white;
 		border-radius: 2px;
-		box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4)
+		box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+
+		${theme.media.queries.phone`
+			width: calc(100% - 20px);
+			padding: ${theme.layout.spacing.single};
+		`}
 	`}
 `
 

@@ -43,13 +43,21 @@ const NavLink = styled(Header3)`
 `
 
 const Menu = styled.div`
-	display: flex;
-	justify-content: center;
-	text-transform: uppercase;
+	${({ theme }) => css`
+		display: flex;
+		justify-content: center;
+		text-transform: uppercase;
 
-	& h3 {
-		margin: 0 10px;
-	}
+		& h3 {
+			margin: 0 10px;
+		}
+
+		${theme.media.queries.phone`
+			& h3 {
+				margin: 0 5px;
+			}
+		`}
+	`}
 `
 
 const CartWrapper = styled.div`

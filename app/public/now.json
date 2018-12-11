@@ -1,7 +1,7 @@
 {
 	"version": 2,
 	"name": "kame-store",
-	"alias": "kame-store.now.sh",
+	"alias": "beta.kame.store",
 	"routes": [
 		{ "src": "^/js/(.*)", "dest": "/js/$1" },
 		{ "src": "^/fonts/(.*)", "dest": "/fonts/$1" },
