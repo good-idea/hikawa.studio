@@ -77,9 +77,10 @@ type Props = {
 	item: PageLink,
 	number?: number,
 	imageSizes: string,
+	showHover?: boolean,
 }
 
-const PageLinkBlock = ({ item, number, imageSizes }: Props) => {
+const PageLinkBlock = ({ item, number, imageSizes, showHover }: Props) => {
 	const { link, images, caption, label } = item
 	if (!link) return null
 	const url = getLinkUrl(link)
@@ -93,7 +94,7 @@ const PageLinkBlock = ({ item, number, imageSizes }: Props) => {
 			<Wrapper>
 				<Orbit offset={number}>
 					<ImageWrapper>
-						{hoverImage && false && (
+						{hoverImage && showHover && (
 							<HoverImage>
 								<Image image={hoverImage} sizes={imageSizes} />
 							</HoverImage>
@@ -116,6 +117,7 @@ const PageLinkBlock = ({ item, number, imageSizes }: Props) => {
 
 PageLinkBlock.defaultProps = {
 	number: 0,
+	showHover: false,
 }
 
 export default PageLinkBlock

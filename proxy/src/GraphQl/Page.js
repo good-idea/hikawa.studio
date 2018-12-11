@@ -15,6 +15,7 @@ export const pageSchema = /* GraphQL */ `
 		title: String!
 		slug: String!
 		content: [TextNode]
+		gallery: [SanityImage]
 		banner: [SanityImage]
 		seo: SEOSettings
 	}
@@ -30,6 +31,7 @@ export const pageResolvers = {
 		title: getRefField('title'),
 		slug: getRefField('slug.current'),
 		content: getRefField('content'),
+		gallery: getRefField('gallery'),
 		banner: getRefField('banner'),
 		seo: getRefField('seo'),
 	},

@@ -5,11 +5,20 @@ import type { CheckoutLineItem } from 'Types/CheckoutTypes'
 import { ImageBox } from 'Components/Media'
 import { Header4, Header5 } from 'Components/Type'
 import { parsePrice } from 'Utils/parsing'
-import { CartLineItemWrapper, CartGridSegment } from './styled'
+import { CartLineItemWrapper, CartGridSegment, MainSegment } from './styled'
 import Quantity from './Quantity'
 
 const ImageWrapper = styled.div`
 	${({ theme }) => `
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	`};
+`
+
+const ImageBorder = styled.div`
+	${({ theme }) => `
+		width: 100%;
 		border: 1px solid ${theme.color.middleGray};
 	`};
 `
@@ -38,17 +47,16 @@ const CartLineItem = ({ item, updateQuantity }: Props) => {
 	const discountAmount =
 		discountAllocations && discountAllocations.length ? parseFloat(discountAllocations[0].allocatedAmount.amount) : 0
 	const discountedPrice = basePrice * item.quantity - discountAmount
-	console.log(discountedPrice, basePrice, discountAmount, item.quantity)
 	return (
 		<CartLineItemWrapper>
-			{item.variant.image && (
-				<div>
-					<ImageWrapper>
-						<ImageBox ratio={1} image={item.variant.image} />
-					</ImageWrapper>
-				</div>
-			)}
-			<CartGridSegment span={3}>
+			<ImageWrapper>
+				{item.variant.image && (
+					<ImageBorder>
+						<ImageBox ratio={1} image={item.variant.image} sizes="100px" />
+					</ImageBorder>
+				)}
+			</ImageWrapper>
+			<MainSegment>
 				<Header4>{item.variant.product && item.variant.product.title}</Header4>
 				<Header5 weight="normal">{item.variant.title}</Header5>
 				<Header5 weight="normal">{parsePrice(basePrice)}</Header5>
@@ -58,7 +66,7 @@ const CartLineItem = ({ item, updateQuantity }: Props) => {
 							<PromoCode>{a.discountApplication.code}</PromoCode>-{parsePrice(a.allocatedAmount.amount)}
 						</Header5>
 					))}
-			</CartGridSegment>
+			</MainSegment>
 			<Quantity item={item} updateQuantity={updateQuantity} />
 			<CartGridSegment align="center">
 				<Header4>{parsePrice(discountedPrice)}</Header4>

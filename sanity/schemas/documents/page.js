@@ -11,6 +11,23 @@ const page = {
 		fields.pageBanner,
 		fields.pageSlug,
 		{
+			name: 'gallery',
+			title: 'Gallery',
+			type: 'array',
+			of: [
+				{
+					type: 'image',
+					fields: [
+						{
+							type: 'string',
+							title: 'altText',
+							label: 'Alt Text',
+						},
+					],
+				},
+			],
+		},
+		{
 			name: 'content',
 			title: 'Text',
 			type: 'array',

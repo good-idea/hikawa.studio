@@ -6,6 +6,7 @@ import Query from 'GraphQL/Query'
 import Text from 'Components/ContentBlocks/Text'
 import { Column } from 'Components/Layout'
 import pageQuery from './pageQuery'
+import Gallery from './Gallery'
 
 const Wrapper = styled.div`
 	${({ theme }) => `
@@ -24,9 +25,14 @@ const Page = (props: Props) => (
 	<Query query={pageQuery} variables={{ slug: props.match.params.slug }}>
 		{({ data }) => {
 			if (!data.page) return null
-			const { content } = data.page
+			const { content, gallery } = data.page
 			return (
 				<Wrapper>
+					{gallery && gallery.length ? (
+						<Column width="xWide">
+							<Gallery images={gallery} />
+						</Column>
+					) : null}
 					<Column>{content && <Text blocks={content} />}</Column>
 				</Wrapper>
 			)

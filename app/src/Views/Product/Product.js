@@ -41,8 +41,13 @@ const RelatedWrapper = styled.div`
 `
 
 const RelatedItems = styled.div`
-	display: flex;
-	justify-content: center;
+	${({ theme }) => `
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		border-top: 8px dotted;
+		padding: ${theme.layout.spacing.triple} 0;
+	`}
 `
 
 const RelatedTitle = styled(Header2)`
@@ -68,14 +73,13 @@ type Props = {
 }
 
 const Product = ({ product, cart, loading }: Props) => {
-	console.log(product.related)
 	return (
 		<Wrapper loading={loading}>
 			<InspectorProvider images={product.images}>
 				<Column width="wide">
 					<Layout>
 						<ImageInspector />
-						<ProductDescription addToCart={cart && cart.addToCart} product={product} />
+						<ProductDescription cart={cart} product={product} />
 					</Layout>
 					{product.related && product.related.length ? (
 						<RelatedWrapper>

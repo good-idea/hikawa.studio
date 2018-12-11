@@ -9,7 +9,7 @@ const Main = styled.main`
 		min-height: 90vh;
 
 		${theme.media.queries.phone`
-			padding: ${theme.layout.navHeight} ${theme.layout.spacing.single} ${theme.layout.spacing.triple};
+			padding: 30vh ${theme.layout.spacing.single} ${theme.layout.spacing.triple};
 		`}
 	`}
 `

@@ -11,6 +11,8 @@ export const ModalInner = styled.div`
 		z-index: ${theme.layout.z.dialog};
 		pointer-events: initial;
 		margin: 50px auto;
+		width: calc(100vw - ${theme.layout.spacing.single});
+		max-width: 650px;
 	`};
 `
 

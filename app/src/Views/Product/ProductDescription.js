@@ -2,8 +2,9 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import type { ProductType, ProductVariant } from 'Types/ProductTypes'
+import type { CheckoutConsumerProps } from 'Views/CheckoutProvider'
 import type { SiteSettings } from 'Types/ContentTypes'
-import { Header2, P } from 'Components/Type'
+import { Header2, Header4, P } from 'Components/Type'
 import Text from 'Components/ContentBlocks/Text'
 // import { InspectorConsumer } from 'Components/ImageInspector'
 import { InspectorConsumer } from 'Components/ImageInspector'
@@ -23,6 +24,17 @@ const ExtraDescription = styled.div`
 	`}
 `
 
+const ShowCartButton = styled.button`
+	${({ theme, visible }) => `
+		opacity: ${visible ? '1' : '0'};
+		pointer-events: ${visible ? 'auto' : 'none'};
+		margin: ${theme.layout.spacing.single} 0;
+		transform: ${visible ? 'none' : 'translateX(-10px)'};
+		transition: 0.2s;
+		transition-delay: ${visible ? '0.4s' : '0'};
+	`}
+`
+
 /**
  * ProductDescription
  */
@@ -35,7 +47,7 @@ type Props = {
 	product: ProductType,
 	settings: SiteSettings,
 	selectImage: (string) => () => void,
-	addToCart: (any) => Promise<void>,
+	cart: CheckoutConsumerProps,
 }
 
 type State = {
@@ -44,10 +56,6 @@ type State = {
 }
 
 class ProductDescription extends React.Component<Props, State> {
-	static defaultProps = {
-		// ...
-	}
-
 	state = {
 		selectedVariant: undefined,
 		buttonState: 'normal',
@@ -68,9 +76,9 @@ class ProductDescription extends React.Component<Props, State> {
 	addSelectedVariantToCart = async () => {
 		this.setState({ buttonState: 'loading' })
 		const { selectedVariant } = this.state
-		const { addToCart } = this.props
+		const { addToCart } = this.props.cart
 		if (!selectedVariant) return
-		const added = await addToCart({ lineItems: [{ variantId: selectedVariant.id, quantity: 1 }] })
+		await addToCart({ lineItems: [{ variantId: selectedVariant.id, quantity: 1 }] })
 		this.setState({ buttonState: 'success' })
 		await sleep(1500)
 		this.setState({ buttonState: 'normal' })
@@ -82,17 +90,16 @@ class ProductDescription extends React.Component<Props, State> {
 			case 'loading':
 				return '...'
 			case 'success':
-				return '✓ Added to Cart'
 			case 'normal':
 			default:
-				return 'Add To Cart'
+				return 'Add To Tote'
 		}
 	}
 
 	render() {
-		const { product, settings } = this.props
+		const { product, settings, cart } = this.props
 		const { selectedVariant } = this.state
-
+		const showCartButton = cart && cart.currentCart && cart.currentCart.lineItems ? cart.currentCart.lineItems.length > 0 : false
 		return (
 			<Wrapper>
 				<Title>{product.title}</Title>
@@ -110,6 +117,13 @@ class ProductDescription extends React.Component<Props, State> {
 				>
 					{this.renderButtonText()}
 				</Button>
+				<div>
+					<ShowCartButton onClick={cart.openCart} visible={showCartButton}>
+						<Header4 color="pink" weight="semi">
+							→ Continue to Checkout
+						</Header4>
+					</ShowCartButton>
+				</div>
 			</Wrapper>
 		)
 	}
@@ -117,7 +131,7 @@ class ProductDescription extends React.Component<Props, State> {
 
 type BaseProps = {
 	product: ProductType,
-	addToCart: (any) => Promise<void>,
+	cart: CheckoutConsumerProps,
 }
 
 export default (props: BaseProps) => (

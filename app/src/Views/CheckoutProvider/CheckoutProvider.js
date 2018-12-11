@@ -52,6 +52,9 @@ type AddToCartArgs = {
 
 export type CheckoutConsumerProps = {
 	currentCart: void | Checkout,
+	isOpen: boolean,
+	openCart: () => void,
+	closeCart: () => void,
 	loading: boolean,
 	addToCart: (AddToCartArgs) => Promise<void>,
 	updateQuantity: (CheckoutLineItem) => (number) => Promise<void>,
@@ -62,6 +65,7 @@ export type CheckoutConsumerProps = {
 
 type State = {
 	loading: boolean,
+	isOpen: boolean,
 	userErrors: Array<string>,
 }
 
@@ -72,6 +76,7 @@ class CheckoutProviderBase extends React.Component<Props, State> {
 
 	state = {
 		loading: false,
+		isOpen: false,
 		userErrors: [],
 	}
 
@@ -79,6 +84,14 @@ class CheckoutProviderBase extends React.Component<Props, State> {
 		const { refetchCart } = this.props
 		await refetchCart()
 		this.setState({ loading: false })
+	}
+
+	openCart = () => {
+		this.setState({ isOpen: true })
+	}
+
+	closeCart = () => {
+		this.setState({ isOpen: false })
 	}
 
 	createCart = async (variables: AddToCartArgs): Promise<void> => {
@@ -163,8 +176,8 @@ class CheckoutProviderBase extends React.Component<Props, State> {
 
 	render() {
 		const { children, currentCart } = this.props
-		const { userErrors } = this.state
-		const { addToCart, updateQuantity, applyDiscount, removeDiscount } = this
+		const { userErrors, isOpen } = this.state
+		const { openCart, closeCart, addToCart, updateQuantity, applyDiscount, removeDiscount } = this
 		const value = {
 			addToCart,
 			currentCart,
@@ -173,6 +186,9 @@ class CheckoutProviderBase extends React.Component<Props, State> {
 			applyDiscount,
 			removeDiscount,
 			userErrors,
+			openCart,
+			closeCart,
+			isOpen,
 		}
 
 		return <Provider value={value}>{children}</Provider>

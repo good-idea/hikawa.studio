@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import type { CheckoutLineItem } from 'Types/CheckoutTypes'
 import { CartGridSegment, CartLineItemWrapper } from './styled'
 
@@ -32,8 +32,8 @@ const Input = styled.input`
 `
 
 export const CartButton = styled.button`
-	opacity: 0;
-	${({ theme }) => `
+	${({ theme, isIncrementor }) => css`
+		opacity: 0;
 		margin: ${theme.layout.spacing.half} 0;
 		font-size: ${theme.type.size.h5};
 		font-weight: ${theme.type.weight.semi};
@@ -42,10 +42,15 @@ export const CartButton = styled.button`
 		${CartLineItemWrapper}:hover & {
 			opacity: 1;
 		}
-		
+
 		&:hover {
 			color: black;
 		}
+
+		${theme.media.queries.tablet`
+			opacity: 1;
+			${isIncrementor ? 'display: none' : ''};
+		`}
 	`};
 `
 
@@ -99,13 +104,13 @@ class Quantity extends React.Component<Props, State> {
 			<CartGridSegment align="center">
 				<CartButton onClick={this.remove}>remove</CartButton>
 				<InputWrapper>
-					<CartButton onClick={this.adjust(1)}>
+					<CartButton isIncrementor onClick={this.adjust(1)}>
 						<span aria-label="Increase Quantity" role="img">
 							➕
 						</span>
 					</CartButton>
 					<Input type="number" value={quantity} onChange={this.onChange} onBlur={this.onBlur} />
-					<CartButton onClick={this.adjust(-1)}>
+					<CartButton isIncrementor onClick={this.adjust(-1)}>
 						<span aria-label="Decrease Quantity" role="img">
 							➖
 						</span>

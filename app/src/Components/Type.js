@@ -15,8 +15,8 @@ export const Header1 = styled.h1`
 	${({ theme }) => css`
 		font-size: ${theme.type.size.h1};
 
-		${theme.media.queries.tablet`font-size: calc(${theme.type.size.h1} * '0.8')`};
-		${theme.media.queries.phone`font-size: calc(${theme.type.size.h1} * '0.7')`};
+		${theme.media.queries.tablet`font-size: calc(${theme.type.size.h1} * 0.8)`};
+		${theme.media.queries.phone`font-size: calc(${theme.type.size.h1} * 0.7)`};
 	`};
 `
 

@@ -1,6 +1,6 @@
 // @flow
 import gql from 'graphql-tag'
-import { seoPartial, richTextPartial, bannerPartial } from '../../GraphQL/partials'
+import { seoPartial, richTextPartial, bannerPartial, sanityImageFields } from '../../GraphQL/partials'
 
 const query = gql`
 	query PageQuery($slug: String!) {
@@ -11,6 +11,9 @@ const query = gql`
 			${seoPartial}
 			content {
 				${richTextPartial}
+			}
+			gallery {
+				${sanityImageFields}
 			}
 		}
 	}

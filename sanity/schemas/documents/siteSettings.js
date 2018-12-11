@@ -236,6 +236,11 @@ const page = {
 					],
 				},
 				{
+					name: 'popupBackground',
+					type: 'image',
+					title: 'Popup Background Image',
+				},
+				{
 					name: 'footerText',
 					title: 'Footer Text',
 					type: 'array',

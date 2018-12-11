@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Link } from 'react-router-dom'
 import type { SiteSettings } from 'Types/ContentTypes'
 import Logo from 'Components/Logo'
@@ -10,6 +10,7 @@ import { getLinkUrl } from 'Utils/sanity'
 import Announcement from 'Components/Announcement'
 import { SettingsConsumer } from '../SettingsProvider'
 import Cart from '../Cart'
+import Instagram from './Instagram'
 
 // height: ${theme.layout.navHeight};
 const Nav = styled.nav`
@@ -52,9 +53,17 @@ const Menu = styled.div`
 `
 
 const CartWrapper = styled.div`
-	position: absolute;
-	top: 20px;
-	right: 20px;
+	${({ theme, announcementOpen }) => css`
+		position: fixed;
+		top: ${announcementOpen ? '60px' : '30px'};
+		right: 30px;
+		transition: 0.3s ease-out;
+
+		${theme.media.queries.phone`
+			top: ${announcementOpen ? '60px' : '20px'};
+			right: 10px;
+		`}
+	`}
 `
 
 /**
@@ -99,6 +108,9 @@ class Navigation extends React.Component<Props, State> {
 				<MenuWrapper>
 					<Logo />
 					<Menu>
+						<NavLink isHomepage={isHomepage}>
+							<Link to="/">Shop</Link>
+						</NavLink>
 						{siteSettings &&
 							siteSettings.navigation.header.links.map((link) =>
 								link.__typename === 'Page' ? (
@@ -108,13 +120,13 @@ class Navigation extends React.Component<Props, State> {
 								) : (
 									<NavLink isHomepage={isHomepage} key={link.url}>
 										<a href={link.url} target="_blank" rel="noreferrer noopener">
-											{link.label}
+											{link.label.toLowerCase() === 'instagram' ? <Instagram /> : 'link.label'}
 										</a>
 									</NavLink>
 								),
 							)}
 					</Menu>
-					<CartWrapper>
+					<CartWrapper announcementOpen={announcementOpen}>
 						<Cart />
 					</CartWrapper>
 				</MenuWrapper>
