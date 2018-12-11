@@ -68,6 +68,10 @@ export const P = styled.p`
 		text-align: ${align || 'inherit'};
 		margin: 0.5em 0;
 		font-size: ${theme.type.size.p};
+
+		&:after {
+			content: '\00a0\00a0';
+		}
 	`};
 `
 

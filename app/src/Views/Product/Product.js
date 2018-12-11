@@ -8,7 +8,7 @@ import Query from 'GraphQL/Query'
 import { Column } from 'Components/Layout'
 import { InspectorProvider, ImageInspector } from 'Components/ImageInspector'
 import { CheckoutConsumer } from 'Views/CheckoutProvider'
-import { Header3 } from 'Components/Type'
+import { Header2 } from 'Components/Type'
 import ProductDescription from './ProductDescription'
 import productQuery from './productQuery'
 import RelatedItem from './RelatedItem'
@@ -45,7 +45,7 @@ const RelatedItems = styled.div`
 	justify-content: center;
 `
 
-const RelatedTitle = styled(Header3)`
+const RelatedTitle = styled(Header2)`
 	${({ theme }) => `
 		flex-basis: 100%;
 		text-align: center;
