@@ -3,12 +3,12 @@ const seo = {
 	name: 'seo-settings',
 	type: 'object',
 	fields: [
-		// {
-		// 	title: 'SEO: Page Title',
-		// 	name: 'name',
-		// 	type: 'string',
-		// 	description: 'If empty, this will fall back to the default page title. This should be less than 90 characters.',
-		// },
+		{
+			title: 'SEO: Page Title',
+			name: 'name',
+			type: 'string',
+			description: 'This will be used in addition to the main site SEO title. "About" will turn into → "About | Kame"',
+		},
 		{
 			title: 'SEO: Description',
 			name: 'description',
