@@ -3,7 +3,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { ThemeProvider } from 'styled-components'
 import { BrowserRouter } from 'react-router-dom'
-import ApolloProvider from './services/Apollo'
+import ApolloProvider from './Services/Apollo'
+import LocationMonitor from './Views/LocationMonitor'
 import App from './Views/App'
 import { GlobalStyles } from './theme/global'
 import theme from './theme'
@@ -18,6 +19,7 @@ const renderApp = (Component) => {
 			<ApolloProvider>
 				<ThemeProvider theme={theme}>
 					<React.Fragment>
+						<LocationMonitor />
 						<GlobalStyles />
 						<Component />
 					</React.Fragment>
