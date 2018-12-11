@@ -89,7 +89,7 @@ debug(`[${process.env.NODE_ENV}] Sanity: using dataset ${SANITY_DATASET}`)
 const client = new SanityClient({
 	projectId: SANITY_PROJECT_ID || '',
 	dataset: SANITY_DATASET || '',
-	useCdn: process.env.NODE_ENV !== 'development',
+	useCdn: true,
 	cache: localCache,
 })
 
