@@ -26,7 +26,7 @@ const Block = ({ block, number }: Props) => {
 			? {
 					...block,
 					// $FlowFixMe
-					images: block.images.filter((i) => Boolean(i._ref)),
+					images: block.images ? block.images.filter((i) => Boolean(i._ref)) : null,
 			  }
 			: block
 	switch (block._type) {
