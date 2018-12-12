@@ -74,6 +74,7 @@ type Props = {
 }
 
 const Product = ({ product, cart, loading }: Props) => {
+	if (!product) return null
 	console.log(product)
 	const seo = {
 		name: product.title,
