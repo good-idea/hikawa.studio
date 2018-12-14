@@ -35,9 +35,9 @@ const MenuWrapper = styled.div`
 `
 
 const NavLink = styled(Header3)`
-	${({ theme, isHomepage }) => `
+	${({ theme }) => `
 		&:hover {
-			color: ${isHomepage ? 'white' : theme.color.pink};
+			color: ${theme.color.pink};
 		}
 	`}
 `

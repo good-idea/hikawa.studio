@@ -59,10 +59,6 @@ const Wrapper = styled.div`
 			}
 		}
 
-		${HomepageWrapper} &:hover {
-			color: white;
-		}
-
 		${theme.media.queries.phone`
 			padding: 0;
 		`}
