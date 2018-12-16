@@ -22,21 +22,26 @@ const getImageUrl = (image: SanityImage | ShopifyImage): string | null =>
 
 const KameHelmet = ({ seo, settings, isHomepage }: Props) => {
 	if (!settings) return null
+	// console.log('*')
+	// return null
 	const { name, description, image } = seo
 	const siteTitle = settings.seo.name || 'KAME'
 	const title = !isHomepage && name && name.length ? `${name} | ${siteTitle}` : siteTitle
 	const imageUrl = image ? getImageUrl(image) : null
+	const canonical = `https://www.kame.store${window.location.pathname}`
 	return (
-		<Helmet>
-			<title itemProp="name">{title}</title>
-			<meta property="og:title" content={title} />
-			{description && description.length ? <meta property="og:description" content={description} /> : null}
-			{description && description.length ? <meta name="description" content={description} /> : null}
-
-			{imageUrl ? <meta property="og:image" content={imageUrl} /> : null}
-			<meta property="og:type" content="website" />
-			<meta name="robots" content="index, follow" />
-		</Helmet>
+		<Helmet
+			title={title}
+			meta={[
+				{ name: 'description', content: description },
+				{ property: 'og:title', content: title },
+				{ property: 'og:description', content: description },
+				{ property: 'og:image', content: imageUrl || null },
+				{ property: 'og:type', content: 'website' },
+				{ name: 'robots', content: 'index, follow' },
+			]}
+			link={[{ rel: 'canonical', href: canonical }]}
+		/>
 	)
 }
 

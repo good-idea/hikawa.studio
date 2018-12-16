@@ -19,7 +19,7 @@ export const ModalInner = styled.div`
 const Background = styled.button`
 	${({ theme }) => `
 		${theme.mixins.fixedFullSize};
-		pointer: cursor;
+		cursor: pointer;
 	   z-index: ${theme.layout.z.dialog - 1};
 		background-color: rgba(50, 50, 50, 0.4);
 	`};

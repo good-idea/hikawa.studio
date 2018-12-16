@@ -12,6 +12,7 @@ import Navigation from './Navigation'
 import Page from './Page'
 import Footer from './Footer'
 import BaseSEO from './BaseSEO'
+import CartModal from './Cart/CartModal'
 
 /**
  * App
@@ -24,6 +25,7 @@ const App = () => (
 			return (
 				<SettingsProvider>
 					<CheckoutProvider>
+						<CartModal />
 						<BaseSEO />
 						<MailerPopup />
 						<Navigation isHomepage={isHomepage} />
