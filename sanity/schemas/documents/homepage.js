@@ -7,7 +7,28 @@ const page = {
 	type: 'document',
 	fields: [
 		//
-		fields.pageBanner,
+		{
+			title: 'Banner',
+			name: 'hero',
+			type: 'object',
+			fields: [
+				{
+					title: 'Images',
+					name: 'images',
+					type: 'array',
+					of: [
+						{
+							type: 'image',
+							options: {
+								hotspot: true,
+							},
+						},
+					],
+					validation: (Rule) => Rule.required(),
+				},
+			],
+		},
+
 		{
 			title: 'Content',
 			name: 'content',

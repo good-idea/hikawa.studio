@@ -18,6 +18,27 @@ const product = {
 			validation: (Rule) => Rule.required(),
 		},
 		{
+			title: 'Banner',
+			name: 'hero',
+			type: 'object',
+			fields: [
+				{
+					title: 'Images',
+					name: 'images',
+					type: 'array',
+					of: [
+						{
+							type: 'image',
+							options: {
+								hotspot: true,
+							},
+						},
+					],
+					validation: (Rule) => Rule.required().max(2),
+				},
+			],
+		},
+		{
 			title: 'Related',
 			type: 'array',
 			name: 'related',
@@ -31,22 +52,6 @@ const product = {
 				},
 			],
 		},
-		// {
-		// 	title: 'Title',
-		// 	name: 'title',
-		// 	type: 'string',
-		// },
-		// fields.pageSlug,
-		// {
-		// 	title: 'Description',
-		// 	name: 'description',
-		// 	type: 'text',
-		// },
-		// {
-		// 	title: 'Additional Content',
-		// 	type: 'contentBuilder',
-		// 	name: 'content',
-		// },
 		fields.pageSeo,
 	],
 	preview: {

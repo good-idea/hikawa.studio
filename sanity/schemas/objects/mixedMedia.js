@@ -8,7 +8,7 @@ const mixedMedia = {
 		// { type: 'videoEmbed' },
 		// { type: 'lottie' },
 	],
-	validation: (Rule) => Rule.max(1),
+	validation: (Rule) => Rule.max(2),
 }
 
 export default mixedMedia

@@ -2,6 +2,9 @@ const imageWithAltText = {
 	name: 'imageWithAltText',
 	type: 'image',
 	title: 'Image',
+	options: {
+		hotspot: true,
+	},
 	fields: [
 		{
 			name: 'altText',
