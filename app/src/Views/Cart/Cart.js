@@ -1,21 +1,27 @@
 // @flow
 import * as React from 'react'
 import styled from 'styled-components'
-import { adopt } from 'react-adopt'
 import { Button } from 'Components/Buttons'
 import type { Checkout } from 'Types/CheckoutTypes'
-import { Header3, Header4 } from 'Components/Type'
+import { Header3, Header4, Header5 } from 'Components/Type'
 import type { CheckoutConsumerProps } from '../CheckoutProvider'
 import { CheckoutConsumer } from '../CheckoutProvider'
 import Tote from './Tote'
 
 const CartButton = styled(Button)`
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	${({ theme }) => `
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		pointer-events: initial;
+		margin-left: auto;
+		position: sticky;
+		top: ${theme.layout.spacing.double};
+		box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
+	`}
 `
 
-const CartCount = styled(Header4)`
+const CartCount = styled(Header3)`
 	margin-left: 0.5em;
 `
 
@@ -48,8 +54,4 @@ const Cart = (props: Props) => {
 	)
 }
 
-const Composed = adopt({
-	cart: <CheckoutConsumer />,
-})
-
-export default () => <Composed>{({ cart }) => <Cart {...cart} />}</Composed>
+export default () => <CheckoutConsumer>{(cart) => <Cart {...cart} />}</CheckoutConsumer>

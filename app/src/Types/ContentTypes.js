@@ -33,6 +33,10 @@ export type Page = {
 	__typename: 'Page',
 }
 
+export type Hero = {
+	images: Array<SanityImage>,
+}
+
 export type Link = Page | ProductType | CollectionType
 
 export type PageLink = {
@@ -43,6 +47,7 @@ export type PageLink = {
 	caption?: string,
 	images?: Array<SanityImage>,
 	image?: SanityImage,
+	fullWidth?: boolean,
 }
 
 /**
@@ -80,9 +85,10 @@ export type TextBlock = {
 	_type: string,
 	_key: string,
 	blocks?: Array<TextNode | SanityImage>,
+	fullWidth?: boolean,
 }
 
-export type ContentBlock = SanityImage | TextBlock | HeaderBlock | PageLink
+export type ContentBlock = TextBlock | PageLink
 
 export type ContentBlocks = Array<ContentBlock>
 

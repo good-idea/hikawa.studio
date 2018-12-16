@@ -1,6 +1,6 @@
 // @flow
 import gql from 'graphql-tag'
-import { pageLinkFields } from '../../GraphQL/partials'
+import { pageLinkFields, heroPartial } from '../../GraphQL/partials'
 
 const query = gql`
 	query ProductQuery($handle: String!) {
@@ -39,6 +39,7 @@ const query = gql`
 				related {
 					${pageLinkFields}
 				}
+				${heroPartial}
 			}
 		}
 	}

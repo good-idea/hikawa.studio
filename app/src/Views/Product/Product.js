@@ -6,10 +6,11 @@ import type { ProductType } from 'Types/ProductTypes'
 import type { CheckoutConsumerProps } from 'Views/CheckoutProvider'
 import Query from 'GraphQL/Query'
 import { Column } from 'Components/Layout'
-import { InspectorProvider, ImageInspector } from 'Components/ImageInspector'
+import { Image } from 'Components/Media'
 import { CheckoutConsumer } from 'Views/CheckoutProvider'
 import { Header2 } from 'Components/Type'
 import Helmet from 'Components/Helmet'
+import Hero from 'Components/Hero'
 import ProductDescription from './ProductDescription'
 import productQuery from './productQuery'
 import RelatedItem from './RelatedItem'
@@ -33,6 +34,21 @@ const Layout = styled.div`
 
 		`}
 	`};
+`
+
+const Images = styled.div`
+	${({ theme }) => `
+		display: grid;
+		grid-row-gap: ${theme.layout.spacing.single};
+	`}
+`
+
+const Description = styled.div`
+	${({ theme }) => `
+		position: sticky;
+		top: ${theme.layout.spacing.double};
+		align-self: flex-start;
+	`}
 `
 
 const RelatedWrapper = styled.div`
@@ -75,7 +91,6 @@ type Props = {
 
 const Product = ({ product, cart, loading }: Props) => {
 	if (!product) return null
-	console.log(product)
 	const seo = {
 		name: product.title,
 		image: product.images ? product.images[0] : null,
@@ -83,24 +98,30 @@ const Product = ({ product, cart, loading }: Props) => {
 	return (
 		<Wrapper loading={loading}>
 			<Helmet seo={seo} />
-			<InspectorProvider images={product.images}>
-				<Column width="wide">
-					<Layout>
-						<ImageInspector />
+			{product.hero && <Hero images={product.hero.images} view="standard" />}
+			<Column width="wide">
+				<Layout>
+					<Images>
+						{product.images &&
+							product.images.map((image) => (
+								<Image key={image.originalSrc} image={image} sizes="(max-width: 600px) 80vw, 45vw" />
+							))}
+					</Images>
+					<Description>
 						<ProductDescription cart={cart} product={product} />
-					</Layout>
-					{product.related && product.related.length ? (
-						<RelatedWrapper>
-							<RelatedTitle>KEEP L@@KING</RelatedTitle>
-							<RelatedItems>
-								{product.related.map((item, index) => (
-									<RelatedItem number={index} key={item._key} item={item} />
-								))}
-							</RelatedItems>
-						</RelatedWrapper>
-					) : null}
-				</Column>
-			</InspectorProvider>
+					</Description>
+				</Layout>
+				{product.related && product.related.length ? (
+					<RelatedWrapper>
+						<RelatedTitle>KEEP L@@KING</RelatedTitle>
+						<RelatedItems>
+							{product.related.map((item, index) => (
+								<RelatedItem number={index} key={item._key} item={item} />
+							))}
+						</RelatedItems>
+					</RelatedWrapper>
+				) : null}
+			</Column>
 		</Wrapper>
 	)
 }

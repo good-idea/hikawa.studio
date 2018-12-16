@@ -19,11 +19,9 @@ export const GlobalStyles = createGlobalStyle`
 		margin: 0;
 	}
 
-	${({ theme }) => `
-		body {
-			padding: 0;
-		}
-	`}
+	body {
+		padding: 0;
+	}
 
 	button, input, select, option, textarea {
 		background: white;

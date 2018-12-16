@@ -9,8 +9,8 @@ export const Button = styled.button`
 		text-transform: uppercase;
 		text-align: center;
 		font-weight: ${theme.type.weight.semi};
-		border-radius: 5px;
-		background-color: ${theme.color.highlight};
+		background-color: white;
+		border: 1px solid;
 		opacity: ${disabled ? '0.25' : '1'};
 		transition: 0.1s;
 		pointer-events: ${disabled ? 'none' : 'auto'};

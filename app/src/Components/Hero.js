@@ -9,7 +9,7 @@ const HeroWrapper = styled.div`
 	overflow: hidden;
 	width: 100%;
 	height: 30vh;
-	max-height: 400px;
+	max-height: 85vh;
 	height: 100%;
 `
 
@@ -39,15 +39,21 @@ const ImageWrapper = styled.div`
  */
 type Props = {
 	images: Array<SanityImage>,
+	view?: 'carousel' | 'standard',
 }
-const Hero = ({ images }: Props) => (
-	<HeroWrapper>
-		{images.map((image, index) => (
-			<ImageWrapper key={image.url} index={index}>
-				<Image image={image} />
-			</ImageWrapper>
-		))}
-	</HeroWrapper>
-)
 
+const Hero = ({ images, view }: Props) =>
+	images && images.length ? (
+		<HeroWrapper view={view}>
+			{images.map((image, index) => (
+				<ImageWrapper key={image.url} index={index}>
+					<Image image={image} sizes="100vw" />
+				</ImageWrapper>
+			))}
+		</HeroWrapper>
+	) : null
+
+Hero.defaultProps = {
+	view: 'standard',
+}
 export default Hero

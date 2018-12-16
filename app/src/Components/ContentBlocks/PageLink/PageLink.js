@@ -1,12 +1,12 @@
 // @flow
 import * as React from 'react'
-import styled, { css, keyframes } from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Link } from 'react-router-dom'
 import type { PageLink } from 'Types/ContentTypes'
 import { Header3, Header5 } from 'Components/Type'
 import { Image } from 'Components/Media'
 import { getLinkUrl } from 'Utils/content'
-import { HomepageWrapper } from 'Views/Kame/styled'
+// import { HomepageWrapper } from 'Views/Kame/styled'
 
 const ImageWrapper = styled.div`
 	position: relative;
@@ -14,7 +14,7 @@ const ImageWrapper = styled.div`
 `
 
 const Text = styled.div`
-	transform: rotate(-4deg);
+	/* transform: rotate(-4deg); */
 `
 
 const PrimaryImage = styled.div``
@@ -28,19 +28,19 @@ const HoverImage = styled.div`
 	opacity: 0;
 `
 
-const orbit = keyframes`
-	from { transform: rotate(0deg) translateX(3%) translateZ(0) rotate(0deg); }
-	to   { transform: rotate(360deg) translateX(3%) translateZ(0) rotate(-360deg); }
-`
+// const orbit = keyframes`
+// 	from { transform: rotate(0deg) translateX(3%) translateZ(0) rotate(0deg); }
+// 	to   { transform: rotate(360deg) translateX(3%) translateZ(0) rotate(-360deg); }
+// `
 
-const Orbit = styled.div`
-	${({ offset }) => css`
-		animation: ${orbit} calc(5s + (${(offset * 9) % 5}s) * 3) infinite linear;
-	`}
-	&:hover {
-		animation-play-state: paused;
-	}
-`
+// const Orbit = styled.div`
+// 	${({ offset }) => css`
+// 		animation: ${orbit} calc(5s + (${(offset * 9) % 5}s) * 3) infinite linear;
+// 	`}
+// 	&:hover {
+// 		animation-play-state: paused;
+// 	}
+// `
 
 const Wrapper = styled.div`
 	${({ theme }) => css`
@@ -88,20 +88,18 @@ const PageLinkBlock = ({ item, number, imageSizes, showHover }: Props) => {
 	return (
 		<Link to={url}>
 			<Wrapper>
-				<Orbit offset={number}>
-					<ImageWrapper>
-						{hoverImage && showHover && (
-							<HoverImage>
-								<Image image={hoverImage} sizes={imageSizes} />
-							</HoverImage>
-						)}
-						{primaryImage && (
-							<PrimaryImage>
-								<Image image={primaryImage} sizes={imageSizes} />
-							</PrimaryImage>
-						)}
-					</ImageWrapper>
-				</Orbit>
+				<ImageWrapper>
+					{hoverImage && showHover && (
+						<HoverImage>
+							<Image image={hoverImage} sizes={imageSizes} />
+						</HoverImage>
+					)}
+					{primaryImage && (
+						<PrimaryImage>
+							<Image image={primaryImage} sizes={imageSizes} />
+						</PrimaryImage>
+					)}
+				</ImageWrapper>
 				<Text>
 					<Header3 align="center">{headerText}</Header3>
 					{caption && <Header5>{caption}</Header5>}

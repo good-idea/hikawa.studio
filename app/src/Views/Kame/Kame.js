@@ -1,8 +1,7 @@
 // @flow
 import React from 'react'
 import styled from 'styled-components'
-import type { ContentBlocks } from 'Types/ContentTypes'
-import type { SanityImage } from 'Types/MediaTypes'
+import type { ContentBlocks, Hero as HeroType } from 'Types/ContentTypes'
 import Block from 'Components/ContentBlocks'
 import Hero from 'Components/Hero'
 import { FlexContainer, Column } from 'Components/Layout'
@@ -12,7 +11,10 @@ import { SettingsConsumer } from '../SettingsProvider'
 import { HomepageWrapper } from './styled'
 
 const BlockWrapper = styled.div`
-	flex-basis: 50%;
+	${({ fullWidth }) => `
+		flex-basis: ${fullWidth ? '100%' : '50%'};
+		text-align: center;
+	`}
 `
 
 /**
@@ -22,7 +24,7 @@ const BlockWrapper = styled.div`
 type Props = {
 	homepage: {
 		content: ContentBlocks,
-		banner?: Array<SanityImage>,
+		hero?: HeroType,
 	},
 	// siteSettings: SiteSettings,
 }
@@ -30,14 +32,14 @@ type Props = {
 const Kame = ({ homepage }: Props) => {
 	return (
 		<HomepageWrapper>
-			{homepage.banner && homepage.banner.length ? <Hero images={homepage.banner} /> : null}
+			{homepage.hero ? <Hero images={homepage.hero.images} view="carousel" /> : null}
 			<Column width="wide">
 				<FadeIn delay={500}>
 					<FlexContainer>
 						{/* $FlowFixMe - bug with union types: https://github.com/facebook/flow/issues/6342 */}
 						{homepage.content &&
 							homepage.content.map((block, index) => (
-								<BlockWrapper key={block._key}>
+								<BlockWrapper key={block._key} fullWidth={block.fullWidth}>
 									<Block block={block} number={index} />
 								</BlockWrapper>
 							))}

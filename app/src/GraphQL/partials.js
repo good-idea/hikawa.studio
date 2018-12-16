@@ -62,9 +62,11 @@ export const richTextPartial = `
 	}
 `
 
-export const bannerPartial = `
-	banner {
-		${sanityImageFields}
+export const heroPartial = `
+	hero {
+		images {
+			${sanityImageFields}
+		}
 	}
 `
 
@@ -72,7 +74,6 @@ export const linkPartial = `
 	...on Page {
 		title
 		slug
-		${bannerPartial}
 	}
 	...on Product {
 		id
@@ -121,12 +122,7 @@ export const contentPartial = `
 	content {
 		_type
 		_key
-		...on SanityImage {
-			${sanityImageFields}
-		}
-		...on Header {
-			text
-		}
+		fullWidth
 		...on RichText {
 			blocks {
 				${richTextPartial}

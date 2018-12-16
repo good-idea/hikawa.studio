@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import type { SiteSettings } from 'Types/ContentTypes'
 import Text from 'Components/ContentBlocks/Text'
 import { sanityColorToRGBA } from 'Utils/sanity'
+import { SettingsConsumer } from 'Views/SettingsProvider'
 
 const AnnouncementWrapper = styled.div`
 	${({ theme, announcement, open }) => `
@@ -59,19 +60,38 @@ const CloseButton = styled.button`
  */
 type Props = {
 	announcement: $PropertyType<SiteSettings, 'announcement'>,
+}
+
+type State = {
 	open: boolean,
-	closeAnnouncement: () => void,
 }
 
-const Announcement = ({ announcement, open, closeAnnouncement }: Props) => {
-	if (!announcement || !announcement.enabled) return null
-	const blocks = announcement.text ? announcement.text.map((n) => ({ ...n, style: 'h5' })) : []
-	return (
-		<AnnouncementWrapper open={open} announcement={announcement}>
-			<Text blocks={blocks} />
-			<CloseButton onClick={closeAnnouncement} />
-		</AnnouncementWrapper>
-	)
+class Announcement extends React.Component<Props, State> {
+	state = {
+		open: this.props.announcement.enabled,
+	}
+
+	close = () => {
+		this.setState({ open: false })
+	}
+
+	render() {
+		const { announcement } = this.props
+		const { open } = this.state
+		const blocks = announcement.text ? announcement.text.map((n) => ({ ...n, style: 'h5' })) : []
+		return (
+			<AnnouncementWrapper open={open} announcement={announcement}>
+				<Text blocks={blocks} />
+				<CloseButton onClick={this.close} />
+			</AnnouncementWrapper>
+		)
+	}
 }
 
-export default Announcement
+export default () => (
+	<SettingsConsumer>
+		{(siteSettings) =>
+			siteSettings && siteSettings.announcement ? <Announcement announcement={siteSettings.announcement} /> : null
+		}
+	</SettingsConsumer>
+)

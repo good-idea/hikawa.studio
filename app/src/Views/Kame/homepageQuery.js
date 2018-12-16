@@ -3,12 +3,12 @@ import gql from 'graphql-tag'
 import type { ImageType } from 'Types/ContentTypes'
 import type { QueryWrapper } from 'GraphQL/Query'
 import { withDefaultQuery } from 'GraphQL/Query'
-import { seoPartial, contentPartial, bannerPartial } from '../../GraphQL/partials'
+import { seoPartial, contentPartial, heroPartial } from '../../GraphQL/partials'
 
 const query = /* GraphQL */ gql`
 	query HomepageQuery {
 		homepage {
-			${bannerPartial}
+			${heroPartial}
 			${seoPartial}
 			${contentPartial}
 		}

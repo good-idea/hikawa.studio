@@ -3,6 +3,7 @@
 export const z = {
 	main: 0,
 	navigation: 100,
+	cart: 200,
 	dialog: 300,
 	alert: 400,
 }

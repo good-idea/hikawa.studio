@@ -2,7 +2,7 @@
 /* eslint-disable no-use-before-define */
 
 import type { ShopifyImage } from './MediaTypes'
-import type { PageLink } from './ContentTypes'
+import type { PageLink, Hero } from './ContentTypes'
 
 /**
  * Colors
@@ -61,6 +61,7 @@ export type ProductType = {
 	id: string,
 	handle: string,
 	title: string,
+	hero: Hero,
 	availableForSale?: boolean,
 	collections?: Array<CollectionType>,
 	images?: Array<ShopifyImage>,
