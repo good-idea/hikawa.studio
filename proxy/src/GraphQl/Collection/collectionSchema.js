@@ -4,7 +4,7 @@ const collectionSchema = /* GraphQL */ `
 	extend type Collection {
 		keyColor: Color
 		backgroundColor: Color
-		backgroundImage: SanityImage
+		hero: Hero
 	}
 `
 

@@ -6,7 +6,7 @@ const resolvers = {
 		title: getCollectionField('title'),
 		// description: getCollectionField('description'),
 		// descriptionHtml: getCollectionField('descriptionHtml'),
-		backgroundImage: getCollectionField('backgroundImage'),
+		hero: getCollectionField('hero'),
 		backgroundColor: getCollectionField('backgroundColor'),
 		keyColor: getCollectionField('keyColor'),
 	},
