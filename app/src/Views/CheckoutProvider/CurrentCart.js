@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import { setCookie, getCookie, VIEWER_CART_TOKEN } from 'Utils/storage'
+import { setCookie, getCookie, removeCookie, VIEWER_CART_TOKEN } from 'Utils/storage'
 import type { Checkout, CheckoutLineItem } from 'Types/CheckoutTypes'
 import { CheckoutQuery } from './queries'
 
@@ -46,7 +46,11 @@ class CurrentCart extends React.Component<Props, State> {
 			<CheckoutQuery LoadingComponent={false} variables={{ id: checkoutId }} delayQuery={!checkoutId}>
 				{(result) => {
 					const { data, loading, refetch } = result
-					const currentCart = data && data.node ? sanitizeCart(data.node) : undefined
+					const cart = data && data.node ? sanitizeCart(data.node) : undefined
+					// const isCompleted)
+					const currentCart = cart && cart.completedAt ? null : cart
+					if (cart && cart.completedAt) removeCookie(VIEWER_CART_TOKEN)
+					console.log(currentCart)
 					return children({ loading, currentCart, updateCheckoutId, refetchCart: refetch })
 				}}
 			</CheckoutQuery>
