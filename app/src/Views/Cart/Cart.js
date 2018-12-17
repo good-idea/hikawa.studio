@@ -3,7 +3,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { Button } from 'Components/Buttons'
 import type { Checkout } from 'Types/CheckoutTypes'
-import { Header3, Header4, Header5 } from 'Components/Type'
+import { Header3 } from 'Components/Type'
 import type { CheckoutConsumerProps } from '../CheckoutProvider'
 import { CheckoutConsumer } from '../CheckoutProvider'
 import Tote from './Tote'
@@ -17,7 +17,11 @@ const CartButton = styled(Button)`
 		margin-left: auto;
 		position: sticky;
 		top: ${theme.layout.spacing.double};
-		box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
+		box-shadow: 3px 3px rgba(0, 0, 0, 0.2);
+
+		&:hover {
+			box-shadow: 3px 3px rgba(0, 0, 0, 0.8);
+		}
 	`}
 `
 

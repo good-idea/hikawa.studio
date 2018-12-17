@@ -61,7 +61,7 @@ export type ProductType = {
 	id: string,
 	handle: string,
 	title: string,
-	hero: Hero,
+	hero?: Hero,
 	availableForSale?: boolean,
 	collections?: Array<CollectionType>,
 	images?: Array<ShopifyImage>,
@@ -90,5 +90,6 @@ export type CollectionType = {
 	updatedAt?: Date,
 	backgroundColor?: SanityColor,
 	keyColor?: SanityColor,
+	hero?: Hero,
 	__typename: 'Collection',
 }

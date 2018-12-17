@@ -2,11 +2,21 @@
 import styled, { css } from 'styled-components'
 
 const commonHeaderStyles = css`
-	${({ theme, align, weight, color }) => `
-		font-weight: ${theme.type.weight[weight] || theme.type.weight.semi};
+	${({ theme, align, weight, color, family }) => `
+		font-weight: ${theme.type.weight[weight] || family === 'serif' ? theme.type.weight.normal : theme.type.weight.semi};
+		font-family: ${theme.type.fontFamily[family] || theme.type.fontFamily.sans};
 		color: ${theme.color[color] || 'inherit'};
 		text-align: ${align || 'inherit'};
 		margin: 0.3em 0;
+
+		&:first-child {
+			margin-top: 0;
+		}
+		
+		&:last-child {
+			margin-bottom: 0;
+		}
+
 	`};
 `
 
@@ -73,6 +83,14 @@ export const P = styled.p`
 
 		&:after {
 			content: '\00a0\00a0';
+		}
+
+		&:first-child {
+			margin-top: 0;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
 		}
 	`};
 `

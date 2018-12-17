@@ -90,6 +90,7 @@ class CouponCode extends React.Component<Props, State> {
 					onChange={this.handleChange}
 					name="coupon"
 					ref={this.inputRef}
+					autocomplete="off"
 					style={{ marginBottom: '10px' }}
 				/>
 				<Button type="button" enabled={hasDiscount || value.length > 0} onClick={hasDiscount ? this.removeDiscount : this.submit}>

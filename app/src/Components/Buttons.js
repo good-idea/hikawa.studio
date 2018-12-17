@@ -15,10 +15,6 @@ export const Button = styled.button`
 		transition: 0.1s;
 		pointer-events: ${disabled ? 'none' : 'auto'};
 		min-width: ${size === 'medium' ? '120px' : '0'};
-
-		&:hover {
-			background-color: ${theme.color.offset};
-		}
 	`};
 `
 

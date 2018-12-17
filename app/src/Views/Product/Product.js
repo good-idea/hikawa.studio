@@ -23,10 +23,11 @@ const Wrapper = styled.div`
 `
 
 const Layout = styled.div`
-	${({ theme }) => css`
+	${({ theme, withHero }) => css`
 		display: grid;
 		grid-template-columns: 50% 50%;
 		grid-column-gap: ${theme.layout.spacing.triple};
+		padding-top: ${withHero ? 0 : '250px'};
 
 		${theme.media.queries.tablet`
 			grid-template-columns: 100%;
@@ -100,7 +101,7 @@ const Product = ({ product, cart, loading }: Props) => {
 			<Helmet seo={seo} />
 			{product.hero && <Hero images={product.hero.images} view="standard" />}
 			<Column width="wide">
-				<Layout>
+				<Layout withHero={Boolean(product.hero && product.hero.images)}>
 					<Images>
 						{product.images &&
 							product.images.map((image) => (

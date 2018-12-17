@@ -41,7 +41,13 @@ const Block = ({ block, number }: Props) => {
 		case 'header':
 			return <Header {...contentBlock} />
 		case 'pageLink':
-			return <PageLink number={number} item={contentBlock} imageSizes="450px" />
+			return (
+				<PageLink
+					number={number}
+					item={contentBlock}
+					imageSizes={`(min-width: 600px) 90vw, ${contentBlock.fullWidth ? 'calc(100vw - 80px)' : '450px'}`}
+				/>
+			)
 		default:
 			throw new Error(`There is no content component for "${contentBlock._type}"`)
 	}

@@ -178,6 +178,7 @@ class CheckoutProviderBase extends React.Component<Props, State> {
 		const { children, currentCart } = this.props
 		const { userErrors, isOpen } = this.state
 		const { openCart, closeCart, addToCart, updateQuantity, applyDiscount, removeDiscount } = this
+		console.log(currentCart)
 		const value = {
 			addToCart,
 			currentCart,

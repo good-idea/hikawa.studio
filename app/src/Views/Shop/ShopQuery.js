@@ -3,10 +3,13 @@ import gql from 'graphql-tag'
 import type { CollectionType } from 'Types/ProductTypes'
 import type { QueryWrapper } from 'GraphQL/Query'
 import { withDefaultQuery } from 'GraphQL/Query'
-import { colorPartial, shopifyImageFields, sanityImageFields } from '../../GraphQL/partials'
+import { colorPartial, shopifyImageFields, heroPartial } from '../../GraphQL/partials'
 
 const query = /* GraphQL */ gql`
 	query ShopQuery {
+		shopPage {
+			${heroPartial}
+		}
 		shop {
 			collections(first: 50) {
 				edges {
@@ -15,9 +18,7 @@ const query = /* GraphQL */ gql`
 						title
 						description
 						handle
-						backgroundImage {
-							${sanityImageFields}
-						}
+						${heroPartial}
 						backgroundColor {
 							${colorPartial}
 						}

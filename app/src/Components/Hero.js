@@ -9,7 +9,7 @@ const HeroWrapper = styled.div`
 	overflow: hidden;
 	width: 100%;
 	height: 30vh;
-	max-height: 85vh;
+	max-height: 70vh;
 	height: 100%;
 `
 

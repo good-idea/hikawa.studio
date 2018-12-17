@@ -28,6 +28,7 @@ export const checkoutFields = `
 	email
 	paymentDue
 	webUrl
+	completedAt
 	shippingLine {
 		handle
 		price
