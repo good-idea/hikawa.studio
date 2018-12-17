@@ -1,6 +1,7 @@
 import S from '@sanity/desk-tool/structure-builder'
 import { MdSettings, MdHome } from 'react-icons/md'
 import { TiDevicePhone, TiThSmallOutline, TiDocument } from 'react-icons/ti'
+import { FaShoppingBag } from 'react-icons/fa'
 
 export default () =>
 	S.list()
@@ -29,6 +30,17 @@ export default () =>
 				.title('Collections')
 				.icon(TiThSmallOutline)
 				.child(S.documentTypeList('collection')),
+
+			// Shop Page
+			S.listItem()
+				.title('Shop')
+				.icon(FaShoppingBag)
+				.child(
+					S.editor()
+						.id('shop')
+						.schemaType('shop')
+						.documentId('shop'),
+				),
 
 			// Pages
 			S.listItem()

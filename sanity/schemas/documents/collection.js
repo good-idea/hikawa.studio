@@ -18,9 +18,24 @@ const page = {
 			validation: (Rule) => Rule.required(),
 		},
 		{
-			title: 'Background Image',
-			name: 'backgroundImage',
-			type: 'imageWithAltText',
+			title: 'Banner',
+			name: 'hero',
+			type: 'object',
+			fields: [
+				{
+					title: 'Images',
+					name: 'images',
+					type: 'array',
+					of: [
+						{
+							type: 'image',
+							options: {
+								hotspot: true,
+							},
+						},
+					],
+				},
+			],
 		},
 		{
 			title: 'Background Color',

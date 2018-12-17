@@ -80,7 +80,6 @@ class PageLinkPreview extends React.Component {
 
 	render() {
 		const { src, title, subtitle } = this.state
-		console.log(this.props)
 		return (
 			<Wrapper>
 				<span role="img" aria-label="Links to:">
@@ -112,7 +111,7 @@ const pageLink = {
 					type: 'reference',
 					name: 'page',
 					title: 'Page',
-					to: [{ type: 'page' }],
+					to: [{ type: 'page' }, { type: 'shop' }],
 				},
 				{
 					type: 'url',
@@ -158,6 +157,11 @@ const pageLink = {
 				},
 			],
 		},
+		{
+			type: 'boolean',
+			name: 'textOnTop',
+			title: 'Display text on top of image',
+		},
 
 		{
 			type: 'boolean',
@@ -173,7 +177,6 @@ const pageLink = {
 			label: 'label',
 		},
 		prepare: (prepared) => {
-			console.log(prepared)
 			const { link, label, images } = prepared
 			return { link, label, image: images && images[0] }
 		},
