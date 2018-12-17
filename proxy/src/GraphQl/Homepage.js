@@ -6,10 +6,14 @@ export const homepageSchema = /* GraphQL */ `
 		homepage: Homepage
 	}
 
+	type Hero {
+		images: [SanityImage]
+	}
+
 	type Homepage {
 		title: String
 		content: [ContentBlock]
-		banner: [SanityImage]
+		hero: Hero
 		seo: SEOSettings
 	}
 `

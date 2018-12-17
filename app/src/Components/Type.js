@@ -14,7 +14,8 @@ export const Header1 = styled.h1`
 	${commonHeaderStyles};
 	${({ theme }) => css`
 		font-size: ${theme.type.size.h1};
-
+		font-family: ${theme.type.fontFamily.serif};
+		font-weight: ${theme.type.weight.normal};
 		${theme.media.queries.tablet`font-size: calc(${theme.type.size.h1} * 0.8)`};
 		${theme.media.queries.phone`font-size: calc(${theme.type.size.h1} * 0.7)`};
 	`};
@@ -24,7 +25,8 @@ export const Header2 = styled.h2`
 	${commonHeaderStyles};
 	${({ theme }) => css`
 		font-size: ${theme.type.size.h2};
-
+		font-family: ${theme.type.fontFamily.serif};
+		font-weight: ${theme.type.weight.normal};
 		${theme.media.queries.tablet`font-size: calc(${theme.type.size.h2} * 0.8);`}
 		${theme.media.queries.phone`font-size: calc(${theme.type.size.h2} * 0.7);`}
 	`};

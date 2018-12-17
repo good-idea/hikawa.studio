@@ -15,12 +15,7 @@ export const sharedTypeDefs = /* GraphQL */ `
 	interface ContentBlock {
 		_type: String!
 		_key: String!
-	}
-
-	type Header implements ContentBlock {
-		_key: String!
-		_type: String!
-		text: String
+		fullWidth: Boolean
 	}
 
 	type ColorPalette {
@@ -49,7 +44,7 @@ export const sharedTypeDefs = /* GraphQL */ `
 		palette: Palette
 	}
 
-	type SanityImage implements ContentBlock & TextNode {
+	type SanityImage implements TextNode {
 		_key: String!
 		_type: String!
 		_ref: String
@@ -65,6 +60,7 @@ export const sharedTypeDefs = /* GraphQL */ `
 		_key: String!
 		_type: String!
 		blocks: [TextNode!]!
+		fullWidth: Boolean
 	}
 
 	interface TextNode {
@@ -104,6 +100,7 @@ export const sharedTypeDefs = /* GraphQL */ `
 		label: String
 		caption: String
 		link: LinkedItem
+		fullWidth: Boolean
 	}
 
 	type SEOSettings {

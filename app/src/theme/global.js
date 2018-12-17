@@ -9,6 +9,8 @@ export const GlobalStyles = createGlobalStyle`
 	${normalized}
 	${fonts}
 
+	@import url('https://fonts.googleapis.com/css?family=Amiri');
+
 	html {
 		font-size: 10px;
 		font-family: ${(props) => props.theme.type.fontFamily.sans};

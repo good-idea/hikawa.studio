@@ -5,6 +5,7 @@ import { getProductField } from '../utils'
 const resolvers = {
 	Product: {
 		related: getProductField('related'),
+		hero: getProductField('hero'),
 		// related: async (parent, args, context, info) => {
 		// 	const relatedItems = await getProductField('related')(parent)
 		// 	console.log(relatedItems)
