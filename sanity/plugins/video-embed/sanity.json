@@ -1,0 +1,21 @@
+{
+	"parts": [
+		{
+			"name": "part:@sanity/form-builder/input/video-embed",
+			"description": "A video selector field for Sanity"
+		},
+		{
+			"implements": "part:@sanity/form-builder/input/video-embed",
+			"path": "./components/SelectorPreview.js"
+		},
+		{
+			"name": "part:@sanity/form-builder/input/video-embed/schema",
+			"description": "A Lottie animation field for Sanity"
+		},
+
+		{
+			"implements": "part:@sanity/form-builder/input/video-embed/schema",
+			"path": "./schema.js"
+		}
+	]
+}

@@ -4,6 +4,7 @@ import createSchema from 'part:@sanity/base/schema-creator'
 // Then import schema types from any plugins that might expose them
 import schemaTypes from 'all:part:@sanity/base/schema-type'
 import shopifySelector from 'part:@sanity/form-builder/input/shopifySelector/schema'
+import videoSelector from 'part:@sanity/form-builder/input/video-embed/schema'
 
 /**
  * Types
@@ -21,6 +22,7 @@ export default createSchema({
 		...Object.values(objects),
 		...Object.values(documents),
 		/* Your types here! */
+		videoSelector,
 		shopifySelector,
 	]),
 })

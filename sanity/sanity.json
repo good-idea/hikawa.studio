@@ -15,7 +15,8 @@
 		"@sanity/desk-tool",
 		"shopify-selector",
 		"@sanity/vision",
-		"@sanity/color-input"
+		"@sanity/color-input",
+		"video-embed"
 	],
 	"parts": [
 		{

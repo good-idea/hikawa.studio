@@ -8,14 +8,35 @@ const page = {
 	icon: TiDocument,
 	fields: [
 		fields.pageTitle,
-		fields.pageBanner,
 		fields.pageSlug,
+		{
+			title: 'Banner',
+			name: 'hero',
+			type: 'object',
+			fields: [
+				{
+					title: 'Images',
+					name: 'images',
+					type: 'array',
+					of: [
+						{
+							type: 'image',
+							options: {
+								hotspot: true,
+							},
+						},
+					],
+					validation: (Rule) => Rule.required().max(2),
+				},
+			],
+		},
 		{
 			name: 'content',
 			title: 'Text',
 			type: 'array',
 			of: [
 				{ type: 'block' },
+				{ type: 'videoEmbed' },
 				{
 					type: 'image',
 					fields: [
