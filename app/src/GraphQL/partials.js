@@ -57,6 +57,13 @@ export const richTextPartial = `
 			href
 		}
 	}
+	...on VideoEmbed {
+		_type
+		_key
+		alt
+		service
+		videoId
+	}
 	...on SanityImage {
 		${sanityImageFields}
 	}

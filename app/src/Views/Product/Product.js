@@ -99,7 +99,7 @@ const Product = ({ product, cart, loading }: Props) => {
 	return (
 		<Wrapper loading={loading}>
 			<Helmet seo={seo} />
-			{product.hero && <Hero images={product.hero.images} view="standard" />}
+			<Hero hero={product.hero} view="standard" />
 			<Column width="wide">
 				<Layout withHero={Boolean(product.hero && product.hero.images)}>
 					<Images>

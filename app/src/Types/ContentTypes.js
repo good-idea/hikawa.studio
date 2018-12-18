@@ -81,10 +81,20 @@ export type Mark = {
 	children: React.Node,
 }
 
+type VideoEmbed = {
+	_key: string,
+	_type: string,
+	service: string,
+	videoId: string,
+	alt?: string,
+}
+
+export type RichTextBlock = TextNode | SanityImage | VideoEmbed
+
 export type TextBlock = {
 	_type: string,
 	_key: string,
-	blocks?: Array<TextNode | SanityImage>,
+	blocks?: Array<RichTextBlock>,
 	fullWidth?: boolean,
 }
 

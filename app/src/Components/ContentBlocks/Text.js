@@ -2,9 +2,8 @@
 import * as React from 'react'
 import BlockContent from '@sanity/block-content-to-react'
 import { Link } from 'react-router-dom'
-import type { TextNode, Mark } from 'Types/ContentTypes'
-import type { SanityImage as SanityImageType } from 'Types/MediaTypes'
-import SanityImage from 'Components/Media/SanityImage'
+import type { RichTextBlock, Mark } from 'Types/ContentTypes'
+import { SanityImage, VideoEmbed } from 'Components/Media'
 import { parseUrl } from 'Utils/parsing'
 import { TextAnchor, Li, Ul, Ol, Header1, Header2, Header3, Header4, Header5, Header6, P, BlockQuote } from 'Components/Type'
 
@@ -17,6 +16,7 @@ const serializers = {
 	block: (props): React.Node => {
 		const style = props.node.style || 'normal'
 		if (props.node._type === 'image') return <SanityImage image={props.node} />
+		if (props.node._type === 'videoEmbed') return <VideoEmbed video={props.node} />
 
 		switch (style) {
 			case 'h1':
@@ -57,7 +57,7 @@ const serializers = {
 }
 
 type Props = {
-	blocks: Array<TextNode | SanityImageType>,
+	blocks: Array<RichTextBlock>,
 }
 
 const Text = ({ blocks }: Props) => (

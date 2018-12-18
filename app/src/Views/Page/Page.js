@@ -6,14 +6,11 @@ import Query from 'GraphQL/Query'
 import Text from 'Components/ContentBlocks/Text'
 import { Column } from 'Components/Layout'
 import Helmet from 'Components/Helmet'
+import Hero from 'Components/Hero'
 import pageQuery from './pageQuery'
 import Gallery from './Gallery'
 
-const Wrapper = styled.div`
-	${({ theme }) => css`
-		margin: ${theme.layout.spacing.triple} auto;
-	`}
-`
+const Wrapper = styled.div``
 /**
  * Page
  */
@@ -26,11 +23,12 @@ const Page = (props: Props) => (
 	<Query query={pageQuery} variables={{ slug: props.match.params.slug }}>
 		{({ data, loading }) => {
 			if (loading || !data || !data.page) return null
-			const { content, gallery, seo } = data.page
-
+			const { content, gallery, seo, hero } = data.page
+			console.log(data.page)
 			return (
 				<Wrapper>
 					{seo && <Helmet seo={seo} />}
+					<Hero hero={hero} view="standard" />
 					<Column>{content && <Text blocks={content} />}</Column>
 					{gallery && gallery.length ? (
 						<Column width="xWide">

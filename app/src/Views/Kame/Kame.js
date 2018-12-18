@@ -43,7 +43,7 @@ type Props = {
 const Kame = ({ homepage }: Props) => {
 	return (
 		<HomepageWrapper>
-			{homepage.hero ? <Hero images={homepage.hero.images} view="carousel" /> : null}
+			<Hero hero={homepage.hero} view="carousel" />
 			<Column width="wide">
 				<FadeIn delay={500}>
 					<Grid>
