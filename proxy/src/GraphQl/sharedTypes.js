@@ -56,6 +56,14 @@ export const sharedTypeDefs = /* GraphQL */ `
 		size: Int
 	}
 
+	type VideoEmbed implements TextNode {
+		_type: String!
+		_key: String!
+		alt: String
+		service: String!
+		videoId: String!
+	}
+
 	type RichText implements ContentBlock {
 		_key: String!
 		_type: String!

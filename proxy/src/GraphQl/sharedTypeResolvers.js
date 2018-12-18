@@ -25,19 +25,21 @@ export const getLink = async (parent, args, context, info) => {
 
 export const sharedResolvers = {
 	TextNode: {
-		__resolveType: obj => {
+		__resolveType: (obj) => {
 			switch (obj._type) {
 				case 'block':
 					return 'TextBlock'
 				case 'image':
 					return 'SanityImage'
+				case 'videoEmbed':
+					return 'VideoEmbed'
 				default:
 					return null
 			}
 		},
 	},
 	ContentBlock: {
-		__resolveType: obj => {
+		__resolveType: (obj) => {
 			switch (obj._type) {
 				case 'pageLink':
 					return 'PageLink'
@@ -55,14 +57,14 @@ export const sharedResolvers = {
 		},
 	},
 	SanityImage: {
-		_ref: parent => parent.asset && parent.asset._ref,
+		_ref: (parent) => parent.asset && parent.asset._ref,
 		_type: () => 'image',
 		// create a fake 'key', this helps with prop types on the frontend
-		_key: parent => {
+		_key: (parent) => {
 			return parent._key || (parent.asset && parent.asset._ref)
 		},
-		id: parent => parent.asset && parent.asset._ref,
-		altText: async parent => {
+		id: (parent) => parent.asset && parent.asset._ref,
+		altText: async (parent) => {
 			const altText = await getAssetField('altText')(parent)
 			return altText || ''
 		},
@@ -71,7 +73,7 @@ export const sharedResolvers = {
 		size: getAssetField('size'),
 	},
 	LinkedItem: {
-		__resolveType: obj => {
+		__resolveType: (obj) => {
 			switch (obj._type) {
 				case 'shopifyItem':
 					return obj.itemType
