@@ -44,6 +44,11 @@ export const settingsSchema = /* GraphQL */ `
 		header: HeaderNavigationSettings
 	}
 
+	type InstagramSettings {
+		title: String
+		images: [SanityImage]
+	}
+
 	type SiteSettings {
 		announcement: AnnouncementSettings
 		checkout: CheckoutSettings
@@ -53,6 +58,7 @@ export const settingsSchema = /* GraphQL */ `
 		product: ProductSettings
 		seo: SEOSettings
 		navigation: NavigationSettings
+		instagram: InstagramSettings
 	}
 `
 

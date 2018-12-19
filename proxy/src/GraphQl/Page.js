@@ -18,6 +18,7 @@ export const pageSchema = /* GraphQL */ `
 		gallery: [SanityImage]
 		hero: Hero
 		seo: SEOSettings
+		includeInstagram: Boolean
 	}
 `
 
@@ -34,5 +35,6 @@ export const pageResolvers = {
 		gallery: getRefField('gallery'),
 		hero: getRefField('hero'),
 		seo: getRefField('seo'),
+		includeInstagram: getRefField('includeInstagram'),
 	},
 }
