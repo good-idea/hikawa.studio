@@ -48,7 +48,7 @@ const Products = styled.div`
 		display: grid;
 		flex-grow: 1;
 		margin: 0 ${theme.layout.spacing.double};
-		grid-template-columns: repeat(${Math.min(count, 2)}, 1fr);
+		grid-template-columns: repeat(${Math.min(count, 3)}, 1fr);
 		grid-column-gap: ${theme.layout.spacing.single};
 		grid-row-gap: ${theme.layout.spacing.single};
 

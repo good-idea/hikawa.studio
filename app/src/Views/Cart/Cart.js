@@ -17,15 +17,15 @@ const CartButton = styled(Button)`
 		top: ${theme.layout.spacing.single};
 		box-shadow: 3px 3px rgba(0, 0, 0, 0.2);
 		font-size: 34px;
-		height: 48px;
-		width: 48px;
+		height: 42px;
+		width: 42px;
 
 		&:hover {
 			box-shadow: 3px 3px rgba(0, 0, 0, 0.8);
 		}
 
 		& > svg {
-			width: 1em;
+			width: 0.9em;
 		}
 	`}
 `

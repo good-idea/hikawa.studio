@@ -24,6 +24,7 @@ const Wrapper = styled.div`
 
 const Layout = styled.div`
 	${({ theme }) => css`
+		padding-top ${theme.layout.spacing.double};
 		display: grid;
 		grid-template-columns: 50% 50%;
 		grid-column-gap: ${theme.layout.spacing.triple};
@@ -83,10 +84,11 @@ const RelatedTitle = styled(Header2)`
 `
 
 const MobileTitle = styled(Header2)`
-	${({ theme }) => `
+	${({ theme }) => css`
 		display: none;
 
 		${theme.media.queries.phone`
+			margin: 0;
 			display: initial;
 		`}
 	`}
