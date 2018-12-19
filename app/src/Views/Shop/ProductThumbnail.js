@@ -1,14 +1,22 @@
 // @flow
 import * as React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Link } from 'react-router-dom'
 import type { CollectionType, ProductType } from 'Types/ProductTypes'
 import { ImageBox } from 'Components/Media'
 import { Header3 } from 'Components/Type'
 
 const Title = styled(Header3)`
-	opacity: 0;
-	margin-bottom: 0;
+	${({ theme }) => css`
+		opacity: 0;
+		margin-bottom: 0;
+		font-family: ${theme.type.fontFamily.serif};
+		font-weight: ${theme.type.weight.normal};
+
+		${theme.media.queries.phone`
+		opacity: 1;
+	`}
+	`}
 `
 
 const Wrapper = styled.div`
@@ -34,7 +42,7 @@ const ProductThumbnail = ({ collection, product }: Props) => (
 	<Link to={`/products/${product.handle}`}>
 		<Wrapper>
 			<ImageContainer key={product.handle} collection={collection}>
-				<ImageBox ratio={1} image={product.images && product.images[0]} />
+				<ImageBox ratio={1} sizes="(min-width: 600px) 500px, 250px" image={product.images && product.images[0]} />
 			</ImageContainer>
 			<Title>{product.title}</Title>
 		</Wrapper>

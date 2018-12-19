@@ -16,9 +16,10 @@ import PageLink from './PageLink'
 type Props = {
 	block: ContentBlock,
 	number: number,
+	largeText?: boolean,
 }
 
-const Block = ({ block, number }: Props) => {
+const Block = ({ block, number, largeText }: Props) => {
 	// PageLinks to shopifyItems that no longer exist will return `link: null`
 	if (block._type === 'pageLink' && !block.link) return null
 	const contentBlock =
@@ -43,6 +44,7 @@ const Block = ({ block, number }: Props) => {
 		case 'pageLink':
 			return (
 				<PageLink
+					largeText={largeText}
 					number={number}
 					item={contentBlock}
 					imageSizes={`(min-width: 600px) 90vw, ${contentBlock.fullWidth ? 'calc(100vw - 80px)' : '450px'}`}
@@ -51,6 +53,10 @@ const Block = ({ block, number }: Props) => {
 		default:
 			throw new Error(`There is no content component for "${contentBlock._type}"`)
 	}
+}
+
+Block.defaultProps = {
+	largeText: false,
 }
 
 export default Block

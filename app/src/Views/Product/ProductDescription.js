@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import type { ProductType, ProductVariant } from 'Types/ProductTypes'
 import type { CheckoutConsumerProps } from 'Views/CheckoutProvider'
 import type { SiteSettings } from 'Types/ContentTypes'
@@ -14,7 +14,13 @@ import { SettingsConsumer } from 'Views/SettingsProvider'
 import VariantSelector from './VariantSelector'
 
 const Title = styled(Header2)`
-	margin-top: 0;
+	${({ theme }) => css`
+		margin-top: 0;
+
+		${theme.media.queries.phone`
+			display: none;
+		`}
+	`}
 `
 
 const ExtraDescription = styled.div`
@@ -32,6 +38,14 @@ const ShowCartButton = styled.button`
 		transform: ${visible ? 'none' : 'translateX(-10px)'};
 		transition: 0.2s;
 		transition-delay: ${visible ? '0.4s' : '0'};
+	`}
+`
+
+const VariantWrapper = styled.div`
+	${({ theme }) => css`
+		${theme.media.queries.phone`
+			text-align: center;
+		`}
 	`}
 `
 
@@ -109,21 +123,26 @@ class ProductDescription extends React.Component<Props, State> {
 						<Text blocks={settings.product.text} />
 					</ExtraDescription>
 				) : null}
-				<VariantSelector variants={product.variants || []} selectVariant={this.selectVariant} selectedVariant={selectedVariant} />
-				<Button
-					size="medium"
-					onClick={this.addSelectedVariantToCart}
-					disabled={selectedVariant === undefined || selectedVariant.availableForSale === false}
-				>
-					{this.renderButtonText()}
-				</Button>
-				<div>
+				<VariantWrapper>
+					<VariantSelector
+						variants={product.variants || []}
+						selectVariant={this.selectVariant}
+						selectedVariant={selectedVariant}
+					/>
+					<Button
+						size="medium"
+						onClick={this.addSelectedVariantToCart}
+						disabled={selectedVariant === undefined || selectedVariant.availableForSale === false}
+					>
+						{this.renderButtonText()}
+					</Button>
+					<br />
 					<ShowCartButton onClick={cart.openCart} visible={showCartButton}>
 						<Header4 color="pink" weight="semi">
 							→ Continue to Checkout
 						</Header4>
 					</ShowCartButton>
-				</div>
+				</VariantWrapper>
 			</Wrapper>
 		)
 	}

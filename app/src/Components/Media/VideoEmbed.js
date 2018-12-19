@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import styled, { css, keyframes } from 'styled-components'
+import styled, { css } from 'styled-components'
 import VimeoPlayer from 'react-player/lib/players/Vimeo'
 import YouTubePlayer from 'react-player/lib/players/YouTube'
 
@@ -61,17 +61,7 @@ const Video = ({ video }: Props) => {
 	return (
 		<VideoWrapper>
 			<VideoPadding>
-				<Player
-					url={videoUrl}
-					muted
-					volume={0}
-					width="100%"
-					height="100%"
-					style={{ position: 'absolute', top: 0 }}
-					position="absolute"
-					playing
-					loop
-				/>
+				<Player url={videoUrl} width="100%" height="100%" style={{ position: 'absolute', top: 0 }} position="absolute" />
 			</VideoPadding>
 		</VideoWrapper>
 	)

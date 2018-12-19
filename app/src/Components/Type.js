@@ -46,7 +46,6 @@ export const Header3 = styled.h3`
 	${commonHeaderStyles};
 	${({ theme }) => css`
 		font-size: ${theme.type.size.h3};
-
 		${theme.media.queries.tablet`font-size: calc(${theme.type.size.h3} * 0.8);`}
 		${theme.media.queries.phone`font-size: calc(${theme.type.size.h3} * 0.7);`}
 	`};

@@ -70,6 +70,12 @@ const query = gql`
 					${richTextPartial}
 				}
 			}
+			instagram {
+				title
+				images {
+					${sanityImageFields}
+				}
+			}
 			seo {
 				name
 				description

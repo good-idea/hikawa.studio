@@ -1,12 +1,16 @@
 // @flow
 import * as React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import type { ProductVariant } from 'Types/ProductTypes'
 import { Header4, Header6 } from 'Components/Type'
 
 const Outer = styled.div`
-	${({ theme }) => `
+	${({ theme }) => css`
 		margin: ${theme.layout.spacing.double} 0;
+
+		${theme.media.queries.phone`
+			text-align: center;
+		`}
 	`};
 `
 

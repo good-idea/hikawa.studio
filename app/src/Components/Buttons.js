@@ -3,7 +3,12 @@ import styled from 'styled-components'
 
 export const Button = styled.button`
 	${({ theme, disabled, size }) => `
-		padding: ${theme.layout.spacing.half} ${theme.layout.spacing.single};
+		padding: 0 ${theme.layout.spacing.single};
+		height: 35px;
+		display: inline-flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 		font-size: ${theme.type.size.h5};
 		color: black;
 		text-transform: uppercase;
@@ -12,9 +17,12 @@ export const Button = styled.button`
 		background-color: white;
 		border: 1px solid;
 		opacity: ${disabled ? '0.25' : '1'};
-		transition: 0.1s;
 		pointer-events: ${disabled ? 'none' : 'auto'};
 		min-width: ${size === 'medium' ? '120px' : '0'};
+
+		&:hover {
+			box-shadow: 2px 2px rgb(100, 100, 100);
+		}
 	`};
 `
 

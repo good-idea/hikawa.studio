@@ -8,10 +8,7 @@ const Main = styled.main`
 		padding: 0;
 		min-height: 90vh;
 		position: relative;
-
-		${theme.media.queries.phone`
-			padding: 30vh ${theme.layout.spacing.single} ${theme.layout.spacing.triple};
-		`}
+		padding-top: ${theme.layout.navHeight};
 	`}
 `
 

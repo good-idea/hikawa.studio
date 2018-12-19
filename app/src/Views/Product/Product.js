@@ -23,11 +23,10 @@ const Wrapper = styled.div`
 `
 
 const Layout = styled.div`
-	${({ theme, withHero }) => css`
+	${({ theme }) => css`
 		display: grid;
 		grid-template-columns: 50% 50%;
 		grid-column-gap: ${theme.layout.spacing.triple};
-		padding-top: ${withHero ? 0 : '250px'};
 
 		${theme.media.queries.tablet`
 			grid-template-columns: 100%;
@@ -47,23 +46,30 @@ const Images = styled.div`
 const Description = styled.div`
 	${({ theme }) => `
 		position: sticky;
-		top: ${theme.layout.spacing.double};
+		top: calc(${theme.layout.spacing.single} * 7);
 		align-self: flex-start;
 	`}
 `
 
 const RelatedWrapper = styled.div`
-	${({ theme }) => `
+	${({ theme }) => css`
 		margin: calc(${theme.layout.spacing.triple} * 2) 0;
+
+		${theme.media.queries.phone`
+			margin: ${theme.layout.spacing.double} 0;
+		`}
 	`}
 `
 
 const RelatedItems = styled.div`
 	${({ theme }) => `
-		display: flex;
+		display: grid;
 		flex-wrap: wrap;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-column-gap: ${theme.layout.spacing.double};
+		grid-row-gap: ${theme.layout.spacing.double};
 		justify-content: center;
-		border-top: 8px dotted;
+		border-top: 1px solid rgb(100, 100, 100);
 		padding: ${theme.layout.spacing.triple} 0;
 	`}
 `
@@ -73,6 +79,16 @@ const RelatedTitle = styled(Header2)`
 		flex-basis: 100%;
 		text-align: center;
 		margin-bottom: ${theme.layout.spacing.double};
+	`}
+`
+
+const MobileTitle = styled(Header2)`
+	${({ theme }) => `
+		display: none;
+
+		${theme.media.queries.phone`
+			display: initial;
+		`}
 	`}
 `
 
@@ -102,6 +118,7 @@ const Product = ({ product, cart, loading }: Props) => {
 			<Hero hero={product.hero} view="standard" />
 			<Column width="wide">
 				<Layout withHero={Boolean(product.hero && product.hero.images)}>
+					<MobileTitle>{product.title}</MobileTitle>
 					<Images>
 						{product.images &&
 							product.images.map((image) => (
@@ -114,7 +131,7 @@ const Product = ({ product, cart, loading }: Props) => {
 				</Layout>
 				{product.related && product.related.length ? (
 					<RelatedWrapper>
-						<RelatedTitle>KEEP L@@KING</RelatedTitle>
+						<RelatedTitle>Keep Looking</RelatedTitle>
 						<RelatedItems>
 							{product.related.map((item, index) => (
 								<RelatedItem number={index} key={item._key} item={item} />

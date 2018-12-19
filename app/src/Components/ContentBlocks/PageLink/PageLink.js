@@ -45,17 +45,34 @@ const ImageWrapper = styled.div`
 	overflow: hidden;
 `
 
-const Text = styled.div`
-	opacity: 0;
-	position: absolute;
-	padding: 5px 14px 2px;
-	left: 20px;
-	bottom: 20;
-	background-color: rgba(255, 255, 255, 0.95);
+const TextWrapper = styled.div`
+	${({ theme }) => css`
+		opacity: 0;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 
-	${Wrapper}:hover & {
-		opacity: 1;
-	}
+		${Wrapper}:hover & {
+			opacity: 1;
+		}
+
+		${theme.media.queries.phone`
+			position: relative;
+			width: auto;
+			height: auto;
+			opacity: 1;
+		`}
+	`}
+`
+
+const Text = styled.div`
+	padding: 5px 14px 2px;
+	background-color: rgba(255, 255, 255, 0.95);
 `
 
 /**
@@ -66,16 +83,28 @@ type Props = {
 	item: PageLink,
 	imageSizes: string,
 	showHover?: boolean,
+	useDefaultImage?: boolean,
+	largeText?: boolean,
 }
 
-const PageLinkBlock = ({ item, imageSizes, showHover }: Props) => {
+const LargeText = styled.span`
+	${({ theme, largeText }) => css`
+		font-size: ${largeText ? '1.3em' : '1em'};
+
+		${theme.media.queries.phone`
+			font-size: 1em;
+		`}
+	`}
+`
+
+const PageLinkBlock = ({ item, imageSizes, showHover, useDefaultImage, largeText }: Props) => {
 	const { link, images, caption, label } = item
 	if (!link) return null
 	const url = getLinkUrl(link)
 	const headerText = label || (link && link.title)
 	const fallbackImage =
 		link.__typename === 'Collection' ? link.image : link.__typename === 'Product' ? link.images && link.images[0] : null
-	const primaryImage = images && images.length ? images[0] : fallbackImage
+	const primaryImage = useDefaultImage === false && images && images.length ? images[0] : fallbackImage
 	const hoverImage = images && images.length > 1 ? images[1] : null
 	const ratio = item.fullWidth ? 0.56 : 1.2
 	return (
@@ -93,12 +122,14 @@ const PageLinkBlock = ({ item, imageSizes, showHover }: Props) => {
 						</PrimaryImage>
 					)}
 				</ImageWrapper>
-				<Text>
-					<Header3 family="serif" align="center">
-						{headerText}
-					</Header3>
-					{caption && <Header5>{caption}</Header5>}
-				</Text>
+				<TextWrapper>
+					<Text>
+						<Header3 family="serif" align="center">
+							<LargeText largeText={largeText}>{headerText}</LargeText>
+						</Header3>
+						{caption && <Header5>{caption}</Header5>}
+					</Text>
+				</TextWrapper>
 			</Wrapper>
 		</Link>
 	)
@@ -106,6 +137,8 @@ const PageLinkBlock = ({ item, imageSizes, showHover }: Props) => {
 
 PageLinkBlock.defaultProps = {
 	showHover: false,
+	useDefaultImage: false,
+	largeText: false,
 }
 
 export default PageLinkBlock

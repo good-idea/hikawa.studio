@@ -1,21 +1,27 @@
 // @flow
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import type { ContentBlocks, Hero as HeroType } from 'Types/ContentTypes'
 import Block from 'Components/ContentBlocks'
 import Hero from 'Components/Hero'
 import { Column } from 'Components/Layout'
 import { FadeIn } from 'Components/Effects'
+import Instagram from 'Components/Instagram'
 import HomepageQuery from './homepageQuery'
 import { SettingsConsumer } from '../SettingsProvider'
 import { HomepageWrapper } from './styled'
 
 const Grid = styled.div`
-	${({ theme }) => `
+	${({ theme }) => css`
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		grid-row-gap: ${theme.layout.spacing.double};
 		grid-column-gap: ${theme.layout.spacing.double};
+
+		${theme.media.queries.phone`
+			grid-row-gap: ${theme.layout.spacing.single};
+			grid-column-gap: ${theme.layout.spacing.single};
+		`}
 	`}
 `
 
@@ -51,10 +57,11 @@ const Kame = ({ homepage }: Props) => {
 						{homepage.content &&
 							homepage.content.map((block, index) => (
 								<BlockWrapper key={block._key} type={block._type} fullWidth={block.fullWidth}>
-									<Block block={block} number={index} />
+									<Block block={block} number={index} largeText />
 								</BlockWrapper>
 							))}
 					</Grid>
+					<Instagram />
 				</FadeIn>
 			</Column>
 		</HomepageWrapper>

@@ -12,27 +12,30 @@ export const Wrapper = styled.footer`
 		background-size: cover;
 		background-position: center;
 		font-weight: ${theme.type.weight.semi};
+		background-image: url('/images/clouds_KAME.jpg');
 
 		${theme.media.queries.tablet`
 			flex-direction: column;
 			text-align: center;
 			padding: ${theme.layout.spacing.triple}; 
 		`}
-	`};
 
-	& a {
-		color: inherit;
+		& a {
+			color: inherit;
 
-		&:hover {
-			color: white;
+			&:hover {
+				color: ${theme.color.pink};
+			}
 		}
-	}
+	`};
 `
 
 export const FooterLink = styled(Header4)`
-	&:hover {
-		color: white;
-	}
+	${({ theme }) => `
+		&:hover {
+			color: ${theme.color.pink};
+		}
+	`}
 `
 
 export const FooterSection = styled.div`

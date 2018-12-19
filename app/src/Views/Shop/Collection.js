@@ -1,45 +1,61 @@
 // @flow
 import * as React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Header2 } from 'Components/Type'
 import type { CollectionType } from 'Types/ProductTypes'
-import { sanityColorToRGBA } from 'Utils/sanity'
 import { Column } from 'Components/Layout'
 import ProductThumbnail from './ProductThumbnail'
 
 const Wrapper = styled.div`
-	${({ theme, collection }) => `
+	${({ theme }) => css`
 		padding: ${theme.layout.spacing.triple};
-		background-color: ${sanityColorToRGBA(collection.backgroundColor)};
-		background-image: url(${collection.backgroundImage && collection.backgroundImage.url});
 		background-size: cover;
 		background-position: center;
-		color: ${sanityColorToRGBA(collection.keyColor)};
-	`};
+
+		${theme.media.queries.phone`
+			padding: ${theme.layout.spacing.single};
+		`}
+	`}
 `
 
 const Inner = styled.div`
-	position: relative;
-	display: flex;
-	justify-content: center;
+	${({ theme }) => css`
+		position: relative;
+		display: flex;
+		justify-content: center;
+
+		${theme.media.queries.phone`
+			display: block;
+		`}
+	`}
 `
 
 const Title = styled(Header2)`
-	${({ theme }) => `
+	${({ theme }) => css`
 		flex-basis: 200px;
 		text-align: right;
 		padding-right: ${theme.layout.spacing.double};
+
+		${theme.media.queries.phone`
+			text-align: left;
+			padding-right: 0;
+		`}
 	`}
 `
 
 const Products = styled.div`
-	${({ theme, count }) => `
+	${({ theme, count }) => css`
 		display: grid;
 		flex-grow: 1;
 		margin: 0 ${theme.layout.spacing.double};
-		grid-template-columns: repeat(${Math.min(count, 3)}, 1fr); 
+		grid-template-columns: repeat(${Math.min(count, 2)}, 1fr);
 		grid-column-gap: ${theme.layout.spacing.single};
 		grid-row-gap: ${theme.layout.spacing.single};
+
+		${theme.media.queries.phone`
+			grid-template-columns: repeat(2, 1fr); 
+			margin: 0;
+		`}
 	`};
 `
 

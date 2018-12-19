@@ -9,6 +9,7 @@ const query = gql`
 			slug
 			${heroPartial}
 			${seoPartial}
+			includeInstagram
 			content {
 				${richTextPartial}
 			}

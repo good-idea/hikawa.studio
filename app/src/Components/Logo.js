@@ -5,8 +5,7 @@ import { Link } from 'react-router-dom'
 import { SettingsConsumer } from 'Views/SettingsProvider'
 
 const Image = styled.img`
-	width: 350px;
-	max-width: calc(100vw - 120px);
+	max-width: 100%;
 `
 
 /**

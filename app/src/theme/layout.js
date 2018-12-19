@@ -28,5 +28,5 @@ export const defaults = {
 	columnWidth: columns.medium,
 }
 
-export const navHeight = '240px'
+export const navHeight = '60px'
 export const announcementHeight = '45px'

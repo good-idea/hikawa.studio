@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import type { SanityImage } from 'Types/MediaTypes'
 import { Image } from 'Components/Media'
 
@@ -8,8 +8,18 @@ const HeroWrapper = styled.div`
 	position: relative;
 	overflow: hidden;
 	width: 100%;
-	max-height: 70vh;
-	height: 100%;
+	padding-bottom: 45%;
+`
+
+const EmptyHero = styled.div`
+	${({ theme }) => css`
+		height: 100px;
+		background: whitemoke;
+
+		${theme.media.queries.phone`
+		height: 30px;
+	`}
+	`}
 `
 
 const ImageWrapper = styled.div`
@@ -52,7 +62,9 @@ const Hero = ({ hero, view }: Props) =>
 				</ImageWrapper>
 			))}
 		</HeroWrapper>
-	) : null
+	) : (
+		<EmptyHero />
+	)
 
 Hero.defaultProps = {
 	view: 'standard',
