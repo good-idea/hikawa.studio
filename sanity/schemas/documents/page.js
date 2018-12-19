@@ -71,6 +71,11 @@ const page = {
 				},
 			],
 		},
+		{
+			name: 'includeInstagram',
+			title: 'Include Instagram links',
+			type: 'boolean',
+		},
 
 		fields.pageSeo,
 	],

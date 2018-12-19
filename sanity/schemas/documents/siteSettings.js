@@ -6,7 +6,7 @@ const page = {
 		{
 			name: 'logo',
 			label: 'Logo',
-			type: 'imageWithAltText',
+			type: 'image',
 		},
 		{
 			name: 'announcement',
@@ -160,6 +160,28 @@ const page = {
 							],
 						},
 					],
+				},
+			],
+		},
+		{
+			name: 'instagram',
+			type: 'object',
+			fields: [
+				{
+					title: 'Title',
+					name: 'title',
+					type: 'string',
+				},
+				{
+					title: 'Images',
+					name: 'images',
+					type: 'array',
+					of: [
+						{
+							type: 'image',
+						},
+					],
+					validation: (Rule) => Rule.max(5),
 				},
 			],
 		},
