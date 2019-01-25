@@ -9,11 +9,18 @@ export const shopSchema = /* GraphQL */ `
 	type ShopPage {
 		hero: Hero
 		content: [ContentBlock]
+		slug: String!
+		_type: String!
+		_key: String!
+		fullWidth: Boolean
 	}
 `
 
 export const shopResolvers = {
 	Query: {
 		shopPage: async () => client.getById('shop'),
+	},
+	ShopPage: {
+		slug: () => 'shop',
 	},
 }

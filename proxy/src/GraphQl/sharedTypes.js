@@ -8,7 +8,7 @@ export const sharedTypeDefs = /* GraphQL */ `
 		url: String!
 	}
 
-	union LinkedItem = Product | Collection | Page | UrlLink
+	union LinkedItem = Product | Collection | Page | UrlLink | ShopPage
 
 	# Content Blocks
 
