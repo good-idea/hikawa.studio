@@ -1,8 +1,5 @@
 // @flow
 import gql from 'graphql-tag'
-import type { CollectionType } from 'Types/ProductTypes'
-import type { QueryWrapper } from 'GraphQL/Query'
-import { withDefaultQuery } from 'GraphQL/Query'
 import { colorPartial, shopifyImageFields, heroPartial } from '../../GraphQL/partials'
 
 const query = /* GraphQL */ gql`
@@ -48,12 +45,4 @@ const query = /* GraphQL */ gql`
 	}
 `
 
-type Response = {
-	shop: {
-		collection: Array<CollectionType>,
-	},
-}
-
-const ShopQuery: QueryWrapper<Response> = withDefaultQuery(query)
-
-export default ShopQuery
+export default query

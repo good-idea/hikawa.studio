@@ -22,8 +22,6 @@ const getImageUrl = (image: SanityImage | ShopifyImage): string | null =>
 
 const KameHelmet = ({ seo, settings, isHomepage }: Props) => {
 	if (!settings) return null
-	// console.log('*')
-	// return null
 	const { name, description, image } = seo
 	const siteTitle = settings.seo.name || 'KAME'
 	const title = !isHomepage && name && name.length ? `${name} | ${siteTitle}` : siteTitle

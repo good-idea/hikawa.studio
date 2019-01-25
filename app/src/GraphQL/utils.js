@@ -16,16 +16,18 @@ export const unwindEdges = <T>(o: T): T => {
 							// Pull out the 'pageInfo' prop and rename it
 							R.assoc(`${key.replace(/Connection$/, '')}PageInfo`, value.pageInfo || {}),
 							// And pluck out the nodes
+							// $FlowFixMe
 							R.assoc(key.replace(/Connection$/, ''), R.pluck('node', value.edges).map(unwindEdges)),
 					  )(acc)
 					: // otherwise, if it's an object (and not null bc null is an object)
-					  value && typeof value === 'object'
-						? // unwind it
-						  R.assoc(key, Array.isArray(value) ? value.map(unwindEdges) : unwindEdges(value))(acc)
-						: // lastly, return the value as is
-						  R.assoc(key, value)(acc),
+					value && typeof value === 'object'
+					? // unwind it
+					  R.assoc(key, Array.isArray(value) ? value.map(unwindEdges) : unwindEdges(value))(acc)
+					: // lastly, return the value as is
+					  R.assoc(key, value)(acc),
 			{},
 		),
+		// $FlowFixMe
 	)(o)
 }
 

@@ -50,7 +50,6 @@ class CurrentCart extends React.Component<Props, State> {
 					// const isCompleted)
 					const currentCart = cart && cart.completedAt ? null : cart
 					if (cart && cart.completedAt) removeCookie(VIEWER_CART_TOKEN)
-					console.log(currentCart)
 					return children({ loading, currentCart, updateCheckoutId, refetchCart: refetch })
 				}}
 			</CheckoutQuery>

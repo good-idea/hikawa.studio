@@ -1,6 +1,7 @@
 // @flow
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch } from 'react-router-dom'
+import Route from 'Components/Route'
 import { Main } from 'Components/Layout'
 import Announcement from 'Components/Announcement'
 import NavMenu from './Menu'

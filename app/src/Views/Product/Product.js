@@ -4,7 +4,6 @@ import styled, { css } from 'styled-components'
 import type { Match } from 'react-router-dom'
 import type { ProductType } from 'Types/ProductTypes'
 import type { CheckoutConsumerProps } from 'Views/CheckoutProvider'
-import Query from 'GraphQL/Query'
 import { Column } from 'Components/Layout'
 import { Image } from 'Components/Media'
 import { CheckoutConsumer } from 'Views/CheckoutProvider'
@@ -12,7 +11,6 @@ import { Header2 } from 'Components/Type'
 import Helmet from 'Components/Helmet'
 import Hero from 'Components/Hero'
 import ProductDescription from './ProductDescription'
-import productQuery from './productQuery'
 import RelatedItem from './RelatedItem'
 
 const Wrapper = styled.div`
@@ -98,10 +96,6 @@ const MobileTitle = styled(Header2)`
  * Product
  */
 
-type BaseProps = {
-	match: Match,
-}
-
 type Props = {
 	product: ProductType,
 	cart: CheckoutConsumerProps,
@@ -146,20 +140,13 @@ const Product = ({ product, cart, loading }: Props) => {
 	)
 }
 
-export default ({ match }: BaseProps) => {
-	return (
-		<CheckoutConsumer>
-			{(cart) => (
-				<Query query={productQuery} variables={{ handle: match.params.handle }}>
-					{({ data, loading }) =>
-						data && data.shop && cart && <Product product={data.shop.productByHandle} loading={loading} cart={cart} />
-					}
-				</Query>
-			)}
-		</CheckoutConsumer>
-	)
+type BaseProps = {
+	data: any,
+	loading: boolean,
 }
 
-// export default (props: BaseProps) => {
-// 	return <Composed {...props}>{({ product, cart }) => <Product product={product} cart={cart} />}</Composed>
-// }
+export default ({ data, loading }: BaseProps) => (
+	<CheckoutConsumer>
+		{(cart) => data && data.shop && cart && <Product cart={cart} product={data.shop.productByHandle} loading={loading} />}
+	</CheckoutConsumer>
+)

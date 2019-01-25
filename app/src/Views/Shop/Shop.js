@@ -2,7 +2,6 @@
 import * as React from 'react'
 import type { CollectionType } from 'Types/ProductTypes'
 import Hero from 'Components/Hero'
-import ShopQuery from './ShopQuery'
 import Collection from './Collection'
 
 /**
@@ -25,4 +24,12 @@ const Shop = ({ collections, shopPage }: Props) => {
 	) : null
 }
 
-export default () => <ShopQuery>{({ data }) => <Shop collections={data.shop.collections} shopPage={data.shopPage} />}</ShopQuery>
+type BaseProps = {
+	data: any,
+}
+
+export default ({ data }: BaseProps) => <Shop collections={data.shop.collections} shopPage={data.shopPage} />
+
+// export default () => (
+// 	<Query query={shopQuery}>{({ data }) => <Shop collections={data.shop.collections} shopPage={data.shopPage} />}</Query>
+// )

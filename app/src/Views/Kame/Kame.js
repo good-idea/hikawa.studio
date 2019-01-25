@@ -7,7 +7,6 @@ import Hero from 'Components/Hero'
 import { Column } from 'Components/Layout'
 import { FadeIn } from 'Components/Effects'
 import Instagram from 'Components/Instagram'
-import HomepageQuery from './homepageQuery'
 import { SettingsConsumer } from '../SettingsProvider'
 import { HomepageWrapper } from './styled'
 
@@ -68,10 +67,10 @@ const Kame = ({ homepage }: Props) => {
 	)
 }
 
-export default () => (
-	<SettingsConsumer>
-		{(siteSettings) => (
-			<HomepageQuery>{({ data }) => (data ? <Kame siteSettings={siteSettings} {...data} /> : null)}</HomepageQuery>
-		)}
-	</SettingsConsumer>
+type BaseProps = {
+	data: any,
+}
+
+export default ({ data }: BaseProps) => (
+	<SettingsConsumer>{(siteSettings) => (data ? <Kame siteSettings={siteSettings} {...data} /> : null)}</SettingsConsumer>
 )
