@@ -1,5 +1,6 @@
 // @flow
 import client from '../services/sanity'
+import { getRefField } from './utils'
 
 export const shopSchema = /* GraphQL */ `
 	extend type Query {
@@ -13,6 +14,7 @@ export const shopSchema = /* GraphQL */ `
 		_type: String!
 		_key: String!
 		fullWidth: Boolean
+		seo: SEOSettings
 	}
 `
 
@@ -22,5 +24,6 @@ export const shopResolvers = {
 	},
 	ShopPage: {
 		slug: () => 'shop',
+		seo: getRefField('seo'),
 	},
 }
