@@ -1,7 +1,7 @@
 {
 	"version": 2,
 	"name": "kame-store",
-	"alias": ["www.kame.store", "kame.store"],
+	"alias": ["www.hikawa.studio", "hikawa.studio"],
 	"routes": [
 		{ "src": "^/js/(.*)", "dest": "/js/$1" },
 		{ "src": "^/fonts/(.*)", "dest": "/fonts/$1" },
