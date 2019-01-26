@@ -6,7 +6,7 @@ const common = require('./common')
 
 const production = {
 	mode: 'production',
-	entry: ['@babel/polyfill', './src/app/index.js'],
+	entry: ['./src/app/index.js'],
 	output: {
 		path: path.resolve(__dirname, '..', 'public', 'js'),
 		publicPath: '/js/',
@@ -19,6 +19,9 @@ const production = {
 			'process.env.NODE_ENV': JSON.stringify('production'),
 		}),
 	],
+	optimization: {
+		concatenateModules: false,
+	},
 }
 
 module.exports = merge(common, production)

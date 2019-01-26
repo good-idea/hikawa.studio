@@ -1,11 +1,12 @@
 // @flow
 import type { ContentBlock } from 'Types/ContentTypes'
 import React from 'react'
+import VideoEmbed from 'Components/Media/VideoEmbed'
 // import Gallery from './Gallery'
 import Text from './Text'
 // import Image from './Image'
 // import Animation from './Animation'
-import Video from './Video'
+// import Video from './Video'
 import Header from './Header'
 import PageLink from './PageLink'
 
@@ -36,7 +37,8 @@ const Block = ({ block, number, largeText }: Props) => {
 		// case 'image':
 		// 	return <Image {...block} />
 		case 'videoEmbed':
-			return <Video {...contentBlock} />
+		console.log(contentBlock)
+			return <VideoEmbed {...contentBlock} />
 		case 'richText':
 			return <Text {...contentBlock} />
 		case 'header':

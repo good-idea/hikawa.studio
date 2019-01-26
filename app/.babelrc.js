@@ -4,7 +4,6 @@ const forBrowser = process.env.WEBPACK
 
 module.exports = {
 	presets: [
-		'@babel/preset-flow',
 		[
 			'@babel/preset-env',
 			{
@@ -19,6 +18,7 @@ module.exports = {
 			},
 		],
 		'@babel/preset-react',
+		'@babel/preset-flow',
 	],
 	env: {
 		development: {

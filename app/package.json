@@ -9,7 +9,7 @@
     "dev:app": "cross-env ENV=development DEBUG=api webpack-dev-server --colors --env development --config ./webpack/webpack.config.dev.js",
     "dev:server": "cross-env ENV=development cross-env DEBUG=server nodemon --watch ./src/server ./src/server/server.js --exec babel-node",
     "dev:tunnel": "cross-env SHARE_TUNNEL=true yarn dev",
-    "clean": "rimraf build && rimraf public/js",
+    "clean": "rimraf node_modules/.cache && rimraf build && rimraf public/js",
     "build": "yarn clean && yarn build:app && yarn build:server",
     "build:server": "NODE_ENV=production yarn babel --copy-files --include-dotfiles src -d build",
     "build:app": "NODE_ENV=production webpack -p --env production --progress --colors --config ./webpack/webpack.config.js",
