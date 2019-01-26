@@ -1,27 +1,29 @@
 // @flow
 import * as React from 'react'
+import { Route } from 'react-router-dom'
 import Query from 'GraphQL/Query'
 import NotFound from 'Views/NotFound'
 import { getQueryConfigForPath } from '../Routes'
 
-type ComputedMatch = {
+type Match = {
 	isExact: boolean,
-	params: { [key: string]: string },
+	params: { [key: string]: string | void },
 	path: string,
 	url: string,
 }
 
 /**
- * Route
+ * View
  */
 
 type Props = {
-	computedMatch?: ComputedMatch | null,
+	match?: Match | null,
 }
 
-const Route = ({ computedMatch }: Props) => {
-	if (!computedMatch) return null
-	const { path, params } = computedMatch
+const View = (props: Props) => {
+	const { match } = props
+	if (!match) return null
+	const { path, params } = match
 	const config = getQueryConfigForPath(path)
 	if (!config) return <NotFound />
 	const { query, Component } = config
@@ -29,14 +31,33 @@ const Route = ({ computedMatch }: Props) => {
 		<Query query={query} variables={{ ...params }}>
 			{(result) => {
 				const { data, loading } = result
+				if (!data) return null
 				return <Component data={data} loading={loading} />
 			}}
 		</Query>
 	)
 }
 
-Route.defaultProps = {
-	computedMatch: null,
+View.defaultProps = {
+	match: null,
 }
 
-export default Route
+type BaseProps = {
+	component?: React.ComponentType<any>,
+}
+
+const RRoute = ({ component, ...routeProps }: BaseProps) => (
+	<Route
+		{...routeProps}
+		render={({ match }) => {
+			if (!match) return null
+			return <View match={match} />
+		}}
+	/>
+)
+
+RRoute.defaultProps = {
+	component: NotFound,
+}
+
+export default RRoute

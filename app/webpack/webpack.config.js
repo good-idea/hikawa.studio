@@ -13,7 +13,7 @@ const development = {
 		'react-hot-loader/patch',
 		`webpack-dev-server/client?${hotUrl}`,
 		'webpack/hot/only-dev-server',
-		'./src/index.js',
+		'./src/app/index.js',
 	],
 	output: {
 		path: path.resolve(__dirname, 'public', 'js'),
@@ -60,9 +60,9 @@ const staging = {
 
 const production = {
 	mode: 'production',
-	entry: ['./src/index.js'],
+	entry: ['./src/app/index.js'],
 	output: {
-		path: path.resolve(__dirname, 'public', 'js'),
+		path: path.resolve(__dirname, '..', 'public', 'js'),
 		filename: 'app.js',
 		sourceMapFilename: 'app.js.map',
 	},

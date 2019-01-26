@@ -5,6 +5,6 @@ import React from 'react'
  * Loading
  */
 
-const Loading = () => <p>...</p>
+const Loading = () => <p>Loading...</p>
 
 export default Loading

@@ -50,18 +50,16 @@ const Kame = ({ homepage }: Props) => {
 		<HomepageWrapper>
 			<Hero hero={homepage.hero} view="carousel" />
 			<Column width="wide">
-				<FadeIn delay={500}>
-					<Grid>
-						{/* $FlowFixMe - bug with union types: https://github.com/facebook/flow/issues/6342 */}
-						{homepage.content &&
-							homepage.content.map((block, index) => (
-								<BlockWrapper key={block._key} type={block._type} fullWidth={block.fullWidth}>
-									<Block block={block} number={index} largeText />
-								</BlockWrapper>
-							))}
-					</Grid>
-					<Instagram />
-				</FadeIn>
+				<Grid>
+					{/* $FlowFixMe - bug with union types: https://github.com/facebook/flow/issues/6342 */}
+					{homepage.content &&
+						homepage.content.map((block, index) => (
+							<BlockWrapper key={block._key} type={block._type} fullWidth={block.fullWidth}>
+								<Block block={block} number={index} largeText />
+							</BlockWrapper>
+						))}
+				</Grid>
+				<Instagram />
 			</Column>
 		</HomepageWrapper>
 	)

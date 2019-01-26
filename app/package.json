@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "cross-env ENV=development DEBUG=api webpack-dev-server --colors --env development --config ./webpack/webpack.config.dev.js",
     "dev:tunnel": "cross-env SHARE_TUNNEL=true yarn dev",
-    "build": "webpack -p --env production --progress --colors",
+    "build": "webpack -p --env production --progress --colors --config ./webpack/webpack.config.js",
     "deploy": "yarn build && cd public && now && now alias"
   },
   "dependencies": {
@@ -28,6 +28,7 @@
     "graphql": "^14.1.1",
     "graphql-tag": "^2.10.1",
     "graphql-tools": "^4.0.4",
+    "isomorphic-fetch": "^2.2.1",
     "js-cookie": "^2.2.0",
     "logrocket": "^0.6.19",
     "node-fetch": "^2.3.0",
@@ -88,6 +89,7 @@
     "jest-dom": "^3.0.0",
     "jest-styled-components": "^6.3.1",
     "ngrok": "^3.1.0",
+    "nodemon": "^1.18.9",
     "prettier": "^1.16.1",
     "stats-webpack-plugin": "^0.7.0",
     "webpack": "^4.29.0",

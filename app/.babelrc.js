@@ -19,7 +19,7 @@ module.exports = {
 			plugins: ['flow-react-proptypes', 'react-hot-loader/babel'],
 		},
 		production: {
-			plugins: ['graphql-tag'],
+			// plugins: ['graphql-tag'],
 		},
 	},
 	plugins: [
@@ -39,7 +39,8 @@ module.exports = {
 			},
 		],
 		'import-graphql',
-		'babel-plugin-styled-components',
+
+		['babel-plugin-styled-components', { ssr: true, minify: false }],
 		'@babel/plugin-proposal-class-properties',
 		'@babel/plugin-proposal-object-rest-spread',
 		'@babel/plugin-syntax-dynamic-import',

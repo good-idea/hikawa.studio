@@ -26,7 +26,8 @@ const KameHelmet = ({ seo, settings, isHomepage }: Props) => {
 	const siteTitle = settings.seo.name || 'KAME'
 	const title = !isHomepage && name && name.length ? `${name} | ${siteTitle}` : siteTitle
 	const imageUrl = image ? getImageUrl(image) : null
-	const canonical = `https://www.kame.store${window.location.pathname}`
+	const pathname = typeof window !== 'undefined' ? window.location.pathname : ''
+	const canonical = `https://www.kame.store${pathname}`
 	return (
 		<Helmet
 			title={title}

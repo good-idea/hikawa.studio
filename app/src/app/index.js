@@ -5,6 +5,7 @@ import LogRocket from 'logrocket'
 import { BrowserRouter } from 'react-router-dom'
 import { getCookie, VIEWER_EMAIL } from 'Utils/storage'
 import App from './App'
+import ApolloProvider from './Services/Apollo'
 
 if (process.env.NODE_ENV === 'production') {
 	LogRocket.init('ulpljc/kame')
@@ -25,7 +26,9 @@ const { initialData } = (typeof window !== 'undefined' && window.__INITIAL_QUERY
 const renderApp = (AppComponent) => {
 	ReactDOM.render(
 		<BrowserRouter>
-			<AppComponent initialData={initialData} />
+			<ApolloProvider>
+				<AppComponent initialData={initialData} />
+			</ApolloProvider>
 		</BrowserRouter>,
 		// $FlowFixMe
 		document.getElementById('root'),

@@ -7,15 +7,13 @@ import Announcement from 'Components/Announcement'
 import NavMenu from './Menu'
 import { SettingsProvider } from './SettingsProvider'
 import { CheckoutProvider } from './CheckoutProvider'
-import Homepage from './Homepage'
-import Product from './Product'
-import Shop from './Shop'
-import NotFound from './NotFound'
 import MailerPopup from './MailerPopup'
-import Page from './Page'
 import Footer from './Footer'
 import BaseSEO from './BaseSEO'
 import CartModal from './Cart/CartModal'
+import { routes } from '../Routes'
+
+
 
 /**
  * App
@@ -31,16 +29,17 @@ const App = () => (
 			<Main>
 				<NavMenu />
 				<Switch>
-					<Route path="/" exact component={Homepage} />
-					<Route path="/shop/:collection?" component={Shop} />
-					<Route path="/products/:handle" exact component={Product} />
-					<Route path="/:slug" exact component={Page} />
-					<Route component={NotFound} />
+					{routes.map((r) => (
+						<Route key={r.path} {...r} />
+					))}
 				</Switch>
 			</Main>
 			<Footer />
 		</CheckoutProvider>
 	</SettingsProvider>
 )
+// <Route path="/products/:handle" exact component={Product} />
+// <Route path="/:slug" exact component={Page} />
+// <Route component={NotFound} />
 
 export default App

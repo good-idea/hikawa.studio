@@ -9,21 +9,25 @@ const routes = [
 	{
 		path: '/',
 		query: homepageQuery,
+		exact: true,
 		Component: Homepage,
 	},
 	{
 		path: '/shop/:collection?',
 		query: shopQuery,
+		exact: true,
 		Component: Shop,
 	},
 	{
 		path: '/products/:handle',
 		query: productQuery,
+		exact: true,
 		Component: Product,
 	},
 	{
 		path: '/:slug',
 		query: pageQuery,
+		exact: true,
 		Component: Page,
 	},
 ]

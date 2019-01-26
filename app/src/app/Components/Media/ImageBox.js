@@ -4,10 +4,11 @@ import styled from 'styled-components'
 import type { ImageType } from 'Types/ContentTypes'
 import Image from './Image'
 
-const Figure = styled.figure`
+const Figure = styled.div`
 	width: 100%;
 	position: relative;
 	overflow: hidden;
+	something: 'nothing';
 `
 
 const PaddingRatio = styled.div`
@@ -18,7 +19,7 @@ const PaddingRatio = styled.div`
 	`};
 `
 
-const ImageWrapper = styled.div`
+export const ImageWrapper = styled.div`
 	& > img {
 		position: absolute;
 		width: 100%;

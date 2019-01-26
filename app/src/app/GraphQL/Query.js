@@ -40,15 +40,15 @@ type GenericResponse = { [key: string]: any }
 type QueryProps<T> = QueryConfig<T> & {
 	query?: void | DocumentNode,
 	children: (CustomRenderProps<T>) => React.Node,
-	// loadQuery: (any) => Promise<ApolloQueryResult<T>>
 }
 
 const Query = <T: GenericResponse>(props: QueryProps<T>) => {
 	// A few more query props are available:
 	// https://www.apollographql.com/docs/react/essentials/queries.html#props
 	const { children, skip, delayQuery, ...queryProps } = props
+	// return <ApolloQuery query={query}>{() => null}</ApolloQuery>
 	return (
-		<ApolloQuery {...queryProps} skip={skip || delayQuery}>
+		<ApolloQuery {...queryProps} skip={skip || delayQuery} errorPolicy="ignore">
 			{(response: QueryRenderProps<T>) => {
 				const { networkStatus, error, client } = response
 				// if `delay === true`, pass in a 'load' function to manually fire the query
@@ -91,7 +91,7 @@ Query.defaultProps = {
 	skip: false,
 	delayQuery: false,
 	notifyOnNetworkStatusChange: true,
-	ssr: false,
+	ssr: undefined,
 	pollInterval: 0,
 	onCompleted: () => {},
 	onError: () => {},

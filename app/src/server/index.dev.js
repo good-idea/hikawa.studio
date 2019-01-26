@@ -19,8 +19,6 @@ const app = express()
 const compiler = webpack([clientConfig, serverConfig])
 const { publicPath } = clientConfig.output
 const clientCompiler = compiler.compilers[0]
-const options = { publicPath, stats: { colors: true } }
-const devMiddleware = webpackDevMiddleware(compiler, options)
 
 app.use(noFavicon())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -33,9 +31,19 @@ app.set('view engine', 'ejs')
 
 app.use(express.static(path.resolve(__dirname, '..', '..', 'public'), { maxAge: '1y' }))
 // app.use(publicPath, express.static(outputPath))
+
+const options = {
+	publicPath,
+	stats: {
+		colors: true,
+	},
+	serverSideRender: true,
+}
+
+const devMiddleware = webpackDevMiddleware(compiler, options)
 app.use(devMiddleware)
 app.use(webpackHotMiddleware(clientCompiler))
-// app.use(webpackHotServerMiddleware(compiler))
+app.use(webpackHotServerMiddleware(compiler))
 devMiddleware.waitUntilValid()
 app.listen(3030, () => {
 	debug('Server ready')
