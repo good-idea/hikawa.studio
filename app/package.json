@@ -14,7 +14,7 @@
     "build:server": "NODE_ENV=production yarn babel --copy-files --include-dotfiles src -d build",
     "build:app": "NODE_ENV=production webpack -p --env production --progress --colors --config ./webpack/webpack.config.js",
     "stats:app": "cross-env WEBPACK_STATS=true cross-env NODE_ENV=production webpack -p --env production --config ./webpack/webpack.config.js --json > stats.json && webpack-bundle-analyzer ./stats.json",
-    "deploy": "yarn build && cd public && now && now alias",
+    "deploy": "yarn build && now && now alias",
     "start": "NODE_ENV=production node ./build/server/server.js"
   },
   "dependencies": {
