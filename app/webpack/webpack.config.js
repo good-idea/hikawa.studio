@@ -10,7 +10,7 @@ const production = {
 	output: {
 		path: path.resolve(__dirname, '..', 'public', 'js'),
 		publicPath: '/js/',
-		filename: '[name].js',
+		filename: '[name].[chunkhash].js',
 		sourceMapFilename: 'app.js.map',
 	},
 	plugins: [
@@ -20,7 +20,22 @@ const production = {
 		}),
 	],
 	optimization: {
-		concatenateModules: false,
+		concatenateModules: !Boolean(process.env.WEBPACK_STATS),
+		splitChunks: {
+			chunks: 'all',
+			minSize: 20,
+			cacheGroups: {
+				vendor: {
+					test: /[\\/]node_modules[\\/]/,
+					priority: -10,
+				},
+				default: {
+					minChunks: 2,
+					priority: -20,
+					reuseExistingChunk: true,
+				},
+			},
+		},
 	},
 }
 
