@@ -12,7 +12,8 @@
     "clean": "rimraf build && rimraf public/js",
     "build": "yarn clean && yarn build:app && yarn build:server",
     "build:server": "NODE_ENV=production yarn babel --copy-files --include-dotfiles src -d build",
-    "build:app": "BABEL_ENV=node webpack -p --env production --progress --colors --config ./webpack/webpack.config.js",
+    "build:app": "NODE_ENV=production webpack -p --env production --progress --colors --config ./webpack/webpack.config.js",
+    "stats:app": "NODE_ENV=production webpack -p --env production --config ./webpack/webpack.config.js --json > stats.json && webpack-bundle-analyzer ./stats.json",
     "deploy": "yarn build && cd public && now && now alias",
     "start": "NODE_ENV=production node ./build/server/server.js"
   },
@@ -112,6 +113,7 @@
     "rimraf": "^2.6.3",
     "stats-webpack-plugin": "^0.7.0",
     "webpack": "^4.29.0",
+    "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14",
     "webpack-graphql-loader": "^1.0.0",

@@ -9,25 +9,12 @@ import { ApolloClient } from 'apollo-client'
 import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-cache-inmemory'
 import { apiRoot } from '../config'
 import { logErrors, logQueries, setAuthHeader } from './middleware'
+// $FlowFixMe
 import introspectionQueryResultData from './fragmentTypes.json'
 
 const debug = require('debug')('web')
 
 const httpLink = new HttpLink({ uri: apiRoot, fetch })
-
-//   const client = new ApolloClient({
-//     ssrMode: true,
-//     // Remember that this is the interface the SSR server will use to connect to the
-//     // API server, so we need to ensure it isn't firewalled, etc
-//     link: createHttpLink({
-//       uri: 'http://localhost:3010',
-//       credentials: 'same-origin',
-//       headers: {
-//         cookie: req.header('Cookie'),
-//       },
-//     }),
-//     cache: new InMemoryCache(),
-//   });
 
 const fragmentMatcher = new IntrospectionFragmentMatcher({
 	introspectionQueryResultData,
