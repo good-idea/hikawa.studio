@@ -2,10 +2,10 @@
 import loadable from '@loadable/component'
 import { homepageQuery, productQuery, shopQuery, pageQuery } from './queries'
 
-const Homepage = loadable(() => import('../Views/Homepage'))
-const Product = loadable(() => import('../Views/Product'))
-const Page = loadable(() => import('../Views/Page'))
-const Shop = loadable(() => import('../Views/Shop'))
+const Homepage = loadable(() => import(/* webpackPrefetch: true */ '../Views/Homepage'))
+const Product = loadable(() => import(/* webpackPrefetch: true */ '../Views/Product'))
+const Page = loadable(() => import(/* webpackPrefetch: true */ '../Views/Page'))
+const Shop = loadable(() => import(/* webpackPrefetch: true */ '../Views/Shop'))
 
 const routes = [
 	{

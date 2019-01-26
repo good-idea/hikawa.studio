@@ -7,7 +7,7 @@ import { getQueryConfigForPath } from '../Routes'
 
 type Match = {
 	isExact: boolean,
-	params: { [key: string]: string | void },
+	params?: { [key: string]: string | void },
 	path: string,
 	url: string,
 }
@@ -51,6 +51,7 @@ const ViewRoute = ({ component, ...routeProps }: BaseProps) => (
 		{...routeProps}
 		render={({ match }) => {
 			if (!match) return null
+			// $FlowFixMe
 			return <View match={match} />
 		}}
 	/>
