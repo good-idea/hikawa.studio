@@ -28,15 +28,15 @@ app.use(bodyParser.json())
 app.set('views', path.resolve(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
-app.get('/sitemap.xml', sitemap)
-app.get('*', redirects)
+// app.get('/sitemap.xml', sitemap)
+// app.get('*', redirects)
 
 app.use(express.static(path.resolve(__dirname, '..', '..', 'public'), { maxAge: '1y' }))
 // app.use(publicPath, express.static(outputPath))
 app.use(devMiddleware)
 app.use(webpackHotMiddleware(clientCompiler))
-app.use(webpackHotServerMiddleware(compiler))
+// app.use(webpackHotServerMiddleware(compiler))
 devMiddleware.waitUntilValid()
-app.listen(3000, () => {
+app.listen(3030, () => {
 	debug('Server ready')
 })
