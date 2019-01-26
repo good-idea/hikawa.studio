@@ -32,7 +32,6 @@ const View = (props: Props) => {
 			{(result) => {
 				const { data, loading } = result
 				if (!data) return null
-				console.log(data)
 				return <Component data={data} loading={loading} />
 			}}
 		</Query>

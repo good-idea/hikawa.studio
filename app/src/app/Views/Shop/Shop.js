@@ -2,8 +2,8 @@
 import * as React from 'react'
 import type { CollectionType } from 'Types/ContentTypes'
 import Hero from 'Components/Hero'
+import Helmet from 'Components/Helmet'
 import Collection from './Collection'
-
 /**
  * Shop
  */
@@ -14,8 +14,10 @@ type Props = {
 }
 
 const Shop = ({ collections, shopPage }: Props) => {
+	const { seo } = shopPage
 	return collections ? (
 		<React.Fragment>
+			<Helmet seo={seo} />
 			<Hero hero={shopPage.hero} />
 			{collections.map((c) => (
 				<Collection key={c.id} collection={c} />

@@ -6,7 +6,7 @@ const query = /* GraphQL */ gql`
 	query ShopQuery {
 		shopPage {
 			${heroPartial}
-			# ${seoPartial}
+			${seoPartial}
 		}
 		shop {
 			collections(first: 50) {
