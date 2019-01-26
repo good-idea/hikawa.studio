@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 import LogRocket from 'logrocket'
 import { BrowserRouter } from 'react-router-dom'
 import { getCookie, VIEWER_EMAIL } from 'Utils/storage'
+import { loadableReady } from '@loadable/component'
 import App from './App'
 import ApolloProvider from './Services/Apollo'
 
@@ -24,15 +25,23 @@ if (window.localStorage && process.env.DEBUG) {
 const { initialData } = (typeof window !== 'undefined' && window.__INITIAL_QUERY_DATA__) || {}
 
 const renderApp = (AppComponent) => {
-	ReactDOM.render(
-		<BrowserRouter>
-			<ApolloProvider>
-				<AppComponent initialData={initialData} />
-			</ApolloProvider>
-		</BrowserRouter>,
-		// $FlowFixMe
-		document.getElementById('root'),
-	)
+	loadableReady(() => {
+		const root = document.getElementById('root')
+		ReactDOM.hydrate(
+			<BrowserRouter>
+				<ApolloProvider>
+					<AppComponent initialData={initialData} />
+				</ApolloProvider>
+			</BrowserRouter>,
+
+			root,
+		)
+	})
+
+	// ReactDOM.render(
+	// 	// $FlowFixMe
+	// 	document.getElementById('root'),
+	// )
 }
 
 renderApp(App)

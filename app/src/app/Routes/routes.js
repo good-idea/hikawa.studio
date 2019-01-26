@@ -1,9 +1,11 @@
 // @flow
-import Homepage from 'Views/Homepage'
-import Product from 'Views/Product'
-import Page from 'Views/Page'
-import Shop from 'Views/Shop'
+import loadable from '@loadable/component'
 import { homepageQuery, productQuery, shopQuery, pageQuery } from './queries'
+
+const Homepage = loadable(() => import('../Views/Homepage'))
+const Product = loadable(() => import('../Views/Product'))
+const Page = loadable(() => import('../Views/Page'))
+const Shop = loadable(() => import('../Views/Shop'))
 
 const routes = [
 	{

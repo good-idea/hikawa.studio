@@ -1,11 +1,12 @@
 // @flow
 import gql from 'graphql-tag'
-import { colorPartial, shopifyImageFields, heroPartial } from '../../GraphQL/partials'
+import { colorPartial, shopifyImageFields, heroPartial, seoPartial } from '../../GraphQL/partials'
 
 const query = /* GraphQL */ gql`
 	query ShopQuery {
 		shopPage {
 			${heroPartial}
+			# ${seoPartial}
 		}
 		shop {
 			collections(first: 50) {

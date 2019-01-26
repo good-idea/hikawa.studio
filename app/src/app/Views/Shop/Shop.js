@@ -29,7 +29,3 @@ type BaseProps = {
 }
 
 export default ({ data }: BaseProps) => <Shop collections={data.shop.collections} shopPage={data.shopPage} />
-
-// export default () => (
-// 	<Query query={shopQuery}>{({ data }) => <Shop collections={data.shop.collections} shopPage={data.shopPage} />}</Query>
-// )

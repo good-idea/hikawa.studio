@@ -32,6 +32,7 @@ const View = (props: Props) => {
 			{(result) => {
 				const { data, loading } = result
 				if (!data) return null
+				console.log(data)
 				return <Component data={data} loading={loading} />
 			}}
 		</Query>
@@ -46,7 +47,7 @@ type BaseProps = {
 	component?: React.ComponentType<any>,
 }
 
-const RRoute = ({ component, ...routeProps }: BaseProps) => (
+const ViewRoute = ({ component, ...routeProps }: BaseProps) => (
 	<Route
 		{...routeProps}
 		render={({ match }) => {
@@ -56,8 +57,8 @@ const RRoute = ({ component, ...routeProps }: BaseProps) => (
 	/>
 )
 
-RRoute.defaultProps = {
+ViewRoute.defaultProps = {
 	component: NotFound,
 }
 
-export default RRoute
+export default ViewRoute

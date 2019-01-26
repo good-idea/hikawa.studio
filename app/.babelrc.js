@@ -6,9 +6,10 @@ module.exports = {
 		[
 			'@babel/preset-env',
 			{
-				useBuiltIns: 'usage',
+				// useBuiltIns: 'usage',
 				targets: {
-					browsers: ['last 2 versions'],
+					node: 'current',
+					// browsers: ['last 2 versions'],
 				},
 			},
 		],
@@ -23,6 +24,10 @@ module.exports = {
 		},
 	},
 	plugins: [
+		'import-graphql',
+		'@loadable/babel-plugin',
+		'flow-react-proptypes',
+		process.env.BABEL_ENV === 'node' ? false : 'dynamic-import-node',
 		[
 			'babel-plugin-module-resolver',
 			{
@@ -38,13 +43,11 @@ module.exports = {
 				cwd: 'babelrc',
 			},
 		],
-		'import-graphql',
-
 		['babel-plugin-styled-components', { ssr: true, minify: false }],
 		'@babel/plugin-proposal-class-properties',
 		'@babel/plugin-proposal-object-rest-spread',
 		'@babel/plugin-syntax-dynamic-import',
 		'@babel/plugin-syntax-export-default-from',
 		'ramda',
-	],
+	].filter(Boolean),
 }

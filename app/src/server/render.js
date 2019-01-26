@@ -1,4 +1,5 @@
 import * as React from 'react'
+import path from 'path'
 import { ApolloClient } from 'apollo-client'
 import { createHttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
@@ -7,15 +8,18 @@ import { ServerStyleSheet } from 'styled-components'
 import { StaticRouter } from 'react-router'
 import 'isomorphic-fetch'
 import ReactDOM from 'react-dom/server'
-import Html from './Html'
+import Helmet from 'react-helmet'
+import { ChunkExtractor } from '@loadable/server'
 import App from '../app/App'
+import template from './views/index.html'
+
+const statsFile = path.resolve(__dirname, '..', '..', 'public', 'js', 'loadable-stats.json')
 
 const render = async (req, res) => {
 	const client = new ApolloClient({
-		// ssrMode: true,
 		link: createHttpLink({
 			ssrMode: true,
-			uri: 'http://localhost:3000',
+			uri: process.env.NODE_ENV === 'production' ? 'http://localhost:3000' : 'https://kame-proxy.now.sh',
 			// credentials: 'same-origin',
 			// headers: {
 			// 	cookie: req.header('Cookie'),
@@ -24,25 +28,30 @@ const render = async (req, res) => {
 		}),
 		cache: new InMemoryCache(),
 	})
+	const extractor = new ChunkExtractor({ statsFile })
 
 	const context = {}
-	const RenderedApp = (
+	const RenderedApp = extractor.collectChunks(
 		<ApolloProvider client={client}>
 			<StaticRouter location={req.url} context={context}>
 				<App />
 			</StaticRouter>
-		</ApolloProvider>
+		</ApolloProvider>,
 	)
 
 	try {
 		await getDataFromTree(RenderedApp)
-		const initialState = client.extract()
+		const initialState = JSON.stringify(client.extract())
 		const sheet = new ServerStyleSheet()
-		const content = ReactDOM.renderToString(sheet.collectStyles(RenderedApp))
+		const app = ReactDOM.renderToString(sheet.collectStyles(RenderedApp))
 		const styles = sheet.getStyleTags()
-		const html = <Html content={content} styles={styles} initialState={JSON.stringify(initialState)} />
+		const scripts = extractor.getScriptTags()
+		const helmet = Helmet.renderStatic()
+		const title = helmet.title.toString()
+		const meta = helmet.meta.toString()
+
 		res.status(200)
-		res.send(`<!doctype html>\n${ReactDOM.renderToStaticMarkup(html)}`)
+		res.send(template({ title, meta, styles, initialState, app, scripts }))
 		res.end()
 	} catch (e) {
 		console.error('Rendering Error:', e)
