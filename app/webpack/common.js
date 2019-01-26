@@ -1,6 +1,8 @@
 const path = require('path')
 const CircularDependencyPlugin = require('circular-dependency-plugin')
 
+process.env.WEBPACK = true
+
 module.exports = {
 	module: {
 		rules: [

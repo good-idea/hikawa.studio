@@ -6,14 +6,15 @@
   "author": "Joseph Thomas / Good Idea Studio",
   "license": "MIT",
   "scripts": {
-    "dev": "cross-env ENV=development DEBUG=api webpack-dev-server --colors --env development --config ./webpack/webpack.config.dev.js",
+    "dev:app": "cross-env ENV=development DEBUG=api webpack-dev-server --colors --env development --config ./webpack/webpack.config.dev.js",
+    "dev:server": "cross-env ENV=development cross-env DEBUG=server nodemon --watch ./src/server ./src/server/server.js --exec babel-node",
     "dev:tunnel": "cross-env SHARE_TUNNEL=true yarn dev",
     "clean": "rimraf build && rimraf public/js",
     "build": "yarn clean && yarn build:app && yarn build:server",
-    "build:server": "NODE_ENV=production yarn babel src -d build",
+    "build:server": "NODE_ENV=production yarn babel --copy-files --include-dotfiles src -d build",
     "build:app": "BABEL_ENV=node webpack -p --env production --progress --colors --config ./webpack/webpack.config.js",
     "deploy": "yarn build && cd public && now && now alias",
-    "start": "NODE_ENV=production node ./build/server/index.js"
+    "start": "NODE_ENV=production node ./build/server/server.js"
   },
   "dependencies": {
     "@babel/cli": "^7.2.3",

@@ -1,16 +1,21 @@
 const path = require('path')
-console.log('!')
+
+const forBrowser = process.env.WEBPACK
+
 module.exports = {
 	presets: [
 		'@babel/preset-flow',
 		[
 			'@babel/preset-env',
 			{
-				// useBuiltIns: 'usage',
-				targets: {
-					node: 'current',
-					// browsers: ['last 2 versions'],
-				},
+				targets:
+					forBrowser === 'webpack'
+						? {
+								browsers: ['last 2 versions'],
+						  }
+						: {
+								node: 'current',
+						  },
 			},
 		],
 		'@babel/preset-react',
@@ -20,15 +25,14 @@ module.exports = {
 			plugins: ['flow-react-proptypes', 'react-hot-loader/babel'],
 		},
 		production: {
-			// plugins: ['graphql-tag'],
+			plugins: forBrowser ? ['graphql-tag'] : [],
 		},
 	},
 	plugins: [
 		'import-graphql',
 		'@loadable/babel-plugin',
 		'flow-react-proptypes',
-		// 'dynamic-import-node',
-		process.env.BABEL_ENV === 'node' ? false : 'dynamic-import-node',
+		forBrowser ? false : 'dynamic-import-node',
 		[
 			'babel-plugin-module-resolver',
 			{

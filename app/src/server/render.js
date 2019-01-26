@@ -1,7 +1,7 @@
 import * as React from 'react'
 import path from 'path'
 import { ApolloClient } from 'apollo-client'
-import { createHttpLink } from 'apollo-link-http'
+import { SchemaLink } from 'apollo-link-schema'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloProvider, getDataFromTree } from 'react-apollo'
 import { ServerStyleSheet } from 'styled-components'
@@ -15,19 +15,11 @@ import template from './views/index.html'
 
 const statsFile = path.resolve(__dirname, '..', '..', 'public', 'js', 'loadable-stats.json')
 
-const render = async (req, res, next) => {
-	console.log(req.url)
+const render = (schema) => async (req, res, next) => {
 	if (req.url === '/graphql') return next()
 	const client = new ApolloClient({
-		link: createHttpLink({
-			ssrMode: true,
-			uri: process.env.NODE_ENV === 'production' ? 'http://localhost:3000' : 'https://kame-proxy.now.sh',
-			// credentials: 'same-origin',
-			// headers: {
-			// 	cookie: req.header('Cookie'),
-			// },
-			// fetch,
-		}),
+		ssrMode: true,
+		link: new SchemaLink({ schema }),
 		cache: new InMemoryCache(),
 	})
 	const extractor = new ChunkExtractor({ statsFile })
@@ -54,11 +46,11 @@ const render = async (req, res, next) => {
 
 		res.status(200)
 		res.send(template({ title, meta, styles, initialState, app, scripts }))
-		res.end()
+		return res.end()
 	} catch (e) {
 		console.error('Rendering Error:', e)
 		res.status(500)
-		res.end('An error occurred. Sorry!')
+		return next('An error occurred. Sorry!')
 	}
 }
 

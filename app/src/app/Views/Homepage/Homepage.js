@@ -5,7 +5,6 @@ import type { ContentBlocks, Hero as HeroType } from 'Types/ContentTypes'
 import Block from 'Components/ContentBlocks'
 import Hero from 'Components/Hero'
 import { Column } from 'Components/Layout'
-import { FadeIn } from 'Components/Effects'
 import Instagram from 'Components/Instagram'
 import { SettingsConsumer } from '../SettingsProvider'
 import { HomepageWrapper } from './styled'
@@ -45,25 +44,23 @@ type Props = {
 	// siteSettings: SiteSettings,
 }
 
-const Kame = ({ homepage }: Props) => {
-	return (
-		<HomepageWrapper>
-			<Hero hero={homepage.hero} view="carousel" />
-			<Column width="wide">
-				<Grid>
-					{/* $FlowFixMe - bug with union types: https://github.com/facebook/flow/issues/6342 */}
-					{homepage.content &&
-						homepage.content.map((block, index) => (
-							<BlockWrapper key={block._key} type={block._type} fullWidth={block.fullWidth}>
-								<Block block={block} number={index} largeText />
-							</BlockWrapper>
-						))}
-				</Grid>
-				<Instagram />
-			</Column>
-		</HomepageWrapper>
-	)
-}
+const Kame = ({ homepage }: Props) => (
+	<HomepageWrapper>
+		<Hero hero={homepage.hero} view="carousel" />
+		<Column width="wide">
+			<Grid>
+				{/* $FlowFixMe - bug with union types: https://github.com/facebook/flow/issues/6342 */}
+				{homepage.content &&
+					homepage.content.map((block, index) => (
+						<BlockWrapper key={block._key} type={block._type} fullWidth={block.fullWidth}>
+							<Block block={block} number={index} largeText />
+						</BlockWrapper>
+					))}
+			</Grid>
+			<Instagram />
+		</Column>
+	</HomepageWrapper>
+)
 
 type BaseProps = {
 	data: any,

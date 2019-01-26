@@ -63,6 +63,9 @@ const config = {
 		hot: true,
 		host: '0.0.0.0',
 		disableHostCheck: true,
+		proxy: {
+			'/graphql': 'http://localhost:3000',
+		},
 	},
 }
 
