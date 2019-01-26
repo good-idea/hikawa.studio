@@ -1,6 +1,6 @@
 // @flow
 
-import type { ProductVariant, Money } from 'Types/ProductTypes'
+import type { ProductVariant, Money } from 'Types/ContentTypes'
 import type { MailingAddress } from 'Types/CustomerTypes'
 
 type AppliedGiftCard = {

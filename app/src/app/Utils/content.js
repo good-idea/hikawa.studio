@@ -1,6 +1,6 @@
 // @flow
 import type { PageLink, ImageType, Page } from 'Types/ContentTypes'
-import type { ProductType, CollectionType } from 'Types/ProductTypes'
+import type { ProductType, CollectionType } from 'Types/ContentTypes'
 
 export const getLinkUrl = (link: ProductType | CollectionType | Page): string => {
 	const { __typename } = link

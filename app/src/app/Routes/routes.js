@@ -1,5 +1,5 @@
 // @flow
-import Kame from 'Views/Kame'
+import Homepage from 'Views/Homepage'
 import Product from 'Views/Product'
 import Page from 'Views/Page'
 import Shop from 'Views/Shop'
@@ -9,7 +9,7 @@ const routes = [
 	{
 		path: '/',
 		query: homepageQuery,
-		Component: Kame,
+		Component: Homepage,
 	},
 	{
 		path: '/shop/:collection?',

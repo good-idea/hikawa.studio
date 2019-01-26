@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import type { ProductVariant } from 'Types/ProductTypes'
+import type { ProductVariant } from 'Types/ContentTypes'
 import { Header4, Header6 } from 'Components/Type'
 
 const Outer = styled.div`

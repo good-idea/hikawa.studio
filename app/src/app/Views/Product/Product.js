@@ -2,7 +2,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import type { Match } from 'react-router-dom'
-import type { ProductType } from 'Types/ProductTypes'
+import type { ProductType } from 'Types/ContentTypes'
 import type { CheckoutConsumerProps } from 'Views/CheckoutProvider'
 import { Column } from 'Components/Layout'
 import { Image } from 'Components/Media'

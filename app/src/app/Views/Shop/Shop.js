@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import type { CollectionType } from 'Types/ProductTypes'
+import type { CollectionType } from 'Types/ContentTypes'
 import Hero from 'Components/Hero'
 import Collection from './Collection'
 

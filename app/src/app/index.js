@@ -2,14 +2,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import LogRocket from 'logrocket'
-import { ThemeProvider } from 'styled-components'
 import { BrowserRouter } from 'react-router-dom'
 import { getCookie, VIEWER_EMAIL } from 'Utils/storage'
-import ApolloProvider from './Services/Apollo'
-import LocationMonitor from './Views/LocationMonitor'
-import App from './Views/App'
-import { GlobalStyles } from './theme/global'
-import theme from './theme'
+import App from './App'
 
 if (process.env.NODE_ENV === 'production') {
 	LogRocket.init('ulpljc/kame')
@@ -25,18 +20,12 @@ if (window.localStorage && process.env.DEBUG) {
 	window.localStorage.debug = process.env.DEBUG
 }
 
-const renderApp = (Component) => {
+const { initialData } = (typeof window !== 'undefined' && window.__INITIAL_QUERY_DATA__) || {}
+
+const renderApp = (AppComponent) => {
 	ReactDOM.render(
 		<BrowserRouter>
-			<ApolloProvider>
-				<ThemeProvider theme={theme}>
-					<React.Fragment>
-						<LocationMonitor />
-						<GlobalStyles />
-						<Component />
-					</React.Fragment>
-				</ThemeProvider>
-			</ApolloProvider>
+			<AppComponent initialData={initialData} />
 		</BrowserRouter>,
 		// $FlowFixMe
 		document.getElementById('root'),
@@ -48,9 +37,9 @@ renderApp(App)
 // $FlowFixMe
 if (module.hot && process.env.NODE_ENV === 'development') {
 	// $FlowFixMe
-	module.hot.accept('./Views/App.js', () => {
+	module.hot.accept('./App.js', () => {
 		// eslint-disable-next-line
-		const NewApp = require('./Views/App').default
+		const NewApp = require('./App').default
 		renderApp(NewApp)
 	})
 }

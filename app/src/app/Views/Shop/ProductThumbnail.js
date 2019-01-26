@@ -2,7 +2,7 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 import { Link } from 'react-router-dom'
-import type { CollectionType, ProductType } from 'Types/ProductTypes'
+import type { CollectionType, ProductType } from 'Types/ContentTypes'
 import { ImageBox } from 'Components/Media'
 import { Header3 } from 'Components/Type'
 

@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import CollectionType from 'Types/ProductTypes'
+import CollectionType from 'Types/ContentTypes'
 import { Link } from 'react-router-dom'
 /**
  * CollectionCard

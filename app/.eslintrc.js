@@ -31,18 +31,15 @@ module.exports = {
 	},
 	settings: {
 		'import/resolver': {
-			webpack: {
-				config: 'webpack.config.js',
-			},
 			alias: [
-				['Components', path.resolve(__dirname, 'src', 'Components')],
-				['Dialogs', path.resolve(__dirname, 'src', 'Dialogs')],
-				['Forms', path.resolve(__dirname, 'src', 'Forms')],
-				['Views', path.resolve(__dirname, 'src', 'Views')],
-				['Utils', path.resolve(__dirname, 'src', 'Utils')],
-				['Types', path.resolve(__dirname, 'src', 'Types')],
-				['GraphQL', path.resolve(__dirname, 'src', 'GraphQL')],
-				['Services', path.resolve(__dirname, 'src', 'Services')],
+				['Components', path.resolve(__dirname, 'src', 'app', 'Components')],
+				['Dialogs', path.resolve(__dirname, 'src', 'app', 'Dialogs')],
+				['Forms', path.resolve(__dirname, 'src', 'app', 'Forms')],
+				['Views', path.resolve(__dirname, 'src', 'app', 'Views')],
+				['Utils', path.resolve(__dirname, 'src', 'app', 'Utils')],
+				['Types', path.resolve(__dirname, 'src', 'app', 'Types')],
+				['GraphQL', path.resolve(__dirname, 'src', 'app', 'GraphQL')],
+				['Services', path.resolve(__dirname, 'src', 'app', 'Services')],
 				['Shared', path.resolve(__dirname, '..', 'shared')],
 			],
 		},

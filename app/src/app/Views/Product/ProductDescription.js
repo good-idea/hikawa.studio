@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import type { ProductType, ProductVariant } from 'Types/ProductTypes'
+import type { ProductType, ProductVariant } from 'Types/ContentTypes'
 import type { CheckoutConsumerProps } from 'Views/CheckoutProvider'
 import type { SiteSettings } from 'Types/ContentTypes'
 import { Header2, Header4, P } from 'Components/Type'

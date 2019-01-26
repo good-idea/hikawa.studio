@@ -7,7 +7,7 @@ import Announcement from 'Components/Announcement'
 import NavMenu from './Menu'
 import { SettingsProvider } from './SettingsProvider'
 import { CheckoutProvider } from './CheckoutProvider'
-import Kame from './Kame'
+import Homepage from './Homepage'
 import Product from './Product'
 import Shop from './Shop'
 import NotFound from './NotFound'
@@ -31,7 +31,7 @@ const App = () => (
 			<Main>
 				<NavMenu />
 				<Switch>
-					<Route path="/" exact component={Kame} />
+					<Route path="/" exact component={Homepage} />
 					<Route path="/shop/:collection?" component={Shop} />
 					<Route path="/products/:handle" exact component={Product} />
 					<Route path="/:slug" exact component={Page} />
