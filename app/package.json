@@ -6,7 +6,7 @@
   "author": "Joseph Thomas / Good Idea Studio",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack-dev-server --inline --colors --env development",
+    "dev": "cross-env ENV=development DEBUG=api webpack-dev-server --colors --env development --config ./webpack/webpack.config.dev.js",
     "dev:tunnel": "cross-env SHARE_TUNNEL=true yarn dev",
     "build": "webpack -p --env production --progress --colors",
     "deploy": "yarn build && cd public && now && now alias"
@@ -75,17 +75,20 @@
     "eslint-plugin-react": "^7.11.1",
     "flow-bin": "^0.87.0",
     "graphql-cli": "^2.17.0",
+    "html-webpack-plugin": "^3.2.0",
     "jest": "^23.6.0",
     "jest-dom": "^2.1.1",
     "jest-styled-components": "^6.3.1",
     "ngrok": "^3.1.0",
     "prettier": "^1.15.3",
+    "stats-webpack-plugin": "^0.7.0",
     "webpack": "^4.26.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10",
     "webpack-graphql-loader": "^1.0.0",
     "webpack-hot-client": "^4.1.1",
-    "webpack-merge": "^4.1.4"
+    "webpack-merge": "^4.1.4",
+    "write-file-webpack-plugin": "^4.5.0"
   },
   "resolutions": {
     "graphql": "14.0.0"

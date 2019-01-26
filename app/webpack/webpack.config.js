@@ -1,45 +1,8 @@
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const path = require('path')
-const CircularDependencyPlugin = require('circular-dependency-plugin')
 const NgrockWebpackPlugin = require('./ngrokWebpack')
-
-const common = {
-	module: {
-		rules: [
-			{
-				test: /\.mjs$/,
-				include: /node_modules/,
-				type: 'javascript/auto',
-			},
-			{
-				test: /\.jsx?$/,
-				exclude: /node_modules/,
-				use: ['babel-loader'],
-			},
-			{
-				test: /\.graphql?$/,
-				exclude: /node_modules/,
-				loader: 'webpack-graphql-loader',
-			},
-		],
-	},
-	devtool: 'source-map',
-	resolve: {
-		alias: {
-			Components: path.resolve(__dirname, 'src', 'Components'),
-			Views: path.resolve(__dirname, 'src', 'Views'),
-			Styles: path.resolve(__dirname, 'src', 'Styles'),
-			Utils: path.resolve(__dirname, 'src', 'Utils'),
-			Types: path.resolve(__dirname, 'src', 'Types'),
-			GraphQL: path.resolve(__dirname, 'src', 'GraphQL'),
-			Services: path.resolve(__dirname, 'src', 'Services'),
-			Shared: path.resolve(__dirname, '..', 'shared'),
-		},
-		extensions: ['.mjs', '.js', '.json'],
-	},
-	plugins: [new CircularDependencyPlugin()],
-}
+const common = require('./common')
 
 const hotUrl = process.env.SHARE_TUNNEL ? 'http://kame-dev.ngrok.io' : 'http://localhost:8080'
 

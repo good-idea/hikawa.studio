@@ -28,12 +28,12 @@ module.exports = {
 			{
 				extensions: ['.js', '.web.js', '.native.js'],
 				alias: {
-					Components: './src/Components',
-					Views: './src/Views',
-					Types: './src/Types',
-					Utils: './src/Utils',
-					GraphQL: './src/GraphQL',
-					Services: './src/Services',
+					Components: './src/app/Components',
+					Views: './src/app/Views',
+					Types: './src/app/Types',
+					Utils: './src/app/Utils',
+					GraphQL: './src/app/GraphQL',
+					Services: './src/app/Services',
 				},
 				cwd: 'babelrc',
 			},
