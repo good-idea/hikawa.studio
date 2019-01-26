@@ -15,7 +15,9 @@ import template from './views/index.html'
 
 const statsFile = path.resolve(__dirname, '..', '..', 'public', 'js', 'loadable-stats.json')
 
-const render = async (req, res) => {
+const render = async (req, res, next) => {
+	console.log(req.url)
+	if (req.url === '/graphql') return next()
 	const client = new ApolloClient({
 		link: createHttpLink({
 			ssrMode: true,

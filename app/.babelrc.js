@@ -1,5 +1,5 @@
 const path = require('path')
-
+console.log('!')
 module.exports = {
 	presets: [
 		'@babel/preset-flow',
@@ -27,6 +27,7 @@ module.exports = {
 		'import-graphql',
 		'@loadable/babel-plugin',
 		'flow-react-proptypes',
+		// 'dynamic-import-node',
 		process.env.BABEL_ENV === 'node' ? false : 'dynamic-import-node',
 		[
 			'babel-plugin-module-resolver',
