@@ -22,7 +22,7 @@ const getImageUrl = (image: SanityImage | ShopifyImage): string | null =>
 
 const KameHelmet = ({ seo, settings, isHomepage }: Props) => {
 	if (!settings) return null
-	const { name, description, image } = seo
+	const { name, description, image, contentType, currency, price } = seo
 	const siteTitle = settings.seo.name || 'KAME'
 	const title = !isHomepage && name && name.length ? `${name} | ${siteTitle}` : siteTitle
 	const imageUrl = image ? getImageUrl(image) : null
@@ -36,9 +36,11 @@ const KameHelmet = ({ seo, settings, isHomepage }: Props) => {
 				{ property: 'og:title', content: title },
 				{ property: 'og:description', content: description },
 				{ property: 'og:image', content: imageUrl || null },
-				{ property: 'og:type', content: 'website' },
+				{ property: 'og:type', content: contentType || 'website' },
 				{ name: 'robots', content: 'index, follow' },
-			]}
+				price ? { property: 'product:price:amount', content: price } : null,
+				currency ? { property: 'product:price:currency', content: currency } : null,
+			].filter(Boolean)}
 			link={[{ rel: 'canonical', href: canonical }]}
 		/>
 	)

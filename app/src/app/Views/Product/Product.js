@@ -1,7 +1,6 @@
 // @flow
 import React from 'react'
 import styled, { css } from 'styled-components'
-import type { Match } from 'react-router-dom'
 import type { ProductType } from 'Types/ContentTypes'
 import type { CheckoutConsumerProps } from 'Views/CheckoutProvider'
 import { Column } from 'Components/Layout'
@@ -104,9 +103,14 @@ type Props = {
 
 const Product = ({ product, cart, loading }: Props) => {
 	if (!product) return null
+	const minPrice = product.variants ? Math.min(...product.variants.map((v) => parseInt(v.price, 10))).toString() : null
 	const seo = {
 		name: product.title,
 		image: product.images ? product.images[0] : null,
+		description: product.description,
+		contentType: 'product',
+		currency: 'USD',
+		price: minPrice,
 	}
 	return (
 		<Wrapper loading={loading}>
