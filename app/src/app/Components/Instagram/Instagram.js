@@ -14,6 +14,7 @@ import InstagramLogo from './InstagramLogo'
 
 type Props = {
 	settings?: {
+		handle: string,
 		title?: string,
 		images?: Array<SanityImage>,
 	},
@@ -41,9 +42,8 @@ const Images = styled.div`
 
 const Instagram = ({ settings }: Props) => {
 	if (!settings) return null
-	const { title, images } = settings
+	const { title, images, handle } = settings
 	if (!images || !images.length) return null
-
 	return (
 		<Wrapper>
 			{title && (
@@ -54,13 +54,13 @@ const Instagram = ({ settings }: Props) => {
 			)}
 			<Images>
 				{images.map((image) => (
-					<a key={image.url} href="https://www.instagram.com/kamebyhikawa">
+					<a key={image.url} href={`https://www.instagram.com/${handle}`}>
 						<ImageBox sizes="300px" ratio={1} image={image} />
 					</a>
 				))}
 			</Images>
 			<Header4 align="center">
-				<a href="https://www.instagram.com/kamebyhikawa">@kamebyhikawa</a>
+				<a href={`https://www.instagram.com/${handle}`}>{`@${handle}`}</a>
 			</Header4>
 		</Wrapper>
 	)

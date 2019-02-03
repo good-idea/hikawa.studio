@@ -72,6 +72,7 @@ const query = gql`
 			}
 			instagram {
 				title
+				handle
 				images {
 					${sanityImageFields}
 				}
