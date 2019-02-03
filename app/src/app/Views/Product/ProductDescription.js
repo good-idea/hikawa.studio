@@ -71,8 +71,17 @@ type State = {
 
 class ProductDescription extends React.Component<Props, State> {
 	state = {
-		selectedVariant: undefined,
+		selectedVariant: this.props.product.variants ? this.props.product.variants[0] : undefined,
 		buttonState: 'normal',
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.product.id !== this.props.product.id) {
+			this.setState({
+				selectedVariant: nextProps.product.variants ? nextProps.product.variants[0] : undefined,
+				buttonState: 'normal',
+			})
+		}
 	}
 
 	selectVariant = (variant: ProductVariant) => () => {

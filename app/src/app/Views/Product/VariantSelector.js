@@ -15,54 +15,69 @@ const Outer = styled.div`
 `
 
 const Table = styled.div`
-	border: 1px solid darkGray;
-	border-radius: 8px;
-	overflow: hidden;
-	background-color: white;
-	display: inline-block;
+	${({ theme }) => css`
+		border: 4px solid ${theme.color.offset};
+		border-radius: 8px;
+		overflow: hidden;
+		background-color: white;
+		display: inline-flex;
+		flex-direction: column;
+		min-width: 250px;
+	`}
 `
 
 const Variant = styled.button`
-	${({ theme, active, available }) => `
+	${({ theme, active, available }) => css`
 		padding: ${theme.layout.spacing.half} ${theme.layout.spacing.single};
-		display: flex;
 		width: 100%;
-		justify-content: space-between;
-		align-items: center;
-		background-color: ${active ? 'lightGray' : ''};
+		text-align: center;
+		background-color: ${active ? theme.color.offsetLight : ''};
 		cursor: ${available ? 'pointer' : 'not-allowed'}
 		
 		&:hover {
-			background-color: ${active ? 'lightGray' : 'whiteSmoke'}
+			background-color: ${active ? theme.color.offsetLight : 'whiteSmoke'}
 		}
 
 		& + button {
-			border-top: 1px solid darkGray;
+			border-top: 1px solid #e0e0e0;
 		}
 	`};
 `
 
 const VariantTitle = styled(Header4)`
-	margin-right: 2em;
+	text-align: 'center';
 `
 
 const PriceWrapper = styled.div`
+	${({ theme }) => css`
+		padding: ${theme.layout.spacing.half} ${theme.layout.spacing.single};
+		width: 100%;
+		text-align: center;
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: ${theme.color.offset};
+	`}
+`
+
+const PriceInner = styled.div`
 	position: relative;
+	display: inline;
 `
 
 const VariantPrice = styled(Header4)`
-	${({ available }) => `
-			color: ${available ? 'inherit' : 'lightgrey'}
-		`};
+	${({ theme, available }) => `
+		margin: 0;
+		color: ${available ? 'inherit' : theme.color.middleGray};
+	`};
 `
 
 const SoldOut = styled(Header6)`
 	color: red;
 	position: absolute;
-	width: 100%;
-	height: 100%;
 	top: 0;
-	left: 0;
+	left: 100%;
 	margin: 0;
 	display: flex;
 	justify-content: flex-center;
@@ -96,12 +111,16 @@ const VariantSelector = ({ variants, selectVariant, selectedVariant }: Props) =>
 						onClick={v.availableForSale ? selectVariant(v) : noop}
 					>
 						<VariantTitle>{v.title}</VariantTitle>
-						<PriceWrapper>
-							<VariantPrice available={v.availableForSale}>${v.price.replace(/.00$/, '')}</VariantPrice>
-							{!v.availableForSale && <SoldOut>Sold Out!</SoldOut>}
-						</PriceWrapper>
 					</Variant>
 				))}
+				<PriceWrapper>
+					<PriceInner>
+						{selectedVariant && !selectedVariant.availableForSale && <SoldOut>Sold Out!</SoldOut>}
+						<VariantPrice available={selectedVariant && selectedVariant.availableForSale}>
+							{selectedVariant ? `$${selectedVariant.price.replace(/.00$/, '')}` : 'Pick a style'}
+						</VariantPrice>
+					</PriceInner>
+				</PriceWrapper>
 			</Table>
 		</Outer>
 	)
