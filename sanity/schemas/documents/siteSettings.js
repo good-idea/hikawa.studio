@@ -168,6 +168,13 @@ const page = {
 			type: 'object',
 			fields: [
 				{
+					title: 'Handle',
+					name: 'handle',
+					type: 'string',
+					validation: (Rule) => Rule.required(),
+					description: "Don't include the @",
+				},
+				{
 					title: 'Title',
 					name: 'title',
 					type: 'string',
