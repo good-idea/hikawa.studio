@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import { Column } from 'Components/Layout'
 import { SettingsConsumer } from 'Views/SettingsProvider'
 import { ImageBox } from 'Components/Media'
 import type { SanityImage } from 'Types/MediaTypes'

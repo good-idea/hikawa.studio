@@ -4,6 +4,7 @@ import { Switch } from 'react-router-dom'
 import Route from 'Components/Route'
 import { Main } from 'Components/Layout'
 import Announcement from 'Components/Announcement'
+import ScrollToTop from 'Components/ScrollToTop'
 import NavMenu from './Menu'
 import { SettingsProvider } from './SettingsProvider'
 import { CheckoutProvider } from './CheckoutProvider'
@@ -12,8 +13,6 @@ import Footer from './Footer'
 import BaseSEO from './BaseSEO'
 import CartModal from './Cart/CartModal'
 import { routes } from '../Routes'
-
-
 
 /**
  * App
@@ -26,6 +25,7 @@ const App = () => (
 			<MailerPopup />
 			<Announcement />
 			<CartModal />
+			<ScrollToTop />
 			<Main>
 				<NavMenu />
 				<Switch>
