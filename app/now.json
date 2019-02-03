@@ -1,7 +1,7 @@
 {
 	"version": 1,
-	"name": "kame-studio",
-	"alias": ["kame.studio", "www.kame.studio"],
+	"name": "hikawa-studio",
+	"alias": ["hikawa.studio", "www.hikawa.studio"],
 	"scale": {
 		"sfo1": {
 			"min": 1,
