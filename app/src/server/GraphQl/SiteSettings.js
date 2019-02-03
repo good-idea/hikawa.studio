@@ -46,6 +46,7 @@ export const settingsSchema = /* GraphQL */ `
 
 	type InstagramSettings {
 		title: String
+		handle: String
 		images: [SanityImage]
 	}
 
