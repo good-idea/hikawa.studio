@@ -26,9 +26,6 @@ const config = {
 		const {
 			checkoutLineItemsAdd: { userErrors, checkout },
 		} = data
-		if (userErrors.length !== 0) {
-			console.log(userErrors)
-		}
 		if (checkout) {
 			proxy.writeQuery({
 				query: checkoutQuery,

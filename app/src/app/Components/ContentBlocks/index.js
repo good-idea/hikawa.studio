@@ -37,7 +37,6 @@ const Block = ({ block, number, largeText }: Props) => {
 		// case 'image':
 		// 	return <Image {...block} />
 		case 'videoEmbed':
-		console.log(contentBlock)
 			return <VideoEmbed {...contentBlock} />
 		case 'richText':
 			return <Text {...contentBlock} />
