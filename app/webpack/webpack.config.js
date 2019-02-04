@@ -20,7 +20,7 @@ const production = {
 		}),
 	],
 	optimization: {
-		concatenateModules: !Boolean(process.env.WEBPACK_STATS),
+		concatenateModules: process.env.WEBPACK_STATS,
 		splitChunks: {
 			chunks: 'all',
 			minSize: 20,
