@@ -1,10 +1,9 @@
 // @flow
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import type { ProductType, ProductVariant } from 'Types/ContentTypes'
+import type { ProductType, ProductVariant, SiteSettings } from 'Types/ContentTypes'
 import type { CheckoutConsumerProps } from 'Views/CheckoutProvider'
-import type { SiteSettings } from 'Types/ContentTypes'
-import { Header2, Header4, P } from 'Components/Type'
+import { Header2, P } from 'Components/Type'
 import Text from 'Components/ContentBlocks/Text'
 // import { InspectorConsumer } from 'Components/ImageInspector'
 import { InspectorConsumer } from 'Components/ImageInspector'
@@ -12,6 +11,7 @@ import { Button } from 'Components/Buttons'
 import { sleep } from 'Utils'
 import { SettingsConsumer } from 'Views/SettingsProvider'
 import VariantSelector from './VariantSelector'
+import SuccessMessage from './SuccessMessage'
 
 const Title = styled(Header2)`
 	${({ theme }) => css`
@@ -30,15 +30,9 @@ const ExtraDescription = styled.div`
 	`}
 `
 
-const ShowCartButton = styled.button`
-	${({ theme, visible }) => `
-		opacity: ${visible ? '1' : '0'};
-		pointer-events: ${visible ? 'auto' : 'none'};
-		margin: ${theme.layout.spacing.single} 0;
-		transform: ${visible ? 'none' : 'translateX(-10px)'};
-		transition: 0.2s;
-		transition-delay: ${visible ? '0.4s' : '0'};
-	`}
+const ButtonContainer = styled.div`
+	display: flex;
+	justify-content: flex-start;
 `
 
 const VariantWrapper = styled.div`
@@ -67,12 +61,14 @@ type Props = {
 type State = {
 	selectedVariant?: ProductVariant,
 	buttonState: string,
+	success: boolean,
 }
 
 class ProductDescription extends React.Component<Props, State> {
 	state = {
 		selectedVariant: this.props.product.variants ? this.props.product.variants[0] : undefined,
 		buttonState: 'normal',
+		success: false,
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -102,7 +98,7 @@ class ProductDescription extends React.Component<Props, State> {
 		const { addToCart } = this.props.cart
 		if (!selectedVariant) return
 		await addToCart({ lineItems: [{ variantId: selectedVariant.id, quantity: 1 }] })
-		this.setState({ buttonState: 'success' })
+		this.setState({ buttonState: 'success', success: true })
 		await sleep(1500)
 		this.setState({ buttonState: 'normal' })
 	}
@@ -121,8 +117,7 @@ class ProductDescription extends React.Component<Props, State> {
 
 	render() {
 		const { product, settings, cart } = this.props
-		const { selectedVariant } = this.state
-		const showCartButton = cart && cart.currentCart && cart.currentCart.lineItems ? cart.currentCart.lineItems.length > 0 : false
+		const { selectedVariant, success } = this.state
 		return (
 			<Wrapper>
 				<Title>{product.title}</Title>
@@ -138,19 +133,16 @@ class ProductDescription extends React.Component<Props, State> {
 						selectVariant={this.selectVariant}
 						selectedVariant={selectedVariant}
 					/>
-					<Button
-						size="medium"
-						onClick={this.addSelectedVariantToCart}
-						disabled={selectedVariant === undefined || selectedVariant.availableForSale === false}
-					>
-						{this.renderButtonText()}
-					</Button>
-					<br />
-					<ShowCartButton onClick={cart.openCart} visible={showCartButton}>
-						<Header4 color="pink" weight="semi">
-							→ Continue to Checkout
-						</Header4>
-					</ShowCartButton>
+					<ButtonContainer>
+						<Button
+							size="medium"
+							onClick={this.addSelectedVariantToCart}
+							disabled={selectedVariant === undefined || selectedVariant.availableForSale === false}
+						>
+							{this.renderButtonText()}
+						</Button>
+						<SuccessMessage openCart={cart.openCart} success={success} />
+					</ButtonContainer>
 				</VariantWrapper>
 			</Wrapper>
 		)

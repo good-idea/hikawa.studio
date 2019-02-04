@@ -7,6 +7,8 @@ export const highlight = '#64daca'
 export const offset = 'rgb(212, 239, 133)'
 export const offsetLight = 'rgba(212, 239, 133, 0.3)'
 export const pink = 'rgb(244, 4, 115)'
+export const mint = 'rgba(193,239,188,1)'
+export const mintLight = 'rgba(193,239,188,0.3)'
 
 export const defaults = {
 	highlight,

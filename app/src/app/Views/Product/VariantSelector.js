@@ -16,13 +16,27 @@ const Outer = styled.div`
 
 const Table = styled.div`
 	${({ theme }) => css`
-		border: 4px solid ${theme.color.offset};
-		border-radius: 8px;
-		overflow: hidden;
-		background-color: white;
-		display: inline-flex;
 		flex-direction: column;
-		min-width: 250px;
+		display: inline-flex;
+		min-width: 200px;
+		overflow: hidden;
+		flex-direction: column;
+		background-color: white;
+		margin-bottom: ${theme.layout.spacing.single};
+		border: 1px solid;
+		box-shadow: 2px 2px rgb(100, 100, 100);
+		padding-bottom: 1px;
+	`}
+`
+
+const PriceWrapper = styled.div`
+	${({ active }) => css`
+		opacity: ${active ? '1' : '0'};
+		text-align: center;
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	`}
 `
 
@@ -30,16 +44,20 @@ const Variant = styled.button`
 	${({ theme, active, available }) => css`
 		padding: ${theme.layout.spacing.half} ${theme.layout.spacing.single};
 		width: 100%;
-		text-align: center;
-		background-color: ${active ? theme.color.offsetLight : ''};
+		text-align: left;
+		background-color: ${active ? theme.color.mint : ''};
 		cursor: ${available ? 'pointer' : 'not-allowed'}
+		border-color: black;
+		margin: 0;
+		display: flex;
+		justify-content: space-between;
 		
 		&:hover {
-			background-color: ${active ? theme.color.offsetLight : 'whiteSmoke'}
-		}
+			background-color: ${active ? theme.color.mint : theme.color.mintLight};
 
-		& + button {
-			border-top: 1px solid #e0e0e0;
+			${PriceWrapper} {
+				opacity: 1;
+			}
 		}
 	`};
 `
@@ -48,43 +66,29 @@ const VariantTitle = styled(Header4)`
 	text-align: 'center';
 `
 
-const PriceWrapper = styled.div`
-	${({ theme }) => css`
-		padding: ${theme.layout.spacing.half} ${theme.layout.spacing.single};
-		width: 100%;
-		text-align: center;
-		position: relative;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		background-color: ${theme.color.offset};
-	`}
-`
-
 const PriceInner = styled.div`
 	position: relative;
 	display: inline;
 `
 
 const VariantPrice = styled(Header4)`
-	${({ theme, available }) => `
+	${({ available }) => css`
 		margin: 0;
-		color: ${available ? 'inherit' : theme.color.middleGray};
 	`};
 `
 
 const SoldOut = styled(Header6)`
 	color: red;
 	position: absolute;
-	top: 0;
-	left: 100%;
+	top: 50%;
+	left: 50%;
 	margin: 0;
 	display: flex;
 	justify-content: flex-center;
 	align-items: center;
 	white-space: nowrap;
 	font-style: italic;
-	transform: skewY(-10deg);
+	transform: translate(-50%, -50%) skewY(-10deg);
 `
 
 /**
@@ -111,16 +115,16 @@ const VariantSelector = ({ variants, selectVariant, selectedVariant }: Props) =>
 						onClick={v.availableForSale ? selectVariant(v) : noop}
 					>
 						<VariantTitle>{v.title}</VariantTitle>
+						<PriceWrapper active={selectedVariant && v.id === selectedVariant.id}>
+							<PriceInner>
+								{v && !v.availableForSale && <SoldOut>Sold Out!</SoldOut>}
+								<VariantPrice available={v && v.availableForSale}>
+									{v ? `$${v.price.replace(/.00$/, '')}` : 'Pick a style'}
+								</VariantPrice>
+							</PriceInner>
+						</PriceWrapper>
 					</Variant>
 				))}
-				<PriceWrapper>
-					<PriceInner>
-						{selectedVariant && !selectedVariant.availableForSale && <SoldOut>Sold Out!</SoldOut>}
-						<VariantPrice available={selectedVariant && selectedVariant.availableForSale}>
-							{selectedVariant ? `$${selectedVariant.price.replace(/.00$/, '')}` : 'Pick a style'}
-						</VariantPrice>
-					</PriceInner>
-				</PriceWrapper>
 			</Table>
 		</Outer>
 	)
