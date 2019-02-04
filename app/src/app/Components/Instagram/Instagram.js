@@ -53,13 +53,13 @@ const Instagram = ({ settings }: Props) => {
 			)}
 			<Images>
 				{images.map((image) => (
-					<a key={image.url} href={`https://www.instagram.com/${handle}`}>
+					<a key={image.url} target="_blank" rel="noreferrer noopener" href={`https://www.instagram.com/${handle}`}>
 						<ImageBox sizes="300px" ratio={1} image={image} />
 					</a>
 				))}
 			</Images>
 			<Header4 align="center">
-				<a href={`https://www.instagram.com/${handle}`}>{`@${handle}`}</a>
+				<a target="_blank" rel="noreferrer noopener" href={`https://www.instagram.com/${handle}`}>{`@${handle}`}</a>
 			</Header4>
 		</Wrapper>
 	)
