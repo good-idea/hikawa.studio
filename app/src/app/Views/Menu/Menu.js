@@ -225,14 +225,7 @@ class Navigation extends React.Component<Props, State> {
 										</NavLink>
 									) : (
 										<NavLink key={link.url}>
-											<a
-												target="_blank"
-												rel="noreferrer noopener"
-												onClick={this.closeMenu}
-												href={link.url}
-												target="_blank"
-												rel="noreferrer noopener"
-											>
+											<a onClick={this.closeMenu} href={link.url} target="_blank" rel="noreferrer noopener">
 												{link.label.toLowerCase() === 'instagram' ? <InstagramLogo /> : 'link.label'}
 											</a>
 										</NavLink>
