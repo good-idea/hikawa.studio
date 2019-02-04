@@ -6,9 +6,7 @@ export const getLink = async (parent, args, context, info) => {
 	const parentLink = parent.link[0]
 	if (!parentLink) return null
 	if (parentLink._ref === 'shop') {
-		console.log('!SHOP')
 		const shopPage = await client.getById('shop')
-		console.log(shopPage)
 		return shopPage
 	}
 	if (parentLink._type !== 'shopifyItem') return parentLink

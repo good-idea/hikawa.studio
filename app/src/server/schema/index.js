@@ -1,9 +1,5 @@
 // @flow
-import {
-	makeRemoteExecutableSchema,
-	introspectSchema,
-	mergeSchemas,
-} from 'graphql-tools'
+import { makeRemoteExecutableSchema, introspectSchema, mergeSchemas } from 'graphql-tools'
 import { HttpLink } from 'apollo-link-http'
 import fetch from 'node-fetch'
 import { SHOP_NAME, STOREFRONT_ACCESS_TOKEN } from '../config'

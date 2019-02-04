@@ -2,7 +2,7 @@ import * as React from 'react'
 import path from 'path'
 import { ApolloClient } from 'apollo-client'
 import { SchemaLink } from 'apollo-link-schema'
-import { InMemoryCache } from 'apollo-cache-inmemory'
+import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-cache-inmemory'
 import { ApolloProvider, getDataFromTree } from 'react-apollo'
 import { ServerStyleSheet } from 'styled-components'
 import { StaticRouter } from 'react-router'
@@ -12,19 +12,25 @@ import Helmet from 'react-helmet'
 import { ChunkExtractor } from '@loadable/server'
 import App from '../app/App'
 import template from './views/index.html'
+import introspectionQueryResultData from './fragmentTypes.json'
+
+const fragmentMatcher = new IntrospectionFragmentMatcher({
+	introspectionQueryResultData,
+})
 
 const statsFile = path.resolve(__dirname, '..', '..', 'public', 'js', 'loadable-stats.json')
 
-const render = (schema) => async (req, res, next) => {
+const render = ({ schema, context }) => async (req, res, next) => {
 	if (req.url.startsWith('/graphql')) return next()
 	const client = new ApolloClient({
 		ssrMode: true,
-		link: new SchemaLink({ schema }),
-		cache: new InMemoryCache(),
+		link: new SchemaLink({ schema, context }),
+		cache: new InMemoryCache({
+			fragmentMatcher,
+		}),
 	})
 	const extractor = new ChunkExtractor({ statsFile })
 
-	const context = {}
 	const RenderedApp = extractor.collectChunks(
 		<ApolloProvider client={client}>
 			<StaticRouter location={req.url} context={context}>
