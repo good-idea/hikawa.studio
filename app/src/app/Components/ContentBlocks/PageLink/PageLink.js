@@ -103,6 +103,7 @@ const PageLinkBlock = ({ item, imageSizes, showHover, useDefaultImage, largeText
 	const { link, images, caption, label } = item
 	if (!link) return null
 	const url = getLinkUrl(link)
+	if (!url) return null
 	const headerText = label || (link && link.title)
 	const fallbackImage =
 		link.__typename === 'Collection' ? link.image : link.__typename === 'Product' ? link.images && link.images[0] : null
