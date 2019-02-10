@@ -188,7 +188,6 @@ const page = {
 							type: 'image',
 						},
 					],
-					validation: (Rule) => Rule.max(5),
 				},
 			],
 		},
