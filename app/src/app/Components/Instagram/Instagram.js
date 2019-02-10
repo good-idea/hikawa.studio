@@ -30,6 +30,7 @@ const Images = styled.div`
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		grid-column-gap: ${theme.layout.spacing.double};
+		grid-row-gap: ${theme.layout.spacing.double};
 		margin: ${theme.layout.spacing.double} 0;
 
 		${theme.media.queries.phone`
