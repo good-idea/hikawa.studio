@@ -8,7 +8,10 @@ import App from './App'
 import ApolloProvider from './Services/Apollo'
 
 const loadLogRocket = async () => {
-	const LogRocket = await import(/* webpackChunkName: "logrocket" */ 'logrocket')
+	const lr = await import(/* webpackChunkName: "logrocket" */
+	/* webpackPrefetch: true */
+	'logrocket')
+	const LogRocket = lr.default
 	LogRocket.init('ulpljc/kame')
 	const email = getCookie(VIEWER_EMAIL)
 	if (email) {

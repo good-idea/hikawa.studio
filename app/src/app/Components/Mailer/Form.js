@@ -59,8 +59,8 @@ class MailerForm extends React.Component<Props, State> {
 		const { email } = this.state
 		const result = await this.props.submit({ variables: { email } })
 		if (process.env.NODE_ENV === 'production') {
-			const LogRocket = await import(/* webpackChunkName: "logrocket" */ 'logrocket')
-
+			const lr = await import(/* webpackChunkName: "logrocket" */ 'logrocket')
+			const LogRocket = lr.default
 			LogRocket.identify(email, {
 				email,
 			})
