@@ -9,6 +9,15 @@ const HeroWrapper = styled.div`
 	overflow: hidden;
 	width: 100%;
 	padding-bottom: 45%;
+	display: flex;
+`
+
+const HeroRatio = styled.div`
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	display: flex;
 `
 
 const EmptyHero = styled.div`
@@ -23,21 +32,10 @@ const EmptyHero = styled.div`
 `
 
 const ImageWrapper = styled.div`
-	${({ index }) => `
-		position: absolute;
-		top: 0;
-		left: calc(100% * ${index});
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-
-	`};
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 	img {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
 		object-fit: cover;
 	}
 `
@@ -53,18 +51,21 @@ type Props = {
 	view?: 'carousel' | 'standard',
 }
 
-const Hero = ({ hero, view }: Props) =>
-	hero && hero.images && hero.images.length ? (
+const Hero = ({ hero, view }: Props) => {
+	return hero && hero.images && hero.images.length ? (
 		<HeroWrapper view={view}>
-			{hero.images.map((image, index) => (
-				<ImageWrapper key={image.url} index={index}>
-					<Image image={image} sizes="100vw" />
-				</ImageWrapper>
-			))}
+			<HeroRatio>
+				{hero.images.map((image, index) => (
+					<ImageWrapper key={image.url} index={index}>
+						<Image image={image} sizes="100vw" />
+					</ImageWrapper>
+				))}
+			</HeroRatio>
 		</HeroWrapper>
 	) : (
 		<EmptyHero />
 	)
+}
 
 Hero.defaultProps = {
 	view: 'standard',
