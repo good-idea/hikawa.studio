@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react'
 import styled from 'styled-components'
-import LogRocket from 'logrocket'
 import { Button } from 'Components/Buttons'
 import type { Mutation } from 'Types/GraphQLTypes'
 import { Input } from 'Components/Forms'
@@ -60,6 +59,8 @@ class MailerForm extends React.Component<Props, State> {
 		const { email } = this.state
 		const result = await this.props.submit({ variables: { email } })
 		if (process.env.NODE_ENV === 'production') {
+			const LogRocket = await import(/* webpackChunkName: "logrocket" */ 'logrocket')
+
 			LogRocket.identify(email, {
 				email,
 			})

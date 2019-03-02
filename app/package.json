@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "dev:app": "cross-env ENV=development DEBUG=api webpack-dev-server --colors --env development --config ./webpack/webpack.config.dev.js",
-    "dev:server": "cross-env ENV=development cross-env DEBUG=server nodemon --watch ./src/server ./src/server/server.js --exec babel-node",
+    "dev:server": "cross-env ENV=development cross-env BABEL_ENV=production cross-env DEBUG=server nodemon --watch ./src/server ./src/server/server.js --exec babel-node",
     "dev:tunnel": "cross-env SHARE_TUNNEL=true yarn dev",
     "clean": "rimraf node_modules/.cache && rimraf build && rimraf public/js",
     "build": "yarn clean && yarn build:app && yarn build:server",

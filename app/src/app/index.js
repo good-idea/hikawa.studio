@@ -1,14 +1,14 @@
 // @flow
 import React from 'react'
 import ReactDOM from 'react-dom'
-import LogRocket from 'logrocket'
 import { BrowserRouter } from 'react-router-dom'
 import { getCookie, VIEWER_EMAIL } from 'Utils/storage'
 import { loadableReady } from '@loadable/component'
 import App from './App'
 import ApolloProvider from './Services/Apollo'
 
-if (process.env.NODE_ENV === 'production') {
+const loadLogRocket = async () => {
+	const LogRocket = await import(/* webpackChunkName: "logrocket" */ 'logrocket')
 	LogRocket.init('ulpljc/kame')
 	const email = getCookie(VIEWER_EMAIL)
 	if (email) {
@@ -16,6 +16,10 @@ if (process.env.NODE_ENV === 'production') {
 			email,
 		})
 	}
+}
+
+if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
+	setTimeout(loadLogRocket, 500)
 }
 
 if (window.localStorage && process.env.DEBUG) {
@@ -27,21 +31,16 @@ const { initialData } = (typeof window !== 'undefined' && window.__INITIAL_QUERY
 const renderApp = (AppComponent) => {
 	loadableReady(() => {
 		const root = document.getElementById('root')
+		if (!root) return null
 		ReactDOM.hydrate(
 			<BrowserRouter>
 				<ApolloProvider>
 					<AppComponent initialData={initialData} />
 				</ApolloProvider>
 			</BrowserRouter>,
-
 			root,
 		)
 	})
-
-	// ReactDOM.render(
-	// 	// $FlowFixMe
-	// 	document.getElementById('root'),
-	// )
 }
 
 renderApp(App)
