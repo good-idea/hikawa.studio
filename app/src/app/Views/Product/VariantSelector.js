@@ -72,9 +72,7 @@ const PriceInner = styled.div`
 `
 
 const VariantPrice = styled(Header4)`
-	${({ available }) => css`
-		margin: 0;
-	`};
+	margin: 0 0 0 0.8em;
 `
 
 const SoldOut = styled(Header6)`
