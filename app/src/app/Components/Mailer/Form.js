@@ -11,7 +11,7 @@ import MailerMutation from './MailerMutation'
 const Form = styled.form`
 	${({ loading }) => `
 		opacity: ${loading ? '0.3' : '1'};
-		pointer-events: ${loading ? 'none' : 'auto'};
+		pointer-events: ${loading ? 'none' : ''};
 		transition: 0.2s;
 	`}
 `

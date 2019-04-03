@@ -145,6 +145,7 @@ export type SiteSettings = {
 		footerText: Array<TextNode>,
 		popupText: Array<TextNode>,
 		popupEnabled: boolean,
+		popupBackground?: SanityImage,
 	},
 }
 

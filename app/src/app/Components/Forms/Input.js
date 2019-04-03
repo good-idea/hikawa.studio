@@ -21,6 +21,6 @@ export const Input = styled.input`
 		margin-right: ${theme.layout.spacing.single}
 		color: ${locked ? 'white' : 'black'};
 		background-color: ${locked ? 'black' : 'white'};
-		pointer-events: ${locked ? 'none' : 'auto'};
+		pointer-events: ${locked ? 'none' : ''};
 	`};
 `

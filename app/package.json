@@ -28,6 +28,7 @@
     "apollo-link-error": "^1.1.10",
     "apollo-link-http": "^1.5.14",
     "apollo-link-schema": "^1.2.2",
+    "apollo-server-express": "^2.4.8",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "debug": "^4.1.1",
@@ -37,7 +38,6 @@
     "graphql": "^14.2.1",
     "graphql-tag": "^2.10.1",
     "graphql-tools": "^4.0.4",
-    "graphql-yoga": "^1.17.4",
     "ioredis": "^4.9.0",
     "isomorphic-fetch": "^2.2.1",
     "js-cookie": "^2.2.0",
@@ -122,6 +122,6 @@
     "write-file-webpack-plugin": "^4.5.0"
   },
   "resolutions": {
-    "graphql": "14.1.1"
+    "graphql": "^14.1.1"
   }
 }

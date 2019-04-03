@@ -10,6 +10,8 @@ import SanityImage from 'Components/Media/SanityImage'
 import { SecondaryButton } from 'Components/Buttons'
 import { SettingsConsumer } from './SettingsProvider'
 
+const { useEffect, useState } = React
+
 const Wrapper = styled.div`
 	${({ theme }) => css`
 		text-align: center;
@@ -53,15 +55,27 @@ type Props = {
 }
 
 const MailerPopup = ({ settings }: Props) => {
-	const hasSeenPopup = getCookie(cookieName)
-	if (hasSeenPopup || settings.mailer.popupEnabled !== true) return null
+	const [open, setOpen] = useState(false)
 
-	const onClose = () => {
+	useEffect(() => {
+		const hasSeenPopup = getCookie(cookieName)
+		if (!hasSeenPopup && settings.mailer.popupEnabled) {
+			const dialogTimeout = setTimeout(() => {
+				setOpen(true)
+			}, 1000)
+
+			return () => clearTimeout(dialogTimeout)
+		}
+		return () => {}
+	}, [])
+
+	const close = () => {
 		setCookie(cookieName, true, { expires: 21 })
+		setOpen(false)
 	}
 
 	return (
-		<Dialog onClose={onClose} delay={1000}>
+		<Dialog open={open} close={close}>
 			{({ closeDialog }) => (
 				<Wrapper>
 					{settings.mailer.popupBackground ? (

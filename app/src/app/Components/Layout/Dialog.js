@@ -56,52 +56,31 @@ type RenderProps = {
 
 type Props = {
 	children: (RenderProps) => React.Node,
-	delay?: number,
-	onClose?: () => any,
-}
-
-type State = {
+	close: () => void,
 	open: boolean,
 }
 
-class Dialog extends React.Component<Props, State> {
-	static defaultProps = {
-		delay: 0,
-		onClose: undefined,
-	}
-
-	state = {
-		open: false,
-	}
-
-	componentDidMount = () => {
-		const { delay } = this.props
-		this.timeout = setTimeout(() => {
-			this.setState({ open: true })
-		}, delay)
+class Dialog extends React.Component<Props> {
+	componentDidMount() {
+		document.addEventListener('keydown', this.handleKey)
 	}
 
 	componentWillUnmount() {
-		clearTimeout(this.timeout)
+		document.removeEventListener('keydown', this.handleKey, false)
 	}
 
-	close = () => {
-		const { onClose } = this.props
-		this.setState({ open: false })
-		if (onClose) onClose()
+	handleKey = (e: SyntheticEvent<any>) => {
+		if (e.key === 'Escape') this.props.close()
 	}
-
-	timeout: TimeoutID
 
 	render() {
-		const { children } = this.props
-		const { open } = this.state
+		const { children, open, close } = this.props
 		const renderProps = {
-			closeDialog: this.close,
+			closeDialog: close,
 		}
 		return (
 			<Wrapper open={open}>
-				<Background onClick={this.close} />
+				<Background onClick={close} />
 				<Inner>{children(renderProps)}</Inner>
 			</Wrapper>
 		)
