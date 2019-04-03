@@ -80,8 +80,8 @@ export const P = styled.p`
 		margin: 0.5em 0;
 		font-size: ${theme.type.size.p};
 
-		&:after {
-			content: '\00a0\00a0';
+		& + ${P} {
+			margin-top: 1em;
 		}
 
 		&:first-child {
