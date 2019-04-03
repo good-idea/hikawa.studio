@@ -24,9 +24,6 @@ module.exports = {
 		development: {
 			plugins: ['flow-react-proptypes', 'react-hot-loader/babel'],
 		},
-		// production: {
-		// 	plugins: forBrowser ? ['graphql-tag'] : [],
-		// },
 	},
 	plugins: [
 		'import-graphql',

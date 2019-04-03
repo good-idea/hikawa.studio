@@ -17,6 +17,7 @@ const HeroRatio = styled.div`
 	top: 0;
 	left: 0;
 	width: 100%;
+	height: 100%;
 	display: flex;
 `
 
@@ -36,6 +37,8 @@ const ImageWrapper = styled.div`
 	height: 100%;
 	object-fit: cover;
 	img {
+		width: 100%;
+		height: 100%;
 		object-fit: cover;
 	}
 `
@@ -44,6 +47,7 @@ const ImageWrapper = styled.div`
 /**
  * Hero
  */
+
 type Props = {
 	hero?: {
 		images: Array<SanityImage>,
