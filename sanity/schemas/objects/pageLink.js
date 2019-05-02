@@ -38,6 +38,7 @@ const SubTitle = styled.h5`
  */
 
 const getLinkInfo = async (link) => {
+	// console.log(link)
 	if (link._ref) {
 		const linkedPage = await client.getDocument(link._ref)
 		return {
@@ -70,7 +71,8 @@ class PageLinkPreview extends React.Component {
 	fetchValues = async (props = this.props) => {
 		if (!props || !props.value) return
 		const { link, label, image } = props.value
-		if (!link) return
+		// console.log(props.value, link)
+		if (!link || !link.length) return
 
 		const { linkTitle, subtitle, linkedSrc } = await getLinkInfo(link[0])
 		const userImage = image && image.asset ? await client.getDocument(image.asset._ref) : null
@@ -113,11 +115,11 @@ const pageLink = {
 					title: 'Page',
 					to: [{ type: 'page' }, { type: 'shop' }],
 				},
-				{
-					type: 'url',
-					name: 'url',
-					title: 'URL',
-				},
+				// {
+				// 	type: 'url',
+				// 	name: 'url',
+				// 	title: 'URL',
+				// },
 			],
 			validation: (Rule) => Rule.max(1).required(),
 		},
@@ -150,10 +152,10 @@ const pageLink = {
 						// { title: 'Header 3', value: 'h3' },
 					],
 					lists: [],
-					marks: {
-						annotations: [],
-						decorators: [{ title: 'Strong', value: 'strong' }, { title: 'Emphasis', value: 'em' }],
-					},
+					// marks: {
+					// annotations: [],
+					// decorators: [{ title: 'Strong', value: 'strong' }, { title: 'Emphasis', value: 'em' }],
+					// },
 				},
 			],
 		},

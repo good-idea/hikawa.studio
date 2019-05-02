@@ -9,7 +9,7 @@
   "scripts": {
     "start": "sanity start",
     "test": "sanity check",
-    "update-dataset": "sanity dataset export production && sanity dataset import production.tar.gz test"
+    "sync": "sanity dataset export kame && sanity dataset import kame.tar.gz staging --replace && rm kame.tar.gz"
   },
   "keywords": [
     "sanity"
@@ -28,7 +28,6 @@
     "react": "^16.6",
     "react-dom": "^16.6",
     "react-icons": "^3.2.2",
-    "sanity-plugin-shopify-selector": "^0.0.0-development",
     "styled-components": "^4.1.2"
   },
   "devDependencies": {

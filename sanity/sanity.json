@@ -7,6 +7,13 @@
 		"projectId": "rz3fhq71",
 		"dataset": "kame"
 	},
+	"env": {
+		"development": {
+			"api": {
+				"dataset": "staging"
+			}
+		}
+	},
 	"plugins": [
 		"@sanity/base",
 		"@sanity/components",
