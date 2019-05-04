@@ -113,18 +113,20 @@ const PageLinkBlock = ({ item, imageSizes, showHover, useDefaultImage, largeText
 	return (
 		<Link to={url}>
 			<Wrapper>
-				<ImageWrapper>
-					{hoverImage && showHover && (
-						<HoverImage>
-							<ImageBox ratio={ratio} image={hoverImage} sizes={imageSizes} />
-						</HoverImage>
-					)}
-					{primaryImage && (
-						<PrimaryImage>
-							<ImageBox ratio={ratio} image={primaryImage} sizes={imageSizes} />
-						</PrimaryImage>
-					)}
-				</ImageWrapper>
+				{hoverImage || primaryImage ? (
+					<ImageWrapper>
+						{hoverImage && showHover && (
+							<HoverImage>
+								<ImageBox ratio={ratio} image={hoverImage} sizes={imageSizes} />
+							</HoverImage>
+						)}
+						{primaryImage && (
+							<PrimaryImage>
+								<ImageBox ratio={ratio} image={primaryImage} sizes={imageSizes} />
+							</PrimaryImage>
+						)}
+					</ImageWrapper>
+				) : null}
 				<TextWrapper>
 					<Text>
 						<Header3 family="serif" align="center">

@@ -17,6 +17,7 @@ const Input = styled.input`
 	height: 35px;
 	text-align: center;
 	margin: 0 5px;
+	-moz-appearance: textfield;
 
 	&::-webkit-inner-spin-button,
 	&::-webkit-outer-spin-button {
@@ -69,15 +70,22 @@ class Quantity extends React.Component<Props, State> {
 	}
 
 	onChange = (e: SyntheticInputEvent<any>) => {
+		const currentQuantity = this.state.quantity
+		if (this.debounceTimeout) clearTimeout(this.debounceTimeout)
+
 		const value = parseInt(e.target.value.replace(/\D/g, ''), 10) || 1
 		const quantity = Math.max(value, 1)
-		this.setState({ quantity })
+		if (quantity !== currentQuantity) {
+			this.setState({ quantity })
+			this.debounceTimeout = setTimeout(this.submitUpdate, 800)
+		}
 	}
 
 	adjust = (adjustment: number) => async () => {
+		if (this.debounceTimeout) clearTimeout(this.debounceTimeout)
 		clearTimeout(this.debounceTimeout)
 		await this.setState(({ quantity }) => ({ quantity: Math.max(0, quantity + adjustment) }))
-		this.debounceTimeout = setTimeout(this.submitUpdate, 500)
+		this.debounceTimeout = setTimeout(this.submitUpdate, 800)
 	}
 
 	remove = async () => {
@@ -86,6 +94,7 @@ class Quantity extends React.Component<Props, State> {
 	}
 
 	submitUpdate = async () => {
+		if (this.debounceTimeout) clearTimeout(this.debounceTimeout)
 		const { updateQuantity } = this.props
 		const { quantity } = this.state
 		await updateQuantity(quantity)
