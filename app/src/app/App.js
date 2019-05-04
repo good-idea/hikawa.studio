@@ -1,19 +1,20 @@
 // @flow
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
+import { SentryBoundary } from './Services/Sentry'
 import LocationMonitor from './Views/LocationMonitor'
 import Kame from './Views/Kame'
 import { GlobalStyles } from './theme/global'
 import theme from './theme'
 
 const App = () => (
-	<ThemeProvider theme={theme}>
-		<React.Fragment>
+	<SentryBoundary>
+		<ThemeProvider theme={theme}>
 			<LocationMonitor />
 			<GlobalStyles />
 			<Kame />
-		</React.Fragment>
-	</ThemeProvider>
+		</ThemeProvider>
+	</SentryBoundary>
 )
 
 App.defaultProps = {
