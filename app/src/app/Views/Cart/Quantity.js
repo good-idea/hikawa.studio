@@ -61,7 +61,7 @@ type Props = {
 }
 
 type State = {
-	quantity: number,
+	quantity: null | number,
 }
 
 class Quantity extends React.Component<Props, State> {
@@ -72,11 +72,18 @@ class Quantity extends React.Component<Props, State> {
 	onChange = (e: SyntheticInputEvent<any>) => {
 		const currentQuantity = this.state.quantity
 		if (this.debounceTimeout) clearTimeout(this.debounceTimeout)
+		const value = e.target.value
 
-		const value = parseInt(e.target.value.replace(/\D/g, ''), 10) || 1
-		const quantity = Math.max(value, 1)
-		if (quantity !== currentQuantity) {
-			this.setState({ quantity })
+		if (!value.length) {
+			this.setState({ quantity: null })
+			return
+		}
+
+		const quantity = Math.max(parseInt(e.target.value.replace(/\D/g, ''), 10) || 1, 1)
+		console.log(e.target.value, quantity)
+		// const quantity = Math.max(value, 1)
+		this.setState({ quantity })
+		if (quantity > 0 && quantity !== currentQuantity) {
 			this.debounceTimeout = setTimeout(this.submitUpdate, 800)
 		}
 	}
@@ -101,7 +108,13 @@ class Quantity extends React.Component<Props, State> {
 	}
 
 	onBlur = () => {
-		this.submitUpdate()
+		const { quantity } = this.state
+		console.log('blur', quantity)
+		if (!quantity || quantity < 1) {
+			this.setState({ quantity: this.props.item.quantity })
+		} else {
+			this.submitUpdate()
+		}
 	}
 
 	debounceTimeout: TimeoutID
@@ -117,7 +130,7 @@ class Quantity extends React.Component<Props, State> {
 							➕
 						</span>
 					</CartButton>
-					<Input type="number" value={quantity} onChange={this.onChange} onBlur={this.onBlur} />
+					<Input type="number" value={quantity || ''} onChange={this.onChange} onBlur={this.onBlur} />
 					<CartButton isIncrementor onClick={this.adjust(-1)}>
 						<span aria-label="Decrease Quantity" role="img">
 							➖
