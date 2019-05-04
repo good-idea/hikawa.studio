@@ -7,9 +7,6 @@ export const CartGrid = styled.div`
 		grid-template-columns: repeat(6, 1fr);
 		grid-column-gap: 15px;
 
-		${theme.media.queries.tablet`
-			grid-template-columns: repeat(5, 1fr);
-		`}
 		${theme.media.queries.phone`
 			grid-column-gap: 8px;
 	

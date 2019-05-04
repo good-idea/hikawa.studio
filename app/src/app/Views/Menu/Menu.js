@@ -107,6 +107,7 @@ const NavLinks = styled.div`
 			align-items: flex-start;
 			transition: 0.2s;
 			opacity: ${open ? '1' : '0'};
+			pointer-events: ${open ? 'auto' : 'none'};
 			transform: translateY(${open ? '0' : '-5%'});
 			overflow: hidden;
 			background-color: white;

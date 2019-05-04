@@ -60,7 +60,8 @@ const RelatedWrapper = styled.div`
 `
 
 const RelatedItems = styled.div`
-	${({ theme }) => `
+	${({ theme }) => css`
+		margin: calc(${theme.layout.spacing.triple} * 2) 0;
 		display: grid;
 		flex-wrap: wrap;
 		grid-template-columns: 1fr 1fr 1fr;
@@ -69,6 +70,11 @@ const RelatedItems = styled.div`
 		justify-content: center;
 		border-top: 1px solid rgb(100, 100, 100);
 		padding: ${theme.layout.spacing.triple} 0;
+
+		${theme.media.queries.phone`
+			margin: ${theme.layout.spacing.triple} 0;
+			grid-column-gap: ${theme.layout.spacing.single};
+		`}
 	`}
 `
 

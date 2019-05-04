@@ -68,6 +68,7 @@ const TextWrapper = styled.div`
 			width: auto;
 			height: auto;
 			opacity: 1;
+			padding: 0;
 		`}
 	`}
 `
