@@ -38,7 +38,12 @@ const SubTitle = styled.h5`
  */
 
 const getLinkInfo = async (link) => {
-	// console.log(link)
+	if (link._type === 'externalLink') {
+		return {
+			linkTitle: link.url,
+			subtitle: 'External Link',
+		}
+	}
 	if (link._ref) {
 		const linkedPage = await client.getDocument(link._ref)
 		return {
@@ -71,7 +76,6 @@ class PageLinkPreview extends React.Component {
 	fetchValues = async (props = this.props) => {
 		if (!props || !props.value) return
 		const { link, label, image } = props.value
-		// console.log(props.value, link)
 		if (!link || !link.length) return
 
 		const { linkTitle, subtitle, linkedSrc } = await getLinkInfo(link[0])
@@ -106,7 +110,7 @@ const pageLink = {
 			title: 'Link',
 			name: 'link',
 			type: 'array',
-			description: 'Link to a Page, Product, Collection, or URL',
+			description: 'Link to a Page, Product, or Collection',
 			of: [
 				{ type: 'shopifyItem' },
 				{
@@ -115,11 +119,6 @@ const pageLink = {
 					title: 'Page',
 					to: [{ type: 'page' }, { type: 'shop' }],
 				},
-				// {
-				// 	type: 'url',
-				// 	name: 'url',
-				// 	title: 'URL',
-				// },
 			],
 			validation: (Rule) => Rule.max(1).required(),
 		},
@@ -127,8 +126,7 @@ const pageLink = {
 			type: 'string',
 			name: 'label',
 			title: 'Alternate Title',
-			description:
-				'(optional) If empty, the title of the linked collection, product, or page will be used. *URL links must have a title*',
+			description: '(optional) If empty, the title of the linked collection, product, or page will be used.',
 		},
 		{
 			type: 'array',
