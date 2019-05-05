@@ -90,7 +90,7 @@ const client = new SanityClient({
 	projectId: SANITY_PROJECT_ID || '',
 	dataset: SANITY_DATASET || '',
 	useCdn: true,
-	cache: localCache,
+	// cache: localCache,
 })
 
 export default client
