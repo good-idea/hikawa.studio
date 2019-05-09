@@ -7,5 +7,14 @@
 			"min": 1,
 			"max": "auto"
 		}
+	},
+	"env": {
+		"SHOP_NAME": "kame-case",
+		"STOREFRONT_ACCESS_TOKEN": "@storefront-access-token",
+		"SANITY_PROJECT_ID": "rz3fhq71",
+		"SANITY_DATASET": "kame",
+		"MAILCHIMP_LIST_ID": "@mailchimp-list-id",
+		"MAILCHIMP_API_KEY": "@mailchimp-api-key",
+		"MAILCHIMP_DATACENTER": "us19"
 	}
 }

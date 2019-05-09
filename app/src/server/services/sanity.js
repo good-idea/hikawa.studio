@@ -5,7 +5,7 @@ import { SANITY_PROJECT_ID, SANITY_DATASET } from '../config'
 import type { Product, Collection } from '../types'
 import localCache from './cache'
 
-const debug = require('debug')('server')
+// const debug = require('debug')('server')
 
 const dummyCache = {
 	set: () => undefined,
@@ -84,13 +84,13 @@ class SanityClient {
 	}
 }
 
-debug(`[${process.env.NODE_ENV}] Sanity: using dataset ${SANITY_DATASET}`)
+console.log(`[${process.env.NODE_ENV}] Sanity: using dataset ${SANITY_DATASET}`)
 
 const client = new SanityClient({
 	projectId: SANITY_PROJECT_ID || '',
 	dataset: SANITY_DATASET || '',
 	useCdn: true,
-	// cache: localCache,
+	cache: localCache,
 })
 
 export default client
