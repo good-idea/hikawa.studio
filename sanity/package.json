@@ -9,7 +9,10 @@
   "scripts": {
     "start": "sanity start",
     "test": "sanity check",
-    "sync": "sanity dataset export kame && sanity dataset import kame.tar.gz staging --replace && rm kame.tar.gz"
+    "sync:export": "sanity dataset export kame",
+    "sync:import": "sanity dataset import kame.tar.gz staging --replace",
+    "sync:cleanup": "rm kame.tar.gz",
+    "sync": "yarn sync:export && yarn sync:import && yarn sync:cleanup"
   },
   "keywords": [
     "sanity"
