@@ -9,9 +9,9 @@ import { setCookie, VIEWER_EMAIL } from 'Utils/storage'
 import MailerMutation from './MailerMutation'
 
 const Form = styled.form`
-	${({ loading }) => `
-		opacity: ${loading ? '0.3' : '1'};
-		pointer-events: ${loading ? 'none' : ''};
+	${({ isLoading }) => `
+		opacity: ${isLoading ? '0.3' : '1'};
+		pointer-events: ${isLoading ? 'none' : ''};
 		transition: 0.2s;
 	`}
 `
@@ -80,7 +80,7 @@ class MailerForm extends React.Component<Props, State> {
 		const { email, loading, success, errors } = this.state
 		const emailValue = success ? 'Thank you!' : email
 		return (
-			<Form onSubmit={this.handleSubmit} loading={loading}>
+			<Form onSubmit={this.handleSubmit} isLoading={loading}>
 				<Input locked={success} ref={this.inputRef} onChange={this.handleChange} type="email" name="email" value={emailValue} />
 				{errors && errors.length ? errors.map((err) => <Header5 color="red">{err}</Header5>) : null}
 				{!success && (
