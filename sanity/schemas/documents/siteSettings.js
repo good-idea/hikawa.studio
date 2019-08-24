@@ -85,23 +85,8 @@ const page = {
 									to: [{ type: 'page' }],
 								},
 								{
-									type: 'object',
+									type: 'urlLink',
 									name: 'urlLink',
-									title: 'External URL',
-									fields: [
-										{
-											type: 'string',
-											title: 'Label',
-											name: 'label',
-											validation: (Rule) => Rule.required(),
-										},
-										{
-											type: 'url',
-											label: 'URL',
-											name: 'url',
-											validation: (Rule) => Rule.required(),
-										},
-									],
 								},
 							],
 						},

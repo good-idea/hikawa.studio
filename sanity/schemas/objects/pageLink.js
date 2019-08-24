@@ -119,6 +119,7 @@ const pageLink = {
 					title: 'Page',
 					to: [{ type: 'page' }, { type: 'shop' }],
 				},
+				{ type: 'urlLink' },
 			],
 			validation: (Rule) => Rule.max(1).required(),
 		},
