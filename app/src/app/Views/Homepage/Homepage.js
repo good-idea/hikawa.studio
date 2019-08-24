@@ -51,11 +51,17 @@ const Kame = ({ homepage }: Props) => (
 			<Grid>
 				{/* $FlowFixMe - bug with union types: https://github.com/facebook/flow/issues/6342 */}
 				{homepage.content &&
-					homepage.content.map((block, index) => (
-						<BlockWrapper key={block._key} type={block._type} fullWidth={block.fullWidth}>
-							<Block block={block} number={index} largeText />
-						</BlockWrapper>
-					))}
+					homepage.content
+						.filter((block) => {
+							if (block._type === 'richText' && block.blocks.length === 0) return false
+							if (block._type === 'pageLink' && block.link === null) return false
+							return true
+						})
+						.map((block, index) => (
+							<BlockWrapper key={block._key} type={block._type} fullWidth={block.fullWidth}>
+								<Block block={block} number={index} largeText />
+							</BlockWrapper>
+						))}
 			</Grid>
 			<Instagram />
 		</Column>

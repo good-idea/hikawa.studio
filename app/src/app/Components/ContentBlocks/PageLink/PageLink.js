@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link as RRLink } from 'react-router-dom'
 import type { PageLink } from 'Types/ContentTypes'
 import { Header3, Header5 } from 'Components/Type'
 import { ImageBox } from 'Components/Media'
@@ -79,6 +79,25 @@ const Text = styled.div`
 `
 
 /**
+ * Link
+ */
+
+type LinkProps = {
+	url: string,
+	linkIsExternal: boolean,
+	children: React.Node,
+}
+
+const Link = ({ url, linkIsExternal, children }: LinkProps) =>
+	linkIsExternal ? (
+		<a href={url} rel="noopener noreferrer" target="_blank">
+			{children}
+		</a>
+	) : (
+		<RRLink to={url}>{children}</RRLink>
+	)
+
+/**
  * PageLink
  */
 
@@ -105,6 +124,7 @@ const PageLinkBlock = ({ item, imageSizes, showHover, useDefaultImage, largeText
 	if (!link) return null
 	const url = getLinkUrl(link)
 	if (!url) return null
+	const linkIsExternal = link.__typename === 'UrlLink' && /^(mailto|https?):/.test(url)
 	const headerText = label || (link && link.title)
 	const fallbackImage =
 		link.__typename === 'Collection' ? link.image : link.__typename === 'Product' ? link.images && link.images[0] : null
@@ -112,7 +132,7 @@ const PageLinkBlock = ({ item, imageSizes, showHover, useDefaultImage, largeText
 	const hoverImage = images && images.length > 1 ? images[1] : null
 	const ratio = item.fullWidth ? 0.56 : 1.2
 	return (
-		<Link to={url}>
+		<Link linkIsExternal={linkIsExternal} url={url}>
 			<Wrapper>
 				{hoverImage || primaryImage ? (
 					<ImageWrapper>

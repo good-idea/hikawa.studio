@@ -19,6 +19,8 @@ export const getLinkUrl = (link: ProductType | CollectionType | Page): string =>
 			return `/shop/${link.handle}`
 		case 'ShopPage':
 			return `/shop`
+		case 'UrlLink':
+			return link.url
 		case 'Page':
 		default:
 			if (!link.slug || typeof link.slug !== 'string') {
