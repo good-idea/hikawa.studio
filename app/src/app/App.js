@@ -10,11 +10,11 @@ import theme from './theme'
 const App = () => (
 	<SentryBoundary>
 		<ThemeProvider theme={theme}>
-			<React.Fragment>
+			<>
 				<LocationMonitor />
 				<GlobalStyles />
 				<Kame />
-			</React.Fragment>
+			</>
 		</ThemeProvider>
 	</SentryBoundary>
 )

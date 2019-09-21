@@ -12,6 +12,7 @@ import { sleep } from 'Utils'
 import { SettingsConsumer } from 'Views/SettingsProvider'
 import VariantSelector from './VariantSelector'
 import SuccessMessage from './SuccessMessage'
+import ReactPixel from 'react-facebook-pixel'
 
 const Title = styled(Header2)`
 	${({ theme }) => css`
@@ -98,6 +99,18 @@ class ProductDescription extends React.Component<Props, State> {
 		const { addToCart } = this.props.cart
 		if (!selectedVariant) return
 		await addToCart({ lineItems: [{ variantId: selectedVariant.id, quantity: 1 }] })
+		try {
+			ReactPixel.track('AddToCart', {
+				content_ids: [this.props.product.id], // Product IDs
+				content_name: this.props.product.title, // Name of the Page/Product
+				content_type: 'product',
+        contents: [{ id: this.props.product.id, quantity: 1 }],
+				currency: 'USD',
+			})
+		} catch (err) {
+			console.warn(err)
+		}
+
 		this.setState({ buttonState: 'success', success: true })
 		await sleep(1500)
 		this.setState({ buttonState: 'normal' })
