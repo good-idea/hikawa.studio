@@ -40,7 +40,8 @@ class SanityClient {
 		this.projectId = projectId
 		// if not in development, use the supplied cache,
 		// falling back to the dummy cache
-		this.cache = (process.env.NODE_ENV !== 'development' && cache) || dummyCache
+		this.cache = cache || dummyCache
+		// this.cache = (process.env.NODE_ENV !== 'development' && cache) || dummyCache
 	}
 
 	getByType = (_type: string) => async (itemId: string, fields?: Array<string>): Promise<Product | Collection | null> => {
