@@ -22,7 +22,7 @@ const DEV_SERVER = {
 	contentBase: path.resolve(__dirname, 'public'),
 	proxy: {
 		'/.netlify': {
-			target: 'http://[::1]:9000',
+			target: 'http://[::1]:34567',
 			pathRewrite: { '^/.netlify/functions': '' },
 		},
 	},
