@@ -1,7 +1,7 @@
 {
-  "name": "kame-app",
+  "name": "hikawa-app",
   "version": "1.0.0",
-  "description": "Frontend app for kame-case.com",
+  "description": "Frontend app for hikawa.studio",
   "main": "index.js",
   "author": "Joseph Thomas / Good Idea Studio",
   "license": "MIT",

@@ -14,7 +14,8 @@
 		"packages/*"
 	],
 	"scripts": {
-		"dev:app": "yarn workspace kame-app dev",
+    "build": "yarn workspace hikawa-app build && yarn workspace hikawa-proxy build",
+		"dev:app": "yarn workspace hikawa-app dev",
 		"flow:doctor": "flow-mono install-types && flow-mono create-symlinks ./app/.flowconfig"
 	},
 	"devDependencies": {
