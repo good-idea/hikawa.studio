@@ -12,7 +12,7 @@ export const Wrapper = styled.footer`
 		background-size: cover;
 		background-position: center;
 		font-weight: ${theme.type.weight.semi};
-		background-image: url('/images/clouds_KAME.jpg');
+		background-image: url('/static/images/clouds_KAME.jpg');
 
 		${theme.media.queries.tablet`
 			flex-direction: column;

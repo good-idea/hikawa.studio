@@ -18,14 +18,14 @@ module.name_mapper='^[./a-zA-Z0-9$_-]+\.\(bmp\|gif\|jpg\|jpeg\|png\|psd\|svg\|we
 module.name_mapper.extension='graphql' -> '<PROJECT_ROOT>/config/flowGraphqlShim'
 
 ; Mirror the babel & webpack aliases
-module.name_mapper='^Components' -> '<PROJECT_ROOT>/src/app/Components'
-module.name_mapper='^Forms' -> '<PROJECT_ROOT>/src/app/Forms'
-module.name_mapper='^Dialogs' -> '<PROJECT_ROOT>/src/app/Dialogs'
-module.name_mapper='^Views' -> '<PROJECT_ROOT>/src/app/Views'
-module.name_mapper='^Utils' -> '<PROJECT_ROOT>/src/app/Utils'
-module.name_mapper='^Types' -> '<PROJECT_ROOT>/src/app/Types'
-module.name_mapper='^GraphQL' -> '<PROJECT_ROOT>/src/app/GraphQL'
-module.name_mapper='^Services' -> '<PROJECT_ROOT>/src/app/Services'
+module.name_mapper='^Components' -> '<PROJECT_ROOT>/src/Components'
+module.name_mapper='^Forms' -> '<PROJECT_ROOT>/src/Forms'
+module.name_mapper='^Dialogs' -> '<PROJECT_ROOT>/src/Dialogs'
+module.name_mapper='^Views' -> '<PROJECT_ROOT>/src/Views'
+module.name_mapper='^Utils' -> '<PROJECT_ROOT>/src/Utils'
+module.name_mapper='^Types' -> '<PROJECT_ROOT>/src/Types'
+module.name_mapper='^GraphQL' -> '<PROJECT_ROOT>/src/GraphQL'
+module.name_mapper='^Services' -> '<PROJECT_ROOT>/src/Services'
 module.name_mapper='^Shared' -> '<PROJECT_ROOT>/../shared'
 
 suppress_type=$FlowIssue

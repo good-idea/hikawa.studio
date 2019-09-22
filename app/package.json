@@ -6,16 +6,12 @@
   "author": "Joseph Thomas / Good Idea Studio",
   "license": "MIT",
   "scripts": {
-    "dev:app": "cross-env ENV=development DEBUG=api webpack-dev-server --colors --env development --config ./webpack/webpack.config.dev.js",
-    "dev:server": "cross-env ENV=development cross-env BABEL_ENV=production cross-env DEBUG=server nodemon --watch ./src/server ./src/server/server.js --exec babel-node",
+    "dev": "cross-env ENV=development DEBUG=api webpack-dev-server --colors --env development",
     "dev:tunnel": "cross-env SHARE_TUNNEL=true yarn dev",
     "clean": "rimraf node_modules/.cache && rimraf build && rimraf public/js",
-    "build": "yarn clean && yarn build:app && yarn build:server",
-    "build:server": "NODE_ENV=production yarn babel --copy-files src --include-dotfiles -d build",
-    "build:app": "NODE_ENV=production webpack -p --env production --progress --colors --config ./webpack/webpack.config.js",
-    "stats:app": "cross-env WEBPACK_STATS=true cross-env NODE_ENV=production webpack -p --env production --config ./webpack/webpack.config.js --json > stats.json && webpack-bundle-analyzer ./stats.json",
-    "deploy": "yarn build && now && now alias",
-    "start": "NODE_ENV=production node ./build/server/server.js"
+    "build": "yarn clean && yarn build:app",
+    "build:app": "NODE_ENV=production webpack -p --env production --progress --colors",
+    "build:stats": "cross-env WEBPACK_STATS=true cross-env NODE_ENV=production webpack -p --env production --json > stats.json && webpack-bundle-analyzer ./stats.json"
   },
   "dependencies": {
     "@loadable/component": "^5.10.2",
@@ -89,6 +85,7 @@
     "babel-plugin-ramda": "^2.0.0",
     "babel-plugin-styled-components": "^1.10.6",
     "circular-dependency-plugin": "^5.2.0",
+    "copy-webpack-plugin": "^5.0.4",
     "cross-env": "^5.2.0",
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",
