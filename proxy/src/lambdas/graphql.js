@@ -1,4 +1,4 @@
-import { ApolloServer, gql } from 'apollo-server-lambda'
+import { ApolloServer } from 'apollo-server-lambda'
 import { createSchema } from '../graphql/schema'
 
 const runHandler = (event, context, handler) =>

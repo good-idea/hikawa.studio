@@ -1,7 +1,7 @@
 // @flow
 import sanityClient from '@sanity/client'
 // import Redis from 'ioredis'
-import { SANITY_PROJECT_ID, SANITY_DATASET } from '../config'
+import { config } from '../config'
 import type { Product, Collection } from '../types'
 import localCache from './cache'
 
@@ -84,11 +84,11 @@ class SanityClient {
 	}
 }
 
-console.log(`[${process.env.NODE_ENV}] Sanity: using dataset ${SANITY_DATASET}`)
+console.log(`[${config.NODE_ENV}] Sanity: using dataset ${config.SANITY_DATASET}`)
 
 const client = new SanityClient({
-	projectId: SANITY_PROJECT_ID || '',
-	dataset: SANITY_DATASET || '',
+	projectId: config.SANITY_PROJECT_ID,
+	dataset: config.SANITY_DATASET,
 	useCdn: true,
 	cache: localCache,
 })
