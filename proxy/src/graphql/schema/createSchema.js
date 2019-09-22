@@ -2,14 +2,13 @@
 import { makeRemoteExecutableSchema, introspectSchema, mergeSchemas } from 'graphql-tools'
 import { HttpLink } from 'apollo-link-http'
 import fetch from 'node-fetch'
-import { config } from '../../config'
 import { typeDefs, resolvers } from './localSchema'
 
 const shopifyLink = new HttpLink({
-	uri: `https://${config.SHOP_NAME}.myshopify.com/api/graphql`,
+	uri: `https://${process.env.SHOP_NAME}.myshopify.com/api/graphql`,
 	fetch,
 	headers: {
-		'X-Shopify-Storefront-Access-Token': config.STOREFRONT_ACCESS_TOKEN,
+		'X-Shopify-Storefront-Access-Token': process.env.STOREFRONT_ACCESS_TOKEN,
 	},
 })
 
