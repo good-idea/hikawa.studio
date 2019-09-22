@@ -73,5 +73,5 @@ Instagram.defaultProps = {
 }
 
 export default () => (
-	<SettingsConsumer>{(siteSettings) => siteSettings && <Instagram settings={siteSettings.instagram} />}</SettingsConsumer>
+	<SettingsConsumer>{({ siteSettings }) => siteSettings && <Instagram settings={siteSettings.instagram} />}</SettingsConsumer>
 )

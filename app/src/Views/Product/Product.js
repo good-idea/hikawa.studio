@@ -16,8 +16,8 @@ import RelatedItem from './RelatedItem'
 const { useEffect } = React
 
 const Wrapper = styled.div`
-	${({ loading }) => `
-		opacity: ${loading ? '0.1' : '1'};
+	${({ isLoading }) => `
+		opacity: ${isLoading ? '0.1' : '1'};
 		transition: 0.3s;
 	`}
 `
@@ -131,7 +131,7 @@ const Product = ({ product, cart, loading }: Props) => {
 		price: minPrice,
 	}
 	return (
-		<Wrapper loading={loading}>
+		<Wrapper isLoading={loading}>
 			<Helmet seo={seo} />
 			<Hero hero={product.hero} view="standard" />
 			<Column width="wide">

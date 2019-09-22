@@ -245,5 +245,5 @@ class Navigation extends React.Component<Props, State> {
 }
 
 export default () => (
-	<SettingsConsumer>{(siteSettings) => (siteSettings ? <Navigation siteSettings={siteSettings} /> : null)}</SettingsConsumer>
+	<SettingsConsumer>{({siteSettings}) => (siteSettings ? <Navigation siteSettings={siteSettings} /> : null)}</SettingsConsumer>
 )

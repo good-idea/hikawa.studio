@@ -14,7 +14,7 @@ const Image = styled.img`
 
 const Logo = () => (
 	<SettingsConsumer>
-		{(siteSettings) =>
+		{({ siteSettings }) =>
 			siteSettings && siteSettings.logo ? (
 				<Link to="/">
 					<Image src={siteSettings.logo.url} alt={siteSettings.seo.name} />

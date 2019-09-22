@@ -73,5 +73,5 @@ type BaseProps = {
 }
 
 export default ({ data }: BaseProps) => (
-	<SettingsConsumer>{(siteSettings) => (data ? <Kame siteSettings={siteSettings} {...data} /> : null)}</SettingsConsumer>
+	<SettingsConsumer>{({ siteSettings }) => (data ? <Kame siteSettings={siteSettings} {...data} /> : null)}</SettingsConsumer>
 )

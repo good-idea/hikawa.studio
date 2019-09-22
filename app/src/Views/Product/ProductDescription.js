@@ -169,10 +169,10 @@ type BaseProps = {
 
 export default (props: BaseProps) => (
 	<SettingsConsumer>
-		{(settings) =>
-			settings ? (
+		{({ siteSettings }) =>
+			siteSettings ? (
 				<InspectorConsumer>
-					{({ selectImage }) => <ProductDescription selectImage={selectImage} settings={settings} {...props} />}
+					{({ selectImage }) => <ProductDescription selectImage={selectImage} settings={siteSettings} {...props} />}
 				</InspectorConsumer>
 			) : null
 		}

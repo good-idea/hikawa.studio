@@ -2,3 +2,6 @@
   command = "yarn build"
   functions = "proxy/lambda-build"
   publish = "app/build"
+
+[dev]
+  functionsPort = 34567 # port for functions server

@@ -57,4 +57,4 @@ Footer.defaultProps = {
 	settings: undefined,
 }
 
-export default () => <SettingsConsumer>{(siteSettings) => <Footer settings={siteSettings} />}</SettingsConsumer>
+export default () => <SettingsConsumer>{({ siteSettings }) => <Footer settings={siteSettings} />}</SettingsConsumer>

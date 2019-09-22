@@ -9,9 +9,15 @@ import { SettingsConsumer } from './SettingsProvider'
  */
 
 type Props = {
-	settings: SiteSettings,
+	settings?: SiteSettings,
 }
 
-const BaseSEO = ({ settings }: Props) => <Helmet isHomepage seo={settings.seo} />
+const BaseSEO = ({ settings }: Props) => {
+	console.log(settings)
 
-export default () => <SettingsConsumer>{(settings) => (settings ? <BaseSEO settings={settings} /> : null)}</SettingsConsumer>
+	return <Helmet isHomepage seo={settings.seo} />
+}
+
+export default () => (
+	<SettingsConsumer>{({ siteSettings }) => (siteSettings ? <BaseSEO settings={siteSettings} /> : null)}</SettingsConsumer>
+)

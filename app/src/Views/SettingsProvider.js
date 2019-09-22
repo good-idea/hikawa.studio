@@ -106,8 +106,9 @@ export const SettingsProvider = ({ children }: Props) => (
 		{(response) => {
 			console.log(response)
 			const { data, loading } = response
-			if (loading) return null
-			return <Provider value={data.siteSettings}>{children}</Provider>
+			const value = { loading, siteSettings: data ? data.siteSettings : undefined }
+			console.log(value)
+			return <Provider value={value}>{children}</Provider>
 		}}
 	</Query>
 )

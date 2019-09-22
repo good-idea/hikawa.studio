@@ -90,7 +90,7 @@ class Announcement extends React.Component<Props, State> {
 
 export default () => (
 	<SettingsConsumer>
-		{(siteSettings) =>
+		{({ siteSettings }) =>
 			siteSettings && siteSettings.announcement ? <Announcement announcement={siteSettings.announcement} /> : null
 		}
 	</SettingsConsumer>

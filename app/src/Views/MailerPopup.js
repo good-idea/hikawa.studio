@@ -94,4 +94,6 @@ const MailerPopup = ({ settings }: Props) => {
 	)
 }
 
-export default () => <SettingsConsumer>{(settings) => settings && <MailerPopup settings={settings} />}</SettingsConsumer>
+export default () => (
+	<SettingsConsumer>{({ siteSettings }) => siteSettings && <MailerPopup settings={siteSettings} />}</SettingsConsumer>
+)
