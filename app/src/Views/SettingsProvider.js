@@ -103,6 +103,11 @@ type Props = {
 
 export const SettingsProvider = ({ children }: Props) => (
 	<Query LoadingComponent={false} query={query}>
-		{({ data }) => <Provider value={data.siteSettings}>{children}</Provider>}
+		{(response) => {
+			console.log(response)
+			const { data, loading } = response
+			if (loading) return null
+			return <Provider value={data.siteSettings}>{children}</Provider>
+		}}
 	</Query>
 )

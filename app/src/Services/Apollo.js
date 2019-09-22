@@ -20,7 +20,7 @@ const fragmentMatcher = new IntrospectionFragmentMatcher({
 	introspectionQueryResultData,
 })
 
-console.log(`Connecting to api at url: ${apiRoot}`)
+debug(`Connecting to api at url: ${apiRoot}`)
 
 const initialState = typeof window !== 'undefined' ? window.__APOLLO_STATE__ : {}
 // TODO Return IDs from more objects for better caching
