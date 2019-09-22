@@ -1,5 +1,13 @@
-import { ApolloServer } from 'apollo-server-lambda'
-import { createSchema } from '../graphql/schema'
+// import { ApolloServer } from 'apollo-server-lambda'
+// import responseCachePlugin from 'apollo-server-plugin-response-cache'
+// import { RedisCache } from 'apollo-server-cache-redis'
+// import { RESTDataSource } from 'apollo-datasource-rest'
+// import { createSchema } from '../graphql/schema'
+// import client from '../services/sanity'
+import { Server } from '../graphql/server'
+import '../config'
+
+const LambdaServer = new Server()
 
 const runHandler = (event, context, handler) =>
 	new Promise((resolve, reject) => {
@@ -8,16 +16,7 @@ const runHandler = (event, context, handler) =>
 	})
 
 const run = async (event, lambdaContext) => {
-	const { schema, context } = await createSchema()
-
-	const server = new ApolloServer({
-		schema,
-		context,
-		introspection: true,
-		playground: true,
-	})
-
-	const handler = server.createHandler({
+	const handler = await LambdaServer.createHandler({
 		cors: {
 			origin: '*',
 			credentials: true,

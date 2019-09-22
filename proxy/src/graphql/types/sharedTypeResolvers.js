@@ -10,6 +10,7 @@ export const getLink = async (parent, args, context, info) => {
 		return shopPage
 	}
 	if (parentLink._type !== 'shopifyItem') return parentLink
+	info.cacheControl.setCacheHint({ maxAge: 3600 })
 	const shopifyLink = await info.mergeInfo.delegateToSchema({
 		schema: context.subSchemas.shopify,
 		operation: 'query',
@@ -68,8 +69,8 @@ export const sharedResolvers = {
 			return parent._key || (parent.asset && parent.asset._ref)
 		},
 		id: (parent) => parent.asset && parent.asset._ref,
-		altText: async (parent) => {
-			const altText = await getAssetField('altText')(parent)
+		altText: async (...args) => {
+			const altText = await getAssetField('altText')(...args)
 			return altText || ''
 		},
 		url: getAssetField('url'),
