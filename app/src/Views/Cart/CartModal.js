@@ -54,7 +54,7 @@ const Cart = (props: Props) => {
 			currency: 'USD',
 			num_items: totalQuantity,
 		})
-		window.location = currentCart.weburl
+		window.location = currentCart.webUrl
 	}
 
 	return (
