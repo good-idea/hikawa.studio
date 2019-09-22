@@ -15,6 +15,7 @@
 	],
 	"scripts": {
 		"build": "yarn workspace hikawa-app build && yarn workspace hikawa-proxy build",
+    "serve:functions": "netlify-lambda serve proxy/src/lambdas",
 		"dev:app": "yarn workspace hikawa-app dev",
 		"flow:doctor": "flow-mono install-types && flow-mono create-symlinks ./app/.flowconfig"
 	},
@@ -24,7 +25,8 @@
 		"flow-mono-cli": "^1.5.0",
 		"flow-typed": "^2.6.1",
 		"husky": "^3.0.4",
-		"netlify-cli": "^2.15.0"
+		"netlify-cli": "^2.15.0",
+		"netlify-lambda": "^1.6.3"
 	},
 	"resolutions": {
 		"graphql": "14.1.1"
