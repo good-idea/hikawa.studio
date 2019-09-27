@@ -2,6 +2,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { adopt } from 'react-adopt'
+import ReactPixel from 'react-facebook-pixel'
 import { Button, SecondaryButton } from 'Components/Buttons'
 import Modal from 'Components/Modal'
 import { Header1, Header3, Header5 } from 'Components/Type'
@@ -9,7 +10,12 @@ import type { CheckoutConsumerProps } from '../CheckoutProvider'
 import { CheckoutConsumer } from '../CheckoutProvider'
 import CartLineItem from './CartLineItem'
 import CartSummary from './CartSummary'
-import ReactPixel from 'react-facebook-pixel'
+import { isReactProduction } from '../../Utils/env'
+
+
+
+
+
 
 const SummaryWrapper = styled.div`
 	${({ loading }) => `
@@ -47,13 +53,15 @@ const Cart = (props: Props) => {
 			quantity: item.quantity,
 		}))
 		const totalQuantity = lineItems.reduce((acc, item) => acc + item.quantity, 0)
-		ReactPixel.track('InitiateCheckout', {
-			content_category: '',
-			content_ids: lineItemIds,
-			contents,
-			currency: 'USD',
-			num_items: totalQuantity,
-		})
+    if (isReactProduction()) {
+      ReactPixel.track('InitiateCheckout', {
+        content_category: '',
+        content_ids: lineItemIds,
+        contents,
+        currency: 'USD',
+        num_items: totalQuantity,
+      })
+    }
 		window.location = currentCart.webUrl
 	}
 

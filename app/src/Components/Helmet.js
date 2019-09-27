@@ -23,7 +23,6 @@ const getImageUrl = (image: SanityImage | ShopifyImage): string | null =>
 const KameHelmet = ({ seo, settings, isHomepage }: Props) => {
 	if (!settings) return null
 	const { name, description, image, contentType, currency, price } = seo
-  console.log(settings)
 	const siteTitle = settings.seo.name || 'KAME'
 	const title = !isHomepage && name && name.length ? `${name} | ${siteTitle}` : siteTitle
 	const imageUrl = image ? getImageUrl(image) : null
@@ -56,7 +55,6 @@ const HelmetLoader = (props: BaseProps) => (
 	<SettingsConsumer>
 		{({ siteSettings, loading }) => {
 			if (loading || !siteSettings) return null
-      console.log(siteSettings)
 			return <KameHelmet settings={siteSettings} {...props} />
 		}}
 	</SettingsConsumer>

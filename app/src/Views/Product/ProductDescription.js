@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react'
 import styled, { css } from 'styled-components'
+import ReactPixel from 'react-facebook-pixel'
 import type { ProductType, ProductVariant, SiteSettings } from 'Types/ContentTypes'
 import type { CheckoutConsumerProps } from 'Views/CheckoutProvider'
 import { Header2, P } from 'Components/Type'
@@ -11,8 +12,9 @@ import { Button } from 'Components/Buttons'
 import { sleep } from 'Utils'
 import { SettingsConsumer } from 'Views/SettingsProvider'
 import VariantSelector from './VariantSelector'
+import { Afterpay } from './Afterpay'
 import SuccessMessage from './SuccessMessage'
-import ReactPixel from 'react-facebook-pixel'
+import { isReactProduction } from '../../Utils/env'
 
 const Title = styled(Header2)`
 	${({ theme }) => css`
@@ -65,11 +67,20 @@ type State = {
 	success: boolean,
 }
 
+/**
+ * Afterpay Display
+ */
+
 class ProductDescription extends React.Component<Props, State> {
-	state = {
-		selectedVariant: this.props.product.variants ? this.props.product.variants[0] : undefined,
-		buttonState: 'normal',
-		success: false,
+	constructor(props) {
+		super(props)
+
+		this.afterpayDisplayRef = React.createRef()
+		this.state = {
+			selectedVariant: this.props.product.variants ? this.props.product.variants[0] : undefined,
+			buttonState: 'normal',
+			success: false,
+		}
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -81,9 +92,9 @@ class ProductDescription extends React.Component<Props, State> {
 		}
 	}
 
-	selectVariant = (variant: ProductVariant) => () => {
+	selectVariant = (variant: ProductVariant) => async () => {
 		const { selectImage } = this.props
-		this.setState(
+		await this.setState(
 			{
 				selectedVariant: variant,
 			},
@@ -99,16 +110,18 @@ class ProductDescription extends React.Component<Props, State> {
 		const { addToCart } = this.props.cart
 		if (!selectedVariant) return
 		await addToCart({ lineItems: [{ variantId: selectedVariant.id, quantity: 1 }] })
-		try {
-			ReactPixel.track('AddToCart', {
-				content_ids: [this.props.product.id], // Product IDs
-				content_name: this.props.product.title, // Name of the Page/Product
-				content_type: 'product',
-        contents: [{ id: this.props.product.id, quantity: 1 }],
-				currency: 'USD',
-			})
-		} catch (err) {
-			console.warn(err)
+		if (isReactProduction()) {
+			try {
+				ReactPixel.track('AddToCart', {
+					content_ids: [this.props.product.id], // Product IDs
+					content_name: this.props.product.title, // Name of the Page/Product
+					content_type: 'product',
+					contents: [{ id: this.props.product.id, quantity: 1 }],
+					currency: 'USD',
+				})
+			} catch (err) {
+				console.warn(err)
+			}
 		}
 
 		this.setState({ buttonState: 'success', success: true })
@@ -140,12 +153,14 @@ class ProductDescription extends React.Component<Props, State> {
 						<Text blocks={settings.product.text} />
 					</ExtraDescription>
 				) : null}
+
 				<VariantWrapper>
 					<VariantSelector
 						variants={product.variants || []}
 						selectVariant={this.selectVariant}
 						selectedVariant={selectedVariant}
 					/>
+					<Afterpay price={selectedVariant.price} />
 					<ButtonContainer>
 						<Button
 							size="medium"

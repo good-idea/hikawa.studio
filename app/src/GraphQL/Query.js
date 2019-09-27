@@ -77,7 +77,6 @@ const Query = <T: GenericResponse>(props: QueryProps<T>) => {
 					data: data ? unwindEdges(data) : data,
 					loadQuery,
 				}
-				console.log(data)
 				return children(renderProps)
 			}}
 		</ApolloQuery>

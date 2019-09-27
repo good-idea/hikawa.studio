@@ -13,8 +13,6 @@ type Props = {
 }
 
 const BaseSEO = ({ settings }: Props) => {
-	console.log(settings)
-
 	return <Helmet isHomepage seo={settings.seo} />
 }
 

@@ -12,6 +12,7 @@ import Helmet from 'Components/Helmet'
 import Hero from 'Components/Hero'
 import ProductDescription from './ProductDescription'
 import RelatedItem from './RelatedItem'
+import { isReactProduction } from '../../Utils/env'
 
 const { useEffect } = React
 
@@ -114,10 +115,12 @@ const Product = ({ product, cart, loading }: Props) => {
 	if (!product) return null
 
 	useEffect(() => {
-		ReactPixel.track('ViewContent', {
-			content_type: 'product',
-			content_ids: [product.id],
-		})
+		if (isReactProduction()) {
+			ReactPixel.track('ViewContent', {
+				content_type: 'product',
+				content_ids: [product.id],
+			})
+		}
 	}, [])
 
 	const minPrice = product.variants ? Math.min(...product.variants.map((v) => parseInt(v.price, 10))).toString() : null

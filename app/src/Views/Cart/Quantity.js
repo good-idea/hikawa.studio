@@ -80,7 +80,6 @@ class Quantity extends React.Component<Props, State> {
 		}
 
 		const quantity = Math.max(parseInt(e.target.value.replace(/\D/g, ''), 10) || 1, 1)
-		console.log(e.target.value, quantity)
 		// const quantity = Math.max(value, 1)
 		this.setState({ quantity })
 		if (quantity > 0 && quantity !== currentQuantity) {
@@ -109,7 +108,6 @@ class Quantity extends React.Component<Props, State> {
 
 	onBlur = () => {
 		const { quantity } = this.state
-		console.log('blur', quantity)
 		if (!quantity || quantity < 1) {
 			this.setState({ quantity: this.props.item.quantity })
 		} else {
