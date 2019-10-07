@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 import ReactPixel from 'react-facebook-pixel'
 import type { ProductType, ProductVariant, SiteSettings } from 'Types/ContentTypes'
 import type { CheckoutConsumerProps } from 'Views/CheckoutProvider'
-import { Header2, P } from 'Components/Type'
+import { Header2, Header5, P } from 'Components/Type'
 import Text from 'Components/ContentBlocks/Text'
 // import { InspectorConsumer } from 'Components/ImageInspector'
 import { InspectorConsumer } from 'Components/ImageInspector'
@@ -31,6 +31,13 @@ const ExtraDescription = styled.div`
 		color: ${theme.color.darkGray};
 		margin: ${theme.layout.spacing.double} 0;
 	`}
+`
+
+const ExtraDescriptionText = styled(Header5)`
+	font-weight: 400;
+	& + & {
+		margin-top: 1em;
+	}
 `
 
 const ButtonContainer = styled.div`
@@ -150,7 +157,7 @@ class ProductDescription extends React.Component<Props, State> {
 				<P>{product.description}</P>
 				{settings && settings.product && settings.product.text ? (
 					<ExtraDescription>
-						<Text blocks={settings.product.text} />
+						<Text customWrapper={ExtraDescriptionText} blocks={settings.product.text} />
 					</ExtraDescription>
 				) : null}
 

@@ -7,7 +7,7 @@ import { SanityImage, VideoEmbed } from 'Components/Media'
 import { parseUrl } from 'Utils/parsing'
 import { TextAnchor, Li, Ul, Ol, Header1, Header2, Header3, Header4, Header5, Header6, P, BlockQuote } from 'Components/Type'
 
-const serializers = {
+const createSerializers = (customWrapper: any) => ({
 	list: (props) => {
 		if (props.type === 'number') return <Ol {...props} />
 		return <Ul {...props} />
@@ -18,6 +18,10 @@ const serializers = {
 		if (props.node._type === 'image') return <SanityImage image={props.node} />
 		if (props.node._type === 'videoEmbed') return <VideoEmbed video={props.node} />
 
+		if (customWrapper) {
+			const Wrapper = customWrapper
+			return <Wrapper {...props} />
+		}
 		switch (style) {
 			case 'h1':
 				return <Header1 {...props} />
@@ -54,14 +58,15 @@ const serializers = {
 			return <Link to={`${parsed.pathname}${parsed.search}`}>{children}</Link>
 		},
 	},
-}
+})
 
 type Props = {
 	blocks: Array<RichTextBlock>,
+	customWrapper: any,
 }
 
-const Text = ({ blocks }: Props) => (
-	<BlockContent blocks={blocks} imageOptions={{ w: 320, h: 240, fit: 'max' }} serializers={serializers} />
+const Text = ({ blocks, customWrapper }: Props) => (
+	<BlockContent blocks={blocks} imageOptions={{ w: 320, h: 240, fit: 'max' }} serializers={createSerializers(customWrapper)} />
 )
 
 export default Text
