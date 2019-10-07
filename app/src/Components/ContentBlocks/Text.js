@@ -41,7 +41,7 @@ const serializers = {
 	},
 	marks: {
 		link: ({ mark, children }: Mark) => {
-			const hostname = typeof window !== 'undefined' ? window.location.hostname : 'hikawa.studio'
+			const hostname = typeof window !== 'undefined' ? window.location.hostname : 'baileyhikawa.com'
 			const parsed = parseUrl(mark.href)
 			const isExternal = parsed && parsed.origin && parsed.origin.match(hostname) === null
 			if (isExternal || !parsed) {
