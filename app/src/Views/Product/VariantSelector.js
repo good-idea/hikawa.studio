@@ -22,6 +22,7 @@ const Table = styled.div`
 		overflow: hidden;
 		flex-direction: column;
 		background-color: white;
+		margin-top: 1px;
 		margin-bottom: ${theme.layout.spacing.single};
 		border: 1px solid;
 		box-shadow: 2px 2px rgb(100, 100, 100);
@@ -87,6 +88,10 @@ const SoldOut = styled(Header6)`
 	white-space: nowrap;
 	font-style: italic;
 	transform: translate(-50%, -50%) skewY(-10deg);
+
+	& + ${VariantPrice} {
+		opacity: 0.2;
+	}
 `
 
 /**

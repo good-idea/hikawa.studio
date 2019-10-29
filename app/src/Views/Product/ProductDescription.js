@@ -58,7 +58,10 @@ const VariantWrapper = styled.div`
  */
 
 const Wrapper = styled.div`
-	text-align: left;
+	${({ theme }) => css`
+		text-align: left;
+		padding-bottom: ${theme.layout.spacing.triple};
+	`}
 `
 
 type Props = {
@@ -151,10 +154,11 @@ class ProductDescription extends React.Component<Props, State> {
 	render() {
 		const { product, settings, cart } = this.props
 		const { selectedVariant, success } = this.state
+		if (!product) return null
 		return (
 			<Wrapper>
 				<Title>{product.title}</Title>
-				<P>{product.description}</P>
+				<P dangerouslySetInnerHTML={{ __html: product.descriptionHtml }} />
 				{settings && settings.product && settings.product.text ? (
 					<ExtraDescription>
 						<Text customWrapper={ExtraDescriptionText} blocks={settings.product.text} />

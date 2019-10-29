@@ -10,6 +10,7 @@ const query = gql`
 				title
 				handle
 				description
+        descriptionHtml
 				availableForSale
 				variants(first: 50) {
 					edges {
