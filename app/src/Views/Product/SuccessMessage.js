@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 import { Button } from 'Components/Buttons'
 
 const ShowCartButton = styled(Button)`
-	${({ theme }) => `
+	${({ theme }) => css`
 		margin-left: ${theme.layout.spacing.single};
 		font-size: ${theme.type.size.h4};
 		font-weight: ${theme.type.weight.semi};
@@ -17,11 +17,15 @@ const ShowCartButton = styled(Button)`
 		&:hover {
 			box-shadow: none;
 		}
+		${theme.media.queries.phone`
+      margin-top: 5px;
+text-align: center;
+    `}
 	`}
 `
 
 const PriceMessage = styled.span`
-	${({ visible, shift }) => css`
+	${({ visible, shift, theme }) => css`
 		position: absolute;
 		left: 0;
 		top: 0;
@@ -33,6 +37,15 @@ const PriceMessage = styled.span`
 		opacity: ${visible ? 1 : 0};
 		transition: 0.4s;
 		transform: translateY(${shift === 'down' ? '-15px' : shift === 'up' ? '15px' : '0'});
+
+		${theme.media.queries.phone`
+      width: 100%;
+      text-align: center;
+      display: block;
+      & + & {
+      position: static;
+}
+    `}
 	`}
 `
 

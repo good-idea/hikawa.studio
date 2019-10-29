@@ -41,8 +41,25 @@ const ExtraDescriptionText = styled(Header5)`
 `
 
 const ButtonContainer = styled.div`
-	display: flex;
-	justify-content: flex-start;
+	${({ theme }) => css`
+		display: flex;
+		justify-content: flex-start;
+
+		${theme.media.queries.phone`
+      margin: 0 auto;
+      flex-direction: column;
+      justify-content: center;
+      display: block;
+      text-align: center;
+
+      button {
+        display: block;
+margin-left: auto;
+margin-right: auto;
+line-height: 35px;
+      }
+      `}
+	`}
 `
 
 const VariantWrapper = styled.div`
@@ -76,10 +93,6 @@ type State = {
 	buttonState: string,
 	success: boolean,
 }
-
-/**
- * Afterpay Display
- */
 
 class ProductDescription extends React.Component<Props, State> {
 	constructor(props) {
