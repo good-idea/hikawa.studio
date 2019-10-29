@@ -17,7 +17,7 @@ export const Button = styled.button`
 		background-color: white;
 		border: 1px solid;
 		opacity: ${disabled ? '0.25' : '1'};
-		pointer-events: ${disabled ? 'none' : 'auto'};
+		pointer-events: ${disabled ? 'none' : ''};
 		min-width: ${size === 'medium' ? '120px' : '0'};
 
 		&:hover {
