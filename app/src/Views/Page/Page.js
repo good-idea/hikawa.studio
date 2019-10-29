@@ -27,7 +27,7 @@ const Page = ({ data, loading }) => {
 		<Wrapper>
 			{seo && <Helmet seo={seo} />}
 			<Hero hero={hero} view="standard" />
-			<Column>{content && <Text blocks={content} />}</Column>
+			<Column width="wide">{content && <Text blocks={content} />}</Column>
 			{gallery && gallery.length ? (
 				<Column width="xWide">
 					<Gallery images={gallery} />

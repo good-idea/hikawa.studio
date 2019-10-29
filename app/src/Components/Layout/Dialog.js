@@ -34,7 +34,7 @@ const Inner = styled.div`
 		z-index: 10;
 		width: calc(100% - 5rem);
 		max-width: 500px;
-		padding: ${theme.layout.spacing.triple};
+		padding: ${theme.layout.spacing.double};
 		background: white;
 		border-radius: 2px;
 		box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);

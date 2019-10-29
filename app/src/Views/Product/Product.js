@@ -48,7 +48,7 @@ const Images = styled.div`
 const Description = styled.div`
 	${({ theme }) => `
 		position: relative;
-		top: calc(${theme.layout.spacing.single} * 7);
+		margin-top: calc(${theme.layout.spacing.single} * 7);
 		align-self: flex-start;
 	`}
 `
