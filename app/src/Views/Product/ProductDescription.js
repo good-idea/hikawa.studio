@@ -40,6 +40,12 @@ const ExtraDescriptionText = styled(Header5)`
 	}
 `
 
+const ShopifyDescription = styled(P)`
+	& > p {
+		margin-bottom: 0.5em;
+	}
+`
+
 const ButtonContainer = styled.div`
 	${({ theme }) => css`
 		display: flex;
@@ -171,7 +177,7 @@ class ProductDescription extends React.Component<Props, State> {
 		return (
 			<Wrapper>
 				<Title>{product.title}</Title>
-				<P dangerouslySetInnerHTML={{ __html: product.descriptionHtml }} />
+				<ShopifyDescription as="div" dangerouslySetInnerHTML={{ __html: product.descriptionHtml }} />
 				{settings && settings.product && settings.product.text ? (
 					<ExtraDescription>
 						<Text customWrapper={ExtraDescriptionText} blocks={settings.product.text} />
