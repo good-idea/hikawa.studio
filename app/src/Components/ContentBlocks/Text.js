@@ -13,7 +13,11 @@ const createSerializers = (customWrapper: any) => ({
 		return <Ul {...props} />
 	},
 	listItem: (props) => <Li {...props} />,
-	block: (props): React.Node => {
+	block: (baseProps): React.Node => {
+		const props = {
+			...originalProps,
+			children: _props.children.map((c) => (c === '' ? '\u00a0' : c)),
+		}
 		const style = props.node.style || 'normal'
 		if (props.node._type === 'image') return <SanityImage image={props.node} />
 		if (props.node._type === 'videoEmbed') return <VideoEmbed video={props.node} />
@@ -38,7 +42,7 @@ const createSerializers = (customWrapper: any) => ({
 			case 'blockquote':
 				return <BlockQuote {...props} />
 			case 'normal':
-				return <P {...props} />
+				return <p key={props._key}>{props.children}</p>
 			default:
 				return <P {...props} />
 		}
@@ -55,7 +59,8 @@ const createSerializers = (customWrapper: any) => ({
 					</TextAnchor>
 				)
 			}
-			return <Link to={`${parsed.pathname}${parsed.search}`}>{children}</Link>
+			const to = `${parsed.pathname}${parsed.search}`
+			return <Link to={to}>{children}</Link>
 		},
 	},
 })
@@ -65,8 +70,26 @@ type Props = {
 	customWrapper: any,
 }
 
-const Text = ({ blocks, customWrapper }: Props) => (
-	<BlockContent blocks={blocks} imageOptions={{ w: 320, h: 240, fit: 'max' }} serializers={createSerializers(customWrapper)} />
-)
+const Text = ({ blocks, customWrapper }: Props) => {
+	console.log(blocks)
+	const children = ['']
+
+	return (
+		<>
+			<P>{children}</P>
+			<P>{children}</P>
+			<P>{children}</P>
+			<P>{children}</P>
+			<P children={['']} />
+			<BlockContent
+				blocks={blocks}
+				imageOptions={{ w: 320, h: 240, fit: 'max' }}
+				serializers={createSerializers(customWrapper)}
+			/>
+		</>
+	)
+}
+// (
+// )
 
 export default Text
