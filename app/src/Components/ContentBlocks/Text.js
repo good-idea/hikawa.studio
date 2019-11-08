@@ -42,7 +42,6 @@ const createSerializers = (customWrapper: any) => ({
 			case 'blockquote':
 				return <BlockQuote {...props} />
 			case 'normal':
-				return <p key={props._key}>{props.children}</p>
 			default:
 				return <P {...props} />
 		}
