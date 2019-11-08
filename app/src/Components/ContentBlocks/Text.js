@@ -16,7 +16,7 @@ const createSerializers = (customWrapper: any) => ({
 	block: (baseProps): React.Node => {
 		const props = {
 			...baseProps,
-			children: _props.children.map((c) => (c === '' ? '\u00a0' : c)),
+			children: baseProps.children.map((c) => (c === '' ? '\u00a0' : c)),
 		}
 		const style = props.node.style || 'normal'
 		if (props.node._type === 'image') return <SanityImage image={props.node} />
@@ -71,25 +71,9 @@ type Props = {
 }
 
 const Text = ({ blocks, customWrapper }: Props) => {
-	console.log(blocks)
-	const children = ['']
-
 	return (
-		<>
-			<P>{children}</P>
-			<P>{children}</P>
-			<P>{children}</P>
-			<P>{children}</P>
-			<P children={['']} />
-			<BlockContent
-				blocks={blocks}
-				imageOptions={{ w: 320, h: 240, fit: 'max' }}
-				serializers={createSerializers(customWrapper)}
-			/>
-		</>
+		<BlockContent blocks={blocks} imageOptions={{ w: 320, h: 240, fit: 'max' }} serializers={createSerializers(customWrapper)} />
 	)
 }
-// (
-// )
 
 export default Text
