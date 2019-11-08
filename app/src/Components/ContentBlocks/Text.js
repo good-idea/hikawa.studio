@@ -15,7 +15,7 @@ const createSerializers = (customWrapper: any) => ({
 	listItem: (props) => <Li {...props} />,
 	block: (baseProps): React.Node => {
 		const props = {
-			...originalProps,
+			...baseProps,
 			children: _props.children.map((c) => (c === '' ? '\u00a0' : c)),
 		}
 		const style = props.node.style || 'normal'
