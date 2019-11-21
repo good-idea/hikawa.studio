@@ -2,28 +2,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
-import { getCookie, VIEWER_EMAIL } from 'Utils/storage'
 import { loadableReady } from '@loadable/component'
 import App from './App'
 import ApolloProvider from './Services/Apollo'
-
-const loadLogRocket = async () => {
-	const lr = await import(/* webpackChunkName: "logrocket" */
-	/* webpackPrefetch: true */
-	'logrocket')
-	const LogRocket = lr.default
-	LogRocket.init('ulpljc/kame')
-	const email = getCookie(VIEWER_EMAIL)
-	if (email) {
-		LogRocket.identify(email, {
-			email,
-		})
-	}
-}
-
-if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
-	setTimeout(loadLogRocket, 500)
-}
 
 if (window.localStorage && process.env.DEBUG) {
 	window.localStorage.debug = process.env.DEBUG
