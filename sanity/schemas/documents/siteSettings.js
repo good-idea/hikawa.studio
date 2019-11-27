@@ -29,7 +29,10 @@ const page = {
 							lists: [],
 							marks: {
 								annotations: [],
-								decorators: [{ title: 'Strong', value: 'strong' }, { title: 'Emphasis', value: 'em' }],
+								decorators: [
+									{ title: 'Strong', value: 'strong' },
+									{ title: 'Emphasis', value: 'em' },
+								],
 							},
 						},
 					],
@@ -139,7 +142,10 @@ const page = {
 									lists: [],
 									marks: {
 										// annotations: [],
-										decorators: [{ title: 'Strong', value: 'strong' }, { title: 'Emphasis', value: 'em' }],
+										decorators: [
+											{ title: 'Strong', value: 'strong' },
+											{ title: 'Emphasis', value: 'em' },
+										],
 									},
 								},
 							],
@@ -192,7 +198,10 @@ const page = {
 							lists: [],
 							marks: {
 								annotations: [],
-								decorators: [{ title: 'Strong', value: 'strong' }, { title: 'Emphasis', value: 'em' }],
+								decorators: [
+									{ title: 'Strong', value: 'strong' },
+									{ title: 'Emphasis', value: 'em' },
+								],
 							},
 						},
 					],
@@ -215,7 +224,10 @@ const page = {
 							lists: [],
 							marks: {
 								annotations: [],
-								decorators: [{ title: 'Strong', value: 'strong' }, { title: 'Emphasis', value: 'em' }],
+								decorators: [
+									{ title: 'Strong', value: 'strong' },
+									{ title: 'Emphasis', value: 'em' },
+								],
 							},
 						},
 					],
@@ -243,7 +255,10 @@ const page = {
 							lists: [],
 							marks: {
 								annotations: [],
-								decorators: [{ title: 'Strong', value: 'strong' }, { title: 'Emphasis', value: 'em' }],
+								decorators: [
+									{ title: 'Strong', value: 'strong' },
+									{ title: 'Emphasis', value: 'em' },
+								],
 							},
 						},
 					],
@@ -264,7 +279,10 @@ const page = {
 							lists: [],
 							marks: {
 								annotations: [],
-								decorators: [{ title: 'Strong', value: 'strong' }, { title: 'Emphasis', value: 'em' }],
+								decorators: [
+									{ title: 'Strong', value: 'strong' },
+									{ title: 'Emphasis', value: 'em' },
+								],
 							},
 						},
 					],
@@ -292,12 +310,7 @@ const page = {
 					title: 'Default Description',
 					name: 'description',
 					type: 'text',
-					validation: (Rule) => [
-						Rule.required()
-							.max(120)
-							.warning('Descriptons longer than 120 characters may be cut off in some search engines'),
-						Rule.max(160).warning('Descriptions should not be longer than 160 characters.'),
-					],
+					validation: (Rule) => [Rule.required()],
 					description:
 						'This is the description that will appear underneath the preview link when shared in Facebook, or in Google search results. It should be less than 200 characters',
 				},

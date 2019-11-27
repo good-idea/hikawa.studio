@@ -11,7 +11,7 @@ export const pageSchema = /* GraphQL */ `
 		page(input: GetPageInput!): Page
 	}
 
-	type Page {
+	type Page @cacheControl(maxAge: 60) {
 		title: String!
 		slug: String!
 		content: [TextNode]

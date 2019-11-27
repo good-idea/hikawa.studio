@@ -10,7 +10,7 @@ export const homepageSchema = /* GraphQL */ `
 		images: [SanityImage]
 	}
 
-	type Homepage {
+	type Homepage @cacheControl(maxAge: 60) {
 		title: String
 		content: [ContentBlock]
 		hero: Hero
