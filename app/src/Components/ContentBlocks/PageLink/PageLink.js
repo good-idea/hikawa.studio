@@ -125,7 +125,7 @@ const PageLinkBlock = ({ item, imageSizes, showHover, useDefaultImage, largeText
 	const url = getLinkUrl(link)
 	if (!url) return null
 	const linkIsExternal = link.__typename === 'UrlLink' && /^(mailto|https?):/.test(url)
-	const headerText = label || (link && link.title) ? link.title : link.__typename === 'ShopPage' ? 'Shop' : undefined
+	const headerText = label ? label : link && link.title ? link.title : link.__typename === 'ShopPage' ? 'Shop' : undefined
 	const fallbackImage =
 		link.__typename === 'Collection' ? link.image : link.__typename === 'Product' ? link.images && link.images[0] : null
 	const primaryImage = useDefaultImage === false && images && images.length ? images[0] : fallbackImage
