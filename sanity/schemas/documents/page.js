@@ -61,9 +61,11 @@ const page = {
 			of: [
 				{
 					type: 'image',
+					name: 'image',
 					fields: [
 						{
 							type: 'string',
+							name: 'altText',
 							title: 'altText',
 							label: 'Alt Text',
 						},

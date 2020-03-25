@@ -28,7 +28,6 @@ const page = {
 							styles: [],
 							lists: [],
 							marks: {
-								annotations: [],
 								decorators: [
 									{ title: 'Strong', value: 'strong' },
 									{ title: 'Emphasis', value: 'em' },
@@ -294,6 +293,11 @@ const page = {
 					validation: (Rule) => Rule.max(20),
 				},
 			],
+		},
+		{
+			name: 'highlight',
+			title: 'Highlight Color',
+			type: 'color',
 		},
 		{
 			name: 'seo',
