@@ -25,6 +25,10 @@ const AnnouncementWrapper = styled.div`
 		font-size: ${theme.type.size.h5};
 		font-weight: ${theme.type.weight.semi};
 		text-align: center;
+
+    a {
+      text-decoration: underline;
+    }
 	`}
 `
 

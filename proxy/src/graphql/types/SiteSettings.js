@@ -51,6 +51,7 @@ export const settingsSchema = /* GraphQL */ `
 	}
 
 	type SiteSettings {
+		highlight: Color
 		announcement: AnnouncementSettings
 		checkout: CheckoutSettings
 		logo: SanityImage
