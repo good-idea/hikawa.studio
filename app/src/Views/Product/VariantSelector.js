@@ -3,6 +3,7 @@ import * as React from 'react'
 import styled, { css } from 'styled-components'
 import type { ProductVariant } from 'Types/ContentTypes'
 import { Header4, Header6 } from 'Components/Type'
+import { useSettings } from 'Views/SettingsProvider'
 
 const Outer = styled.div`
 	${({ theme }) => css`
@@ -41,12 +42,18 @@ const PriceWrapper = styled.div`
 	`}
 `
 
+const toRGBA = ({ r, g, b, a }, alpha) => `rgba(${r}, ${g}, ${b}, ${alpha !== undefined ? alpha : a})`
+
 const Variant = styled.button`
-	${({ theme, active, available }) => css`
+	${({ theme, active, available, highlight }) => css`
 		padding: ${theme.layout.spacing.half} ${theme.layout.spacing.single};
 		width: 100%;
 		text-align: left;
-		background-color: ${active ? theme.color.mint : ''};
+
+background-color: ${
+		active ? (highlight ? toRGBA(highlight) : theme.color.mint) : highlight ? toRGBA(highlight, 0.0) : theme.color.mintLight
+	};
+
 		cursor: ${available ? 'pointer' : 'not-allowed'}
 		border-color: black;
 		margin: 0;
@@ -54,7 +61,10 @@ const Variant = styled.button`
 		justify-content: space-between;
 		
 		&:hover {
-			background-color: ${active ? theme.color.mint : theme.color.mintLight};
+background-color: ${
+		active ? (highlight ? toRGBA(highlight) : theme.color.mint) : highlight ? toRGBA(highlight, 0.3) : theme.color.mintLight
+	};
+
 
 			${PriceWrapper} {
 				opacity: 1;
@@ -107,6 +117,8 @@ type Props = {
 const noop = () => {}
 
 const VariantSelector = ({ variants, selectVariant, selectedVariant }: Props) => {
+	const { siteSettings } = useSettings()
+	console.log(siteSettings.highlight)
 	return (
 		<Outer>
 			<Table>
@@ -116,6 +128,7 @@ const VariantSelector = ({ variants, selectVariant, selectedVariant }: Props) =>
 						active={selectedVariant && v.id === selectedVariant.id}
 						available={v.availableForSale}
 						onClick={v.availableForSale ? selectVariant(v) : noop}
+						highlight={siteSettings.highlight.rgb}
 					>
 						<VariantTitle>{v.title}</VariantTitle>
 						<PriceWrapper active={selectedVariant && v.id === selectedVariant.id}>

@@ -5,13 +5,17 @@ import Query from 'GraphQL/Query'
 import { colorPartial, linkPartial, richTextPartial, sanityImageFields } from 'GraphQL/partials'
 // import { FadeIn } from 'Components/Effects'
 
-const { Consumer, Provider } = React.createContext()
+const SettingsContext = React.createContext()
+const { Consumer, Provider } = SettingsContext
 
 export const SettingsConsumer = Consumer
 
 const query = gql`
 	query SettingsQuery {
 		siteSettings {
+      highlight {
+			  ${colorPartial}
+      }
 			announcement {
 				backgroundColor {
 					${colorPartial}
@@ -99,6 +103,12 @@ const query = gql`
 
 type Props = {
 	children: React.Node,
+}
+
+export const useSettings = () => {
+	const ctx = React.useContext(SettingsContext)
+	if (!ctx) throw new Error('useMenuContext must be used within a MenuProvider')
+	return ctx
 }
 
 export const SettingsProvider = ({ children }: Props) => (
