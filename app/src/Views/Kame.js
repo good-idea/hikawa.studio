@@ -5,6 +5,7 @@ import Route from 'Components/Route'
 import { Main } from 'Components/Layout'
 import Announcement from 'Components/Announcement'
 import ScrollToTop from 'Components/ScrollToTop'
+import { SentryBoundary } from '../Services/Sentry'
 import NavMenu from './Menu'
 import { SettingsProvider } from './SettingsProvider'
 import { CheckoutProvider } from './CheckoutProvider'
@@ -23,7 +24,9 @@ const App = () => (
 		<CheckoutProvider>
 			<BaseSEO />
 			<MailerPopup />
-			<Announcement />
+			<SentryBoundary>
+				<Announcement />
+			</SentryBoundary>
 			<CartModal />
 			<ScrollToTop />
 			<Main>
@@ -38,8 +41,5 @@ const App = () => (
 		</CheckoutProvider>
 	</SettingsProvider>
 )
-// <Route path="/products/:handle" exact component={Product} />
-// <Route path="/:slug" exact component={Page} />
-// <Route component={NotFound} />
 
 export default App
