@@ -118,7 +118,6 @@ const noop = () => {}
 
 const VariantSelector = ({ variants, selectVariant, selectedVariant }: Props) => {
 	const { siteSettings } = useSettings()
-	console.log(siteSettings.highlight)
 	return (
 		<Outer>
 			<Table>
@@ -128,7 +127,7 @@ const VariantSelector = ({ variants, selectVariant, selectedVariant }: Props) =>
 						active={selectedVariant && v.id === selectedVariant.id}
 						available={v.availableForSale}
 						onClick={v.availableForSale ? selectVariant(v) : noop}
-						highlight={siteSettings.highlight.rgb}
+						highlight={siteSettings.highlight ? siteSettings.highlight.rgb : undefined}
 					>
 						<VariantTitle>{v.title}</VariantTitle>
 						<PriceWrapper active={selectedVariant && v.id === selectedVariant.id}>
