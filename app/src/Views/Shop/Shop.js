@@ -13,16 +13,17 @@ type Props = {
 	shopPage: any,
 }
 
-const Shop = ({ collections, shopPage }: Props) => {
+const Shop = ({ collections, shopPage, params }: Props) => {
+	const activeCollection = params.collection
 	const { seo } = shopPage
 	return collections ? (
-		<React.Fragment>
+		<>
 			<Helmet seo={seo} />
 			<Hero hero={shopPage.hero} />
 			{collections.map((c) => (
-				<Collection key={c.id} collection={c} />
+				<Collection key={c.id} isActive={activeCollection === c.handle} collection={c} />
 			))}
-		</React.Fragment>
+		</>
 	) : null
 }
 
@@ -30,4 +31,4 @@ type BaseProps = {
 	data: any,
 }
 
-export default ({ data }: BaseProps) => <Shop collections={data.shop.collections} shopPage={data.shopPage} />
+export default ({ data, ...rest }: BaseProps) => <Shop collections={data.shop.collections} shopPage={data.shopPage} {...rest} />

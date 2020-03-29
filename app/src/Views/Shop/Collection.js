@@ -6,6 +6,8 @@ import type { CollectionType } from 'Types/ContentTypes'
 import { Column } from 'Components/Layout'
 import ProductThumbnail from './ProductThumbnail'
 
+const { useEffect, useRef } = React
+
 const Wrapper = styled.div`
 	${({ theme }) => css`
 		padding: ${theme.layout.spacing.triple};
@@ -21,7 +23,8 @@ const Wrapper = styled.div`
 const Inner = styled.div`
 	${({ theme }) => css`
 		position: relative;
-		display: flex;
+		display: grid;
+		grid-template-columns: 200px 1fr;
 		justify-content: center;
 
 		${theme.media.queries.phone`
@@ -32,7 +35,6 @@ const Inner = styled.div`
 
 const Title = styled(Header2)`
 	${({ theme }) => css`
-		flex-basis: 200px;
 		text-align: right;
 		padding-right: ${theme.layout.spacing.double};
 
@@ -65,14 +67,21 @@ const Products = styled.div`
 
 type Props = {
 	collection: CollectionType,
+	isActive: boolean,
 }
 
 const Collection = (props: Props) => {
-	const { collection } = props
+	const { collection, isActive } = props
 	const { products } = collection
+	const ref = useRef(null)
+	useEffect(() => {
+		if (!ref.current || !isActive) return
+		const top = ref.current.getBoundingClientRect().y
+		document.documentElement.scrollTop = top
+	}, [isActive, ref.current])
 	if (products && !products.length) return null
 	return (
-		<Wrapper collection={collection}>
+		<Wrapper ref={ref} collection={collection}>
 			<Column width="wide">
 				<Inner>
 					<Title>{collection.title}</Title>
