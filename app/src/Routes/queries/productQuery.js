@@ -1,6 +1,6 @@
 // @flow
 import gql from 'graphql-tag'
-import { pageLinkFields, heroPartial } from '../../GraphQL/partials'
+import { pageLinkFields, shopifyImageFields, heroPartial } from '../../GraphQL/partials'
 
 const query = gql`
 	query ProductQuery($handle: String!) {
@@ -21,9 +21,7 @@ const query = gql`
 							sku
 							title
 							image {
-								id
-								altText
-								originalSrc
+                ${shopifyImageFields}
 							}
 						}
 					}
@@ -31,9 +29,7 @@ const query = gql`
 				images(first: 50) {
 					edges {
 						node {
-							id
-							altText
-							originalSrc
+              ${shopifyImageFields}
 						}
 					}
 				}

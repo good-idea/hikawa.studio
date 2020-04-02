@@ -77,7 +77,7 @@ const Collection = (props: Props) => {
 	useEffect(() => {
 		if (!ref.current || !isActive) return
 		const top = ref.current.getBoundingClientRect().y
-		document.documentElement.scrollTop = top
+		document.documentElement.scrollTop = top - 50
 	}, [isActive, ref.current])
 	if (products && !products.length) return null
 	return (

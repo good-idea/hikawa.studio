@@ -24,3 +24,15 @@ export const Input = styled.input`
 		pointer-events: ${locked ? 'none' : ''};
 	`};
 `
+
+export const TextArea = styled.textarea`
+	border: 1px solid black;
+	padding: 10px;
+	resize: none;
+
+	${({ theme }) => `
+		font-size: ${theme.type.size.h5};
+		font-weight: ${theme.type.weight.semi};
+		margin-right: ${theme.layout.spacing.single}
+	`};
+`

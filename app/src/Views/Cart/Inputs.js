@@ -3,7 +3,9 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { Header5 } from 'Components/Type'
 import type { Checkout } from 'Types/CheckoutTypes'
-import { Input } from 'Components/Forms'
+import { Input, TextArea } from 'Components/Forms'
+
+const { useState } = React
 
 const Label = styled(Header5)`
 	${({ theme }) => `
@@ -12,10 +14,37 @@ const Label = styled(Header5)`
 	`};
 `
 
-const Wrapper = styled.form`
+const NoteWrapper = styled.form`
 	flex-wrap: wrap;
-	display: flex;
+	flex-direction: column;
+	display: block;
 	justify-content: flex-start;
+
+	textarea {
+		min-width: 300px;
+		display: block;
+		margin-bottom: 8px;
+	}
+`
+
+const CouponWrapper = styled.form`
+	margin-top: 20px;
+	margin-bottom: 20px;
+	display: flex;
+	flex-wrap: wrap;
+
+	h5 {
+		flex-basis: 1;
+	}
+
+	input {
+		flex-grow: 1;
+		max-width: initial;
+	}
+
+	button {
+		margin-top: 0;
+	}
 `
 
 const Button = styled.button`
@@ -28,12 +57,37 @@ const Button = styled.button`
 		color: black;
 		text-transform: uppercase;
 		font-weight: 600;
-
 	`};
 `
 
+type AddNoteProps = {
+	addNote: (string) => Promise<void>,
+}
+
+export const NoteInput = ({ addNote }: AddNoteProps) => {
+	const [inputValue, setInputValue] = useState('')
+
+	const handleChange = (e) => {
+		setInputValue(e.target.value)
+	}
+
+	const handleSubmit = () => {
+		addNote(inputValue)
+	}
+
+	return (
+		<NoteWrapper onSubmit={handleSubmit}>
+			<Label>Order notes</Label>
+			<TextArea onChange={handleChange} value={inputValue} />
+			<Button type="button" enabled={inputValue.length}>
+				Submit
+			</Button>
+		</NoteWrapper>
+	)
+}
+
 /**
- * MyComponent
+ * Coupon Code
  */
 
 type Props = {
@@ -46,7 +100,7 @@ type State = {
 	value: string,
 }
 
-class CouponCode extends React.Component<Props, State> {
+export class CouponCode extends React.Component<Props, State> {
 	inputRef = React.createRef()
 
 	state = {
@@ -82,7 +136,7 @@ class CouponCode extends React.Component<Props, State> {
 		const discount = hasDiscount && discountApplications ? discountApplications[0] : null
 		const { value } = this.state
 		return (
-			<Wrapper onSubmit={hasDiscount ? removeDiscount : this.submit}>
+			<CouponWrapper onSubmit={hasDiscount ? removeDiscount : this.submit}>
 				<Label>Promo Code {hasDiscount ? '✓' : ''}</Label>
 				<Input
 					value={hasDiscount && discount ? `${discount.code || 'Discount Applied'}` : value}
@@ -96,7 +150,7 @@ class CouponCode extends React.Component<Props, State> {
 				<Button type="button" enabled={hasDiscount || value.length > 0} onClick={hasDiscount ? this.removeDiscount : this.submit}>
 					{hasDiscount && discount ? 'Remove' : 'Apply'}
 				</Button>
-			</Wrapper>
+			</CouponWrapper>
 		)
 	}
 }

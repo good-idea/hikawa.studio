@@ -12,11 +12,6 @@ import CartLineItem from './CartLineItem'
 import CartSummary from './CartSummary'
 import { isReactProduction } from '../../Utils/env'
 
-
-
-
-
-
 const SummaryWrapper = styled.div`
 	${({ loading }) => `
 		opacity: ${loading ? '0.5' : '1'};
@@ -41,8 +36,12 @@ type Props = CheckoutConsumerProps
  * Cart
  */
 
+const Centered = styled.div`
+	text-align: center;
+`
+
 const Cart = (props: Props) => {
-	const { currentCart, isOpen, closeCart, updateQuantity, loading, applyDiscount, removeDiscount, userErrors } = props
+	const { currentCart, isOpen, closeCart, updateQuantity, loading, addNote, applyDiscount, removeDiscount, userErrors } = props
 	const { lineItems } = currentCart || {}
 
 	const handleCheckoutClick = () => {
@@ -53,15 +52,15 @@ const Cart = (props: Props) => {
 			quantity: item.quantity,
 		}))
 		const totalQuantity = lineItems.reduce((acc, item) => acc + item.quantity, 0)
-    if (isReactProduction()) {
-      ReactPixel.track('InitiateCheckout', {
-        content_category: '',
-        content_ids: lineItemIds,
-        contents,
-        currency: 'USD',
-        num_items: totalQuantity,
-      })
-    }
+		if (isReactProduction()) {
+			ReactPixel.track('InitiateCheckout', {
+				content_category: '',
+				content_ids: lineItemIds,
+				contents,
+				currency: 'USD',
+				num_items: totalQuantity,
+			})
+		}
 		window.location = currentCart.webUrl
 	}
 
@@ -69,20 +68,22 @@ const Cart = (props: Props) => {
 		<Modal open={isOpen} onBackgroundClick={closeCart}>
 			<SummaryWrapper loading={loading}>
 				{currentCart && lineItems.length ? (
-					<React.Fragment>
+					<>
 						<Header1>Your Tote</Header1>
 						<LineItems>
 							{lineItems && lineItems.map((l) => <CartLineItem key={l.id} item={l} updateQuantity={updateQuantity(l)} />)}
 						</LineItems>
-						<CartSummary cart={currentCart} applyDiscount={applyDiscount} removeDiscount={removeDiscount} />
-						<Button onClick={handleCheckoutClick}>Continue to Checkout</Button>
-						{userErrors &&
-							userErrors.map((error) => (
-								<Header5 key={error} align="center" color="red" weight="normal">
-									{error}
-								</Header5>
-							))}
-					</React.Fragment>
+						<CartSummary cart={currentCart} addNote={addNote} applyDiscount={applyDiscount} removeDiscount={removeDiscount} />
+						<Centered>
+							<Button onClick={handleCheckoutClick}>Continue to Checkout</Button>
+							{userErrors &&
+								userErrors.map((error) => (
+									<Header5 key={error} align="center" color="red" weight="normal">
+										{error}
+									</Header5>
+								))}
+						</Centered>
+					</>
 				) : (
 					<Header3 align="center">
 						Your Tote is empty{' '}
@@ -91,9 +92,9 @@ const Cart = (props: Props) => {
 						</span>
 					</Header3>
 				)}
-				<div>
+				<Centered>
 					<SecondaryButton onClick={closeCart}>Close</SecondaryButton>
-				</div>
+				</Centered>
 			</SummaryWrapper>
 		</Modal>
 	)

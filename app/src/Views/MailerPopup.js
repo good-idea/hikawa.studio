@@ -62,7 +62,7 @@ const MailerPopup = ({ settings }: Props) => {
 		if (!hasSeenPopup && settings.mailer.popupEnabled) {
 			const dialogTimeout = setTimeout(() => {
 				setOpen(true)
-			}, 1000)
+			}, 15000)
 
 			return () => clearTimeout(dialogTimeout)
 		}

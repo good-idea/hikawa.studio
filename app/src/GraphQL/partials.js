@@ -4,6 +4,14 @@ export const shopifyImageFields = `
 	id
 	altText
 	originalSrc
+  w100: transformedSrc(maxWidth: 100)
+  w300: transformedSrc(maxWidth: 300)
+  w600: transformedSrc(maxWidth: 600)
+  w800: transformedSrc(maxWidth: 800)
+  w1000: transformedSrc(maxWidth: 1000)
+  w1200: transformedSrc(maxWidth: 1200)
+  w1400: transformedSrc(maxWidth: 1400)
+  w1800: transformedSrc(maxWidth: 1800)
 `
 
 export const sanityImageFields = `
@@ -89,9 +97,7 @@ export const linkPartial = `
 		images(first: 50) {
 			edges {
 				node {
-					id
-					altText
-					originalSrc
+          ${shopifyImageFields}
 				}
 			}
 		}
@@ -101,9 +107,7 @@ export const linkPartial = `
 		handle
 		title
 		image {
-			id
-			altText
-			originalSrc
+      ${shopifyImageFields}
 		}
 	}
 	...on UrlLink {

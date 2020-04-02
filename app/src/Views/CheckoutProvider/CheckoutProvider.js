@@ -10,6 +10,7 @@ import {
 	CheckoutLineItemsUpdate,
 	CheckoutDiscountCodeApply,
 	CheckoutDiscountCodeRemove,
+	CheckoutAddNote,
 } from './mutations'
 import CurrentCart from './CurrentCart'
 
@@ -33,6 +34,7 @@ type Props = {
 	checkoutLineItemsUpdate: Mutation,
 	checkoutDiscountCodeApply: Mutation,
 	checkoutDiscountCodeRemove: Mutation,
+	checkoutAddNote: Mutation,
 	currentCart?: void | Checkout,
 	refetchCart: () => Promise<void>,
 	loading: boolean,
@@ -57,9 +59,11 @@ export type CheckoutConsumerProps = {
 	closeCart: () => void,
 	loading: boolean,
 	addToCart: (AddToCartArgs) => Promise<void>,
+	addNote: (string) => Promise<void>,
 	updateQuantity: (CheckoutLineItem) => (number) => Promise<void>,
 	applyDiscount: (string) => Promise<void>,
 	removeDiscount: () => Promise<void>,
+	addNote: (string) => Promise<void>,
 	userErrors: Array<string>,
 }
 
@@ -70,14 +74,16 @@ type State = {
 }
 
 class CheckoutProviderBase extends React.Component<Props, State> {
-	static defaultProps = {
-		currentCart: undefined,
-	}
+	updateDebounceTimer: TimeoutID
 
-	state = {
-		loading: false,
-		isOpen: false,
-		userErrors: [],
+	constructor(props: Props) {
+		super(props)
+
+		this.state = {
+			loading: false,
+			isOpen: false,
+			userErrors: [],
+		}
 	}
 
 	refetch = async () => {
@@ -113,6 +119,21 @@ class CheckoutProviderBase extends React.Component<Props, State> {
 			debug(e)
 			this.refetch()
 		})
+		const userErrors = path(['data', 'checkoutLineItemsAdd', 'userErrors'], result)
+		this.setState({ loading: false, userErrors: (userErrors && userErrors.map((e) => e.message)) || [] })
+		return result
+	}
+
+	addNote = async (note: string): Promise<void> => {
+		const { currentCart, checkoutAddNote } = this.props
+		if (!currentCart) return undefined
+		await this.setState({ loading: true })
+		const result = await checkoutAddNote({ variables: { note } }).catch((e) => {
+			debug('Error modifying cart. Attempting refetch..')
+			debug(e)
+			this.refetch()
+		})
+
 		const userErrors = path(['data', 'checkoutLineItemsAdd', 'userErrors'], result)
 		this.setState({ loading: false, userErrors: (userErrors && userErrors.map((e) => e.message)) || [] })
 		return result
@@ -172,12 +193,10 @@ class CheckoutProviderBase extends React.Component<Props, State> {
 		this.setState({ loading: false, userErrors: (userErrors && userErrors.map((e) => e.message)) || [] })
 	}
 
-	updateDebounceTimer: TimeoutID
-
 	render() {
 		const { children, currentCart } = this.props
 		const { userErrors, isOpen } = this.state
-		const { openCart, closeCart, addToCart, updateQuantity, applyDiscount, removeDiscount } = this
+		const { addNote, openCart, closeCart, addToCart, updateQuantity, applyDiscount, removeDiscount } = this
 		const value = {
 			addToCart,
 			currentCart,
@@ -186,6 +205,7 @@ class CheckoutProviderBase extends React.Component<Props, State> {
 			applyDiscount,
 			removeDiscount,
 			userErrors,
+			addNote,
 			openCart,
 			closeCart,
 			isOpen,
@@ -193,6 +213,10 @@ class CheckoutProviderBase extends React.Component<Props, State> {
 
 		return <Provider value={value}>{children}</Provider>
 	}
+}
+
+CheckoutProviderBase.defaultProps = {
+	currentCart: undefined,
 }
 
 const mappers = ({ currentCart, ...rest }) => ({
@@ -208,6 +232,7 @@ const Composed = adopt(
 		checkoutLineItemsUpdate: <CheckoutLineItemsUpdate />,
 		checkoutDiscountCodeApply: <CheckoutDiscountCodeApply />,
 		checkoutDiscountCodeRemove: <CheckoutDiscountCodeRemove />,
+		checkoutAddNote: <CheckoutAddNote />,
 	},
 	mappers,
 )
