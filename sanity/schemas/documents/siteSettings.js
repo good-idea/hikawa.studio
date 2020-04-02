@@ -7,6 +7,15 @@ const page = {
 			name: 'logo',
 			label: 'Logo',
 			type: 'image',
+
+			fields: [
+				{
+					name: 'altText',
+					title: 'Alt Text',
+					type: 'string',
+					description: 'A short description of the image. Helps with accessibility and SEO',
+				},
+			],
 		},
 		{
 			name: 'announcement',
@@ -176,6 +185,15 @@ const page = {
 					of: [
 						{
 							type: 'image',
+
+							fields: [
+								{
+									name: 'altText',
+									title: 'Alt Text',
+									type: 'string',
+									description: 'A short description of the image. Helps with accessibility and SEO',
+								},
+							],
 						},
 					],
 				},
@@ -265,6 +283,15 @@ const page = {
 				{
 					name: 'popupBackground',
 					type: 'image',
+
+					fields: [
+						{
+							name: 'altText',
+							title: 'Alt Text',
+							type: 'string',
+							description: 'A short description of the image. Helps with accessibility and SEO',
+						},
+					],
 					title: 'Popup Background Image',
 				},
 				{

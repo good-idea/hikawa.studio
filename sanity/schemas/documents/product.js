@@ -32,6 +32,15 @@ const product = {
 							options: {
 								hotspot: true,
 							},
+
+							fields: [
+								{
+									name: 'altText',
+									title: 'Alt Text',
+									type: 'string',
+									description: 'A short description of the image. Helps with accessibility and SEO',
+								},
+							],
 						},
 					],
 					validation: (Rule) => Rule.required().max(2),
