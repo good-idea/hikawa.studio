@@ -3,6 +3,7 @@ import gql from 'graphql-tag'
 import { withDefaultQuery } from 'GraphQL/Query'
 import type { QueryWrapper } from 'GraphQL/Query'
 import type { Checkout } from 'Types/CheckoutTypes'
+import { shopifyImageFields } from '../../../GraphQL/partials'
 
 const discountApplicationFields = `
 	allocationMethod
@@ -75,9 +76,7 @@ export const checkoutFields = `
 						title
 					}
 					image {
-						altText
-						id
-						originalSrc
+            ${shopifyImageFields}
 					}
 				}
 			}
