@@ -31,18 +31,17 @@ const Subtotal = styled.div`
 type Props = {
 	cart: Checkout,
 	applyDiscount: (string) => Promise<void>,
-	addNote: (string) => Promise<void>,
 	removeDiscount: () => Promise<void>,
 }
 
-const CartSummary = ({ cart, addNote, applyDiscount, removeDiscount }: Props) => {
+const CartSummary = ({ cart, applyDiscount, removeDiscount }: Props) => {
 	return (
 		<>
 			<Subtotal>
 				<Header4>{cart.paymentDue && `Subtotal: ${parsePrice(cart.paymentDue)}`}</Header4>
 			</Subtotal>
 			<InputWrapper>
-				<NoteInput addNote={addNote} />
+				<NoteInput />
 				<CouponCode applyDiscount={applyDiscount} removeDiscount={removeDiscount} cart={cart} />
 			</InputWrapper>
 		</>

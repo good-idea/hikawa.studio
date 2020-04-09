@@ -30,6 +30,7 @@ export const checkoutFields = `
 	paymentDue
 	webUrl
 	completedAt
+  note
 	shippingLine {
 		handle
 		price

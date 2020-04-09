@@ -1,4 +1,4 @@
 // @flow
 
-export { CheckoutProvider, CheckoutConsumer } from './CheckoutProvider'
+export { useCheckout, CheckoutProvider, CheckoutConsumer } from './CheckoutProvider'
 export type { CheckoutConsumerProps } from './CheckoutProvider'

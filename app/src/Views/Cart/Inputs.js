@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Header5 } from 'Components/Type'
 import type { Checkout } from 'Types/CheckoutTypes'
 import { Input, TextArea } from 'Components/Forms'
+import { useCheckout } from '../CheckoutProvider'
 
 const { useState } = React
 
@@ -60,26 +61,24 @@ const Button = styled.button`
 	`};
 `
 
-type AddNoteProps = {
-	addNote: (string) => Promise<void>,
-}
-
-export const NoteInput = ({ addNote }: AddNoteProps) => {
-	const [inputValue, setInputValue] = useState('')
+export const NoteInput = () => {
+	const { addNote, currentCart } = useCheckout()
+	const [inputValue, setInputValue] = useState(currentCart.note || '')
 
 	const handleChange = (e) => {
 		setInputValue(e.target.value)
 	}
 
-	const handleSubmit = () => {
+	const handleSubmit = (e) => {
+		if (e) e.preventDefault()
 		addNote(inputValue)
 	}
 
 	return (
 		<NoteWrapper onSubmit={handleSubmit}>
 			<Label>Order notes</Label>
-			<TextArea onChange={handleChange} value={inputValue} />
-			<Button type="button" enabled={inputValue.length}>
+			<TextArea onBlur={handleSubmit} onChange={handleChange} value={inputValue} />
+			<Button type="submit" enabled={inputValue.length}>
 				Submit
 			</Button>
 		</NoteWrapper>

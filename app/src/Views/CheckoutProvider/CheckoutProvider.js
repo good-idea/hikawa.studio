@@ -16,8 +16,15 @@ import CurrentCart from './CurrentCart'
 
 const debug = require('debug')('web')
 
-const { Consumer, Provider } = React.createContext()
+const CheckoutContext = React.createContext(0)
+const { Consumer, Provider } = CheckoutContext
 export const CheckoutConsumer = Consumer
+
+export const useCheckout = () => {
+	const ctx = React.useContext(CheckoutContext)
+	if (!ctx) throw new Error('useCartProviderContext must be used within a CartProviderProvider')
+	return ctx
+}
 
 /**
  * CheckoutProvider
@@ -128,7 +135,7 @@ class CheckoutProviderBase extends React.Component<Props, State> {
 		const { currentCart, checkoutAddNote } = this.props
 		if (!currentCart) return undefined
 		await this.setState({ loading: true })
-		const result = await checkoutAddNote({ variables: { note } }).catch((e) => {
+		const result = await checkoutAddNote({ variables: { note, checkoutId: currentCart.id } }).catch((e) => {
 			debug('Error modifying cart. Attempting refetch..')
 			debug(e)
 			this.refetch()
@@ -197,6 +204,7 @@ class CheckoutProviderBase extends React.Component<Props, State> {
 		const { children, currentCart } = this.props
 		const { userErrors, isOpen } = this.state
 		const { addNote, openCart, closeCart, addToCart, updateQuantity, applyDiscount, removeDiscount } = this
+		console.log(currentCart)
 		const value = {
 			addToCart,
 			currentCart,

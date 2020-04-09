@@ -9,8 +9,10 @@ import { query as checkoutQuery, checkoutFields } from '../queries/CheckoutQuery
 const mutation = gql`
 	mutation AddNote(
 		$note: String
+    $checkoutId: ID!
 ) {
 		checkoutAttributesUpdateV2(
+      checkoutId: $checkoutId
 			input: {
   			note: $note
 			}

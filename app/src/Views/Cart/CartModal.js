@@ -41,7 +41,7 @@ const Centered = styled.div`
 `
 
 const Cart = (props: Props) => {
-	const { currentCart, isOpen, closeCart, updateQuantity, loading, addNote, applyDiscount, removeDiscount, userErrors } = props
+	const { currentCart, isOpen, closeCart, updateQuantity, loading, applyDiscount, removeDiscount, userErrors } = props
 	const { lineItems } = currentCart || {}
 
 	const handleCheckoutClick = () => {
@@ -73,7 +73,7 @@ const Cart = (props: Props) => {
 						<LineItems>
 							{lineItems && lineItems.map((l) => <CartLineItem key={l.id} item={l} updateQuantity={updateQuantity(l)} />)}
 						</LineItems>
-						<CartSummary cart={currentCart} addNote={addNote} applyDiscount={applyDiscount} removeDiscount={removeDiscount} />
+						<CartSummary cart={currentCart} applyDiscount={applyDiscount} removeDiscount={removeDiscount} />
 						<Centered>
 							<Button onClick={handleCheckoutClick}>Continue to Checkout</Button>
 							{userErrors &&
