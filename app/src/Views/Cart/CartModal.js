@@ -10,12 +10,16 @@ import type { CheckoutConsumerProps } from '../CheckoutProvider'
 import { CheckoutConsumer } from '../CheckoutProvider'
 import CartLineItem from './CartLineItem'
 import CartSummary from './CartSummary'
+import { CouponCode, NoteInput } from './Inputs'
+import { InputWrapper } from './styled'
 import { isReactProduction } from '../../Utils/env'
 
+const { useState, useEffect } = React
+
 const SummaryWrapper = styled.div`
-	${({ loading }) => `
-		opacity: ${loading ? '0.5' : '1'};
-		pointer-events: ${loading ? 'none' : 'auto'};
+	${({ isLoading }) => `
+		opacity: ${isLoading ? '0.5' : '1'};
+		pointer-events: ${isLoading ? 'none' : 'auto'};
 	`};
 `
 
@@ -41,10 +45,18 @@ const Centered = styled.div`
 `
 
 const Cart = (props: Props) => {
-	const { currentCart, isOpen, closeCart, updateQuantity, loading, applyDiscount, removeDiscount, userErrors } = props
+	const { addNote, currentCart, isOpen, closeCart, updateQuantity, loading, applyDiscount, removeDiscount, userErrors } = props
 	const { lineItems } = currentCart || {}
 
-	const handleCheckoutClick = () => {
+	const [noteInputValue, setNoteInputValue] = useState(currentCart ? currentCart.note || '' : '')
+
+	useEffect(() => {
+		if (!currentCart) return
+		if (currentCart.note) setNoteInputValue(currentCart.note)
+	}, [currentCart])
+
+	const handleCheckoutClick = async () => {
+		if (noteInputValue !== currentCart.note) await addNote(noteInputValue)
 		if (!lineItems.length) return
 		const lineItemIds = lineItems.map((item) => item.id)
 		const contents = lineItems.map((item) => ({
@@ -66,7 +78,7 @@ const Cart = (props: Props) => {
 
 	return (
 		<Modal open={isOpen} onBackgroundClick={closeCart}>
-			<SummaryWrapper loading={loading}>
+			<SummaryWrapper isLoading={loading}>
 				{currentCart && lineItems.length ? (
 					<>
 						<Header1>Your Tote</Header1>
@@ -75,6 +87,11 @@ const Cart = (props: Props) => {
 						</LineItems>
 						<CartSummary cart={currentCart} applyDiscount={applyDiscount} removeDiscount={removeDiscount} />
 						<Centered>
+							<InputWrapper>
+								<NoteInput noteInputValue={noteInputValue} setNoteInputValue={setNoteInputValue} />
+								<CouponCode applyDiscount={applyDiscount} removeDiscount={removeDiscount} cart={currentCart} />
+							</InputWrapper>
+
 							<Button onClick={handleCheckoutClick}>Continue to Checkout</Button>
 							{userErrors &&
 								userErrors.map((error) => (

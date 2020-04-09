@@ -15,7 +15,7 @@ const Label = styled(Header5)`
 	`};
 `
 
-const NoteWrapper = styled.form`
+const NoteWrapper = styled.div`
 	flex-wrap: wrap;
 	flex-direction: column;
 	display: block;
@@ -60,27 +60,19 @@ const Button = styled.button`
 		font-weight: 600;
 	`};
 `
-
-export const NoteInput = () => {
-	const { addNote, currentCart } = useCheckout()
-	const [inputValue, setInputValue] = useState(currentCart.note || '')
-
+type NoteInputProps = {
+	noteInputValue: string,
+	setNoteInputValue: (string) => void,
+}
+export const NoteInput = ({ noteInputValue, setNoteInputValue }: NoteInputProps) => {
 	const handleChange = (e) => {
-		setInputValue(e.target.value)
-	}
-
-	const handleSubmit = (e) => {
-		if (e) e.preventDefault()
-		addNote(inputValue)
+		setNoteInputValue(e.target.value)
 	}
 
 	return (
-		<NoteWrapper onSubmit={handleSubmit}>
+		<NoteWrapper>
 			<Label>Order notes</Label>
-			<TextArea onBlur={handleSubmit} onChange={handleChange} value={inputValue} />
-			<Button type="submit" enabled={inputValue.length}>
-				Submit
-			</Button>
+			<TextArea onChange={handleChange} value={noteInputValue} />
 		</NoteWrapper>
 	)
 }

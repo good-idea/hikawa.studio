@@ -40,3 +40,14 @@ export const CartLineItemWrapper = styled(CartGrid)`
 		}
 	`};
 `
+
+export const InputWrapper = styled.div`
+	${({ theme }) => css`
+		margin: ${theme.layout.spacing.double} 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		margin: 0 auto;
+		max-width: 300px;
+	`};
+`
