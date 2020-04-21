@@ -7,6 +7,14 @@ const query = /* GraphQL */ gql`
 		shopPage {
 			${heroPartial}
 			${seoPartial}
+      collections {
+        _id
+        shopifyItem {
+          itemId
+          handle
+          title
+        }
+      }
 		}
 		shop {
 			collections(first: 50) {

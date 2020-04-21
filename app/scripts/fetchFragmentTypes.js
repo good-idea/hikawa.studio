@@ -2,7 +2,7 @@ const fetch = require('node-fetch')
 const fs = require('fs')
 const path = require('path')
 
-fetch(`http://localhost:3000/`, {
+fetch(`http://localhost:8080/.netlify/functions/graphql/`, {
 	method: 'POST',
 	headers: { 'Content-Type': 'application/json' },
 	body: JSON.stringify({
