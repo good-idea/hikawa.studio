@@ -1,4 +1,4 @@
-import { FaShoppingBag } from 'react-icons/fa'
+import { FaParagraph, FaShoppingBag } from 'react-icons/fa'
 import { fields } from './shared'
 
 const page = {
@@ -37,6 +37,12 @@ const page = {
 					validation: (Rule) => Rule.required(),
 				},
 			],
+		},
+		{
+			title: 'Collections',
+			name: 'collections',
+			type: 'array',
+			of: [{ type: 'reference', to: [{ type: 'collection' }] }],
 		},
 		fields.pageSeo,
 	],

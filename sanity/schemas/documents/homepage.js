@@ -94,7 +94,6 @@ const page = {
 						},
 					},
 				},
-				// { type: 'richText' },
 				{ type: 'pageLink' },
 			],
 		},
