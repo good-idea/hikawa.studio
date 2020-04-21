@@ -26,6 +26,14 @@ export const getRefField = (field: string) => async (parent, _, { dataSources })
 	return R.path(fieldPath, fetched) || R.path(fieldPath, parent)
 }
 
+export const getRefFields = (field: string) => async (parent, _, { dataSources }) => {
+	const refs = parent[field]
+	if (!refs) return null
+	const ids = refs.map((r) => r._ref)
+	const docs = await dataSources.sanity.client.getByIds(ids)
+	return docs
+}
+
 export const getAssetField = (field: string) => async (parent, _, { dataSources }) => {
 	if (!parent.asset || !parent.asset._ref) return null
 	const fetched = await dataSources.sanity.client.getById(parent.asset._ref)

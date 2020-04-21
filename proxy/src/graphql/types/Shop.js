@@ -1,16 +1,31 @@
 // @flow
 import client from '../../services/sanity'
-import { getRefField } from './utils'
+import { getRefField, getRefFields } from './utils'
 
 export const shopSchema = /* GraphQL */ `
 	extend type Query {
 		shopPage: ShopPage
 	}
 
+	type ShopifyItem {
+		_type: String!
+		itemType: String!
+		itemId: String!
+		handle: String!
+		title: String!
+	}
+
+	type CollectionPage {
+		_id: String!
+		_rev: String!
+		_type: String!
+		shopifyItem: ShopifyItem!
+	}
+
 	type ShopPage {
 		hero: Hero
-		content: [ContentBlock]
 		slug: String!
+		collections: [CollectionPage]!
 		_type: String!
 		_key: String!
 		fullWidth: Boolean
@@ -25,5 +40,6 @@ export const shopResolvers = {
 	ShopPage: {
 		slug: () => 'shop',
 		seo: getRefField('seo'),
+		collections: getRefFields('collections'),
 	},
 }

@@ -57,7 +57,6 @@ const mcSubscribe = async (_, { input }) => {
 		await Promise.all([addToMailchimp(email), addToShopify(email)])
 		return { success: true }
 	} catch (err) {
-		console.log('ERRRR')
 		console.warn(err.response.data)
 		return {
 			success: false,

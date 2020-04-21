@@ -2,7 +2,6 @@
 import sanityClient from '@sanity/client'
 // import Redis from 'ioredis'
 import type { Product, Collection } from '../types'
-import localCache from './cache'
 
 // const debug = require('debug')('server')
 
@@ -67,6 +66,20 @@ class SanityClient {
 		return result
 	}
 
+	getByIds = async (ids: string, fields?: Array<string>) => {
+		const idString = ids.map((id) => `_id == "${id}"`).join(' || ')
+		const cacheId = `${this.projectId}-${idString}`
+		const cached = this.cache.get(cacheId)
+		if (cached) return JSON.parse(cached)
+		const queryFields = fields ? `{${fields.join(' ')}}` : ''
+		const query = `*[${idString}]${queryFields}[]`
+		const result = await this.client.fetch(query)
+		if (!result) return null
+		const docs = ids.map((id) => result.find((doc) => doc._id === id))
+		this.cache.set(cacheId, JSON.stringify(docs))
+		return docs
+	}
+
 	getProduct = this.getByType('product')
 
 	getCollection = this.getByType('collection')
@@ -90,7 +103,6 @@ const client = new SanityClient({
 	projectId: process.env.SANITY_PROJECT_ID,
 	dataset: process.env.SANITY_DATASET,
 	useCdn: true,
-	// cache: localCache,
 })
 
 export default client
