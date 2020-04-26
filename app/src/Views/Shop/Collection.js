@@ -10,7 +10,7 @@ const { useEffect, useRef } = React
 
 const Wrapper = styled.div`
 	${({ theme }) => css`
-		padding: ${theme.layout.spacing.triple};
+		padding: 0 ${theme.layout.spacing.triple};
 		background-size: cover;
 		background-position: center;
 
