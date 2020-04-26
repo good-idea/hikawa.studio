@@ -17,13 +17,10 @@ const Shop = ({ collections: sourceCollections, shopPage, params }: Props) => {
 	const activeCollection = params.collection
 	const collectionHandles = shopPage.collections ? shopPage.collections.map((coll) => coll.shopifyItem.handle) : null
 
-	console.log(collectionHandles)
-	console.log(sourceCollections)
 	const collections = collectionHandles
 		? collectionHandles.map((handle) => sourceCollections.find((c) => c.handle === handle)).filter(Boolean)
 		: sourceCollections
 
-	console.log(collections)
 	const { seo } = shopPage
 	return collections ? (
 		<>
