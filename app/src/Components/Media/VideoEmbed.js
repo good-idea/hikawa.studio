@@ -61,7 +61,7 @@ const Video = ({ video }: Props) => {
 	return (
 		<VideoWrapper>
 			<VideoPadding>
-				<Player url={videoUrl} width="100%" height="100%" style={{ position: 'absolute', top: 0 }} position="absolute" />
+				<Player url={videoUrl} controls width="100%" height="100%" style={{ position: 'absolute', top: 0 }} position="absolute" />
 			</VideoPadding>
 		</VideoWrapper>
 	)
