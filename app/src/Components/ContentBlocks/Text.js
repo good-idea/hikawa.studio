@@ -58,7 +58,7 @@ const createSerializers = (customWrapper: any) => ({
 					</TextAnchor>
 				)
 			}
-			const to = `${parsed.pathname}${parsed.search}`
+			const to = `${parsed.pathname}${parsed.search || ''}`
 			return <Link to={to}>{children}</Link>
 		},
 	},
