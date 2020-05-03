@@ -3,12 +3,13 @@ import * as React from 'react'
 import styled, { css } from 'styled-components'
 import type { Checkout } from 'Types/CheckoutTypes'
 import { parsePrice } from 'Utils/parsing'
-import { Header4 } from 'Components/Type'
+import { Header4, Header5 } from 'Components/Type'
 
 const Subtotal = styled.div`
 	${({ theme }) => css`
 		margin-top: ${theme.layout.spacing.double};
-		text-align: right;
+		margin-bottom: ${theme.layout.spacing.double};
+		text-align: center;
 	`}
 `
 
@@ -18,11 +19,9 @@ const Subtotal = styled.div`
 
 type Props = {
 	cart: Checkout,
-	applyDiscount: (string) => Promise<void>,
-	removeDiscount: () => Promise<void>,
 }
 
-const CartSummary = ({ cart, applyDiscount, removeDiscount }: Props) => {
+const CartSummary = ({ cart }: Props) => {
 	return (
 		<>
 			<Subtotal>

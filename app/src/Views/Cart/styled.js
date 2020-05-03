@@ -1,5 +1,6 @@
 // @flow
 import styled, { css } from 'styled-components'
+import { Header5 } from 'Components/Type'
 
 export const CartGrid = styled.div`
 	${({ theme }) => css`
@@ -50,4 +51,17 @@ export const InputWrapper = styled.div`
 		margin: 0 auto;
 		max-width: 300px;
 	`};
+`
+export const CheckoutTextWrapper = styled.div`
+	${({ theme }) => css`
+		margin-top: ${theme.layout.spacing.single};
+		text-align: center;
+	`}
+`
+
+export const CheckoutText = styled(Header5)`
+	${({ theme }) => css`
+		font-weight: 300;
+		color: ${theme.color.darkGray};
+	`}
 `

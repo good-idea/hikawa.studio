@@ -11,8 +11,10 @@ import { CheckoutConsumer } from '../CheckoutProvider'
 import CartLineItem from './CartLineItem'
 import CartSummary from './CartSummary'
 import { CouponCode, NoteInput } from './Inputs'
-import { InputWrapper } from './styled'
+import { InputWrapper, CheckoutText, CheckoutTextWrapper } from './styled'
 import { isReactProduction } from '../../Utils/env'
+import { useSettings } from '../SettingsProvider'
+import Text from 'Components/ContentBlocks/Text'
 
 const { useState, useEffect } = React
 
@@ -45,6 +47,7 @@ const Centered = styled.div`
 `
 
 const Cart = (props: Props) => {
+	const { siteSettings } = useSettings()
 	const { addNote, currentCart, isOpen, closeCart, updateQuantity, loading, applyDiscount, removeDiscount, userErrors } = props
 	const { lineItems } = currentCart || {}
 
@@ -76,6 +79,9 @@ const Cart = (props: Props) => {
 		window.location = currentCart.webUrl
 	}
 
+	const checkoutText =
+		siteSettings && siteSettings.checkout && siteSettings.checkout.text ? siteSettings.checkout.text : undefined
+
 	return (
 		<Modal open={isOpen} onBackgroundClick={closeCart}>
 			<SummaryWrapper isLoading={loading}>
@@ -89,6 +95,12 @@ const Cart = (props: Props) => {
 						<Centered>
 							<InputWrapper>
 								<NoteInput noteInputValue={noteInputValue} setNoteInputValue={setNoteInputValue} />
+								{checkoutText ? (
+									<CheckoutTextWrapper>
+										<Text blocks={checkoutText} customWrapper={CheckoutText} />
+									</CheckoutTextWrapper>
+								) : null}
+
 								<CouponCode applyDiscount={applyDiscount} removeDiscount={removeDiscount} cart={currentCart} />
 							</InputWrapper>
 
@@ -110,7 +122,7 @@ const Cart = (props: Props) => {
 					</Header3>
 				)}
 				<Centered>
-					<SecondaryButton onClick={closeCart}>Close</SecondaryButton>
+					<SecondaryButton onClick={closeCart}>Keep Shopping</SecondaryButton>
 				</Centered>
 			</SummaryWrapper>
 		</Modal>

@@ -13,6 +13,15 @@ const discountApplicationFields = `
 		code
 		applicable
 	}
+  ...on ManualDiscountApplication {
+    title
+  }
+  ...on ScriptDiscountApplication {
+    title
+  }
+  ...on AutomaticDiscountApplication {
+    title
+  }
 	value {
 		...on PricingPercentageValue {
 			percentage

@@ -1,12 +1,9 @@
 // @flow
 import * as React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Header5 } from 'Components/Type'
 import type { Checkout } from 'Types/CheckoutTypes'
 import { Input, TextArea } from 'Components/Forms'
-import { useCheckout } from '../CheckoutProvider'
-
-const { useState } = React
 
 const Label = styled(Header5)`
 	${({ theme }) => `
@@ -49,7 +46,7 @@ const CouponWrapper = styled.form`
 `
 
 const Button = styled.button`
-	${({ enabled }) => `
+	${({ enabled }) => css`
 		opacity: ${enabled ? '1' : '0.25'};
 		pointer-events: ${enabled ? 'auto' : 'none'};
 		height: 35px;
@@ -60,10 +57,12 @@ const Button = styled.button`
 		font-weight: 600;
 	`};
 `
+
 type NoteInputProps = {
 	noteInputValue: string,
 	setNoteInputValue: (string) => void,
 }
+
 export const NoteInput = ({ noteInputValue, setNoteInputValue }: NoteInputProps) => {
 	const handleChange = (e) => {
 		setNoteInputValue(e.target.value)
@@ -90,6 +89,20 @@ type Props = {
 type State = {
 	value: string,
 }
+
+const PromoInput = styled(Input)`
+	${({ hasDiscount, theme }) => css`
+		color: black;
+		${hasDiscount
+			? css`
+					background-color: ${theme.color.offset};
+					border-color: ${theme.color.offset};
+					margin-right: 0;
+					text-align: center;
+			  `
+			: ''}
+	`}
+`
 
 export class CouponCode extends React.Component<Props, State> {
 	inputRef = React.createRef()
@@ -126,10 +139,12 @@ export class CouponCode extends React.Component<Props, State> {
 		const hasDiscount = Boolean(discountApplications && discountApplications.length)
 		const discount = hasDiscount && discountApplications ? discountApplications[0] : null
 		const { value } = this.state
+		const isAutomatic = Boolean(discount && discount.__typename === 'AutomaticDiscountApplication')
 		return (
 			<CouponWrapper onSubmit={hasDiscount ? removeDiscount : this.submit}>
 				<Label>Promo Code {hasDiscount ? '✓' : ''}</Label>
-				<Input
+				<PromoInput
+					hasDiscount={hasDiscount}
 					value={hasDiscount && discount ? `${discount.code || 'Discount Applied'}` : value}
 					locked={hasDiscount}
 					onChange={this.handleChange}
@@ -138,9 +153,15 @@ export class CouponCode extends React.Component<Props, State> {
 					autocomplete="off"
 					style={{ marginBottom: '10px' }}
 				/>
-				<Button type="button" enabled={hasDiscount || value.length > 0} onClick={hasDiscount ? this.removeDiscount : this.submit}>
-					{hasDiscount && discount ? 'Remove' : 'Apply'}
-				</Button>
+				{isAutomatic ? null : (
+					<Button
+						type="button"
+						enabled={hasDiscount || value.length > 0}
+						onClick={hasDiscount ? this.removeDiscount : this.submit}
+					>
+						{hasDiscount && discount ? 'Remove' : 'Apply'}
+					</Button>
+				)}
 			</CouponWrapper>
 		)
 	}

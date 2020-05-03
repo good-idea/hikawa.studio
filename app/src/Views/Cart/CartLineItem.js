@@ -22,19 +22,16 @@ const ImageWrapper = styled.div`
 `
 
 const ImageBorder = styled.div`
-	${({ theme }) => `
+	${({ theme }) => css`
 		width: 100%;
 		border: 1px solid ${theme.color.middleGray};
 	`};
 `
 
-const PromoCode = styled.span`
-	font-size: 0.85em;
-	font-weight: 600;
-	margin-right: 0.2em;
-	background-color: black;
-	color: white;
-	padding: 3px;
+const Discount = styled(Header5)`
+	${({ theme }) => css`
+		color: ${theme.color.pink};
+	`}
 `
 
 /**
@@ -67,9 +64,10 @@ const CartLineItem = ({ item, updateQuantity }: Props) => {
 				<Header5 weight="normal">{parsePrice(basePrice)}</Header5>
 				{discountAllocations &&
 					discountAllocations.map((a) => (
-						<Header5 key={a.discountApplication.code} weight="normal">
+						<Discount key={a.discountApplication.code} weight="normal">
 							<CouponTag />-{parsePrice(a.allocatedAmount.amount)}
-						</Header5>
+							{a.discountApplication.title ? ` — ${a.discountApplication.title}` : null}
+						</Discount>
 					))}
 			</MainSegment>
 			<Quantity item={item} updateQuantity={updateQuantity} />
