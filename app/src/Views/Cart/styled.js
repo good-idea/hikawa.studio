@@ -26,9 +26,7 @@ export const CartGridSegment = styled.div`
 `
 
 export const MainSegment = styled(CartGridSegment)`
-	${({ theme }) => css`
-		grid-column: span 3;
-	`}
+	grid-column: span 3;
 `
 
 export const CartLineItemWrapper = styled(CartGrid)`

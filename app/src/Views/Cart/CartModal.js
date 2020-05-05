@@ -26,9 +26,6 @@ const SummaryWrapper = styled.div`
 `
 
 const LineItems = styled.div`
-	max-height: calc(100vh - 400px);
-	overflow: scroll;
-	border: 1px solid black;
 	padding: 10px;
 `
 
@@ -133,4 +130,4 @@ const Composed = adopt({
 	cart: <CheckoutConsumer />,
 })
 
-export default () => <Composed>{({ cart }) => <Cart {...cart} />}</Composed>
+export default (props) => <Composed>{({ cart }) => <Cart {...cart} {...props} />}</Composed>

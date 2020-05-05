@@ -1,6 +1,9 @@
 // @flow
 import * as React from 'react'
 import styled from 'styled-components'
+import { useLockScroll } from '../LockScroll'
+
+const { useEffect } = React
 
 export const ModalInner = styled.div`
 	${({ theme }) => `
@@ -13,6 +16,8 @@ export const ModalInner = styled.div`
 		margin: 50px auto;
 		width: calc(100vw - ${theme.layout.spacing.single});
 		max-width: 650px;
+max-height: calc(100vh - 100px);
+overflow-y: scroll;
 	`};
 `
 
@@ -30,7 +35,6 @@ export const ModalContainer = styled.div`
 		${theme.mixins.fixedFullSize};
 		${theme.mixins.flexCenter};
 		z-index: ${theme.layout.z.dialog};
-		overflow-y: scroll;
 		pointer-events: none;
 	`};
 `
@@ -41,15 +45,24 @@ type Props = {
 	open: boolean,
 }
 
-const Modal = ({ children, onBackgroundClick, open }: Props) =>
-	open && children ? (
-		<React.Fragment>
+const Modal = ({ children, onBackgroundClick, open }: Props) => {
+	const { lockScroll, unlockScroll } = useLockScroll()
+	useEffect(() => {
+		if (open) {
+			lockScroll()
+		} else {
+			unlockScroll()
+		}
+	}, [open])
+	return open && children ? (
+		<>
 			<Background onClick={onBackgroundClick} />
 			<ModalContainer>
 				<ModalInner>{children}</ModalInner>
 			</ModalContainer>
-		</React.Fragment>
+		</>
 	) : null
+}
 
 Modal.defaultProps = { children: null }
 
