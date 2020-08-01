@@ -1,6 +1,0 @@
-export { default as page } from './page'
-export { default as product } from './product'
-export { default as collection } from './collection'
-export { default as homepage } from './homepage'
-export { default as siteSettings } from './siteSettings'
-export { default as shop } from './shop'

@@ -1,38 +1,43 @@
 {
-	"root": true,
-	"project": {
-		"name": "Hikawa Studio"
-	},
-	"api": {
-		"projectId": "rz3fhq71",
-		"dataset": "kame"
-	},
-	"env": {
-		"development": {
-			"api": {
-				"dataset": "staging"
-			}
-		}
-	},
-	"plugins": [
-		"@sanity/base",
-		"@sanity/components",
-		"@sanity/default-layout",
-		"@sanity/default-login",
-		"@sanity/desk-tool",
-		"shopify-selector",
-		"@sanity/vision",
-		"@sanity/color-input",
-		"video-embed"
-	],
-	"parts": [
-		{
-			"name": "part:@sanity/base/schema",
-			"path": "./schemas/schema.js"
-		},
-		{
-			"name": "part:@sanity/desk-tool/structure",
-			"path": "./schemas/structure.js"
-		}
-	]
+  "root": true,
+  "project": {
+    "name": "Hikawa Studio"
+  },
+  "api": {
+    "projectId": "7afit9ut",
+    "dataset": "production"
+  },
+  "env": {
+    "development": {
+      "api": {
+        "dataset": "staging"
+      }
+    }
+  },
+  "plugins": [
+    "@sanity/base",
+    "@sanity/components",
+    "@sanity/default-layout",
+    "@sanity/default-login",
+    "@sanity/desk-tool",
+    "@sane-shopify/sanity-plugin",
+    "@sanity/vision",
+    "@sanity/color-input",
+    "video-embed",
+    "media"
+  ],
+  "parts": [
+    {
+      "name": "part:@sanity/base/schema",
+      "path": "./schemas/schema.ts"
+    },
+    {
+      "name": "part:@sanity/desk-tool/structure",
+      "path": "./schemas/structure.ts"
+    },
+    {
+      "implements": "part:@sanity/form-builder/input/image/asset-sources",
+      "path": "./parts/assetSources.ts"
+    }
+  ]
 }
