@@ -1,7 +1,0 @@
-[dev]
-  functionsPort = 34567 # port for functions server
-
-[[redirects]]
-  from = "/*"
-  to = "https://www.baileyhikawa.com/:splat"
-  status = 301
