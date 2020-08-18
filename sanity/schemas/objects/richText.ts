@@ -12,6 +12,12 @@ export const richText = {
       type: 'array',
       of: [{ type: 'block' }],
     },
+    {
+      name: 'fullWidth',
+      type: 'boolean',
+      title: 'Full Width',
+      description: '(Only applies to text blocks on the homepage)',
+    },
   ],
   preview: {
     select: {

@@ -12,6 +12,11 @@ export const urlLink = {
       validation: (Rule) => Rule.required(),
     },
     {
+      type: 'boolean',
+      title: 'foo',
+      name: 'foo',
+    },
+    {
       type: 'url',
       label: 'URL',
       name: 'url',
