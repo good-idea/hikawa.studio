@@ -120,24 +120,28 @@ export const Image = ({
     <Wrapper ref={containerRef}>
       {ratio ? <RatioPadding canvasFill={canvasFill} ratio={ratio} /> : null}
       {src && (preload || isInViewOnce) ? (
-        <Picture objectFit={objectFit} loaded={true}>
-          {srcSetWebp ? (
-            <source type="image/webp" srcSet={srcSetWebp} sizes={sizes} />
-          ) : null}
-          {srcSet ? (
-            <source type="image/jpg" srcSet={srcSet} sizes={sizes} />
-          ) : null}
-          <MainImage
-            src={src}
-            alt={altText || ''}
-            ref={imageRef}
-            onLoad={handleOnLoad}
-          />
+        <>
+          <Picture objectFit={objectFit} loaded={true}>
+            {srcSetWebp ? (
+              <source type="image/webp" srcSet={srcSetWebp} sizes={sizes} />
+            ) : null}
+            {srcSet ? (
+              <source type="image/jpg" srcSet={srcSet} sizes={sizes} />
+            ) : null}
+            <MainImage
+              src={src}
+              alt={altText || ''}
+              ref={imageRef}
+              onLoad={handleOnLoad}
+            />
+          </Picture>
           {hoverDetails && hoverDetails.src ? (
             <HoverImage
               src={hoverDetails.src}
               sizes={sizes}
-              srcSet={srcSetWebp || srcSet || undefined}
+              srcSet={
+                hoverDetails.srcSetWebp || hoverDetails.srcSet || undefined
+              }
             />
           ) : null}
           {caption ? (
@@ -145,7 +149,7 @@ export const Image = ({
               {caption}
             </Heading>
           ) : null}
-        </Picture>
+        </>
       ) : null}
       {isInViewOnce && preloadImages && preloadImages.length ? (
         <PreloadWrapper>

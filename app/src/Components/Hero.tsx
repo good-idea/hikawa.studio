@@ -1,5 +1,5 @@
 import * as React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Hero as HeroType } from '../types'
 import { Image } from './Image'
 import { definitely, isValidHero } from '../utils'
@@ -10,6 +10,16 @@ const HeroWrapper = styled.div`
   width: 100%;
   padding-bottom: 45%;
   display: flex;
+`
+
+const EmptyHero = styled.div`
+  ${({ theme }) => css`
+    height: 100px;
+
+    ${theme.mediaQueries.mobile} {
+      height: 30px;
+    }
+  `}
 `
 
 const HeroRatio = styled.div`
@@ -54,7 +64,7 @@ export const Hero = ({ hero }: Props) => {
       </HeroWrapper>
     )
   }
-  return null
+  return <EmptyHero />
 }
 
 Hero.defaultProps = {
