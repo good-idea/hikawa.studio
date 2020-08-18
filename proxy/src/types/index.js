@@ -1,5 +1,0 @@
-export * from './CheckoutTypes'
-export * from './ContentTypes'
-export * from './CustomerTypes'
-export * from './GraphQLTypes'
-export * from './SharedTypes'

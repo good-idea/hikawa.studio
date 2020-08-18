@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "noImplicitAny": false,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "removeComments": true,
+    "noLib": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es6",
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "jsx": "preserve",
+    "lib": ["es2020", "dom"],
+    "outDir": "./dist",
+    "types": ["node", "jest"],
+    "allowJs": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true
+  },
+  "include": ["./src", "./pages"],
+  "exclude": [
+    "node_modules",
+    "../node_modules",
+    "../node_modules/**/*",
+    "**/*.spec.ts",
+    "**/*.test.ts",
+    "**/__tests__/*",
+    "dist",
+    "build"
+  ]
+}
