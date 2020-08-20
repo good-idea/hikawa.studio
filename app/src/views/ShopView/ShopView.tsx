@@ -13,7 +13,6 @@ interface ShopViewProps {
 export const ShopView = ({ activeCollectionHandle }: ShopViewProps) => {
   const { data, loading, error } = useQuery<ShopPageResponse>(shopPageQuery)
 
-  console.log({ data, loading, error })
   if (loading || error) return null
   if (!data) throw new Error('Could not load data')
   const shopPage = data?.Shop

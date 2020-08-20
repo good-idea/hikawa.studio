@@ -100,7 +100,7 @@ export const Image = ({
   React.useEffect(() => {
     if (imageRef.current === null) return
     if (imageRef.current.complete) {
-      setLoaded(true)
+      // setLoaded(true)
     }
   }, [imageRef.current])
 

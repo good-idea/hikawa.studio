@@ -9,7 +9,6 @@ import { Grid, HomepageWrapper, BlockWrapper } from './styled'
 
 export const HomepageView = () => {
   const { loading, error, data } = useQuery<HomepageResponse>(homepageQuery)
-  if (error) console.log({ error })
   if (loading) return <p>Loading</p>
   const homepage = data?.Homepage
   if (!homepage) throw new Error('No Homepage data')

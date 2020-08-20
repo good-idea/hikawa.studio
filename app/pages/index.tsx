@@ -17,7 +17,7 @@ export const getStaticProps: GetStaticProps = async () => {
   await getDataFromTree(StaticApp)
   const apolloCache = ssrClient.extract()
 
-  return { props: { apolloCache } }
+  return { props: { apolloCache }, revalidate: 60 }
 }
 
 export default Homepage

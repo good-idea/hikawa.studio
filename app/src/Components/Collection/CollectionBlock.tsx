@@ -79,8 +79,12 @@ export const CollectionBlock = ({
   useEffect(() => {
     const container = containerRef.current
     if (!isActive || !container) return
-    const top = container.getBoundingClientRect().y
-    document.documentElement.scrollTop = top - 50
+    const scrollToTop = () => {
+      const top = container.offsetTop
+      document.documentElement.scrollTop = top - 90
+    }
+    const tm = setTimeout(scrollToTop, 400)
+    return () => clearTimeout(tm)
   }, [isActive, containerRef.current])
 
   if (!products.length) return null
