@@ -9880,6 +9880,11 @@ html-escaper@^2.0.0:
   resolved "https://registry.yarnpkg.com/html-escaper/-/html-escaper-2.0.2.tgz#dfd60027da36a36dfcbe236262c00a5822681453"
   integrity sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==
 
+html-parser-lite@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/html-parser-lite/-/html-parser-lite-0.2.1.tgz#28aefacdf2cb5152d7f8ebae45224ab728b1c298"
+  integrity sha512-n/NeNB+WN3vkqJhE+lKfbEAUWIuWxAVAHbTce92kjFsEB3JsaFn65XWZetQoa0SEXPPOqUKCNRtccDrOSHUZTg==
+
 htmlparser2@4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/htmlparser2/-/htmlparser2-4.1.0.tgz#9a4ef161f2e4625ebf7dfbe6c0a2f52d18a59e78"

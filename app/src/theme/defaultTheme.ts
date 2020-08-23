@@ -31,7 +31,8 @@ export const defaultTheme: DefaultTheme = {
     48, // 8
     64, // 9
     72, // 10
-    114, // 11
+    84, // 11
+    114, // 12
   ],
 
   /* Sizing - applies to:

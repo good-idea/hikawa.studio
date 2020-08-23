@@ -24,7 +24,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 
   await getDataFromTree(StaticApp)
   const apolloCache = ssrClient.extract()
-  return { props: { apolloCache, productHandle }, revalidate: 60 }
+  return { props: { apolloCache, handle: productHandle }, revalidate: 60 }
 }
 
 /**

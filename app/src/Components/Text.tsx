@@ -16,7 +16,7 @@ const createTextBase = (as: any) => styled(as)`
     margin: 2 0 0.5em;
 
     strong {
-      font-weight: 6;
+      font-weight: 5;
     }
 
     em {
@@ -62,11 +62,11 @@ export const Heading = ({
   )
 }
 
-type PProps = Omit<HeadingProps, 'level'>
+type PProps = BoxProps & Omit<HeadingProps, 'level'>
 
-export const P = ({ children, color, htmlFor }: PProps) => {
+export const P = ({ children, color, htmlFor, ...rest }: PProps) => {
   return (
-    <TextBase as="p" level={5} color={color} htmlFor={htmlFor}>
+    <TextBase as="p" level={5} color={color} htmlFor={htmlFor} {...rest}>
       {children}
     </TextBase>
   )
@@ -108,7 +108,7 @@ export const TextAnchor = styled.a``
 export const BlockQuote = styled.blockquote``
 
 const listStyles = css`
-  margin: 3 0;
+  margin: 5 0;
   line-height: 1.1em;
   padding-left: 2em;
 `
@@ -123,8 +123,13 @@ export const Ul = styled.ul`
 const LiBase = createTextBase('li')
 
 export const Li = styled(LiBase)`
-  font-size: 5;
+  font-weight: 3;
+  font-size: 4;
   margin: 0;
+
+  & + & {
+    margin-top: 0.25em;
+  }
 `
 
 Li.defaultProps = {

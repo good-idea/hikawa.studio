@@ -13,10 +13,10 @@ export const heroFragment = gql`
     _key
     _type
     images {
+      _key
       ...RichImageFragment
     }
   }
-
   ${richImageFragment}
 `
 
