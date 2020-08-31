@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { unwindEdges } from '@good-idea/unwind-edges'
 import { useQuery } from '@apollo/client'
-import { useProductVariant, useCheckout } from 'use-shopify'
+import { useProductVariant } from 'use-shopify'
+import { useCheckout } from '../../providers'
 import { ShopifyProduct } from '../../types'
 import {
   productPageQuery,
@@ -55,12 +56,12 @@ const ProductViewInner = ({ product }: ProductViewInnerProps) => {
     throw new Error('No sourceData was provided')
   }
   const { currentVariant, selectVariant } = useProductVariant(sourceData)
-  const { addLineItem } = useCheckout()
+  const { addLineItems } = useCheckout()
 
-  const addToCart = () => {
+  const addToCart = async () => {
     const variantId = currentVariant?.id
     if (!variantId) return
-    addLineItem({ variantId, quantity: 1 })
+    await addLineItems([{ variantId, quantity: 1 }])
   }
 
   if (!currentVariant) {
@@ -71,7 +72,6 @@ const ProductViewInner = ({ product }: ProductViewInnerProps) => {
 
   const [images] = unwindEdges(sourceData?.images)
   const collection = definitely(product.collections)[0]
-  console.log(collection)
 
   return (
     <>

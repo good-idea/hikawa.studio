@@ -1,18 +1,14 @@
 import * as React from 'react'
 import { unwindEdges } from '@good-idea/unwind-edges'
-import {
-  ShopifyProduct,
-  ShopifyProductVariant,
-  ShopifySourceProductVariant,
-} from '../../types'
+import { ShopifyProduct, ShopifySourceProductVariant } from '../../types'
 import { Heading, P } from '../../components/Text'
 import { RichText } from '../../components/RichText'
 import { Button } from '../../components/Button'
-import { useSiteSettings } from '../../providers'
+import { useCheckout, useSiteSettings } from '../../providers'
 import { ShopifyRichText } from '../../components/ShopifyRichText'
-import { definitely } from '../../utils'
 import { Afterpay } from './Afterpay'
 import { VariantSelector } from './VariantSelector'
+import { SuccessMessage } from './SuccessMessage'
 import {
   ProductDescriptionTitle,
   ExtraDescription,
@@ -21,11 +17,13 @@ import {
   VariantWrapper,
 } from './styled'
 
+const { useState } = React
+
 interface ProductDescriptionProps {
   product: ShopifyProduct
   currentVariant: ShopifySourceProductVariant
   selectVariant: (id: string) => void
-  addToCart: () => void
+  addToCart: () => Promise<void>
 }
 
 export const ProductDescription = ({
@@ -35,10 +33,17 @@ export const ProductDescription = ({
   addToCart,
 }: ProductDescriptionProps) => {
   const { siteSettings } = useSiteSettings()
+  const [success, setSuccess] = useState(false)
+  const { loading: checkoutLoading } = useCheckout()
   const extraProductText = siteSettings?.product?.textRaw
   const { title } = product
 
   const [variants] = unwindEdges(product?.sourceData?.variants)
+
+  const handleClick = async () => {
+    await addToCart()
+    setSuccess(true)
+  }
 
   return (
     <ProductDescriptionWrapper>
@@ -62,13 +67,16 @@ export const ProductDescription = ({
         <Afterpay price={currentVariant.priceV2} />
         <ButtonContainer>
           <Button
-            onClick={addToCart}
+            onClick={handleClick}
             disabled={
-              !Boolean(currentVariant) || !currentVariant.availableForSale
+              checkoutLoading ||
+              !Boolean(currentVariant) ||
+              !currentVariant.availableForSale
             }
           >
             Add To Tote
           </Button>
+          <SuccessMessage visible={success} />
         </ButtonContainer>
       </VariantWrapper>
     </ProductDescriptionWrapper>

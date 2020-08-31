@@ -1,7 +1,7 @@
 import * as React from 'react'
-import styled, { css } from 'styled-components'
+import styled, { css } from '@xstyled/styled-components'
 import { Hero as HeroType } from '../types'
-import { Image } from './Image'
+import { Image, ImageWrapper as ImageElementWrapper } from './Image'
 import { definitely, isValidHero } from '../utils'
 
 const HeroWrapper = styled.div`
@@ -34,7 +34,9 @@ const HeroRatio = styled.div`
 const ImageWrapper = styled.div`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+
+  ${ImageElementWrapper},
+  picture,
   img {
     width: 100%;
     height: 100%;
@@ -57,7 +59,7 @@ export const Hero = ({ hero }: Props) => {
         <HeroRatio>
           {definitely(hero.images).map((image) => (
             <ImageWrapper key={image._key || 'some-key'}>
-              <Image image={image} sizes="100vw" />
+              <Image image={image} ratio={null} sizes="100vw" />
             </ImageWrapper>
           ))}
         </HeroRatio>

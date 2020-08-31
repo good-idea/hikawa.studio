@@ -5,7 +5,7 @@ interface InputProps {
   locked?: boolean | void
 }
 
-export const Input = styled.input<InputProps>`
+export const Input = styled.inputBox<InputProps>`
   ${({ disabled, locked }) => css`
     flex-grow: 1;
     max-width: 170px;
@@ -30,7 +30,7 @@ export const Input = styled.input<InputProps>`
   `}
 `
 
-export const TextArea = styled.textarea`
+export const TextArea = styled.textareaBox`
   border: 1px solid black;
   padding: 10px;
   resize: none;

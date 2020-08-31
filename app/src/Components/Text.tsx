@@ -22,14 +22,6 @@ const createTextBase = (as: any) => styled(as)`
     em {
       font-style: italic;
     }
-
-    &:first-of-type {
-      margin-top: 0;
-    }
-
-    &:last-of-type {
-      margin-bottom: 0;
-    }
   `}
 `
 
@@ -41,7 +33,6 @@ interface HeadingProps extends Omit<CustomTextProps, 'theme'> {
   // TODO: type these properly
   style?: any
   as?: any
-  htmlFor?: string
 }
 
 const hTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']

@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie'
 
 export const VIEWER_EMAIL = 'hikawa-viewer-email'
+export const VIEWER_CART_TOKEN = 'hikawa-viewer-cart'
 
 interface CookieConfig {
   expires?: number

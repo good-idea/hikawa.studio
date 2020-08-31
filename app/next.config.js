@@ -26,6 +26,9 @@ module.exports = withSourceMaps(
       SANITY_DATASET: process.env.SANITY_DATASET,
       SANITY_READ_TOKEN: process.env.SANITY_READ_TOKEN,
       SENTRY_DSN: process.env.SENTRY_DSN,
+      SANITY_GRAPHQL_URL: process.env.SANITY_GRAPHQL_URL,
+      SHOPIFY_GRAPHQL_URL: process.env.SHOPIFY_GRAPHQL_URL,
+      SHOPIFY_STOREFRONT_TOKEN: process.env.SHOPIFY_STOREFRONT_TOKEN,
     },
     webpack: (config, { isServer, buildId }) => {
       config.plugins.push(

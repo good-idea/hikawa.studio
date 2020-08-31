@@ -6,7 +6,7 @@ interface ButtonElementProps {
   level?: 1 | 2
 }
 
-const ButtonElement = styled.button<ButtonElementProps>`
+const ButtonElement = styled.buttonBox<ButtonElementProps>`
   ${({ disabled, level }) => css`
     padding: 0 3;
     height: 35px;
@@ -59,6 +59,7 @@ export const Button = ({
   children,
   disabled,
   label,
+  ...rest
 }: ButtonProps) => {
   if (!children && !label) {
     throw new Error('You must provide either a label or children')
@@ -70,6 +71,7 @@ export const Button = ({
       disabled={disabled}
       onClick={onClick}
       type={type}
+      {...rest}
     >
       {children || label}
     </ButtonElement>

@@ -46,3 +46,7 @@ export const isValidHero = (hero?: Hero | null): boolean => {
   if (!hero) return false
   return Boolean(hero?.images && hero.images.length)
 }
+
+export function arrayify<T>(i: T | T[]): T[] {
+  return Array.isArray(i) ? i : [i]
+}

@@ -1,11 +1,15 @@
-import { ApolloClient, InMemoryCache } from '@apollo/client'
+import {
+  ApolloClientOptions,
+  ApolloClient,
+  InMemoryCache,
+} from '@apollo/client'
 
-interface Props {
+interface Props extends Omit<ApolloClientOptions<any>, 'cache'> {
   initialCache?: any
 }
 
 export const createApolloClient = (props?: Props) =>
   new ApolloClient({
-    uri: 'https://7afit9ut.api.sanity.io/v1/graphql/production/default',
     cache: new InMemoryCache().restore(props?.initialCache || {}),
+    ...props,
   })

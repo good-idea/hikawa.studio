@@ -57,7 +57,7 @@ interface ImageProps {
   image?: Maybe<ImageType> | void
   altText?: Maybe<string>
   hoverImage?: Maybe<ImageType>
-  ratio?: number
+  ratio?: number | null
   sizes?: string
   onLoad?: () => void
   preloadImages?: ImageType[]
@@ -114,7 +114,8 @@ export const Image = ({
     setLoaded(true)
   }
 
-  const ratio = customRatio || getAspectRatio(image)
+  const ratio =
+    customRatio === null ? null : customRatio || getAspectRatio(image)
 
   return (
     <Wrapper ref={containerRef}>

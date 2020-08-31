@@ -6,20 +6,26 @@ module.exports = {
     'prettier/@typescript-eslint',
     'plugin:prettier/recommended',
   ],
+  plugins: ['jsx-a11y'],
   parserOptions: {
     sourceType: 'module',
   },
+  ecmaFeatures: {
+    jsx: true,
+  },
   rules: {
-    'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': 1,
     // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
+    'no-unused-vars': 'off',
+    'react/prop-types': 'off',
+    '@typescript-eslint/no-unused-vars': 1,
     '@typescript-eslint/no-inferrable-types': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/explicit-member-accessibility': 'off',
     '@typescript-eslint/ban-ts-ignore': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/camelcase': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/ban-ts-comment': 'off',
   },
   settings: {
     react: {

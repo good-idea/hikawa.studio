@@ -1,9 +1,5 @@
 overwrite: true
 generates:
-  # ./fragmentTypes-sanity.json:
-  #   schema: ${SANITY_GRAPHQL_URL}
-  #   plugins:
-  #     - fragment-matcher
   src/types/generated-sanity.ts:
     schema: ${SANITY_GRAPHQL_URL}
     plugins:
@@ -16,30 +12,19 @@ generates:
         JSON: '{ [key: string]: any }'
       declarationKind:
         type: 'interface'
-  # ./fragmentTypes-shopify.json:
-  #   schema:
-  #     - https://spinellikilcollin.myshopify.com/api/graphql:
-  #         headers:
-  #           X-ShopifyStorefront-Access-Token: 0d3e3d2a74d125f799cd78a72e6c0000
-  #   plugins:
-  #     - fragment-matcher
-  # ./src/types/generated-shopify.ts:
-  #   schema:
-  #     - https://kame-case.myshopify.com/api/graphql:
-  #         headers:
-  #           X-Shopify-Storefront-Access-Token: '29f169ddd673015f96eb6865593e9369'
-  #   # IDK WHY the spinelli api errors. But the type are the same..
-  #   # schema:
-  #   #   - https://spinellikilcollin.myshopify.com/api/graphql:
-  #   #       headers:
-  #   #         X-ShopifyStorefront-Access-Token: '0d3e3d2a74d125f799cd78a72e6c0000'
-  #   plugins:
-  #     - typescript
-  #   config:
-  #     nonOptionalTypename: true
-  #     typesPrefix: 'ShopifyStorefront'
-  #     scalars:
-  #       DateTime: Date
-  #       JSON: '{ [key: string]: any }'
-  #     declarationKind:
-  #       type: 'interface'
+  src/types/generated-shopify.ts:
+    schema:
+      - https://kame-case.myshopify.com/api/graphql:
+          headers:
+            X-Shopify-Storefront-Access-Token: '29f169ddd673015f96eb6865593e9369'
+    plugins:
+      - fragment-matcher
+      - typescript
+    config:
+      nonOptionalTypename: true
+      typesPrefix: 'ShopifyStorefront'
+      scalars:
+        DateTime: Date
+        JSON: '{ [key: string]: any }'
+      declarationKind:
+        type: 'interface'

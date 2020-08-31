@@ -1,0 +1,135 @@
+import * as React from 'react'
+import { arrayify } from '../../utils'
+import { parseProduct } from './utils'
+import { SelectedProduct, EventType, GTagEvent } from './types'
+
+interface AnalyticsContextValue {
+  sendProductImpression: (
+    products: SelectedProduct | SelectedProduct[],
+    list?: string,
+  ) => void
+  sendProductClick: (products: SelectedProduct | SelectedProduct[]) => void
+  sendProductDetailView: (products: SelectedProduct | SelectedProduct[]) => void
+  sendAddToCart: (products: SelectedProduct | SelectedProduct[]) => void
+  sendRemoveFromCart: (products: SelectedProduct | SelectedProduct[]) => void
+  sendBeginCheckout: (products: SelectedProduct | SelectedProduct[]) => void
+  sendPageView: (url: string) => void
+}
+
+const AnalyticsContext = React.createContext<AnalyticsContextValue | undefined>(
+  undefined,
+)
+
+export const AnalyticsConsumer = AnalyticsContext.Consumer
+
+export const useAnalytics = () => {
+  const ctx = React.useContext(AnalyticsContext)
+  if (!ctx)
+    throw new Error(
+      'useAnalyticsContext must be used within a AnalyticsProvider',
+    )
+  return ctx
+}
+
+interface AnalyticsProps {
+  children: React.ReactNode
+}
+
+export const AnalyticsProvider = ({ children }: AnalyticsProps) => {
+  const sendEvent = (event: GTagEvent) => {
+    if (typeof window === 'undefined') return
+    if (window.dataLayer) window.dataLayer.push(event)
+  }
+
+  const sendProductImpression: AnalyticsContextValue['sendProductImpression'] = (
+    selected,
+    list,
+  ) => {
+    const impressions = arrayify(selected).map((s, i) =>
+      parseProduct(s, { position: i + 1, list }),
+    )
+    sendEvent({
+      event: EventType.Impressions,
+      ecommerce: { impressions },
+    })
+  }
+
+  const sendProductClick: AnalyticsContextValue['sendProductClick'] = (
+    selected,
+  ) => {
+    const products = arrayify(selected).map((s, i) =>
+      parseProduct(s, { position: i + 1 }),
+    )
+    sendEvent({
+      event: EventType.ProductClick,
+      ecommerce: { products },
+    })
+  }
+
+  const sendProductDetailView: AnalyticsContextValue['sendProductDetailView'] = (
+    selected,
+  ) => {
+    const products = arrayify(selected).map((s, i) =>
+      parseProduct(s, { position: i + 1 }),
+    )
+    sendEvent({
+      event: EventType.ProductDetailView,
+      ecommerce: { products },
+    })
+  }
+
+  const sendPageView: AnalyticsContextValue['sendPageView'] = (url: string) => {
+    sendEvent({
+      event: EventType.PageView,
+      url,
+    })
+  }
+
+  const sendAddToCart: AnalyticsContextValue['sendAddToCart'] = (selected) => {
+    const products = arrayify(selected).map((s, i) =>
+      parseProduct(s, { position: i + 1 }),
+    )
+    sendEvent({
+      event: EventType.AddToCart,
+      ecommerce: { add: { products } },
+    })
+  }
+
+  const sendRemoveFromCart: AnalyticsContextValue['sendRemoveFromCart'] = (
+    selected,
+  ) => {
+    const products = arrayify(selected).map((s, i) =>
+      parseProduct(s, { position: i + 1 }),
+    )
+    sendEvent({
+      event: EventType.RemoveFromCart,
+      ecommerce: { remove: { products } },
+    })
+  }
+  const sendBeginCheckout: AnalyticsContextValue['sendBeginCheckout'] = (
+    selected,
+  ) => {
+    const products = arrayify(selected).map((s, i) =>
+      parseProduct(s, { position: i + 1 }),
+    )
+    sendEvent({
+      event: EventType.BeginCheckout,
+      ecommerce: { checkout: { products } },
+    })
+  }
+
+  const value = {
+    sendProductImpression,
+    sendProductClick,
+    sendProductDetailView,
+    sendAddToCart,
+    sendRemoveFromCart,
+    sendBeginCheckout,
+  }
+
+  return (
+    <AnalyticsContext.Provider value={value}>
+      {children}
+    </AnalyticsContext.Provider>
+  )
+}

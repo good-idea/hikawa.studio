@@ -35,6 +35,9 @@ const RichTextWrapper = styled.div<WithArticle>`
       max-width: 80%;
       margin: 80px auto;
     }
+    a {
+      color: pink;
+    }
 
     ${theme.mediaQueries.tablet} {
       picture {

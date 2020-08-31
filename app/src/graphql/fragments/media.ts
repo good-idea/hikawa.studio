@@ -14,6 +14,20 @@ export const shopifySourceImageFragment = gql`
   }
 `
 
+export const shopifyImageFragment = gql`
+  fragment ShopifyImageFragment on Image {
+    __typename
+    id
+    altText
+    originalSrc
+    w100: transformedSrc(maxWidth: 100)
+    w300: transformedSrc(maxWidth: 300)
+    w800: transformedSrc(maxWidth: 800)
+    w1200: transformedSrc(maxWidth: 1200)
+    w1600: transformedSrc(maxWidth: 1600)
+  }
+`
+
 export const sanityImageAssetFragment = gql`
   fragment SanityImageAssetFragment on SanityImageAsset {
     __typename
