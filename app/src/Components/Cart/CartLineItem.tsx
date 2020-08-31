@@ -76,7 +76,8 @@ export const CartLineItem = ({ item, updateQuantity }: CartLineItemProps) => {
               fontWeight={5}
             >
               <CouponTag /> -{parsePrice(a.allocatedAmount.amount)}
-              <CouponNameSpan>{a.discountApplication.title}</CouponNameSpan>
+              {/* @ts-ignore */}
+              <CouponNameSpan>{a.discountApplication?.title}</CouponNameSpan>
             </Heading>
           ))}
       </MainSegment>

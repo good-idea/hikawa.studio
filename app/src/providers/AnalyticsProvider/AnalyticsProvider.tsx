@@ -13,7 +13,6 @@ interface AnalyticsContextValue {
   sendAddToCart: (products: SelectedProduct | SelectedProduct[]) => void
   sendRemoveFromCart: (products: SelectedProduct | SelectedProduct[]) => void
   sendBeginCheckout: (products: SelectedProduct | SelectedProduct[]) => void
-  sendPageView: (url: string) => void
 }
 
 const AnalyticsContext = React.createContext<AnalyticsContextValue | undefined>(
@@ -75,13 +74,6 @@ export const AnalyticsProvider = ({ children }: AnalyticsProps) => {
     sendEvent({
       event: EventType.ProductDetailView,
       ecommerce: { products },
-    })
-  }
-
-  const sendPageView: AnalyticsContextValue['sendPageView'] = (url: string) => {
-    sendEvent({
-      event: EventType.PageView,
-      url,
     })
   }
 

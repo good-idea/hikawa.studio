@@ -15,7 +15,11 @@ const Page = ({ slug }: PageProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-  const slug = ctx.params.pageSlug
+  const pageSlug = ctx.params?.pageSlug
+  const slug = Array.isArray(pageSlug) ? pageSlug[0] : pageSlug
+
+  if (!slug) throw new Error('No pageSlug provided')
+
   const StaticApp = (
     <App>
       <PageView key={slug} slug={slug} />
@@ -40,12 +44,15 @@ interface PageResponse {
   allPage: PageType[]
 }
 
+// @ts-ignore
 export const getStaticPaths: GetStaticPaths = async () => {
   const result = await ssrClient.query<PageResponse>({
     query: pageHandlesQuery,
   })
-  const pages = definitely(result.data.allPage)
-  const paths = pages.map((p) => ({ params: { pageSlug: p.slug.current } }))
+  const pages = definitely(result?.data?.allPage)
+  const paths = pages.map((p) => ({
+    params: { pageSlug: p.slug ? p.slug.current : null },
+  }))
   return {
     paths,
     fallback: true,

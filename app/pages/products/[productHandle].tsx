@@ -15,10 +15,12 @@ const Product = ({ handle }) => {
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-  const { productHandle } = ctx.params
+  const productHandle = ctx.params?.productHandle
+  const handle = Array.isArray(productHandle) ? productHandle[0] : productHandle
+  if (!handle) throw new Error('No product handle was provided')
   const StaticApp = (
     <App>
-      <ProductView key={productHandle} handle={productHandle} />
+      <ProductView key={handle} handle={handle} />
     </App>
   )
 

@@ -4,6 +4,7 @@ import { useSiteSettings } from '../providers'
 import { Image } from './Image'
 import { Heading } from './Text'
 import { InstagramLogo } from './InstagramLogo'
+import { definitely } from '../utils'
 
 /**
  * Instagram
@@ -30,7 +31,7 @@ const Images = styled.div`
 
 export const InstagramRow = () => {
   const { siteSettings } = useSiteSettings()
-  if (!siteSettings) return null
+  if (!siteSettings?.instagram) return null
   const { title, images, handle } = siteSettings.instagram
   if (!images || !images.length) return null
   return (
@@ -42,9 +43,9 @@ export const InstagramRow = () => {
         </Heading>
       )}
       <Images>
-        {images.map((image) => (
+        {definitely(images).map((image) => (
           <a
-            key={image._key}
+            key={image?._key || 'some-key'}
             target="_blank"
             rel="noreferrer noopener"
             href={`https://www.instagram.com/${handle}`}

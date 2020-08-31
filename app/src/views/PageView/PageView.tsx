@@ -7,6 +7,7 @@ import { SEO } from '../../components/SEO'
 import { Hero } from '../../components/Hero'
 import { InstagramRow } from '../../components/InstagramRow'
 import { Gallery } from '../../components/Gallery'
+import { definitely } from '../../utils'
 import { pageQuery, PageResponse, PageArgs } from './queries'
 import { NotFound } from '../NotFound'
 
@@ -26,6 +27,7 @@ export const PageView = ({ slug }: PageProps) => {
   const page = data.allPage.length ? data.allPage[0] : null
   if (!page) return <NotFound />
   const { contentRaw, gallery, seo, hero, includeInstagram } = page
+  const images = definitely(gallery)
   return (
     <Wrapper>
       {seo && <SEO seo={seo} />}
@@ -33,9 +35,9 @@ export const PageView = ({ slug }: PageProps) => {
       <Column width="wide">
         {contentRaw && <RichText body={contentRaw} />}
       </Column>
-      {gallery && gallery.length ? (
+      {images && images.length ? (
         <Column width="xWide">
-          <Gallery images={gallery} />
+          <Gallery images={images} />
         </Column>
       ) : null}
       {includeInstagram && (

@@ -36,7 +36,11 @@ export const useCurrentCart = () => {
   const { data, loading, error, refetch } = useQuery<
     CheckoutQueryResponse,
     CheckoutQueryInput
-  >(checkoutQuery, { variables })
+  >(checkoutQuery, {
+    // @ts-ignore
+    variables,
+    skip: !Boolean(checkoutId),
+  })
   const cart = data && data.node ? sanitizeCart(data.node) : undefined
   const currentCart = cart && cart.completedAt ? null : cart
 
@@ -50,7 +54,7 @@ export const useCurrentCart = () => {
 
   useEffect(() => {
     if (cart && cart.completedAt) {
-      setCheckoutId(undefined)
+      setCheckoutId(null)
     }
   }, [cart])
 

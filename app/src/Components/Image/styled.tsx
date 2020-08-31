@@ -1,5 +1,5 @@
 import * as React from 'react'
-import styled, { DefaultTheme, css } from '@xstyled/styled-components'
+import styled, { css } from '@xstyled/styled-components'
 
 export const MainImage = styled.img``
 
@@ -24,13 +24,12 @@ export const Wrapper = styled.div`
 `
 
 interface PictureProps {
-  theme: DefaultTheme
   loaded: boolean
   objectFit?: string
 }
 
-export const Picture = styled.picture`
-  ${({ loaded, objectFit }: PictureProps) => css`
+export const Picture = styled.picture<PictureProps>`
+  ${({ loaded, objectFit }) => css`
     max-height: 100%;
     max-width: 100%;
     width: auto;

@@ -16,6 +16,20 @@ enum ActionType {
   Error = 'Error',
 }
 
+interface FetchingAction {
+  type: ActionType.Fetching
+}
+
+interface SuccessAction {
+  type: ActionType.Success
+  checkout?: ShopifyStorefrontCheckout
+}
+
+interface ErrorAction {
+  type: ActionType.Error
+  userErrors: any[]
+}
+
 interface OpenAction {
   type: ActionType.Open
 }
@@ -65,13 +79,14 @@ const reducer = (state: State, action: Action): State => {
 }
 
 const initialState = {
+  loading: false,
   isOpen: false,
   userErrors: [],
 }
 
 export const useCheckoutReducer = () => {
   const [state, dispatch] = useReducer(reducer, initialState)
-
+  const startFetch = () => dispatch({ type: ActionType.Fetching })
   const openCart = () => dispatch({ type: ActionType.Open })
   const closeCart = () => dispatch({ type: ActionType.Close })
   const onSuccess = (checkout?: ShopifyStorefrontCheckout) =>

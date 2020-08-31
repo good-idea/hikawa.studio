@@ -15,17 +15,15 @@ const Shop = ({ activeCollectionHandle }: ShopProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-  const { collectionHandle } = ctx.params
-  if (typeof collectionHandle !== 'string') {
-    throw new Error(
-      `Collection handle param was not a string: [${collectionHandle.join(
-        ', ',
-      )}]`,
-    )
-  }
+  const collectionHandle = ctx.params?.collectionHandle
+  const handle = Array.isArray(collectionHandle)
+    ? collectionHandle[0]
+    : collectionHandle
+  if (!handle) throw new Error('No collection handle was provided')
+
   const StaticApp = (
     <App>
-      <ShopView activeCollectionHandle={collectionHandle} />
+      <ShopView activeCollectionHandle={handle} />
     </App>
   )
 
@@ -59,6 +57,7 @@ interface CollectionsResponse {
   allShopifyCollection: ShopifyCollection[]
 }
 
+// @ts-ignore
 export const getStaticPaths: GetStaticPaths = async () => {
   const result = await ssrClient.query<CollectionsResponse>({
     query: pageHandlesQuery,

@@ -1,13 +1,7 @@
 import * as React from 'react'
-import styled, {
-  css,
-  DefaultTheme,
-  Box,
-  BoxProps,
-} from '@xstyled/styled-components'
+import styled, { css, Box, BoxProps } from '@xstyled/styled-components'
 
 interface CustomTextProps extends BoxProps {
-  theme: DefaultTheme
   htmlFor?: string
 }
 

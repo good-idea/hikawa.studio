@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Box } from '@xstyled/styled-components'
+import styled, { Box } from '@xstyled/styled-components'
 import { unwindEdges } from '@good-idea/unwind-edges'
 import {
   ShopifyStorefrontCheckout,
@@ -23,18 +23,14 @@ interface CouponCodeProps {
   removeDiscount: () => Promise<void>
 }
 
-const isDiscountAllocation = (
-  discount: Discount,
-): discount is ShopifyStorefrontDiscountAllocation => {
-  return (
-    '__typename' in discount && discount.__typename === 'DiscountAllocation'
-  )
-}
-
 interface DiscountLineProps {
   discount: ShopifyStorefrontDiscountApplication
   removeDiscount: () => Promise<void>
 }
+
+const RemoveButton = styled(Button)`
+  height: auto;
+`
 
 export const DiscountLine = ({
   discount,
@@ -48,12 +44,13 @@ export const DiscountLine = ({
   return (
     <DiscountLineWrapper>
       <Heading py={2} flexBasis={1} backgroundColor="offset" level={4}>
+        {/* @ts-ignore */}
         {discount.title || discount.code} ✓
       </Heading>
       {!isAutomatic && removeDiscount ? (
-        <Button height="auto" pr={0} my={0} level={2} onClick={removeDiscount}>
+        <RemoveButton pr={0} my={0} level={2} onClick={removeDiscount}>
           Remove
-        </Button>
+        </RemoveButton>
       ) : null}
     </DiscountLineWrapper>
   )
@@ -122,6 +119,7 @@ export const CouponCode = ({
         <DiscountLine
           key={sd.allocatedAmount.amount}
           removeDiscount={removeDiscount}
+          // @ts-ignore
           discount={sd}
         />
       ))}

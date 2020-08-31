@@ -5,8 +5,15 @@ declare module '@xstyled/styled-components' {
     ThemedStyledFunction,
     DefaultTheme,
     FlattenSimpleInterpolation,
+    css as scCss,
   } from 'styled-components'
   export * from 'styled-components'
+
+  export const css = scCss
+
+  export const ThemeProvider = _styled.ThemeProvider
+  export type DefaultTheme = _styled.DefaultTheme
+  export const createGlobalStyle = _styled.createGlobalStyle
 
   interface Breakpoints {
     xs: any
@@ -31,7 +38,6 @@ declare module '@xstyled/styled-components' {
     /* See props documentation at:
      * https://www.smooth-code.com/open-source/smooth-ui/docs/box/#box-2
      */
-    color: number | string
     background: number | string
     backgroundColor: number | string
     backgroundImage: number | string
@@ -124,7 +130,7 @@ declare module '@xstyled/styled-components' {
     fontWeight: number | string
     textAlign: number | string
     letterSpacing: number | string
-    color: string
+    color: number | string
     textTransform: number | string
     row: number | string
     col: number | string
@@ -133,7 +139,17 @@ declare module '@xstyled/styled-components' {
   /* adds support for { xs: arg } and makes all props optional */
   export type BoxProps = WithBreakpointArgs<BoxPropsBase>
 
-  export const Box: StyledComponent<'div', DefaultTheme, BoxProps>
+  // TODO: If styled-components default tags are overridden,
+  // these will work
+  // const styled: {
+  //   [Key in keyof JSX.IntrinsicElements]: ThemedStyledFunction<
+  //     Key,
+  //     DefaultTheme,
+  //     BoxProps
+  //   >
+  // }
+
+  export const Box: ThemeStyledFunction<'div', DefaultTheme, BoxProps>
 
   export const breakpoints: (
     styles: BreakpointObject<FlattenSimpleInterpolation | string>,
@@ -144,158 +160,158 @@ declare module '@xstyled/styled-components' {
    * https://github.com/styled-components/styled-components/blob/master/packages/styled-components/src/utils/domElements.js */
 
   const styled: typeof _styled & {
-    aBox: ThemedStyledFunction<'a', DefaultTheme, BoxProps>
-    abbrBox: ThemedStyledFunction<'abbr', DefaultTheme, BoxProps>
-    addressBox: ThemedStyledFunction<'address', DefaultTheme, BoxProps>
-    areaBox: ThemedStyledFunction<'area', DefaultTheme, BoxProps>
-    articleBox: ThemedStyledFunction<'article', DefaultTheme, BoxProps>
-    asideBox: ThemedStyledFunction<'aside', DefaultTheme, BoxProps>
-    audioBox: ThemedStyledFunction<'audio', DefaultTheme, BoxProps>
-    bBox: ThemedStyledFunction<'b', DefaultTheme, BoxProps>
-    baseBox: ThemedStyledFunction<'base', DefaultTheme, BoxProps>
-    bdiBox: ThemedStyledFunction<'bdi', DefaultTheme, BoxProps>
-    bdoBox: ThemedStyledFunction<'bdo', DefaultTheme, BoxProps>
-    bigBox: ThemedStyledFunction<'big', DefaultTheme, BoxProps>
-    blockquoteBox: ThemedStyledFunction<'blockquote', DefaultTheme, BoxProps>
-    bodyBox: ThemedStyledFunction<'body', DefaultTheme, BoxProps>
-    brBox: ThemedStyledFunction<'br', DefaultTheme, BoxProps>
-    buttonBox: ThemedStyledFunction<'button', DefaultTheme, BoxProps>
-    canvasBox: ThemedStyledFunction<'canvas', DefaultTheme, BoxProps>
-    captionBox: ThemedStyledFunction<'caption', DefaultTheme, BoxProps>
-    citeBox: ThemedStyledFunction<'cite', DefaultTheme, BoxProps>
-    codeBox: ThemedStyledFunction<'code', DefaultTheme, BoxProps>
-    colBox: ThemedStyledFunction<'col', DefaultTheme, BoxProps>
-    colgroupBox: ThemedStyledFunction<'colgroup', DefaultTheme, BoxProps>
-    dataBox: ThemedStyledFunction<'data', DefaultTheme, BoxProps>
-    datalistBox: ThemedStyledFunction<'datalist', DefaultTheme, BoxProps>
-    ddBox: ThemedStyledFunction<'dd', DefaultTheme, BoxProps>
-    delBox: ThemedStyledFunction<'del', DefaultTheme, BoxProps>
-    detailsBox: ThemedStyledFunction<'details', DefaultTheme, BoxProps>
-    dfnBox: ThemedStyledFunction<'dfn', DefaultTheme, BoxProps>
-    dialogBox: ThemedStyledFunction<'dialog', DefaultTheme, BoxProps>
-    divBox: ThemedStyledFunction<'div', DefaultTheme, BoxProps>
-    dlBox: ThemedStyledFunction<'dl', DefaultTheme, BoxProps>
-    dtBox: ThemedStyledFunction<'dt', DefaultTheme, BoxProps>
-    emBox: ThemedStyledFunction<'em', DefaultTheme, BoxProps>
-    embedBox: ThemedStyledFunction<'embed', DefaultTheme, BoxProps>
-    fieldsetBox: ThemedStyledFunction<'fieldset', DefaultTheme, BoxProps>
-    figcaptionBox: ThemedStyledFunction<'figcaption', DefaultTheme, BoxProps>
-    figureBox: ThemedStyledFunction<'figure', DefaultTheme, BoxProps>
-    footerBox: ThemedStyledFunction<'footer', DefaultTheme, BoxProps>
-    formBox: ThemedStyledFunction<'form', DefaultTheme, BoxProps>
-    h1Box: ThemedStyledFunction<'h1', DefaultTheme, BoxProps>
-    h2Box: ThemedStyledFunction<'h2', DefaultTheme, BoxProps>
-    h3Box: ThemedStyledFunction<'h3', DefaultTheme, BoxProps>
-    h4Box: ThemedStyledFunction<'h4', DefaultTheme, BoxProps>
-    h5Box: ThemedStyledFunction<'h5', DefaultTheme, BoxProps>
-    h6Box: ThemedStyledFunction<'h6', DefaultTheme, BoxProps>
-    headBox: ThemedStyledFunction<'head', DefaultTheme, BoxProps>
-    headerBox: ThemedStyledFunction<'header', DefaultTheme, BoxProps>
-    hgroupBox: ThemedStyledFunction<'hgroup', DefaultTheme, BoxProps>
-    hrBox: ThemedStyledFunction<'hr', DefaultTheme, BoxProps>
-    htmlBox: ThemedStyledFunction<'html', DefaultTheme, BoxProps>
-    iBox: ThemedStyledFunction<'i', DefaultTheme, BoxProps>
-    iframeBox: ThemedStyledFunction<'iframe', DefaultTheme, BoxProps>
-    imgBox: ThemedStyledFunction<'img', DefaultTheme, BoxProps>
-    inputBox: ThemedStyledFunction<'input', DefaultTheme, BoxProps>
-    insBox: ThemedStyledFunction<'ins', DefaultTheme, BoxProps>
-    kbdBox: ThemedStyledFunction<'kbd', DefaultTheme, BoxProps>
-    keygenBox: ThemedStyledFunction<'keygen', DefaultTheme, BoxProps>
-    labelBox: ThemedStyledFunction<'label', DefaultTheme, BoxProps>
-    legendBox: ThemedStyledFunction<'legend', DefaultTheme, BoxProps>
-    liBox: ThemedStyledFunction<'li', DefaultTheme, BoxProps>
-    linkBox: ThemedStyledFunction<'link', DefaultTheme, BoxProps>
-    mainBox: ThemedStyledFunction<'main', DefaultTheme, BoxProps>
-    mapBox: ThemedStyledFunction<'map', DefaultTheme, BoxProps>
-    markBox: ThemedStyledFunction<'mark', DefaultTheme, BoxProps>
+    aBox: ThemeStyledFunction<'a', DefaultTheme, BoxProps>
+    abbrBox: ThemeStyledFunction<'abbr', DefaultTheme, BoxProps>
+    addressBox: ThemeStyledFunction<'address', DefaultTheme, BoxProps>
+    areaBox: ThemeStyledFunction<'area', DefaultTheme, BoxProps>
+    articleBox: ThemeStyledFunction<'article', DefaultTheme, BoxProps>
+    asideBox: ThemeStyledFunction<'aside', DefaultTheme, BoxProps>
+    audioBox: ThemeStyledFunction<'audio', DefaultTheme, BoxProps>
+    bBox: ThemeStyledFunction<'b', DefaultTheme, BoxProps>
+    baseBox: ThemeStyledFunction<'base', DefaultTheme, BoxProps>
+    bdiBox: ThemeStyledFunction<'bdi', DefaultTheme, BoxProps>
+    bdoBox: ThemeStyledFunction<'bdo', DefaultTheme, BoxProps>
+    bigBox: ThemeStyledFunction<'big', DefaultTheme, BoxProps>
+    blockquoteBox: ThemeStyledFunction<'blockquote', DefaultTheme, BoxProps>
+    bodyBox: ThemeStyledFunction<'body', DefaultTheme, BoxProps>
+    brBox: ThemeStyledFunction<'br', DefaultTheme, BoxProps>
+    buttonBox: ThemeStyledFunction<'button', DefaultTheme, BoxProps>
+    canvasBox: ThemeStyledFunction<'canvas', DefaultTheme, BoxProps>
+    captionBox: ThemeStyledFunction<'caption', DefaultTheme, BoxProps>
+    citeBox: ThemeStyledFunction<'cite', DefaultTheme, BoxProps>
+    codeBox: ThemeStyledFunction<'code', DefaultTheme, BoxProps>
+    colBox: ThemeStyledFunction<'col', DefaultTheme, BoxProps>
+    colgroupBox: ThemeStyledFunction<'colgroup', DefaultTheme, BoxProps>
+    dataBox: ThemeStyledFunction<'data', DefaultTheme, BoxProps>
+    datalistBox: ThemeStyledFunction<'datalist', DefaultTheme, BoxProps>
+    ddBox: ThemeStyledFunction<'dd', DefaultTheme, BoxProps>
+    delBox: ThemeStyledFunction<'del', DefaultTheme, BoxProps>
+    detailsBox: ThemeStyledFunction<'details', DefaultTheme, BoxProps>
+    dfnBox: ThemeStyledFunction<'dfn', DefaultTheme, BoxProps>
+    dialogBox: ThemeStyledFunction<'dialog', DefaultTheme, BoxProps>
+    divBox: ThemeStyledFunction<'div', DefaultTheme, BoxProps>
+    dlBox: ThemeStyledFunction<'dl', DefaultTheme, BoxProps>
+    dtBox: ThemeStyledFunction<'dt', DefaultTheme, BoxProps>
+    emBox: ThemeStyledFunction<'em', DefaultTheme, BoxProps>
+    embedBox: ThemeStyledFunction<'embed', DefaultTheme, BoxProps>
+    fieldsetBox: ThemeStyledFunction<'fieldset', DefaultTheme, BoxProps>
+    figcaptionBox: ThemeStyledFunction<'figcaption', DefaultTheme, BoxProps>
+    figureBox: ThemeStyledFunction<'figure', DefaultTheme, BoxProps>
+    footerBox: ThemeStyledFunction<'footer', DefaultTheme, BoxProps>
+    formBox: ThemeStyledFunction<'form', DefaultTheme, BoxProps>
+    h1Box: ThemeStyledFunction<'h1', DefaultTheme, BoxProps>
+    h2Box: ThemeStyledFunction<'h2', DefaultTheme, BoxProps>
+    h3Box: ThemeStyledFunction<'h3', DefaultTheme, BoxProps>
+    h4Box: ThemeStyledFunction<'h4', DefaultTheme, BoxProps>
+    h5Box: ThemeStyledFunction<'h5', DefaultTheme, BoxProps>
+    h6Box: ThemeStyledFunction<'h6', DefaultTheme, BoxProps>
+    headBox: ThemeStyledFunction<'head', DefaultTheme, BoxProps>
+    headerBox: ThemeStyledFunction<'header', DefaultTheme, BoxProps>
+    hgroupBox: ThemeStyledFunction<'hgroup', DefaultTheme, BoxProps>
+    hrBox: ThemeStyledFunction<'hr', DefaultTheme, BoxProps>
+    htmlBox: ThemeStyledFunction<'html', DefaultTheme, BoxProps>
+    iBox: ThemeStyledFunction<'i', DefaultTheme, BoxProps>
+    iframeBox: ThemeStyledFunction<'iframe', DefaultTheme, BoxProps>
+    imgBox: ThemeStyledFunction<'img', DefaultTheme, BoxProps>
+    inputBox: ThemeStyledFunction<'input', DefaultTheme, BoxProps>
+    insBox: ThemeStyledFunction<'ins', DefaultTheme, BoxProps>
+    kbdBox: ThemeStyledFunction<'kbd', DefaultTheme, BoxProps>
+    keygenBox: ThemeStyledFunction<'keygen', DefaultTheme, BoxProps>
+    labelBox: ThemeStyledFunction<'label', DefaultTheme, BoxProps>
+    legendBox: ThemeStyledFunction<'legend', DefaultTheme, BoxProps>
+    liBox: ThemeStyledFunction<'li', DefaultTheme, BoxProps>
+    linkBox: ThemeStyledFunction<'link', DefaultTheme, BoxProps>
+    mainBox: ThemeStyledFunction<'main', DefaultTheme, BoxProps>
+    mapBox: ThemeStyledFunction<'map', DefaultTheme, BoxProps>
+    markBox: ThemeStyledFunction<'mark', DefaultTheme, BoxProps>
 
     /* This one breaks, it looks like marquee is not supported in JSX.IntrinsicElements */
-    // marqueeBox: ThemedStyledFunction<'marquee', DefaultTheme, BoxProps>
+    // marqueeBox: ThemeStyledFunction<'marquee', DefaultTheme, BoxProps>
 
-    menuBox: ThemedStyledFunction<'menu', DefaultTheme, BoxProps>
-    menuitemBox: ThemedStyledFunction<'menuitem', DefaultTheme, BoxProps>
-    metaBox: ThemedStyledFunction<'meta', DefaultTheme, BoxProps>
-    meterBox: ThemedStyledFunction<'meter', DefaultTheme, BoxProps>
-    navBox: ThemedStyledFunction<'nav', DefaultTheme, BoxProps>
-    noscriptBox: ThemedStyledFunction<'noscript', DefaultTheme, BoxProps>
-    objectBox: ThemedStyledFunction<'object', DefaultTheme, BoxProps>
-    olBox: ThemedStyledFunction<'ol', DefaultTheme, BoxProps>
-    optgroupBox: ThemedStyledFunction<'optgroup', DefaultTheme, BoxProps>
-    optionBox: ThemedStyledFunction<'option', DefaultTheme, BoxProps>
-    outputBox: ThemedStyledFunction<'output', DefaultTheme, BoxProps>
-    pBox: ThemedStyledFunction<'p', DefaultTheme, BoxProps>
-    paramBox: ThemedStyledFunction<'param', DefaultTheme, BoxProps>
-    pictureBox: ThemedStyledFunction<'picture', DefaultTheme, BoxProps>
-    preBox: ThemedStyledFunction<'pre', DefaultTheme, BoxProps>
-    progressBox: ThemedStyledFunction<'progress', DefaultTheme, BoxProps>
-    qBox: ThemedStyledFunction<'q', DefaultTheme, BoxProps>
-    rpBox: ThemedStyledFunction<'rp', DefaultTheme, BoxProps>
-    rtBox: ThemedStyledFunction<'rt', DefaultTheme, BoxProps>
-    rubyBox: ThemedStyledFunction<'ruby', DefaultTheme, BoxProps>
-    sBox: ThemedStyledFunction<'s', DefaultTheme, BoxProps>
-    sampBox: ThemedStyledFunction<'samp', DefaultTheme, BoxProps>
-    scriptBox: ThemedStyledFunction<'script', DefaultTheme, BoxProps>
-    sectionBox: ThemedStyledFunction<'section', DefaultTheme, BoxProps>
-    selectBox: ThemedStyledFunction<'select', DefaultTheme, BoxProps>
-    smallBox: ThemedStyledFunction<'small', DefaultTheme, BoxProps>
-    sourceBox: ThemedStyledFunction<'source', DefaultTheme, BoxProps>
-    spanBox: ThemedStyledFunction<'span', DefaultTheme, BoxProps>
-    strongBox: ThemedStyledFunction<'strong', DefaultTheme, BoxProps>
-    styleBox: ThemedStyledFunction<'style', DefaultTheme, BoxProps>
-    subBox: ThemedStyledFunction<'sub', DefaultTheme, BoxProps>
-    summaryBox: ThemedStyledFunction<'summary', DefaultTheme, BoxProps>
-    supBox: ThemedStyledFunction<'sup', DefaultTheme, BoxProps>
-    tableBox: ThemedStyledFunction<'table', DefaultTheme, BoxProps>
-    tbodyBox: ThemedStyledFunction<'tbody', DefaultTheme, BoxProps>
-    tdBox: ThemedStyledFunction<'td', DefaultTheme, BoxProps>
-    textareaBox: ThemedStyledFunction<'textarea', DefaultTheme, BoxProps>
-    tfootBox: ThemedStyledFunction<'tfoot', DefaultTheme, BoxProps>
-    thBox: ThemedStyledFunction<'th', DefaultTheme, BoxProps>
-    theadBox: ThemedStyledFunction<'thead', DefaultTheme, BoxProps>
-    timeBox: ThemedStyledFunction<'time', DefaultTheme, BoxProps>
-    titleBox: ThemedStyledFunction<'title', DefaultTheme, BoxProps>
-    trBox: ThemedStyledFunction<'tr', DefaultTheme, BoxProps>
-    trackBox: ThemedStyledFunction<'track', DefaultTheme, BoxProps>
-    uBox: ThemedStyledFunction<'u', DefaultTheme, BoxProps>
-    ulBox: ThemedStyledFunction<'ul', DefaultTheme, BoxProps>
-    varBox: ThemedStyledFunction<'var', DefaultTheme, BoxProps>
-    videoBox: ThemedStyledFunction<'video', DefaultTheme, BoxProps>
-    wbrBox: ThemedStyledFunction<'wbr', DefaultTheme, BoxProps>
+    menuBox: ThemeStyledFunction<'menu', DefaultTheme, BoxProps>
+    menuitemBox: ThemeStyledFunction<'menuitem', DefaultTheme, BoxProps>
+    metaBox: ThemeStyledFunction<'meta', DefaultTheme, BoxProps>
+    meterBox: ThemeStyledFunction<'meter', DefaultTheme, BoxProps>
+    navBox: ThemeStyledFunction<'nav', DefaultTheme, BoxProps>
+    noscriptBox: ThemeStyledFunction<'noscript', DefaultTheme, BoxProps>
+    objectBox: ThemeStyledFunction<'object', DefaultTheme, BoxProps>
+    olBox: ThemeStyledFunction<'ol', DefaultTheme, BoxProps>
+    optgroupBox: ThemeStyledFunction<'optgroup', DefaultTheme, BoxProps>
+    optionBox: ThemeStyledFunction<'option', DefaultTheme, BoxProps>
+    outputBox: ThemeStyledFunction<'output', DefaultTheme, BoxProps>
+    pBox: ThemeStyledFunction<'p', DefaultTheme, BoxProps>
+    paramBox: ThemeStyledFunction<'param', DefaultTheme, BoxProps>
+    pictureBox: ThemeStyledFunction<'picture', DefaultTheme, BoxProps>
+    preBox: ThemeStyledFunction<'pre', DefaultTheme, BoxProps>
+    progressBox: ThemeStyledFunction<'progress', DefaultTheme, BoxProps>
+    qBox: ThemeStyledFunction<'q', DefaultTheme, BoxProps>
+    rpBox: ThemeStyledFunction<'rp', DefaultTheme, BoxProps>
+    rtBox: ThemeStyledFunction<'rt', DefaultTheme, BoxProps>
+    rubyBox: ThemeStyledFunction<'ruby', DefaultTheme, BoxProps>
+    sBox: ThemeStyledFunction<'s', DefaultTheme, BoxProps>
+    sampBox: ThemeStyledFunction<'samp', DefaultTheme, BoxProps>
+    scriptBox: ThemeStyledFunction<'script', DefaultTheme, BoxProps>
+    sectionBox: ThemeStyledFunction<'section', DefaultTheme, BoxProps>
+    selectBox: ThemeStyledFunction<'select', DefaultTheme, BoxProps>
+    smallBox: ThemeStyledFunction<'small', DefaultTheme, BoxProps>
+    sourceBox: ThemeStyledFunction<'source', DefaultTheme, BoxProps>
+    spanBox: ThemeStyledFunction<'span', DefaultTheme, BoxProps>
+    strongBox: ThemeStyledFunction<'strong', DefaultTheme, BoxProps>
+    styleBox: ThemeStyledFunction<'style', DefaultTheme, BoxProps>
+    subBox: ThemeStyledFunction<'sub', DefaultTheme, BoxProps>
+    summaryBox: ThemeStyledFunction<'summary', DefaultTheme, BoxProps>
+    supBox: ThemeStyledFunction<'sup', DefaultTheme, BoxProps>
+    tableBox: ThemeStyledFunction<'table', DefaultTheme, BoxProps>
+    tbodyBox: ThemeStyledFunction<'tbody', DefaultTheme, BoxProps>
+    tdBox: ThemeStyledFunction<'td', DefaultTheme, BoxProps>
+    textareaBox: ThemeStyledFunction<'textarea', DefaultTheme, BoxProps>
+    tfootBox: ThemeStyledFunction<'tfoot', DefaultTheme, BoxProps>
+    thBox: ThemeStyledFunction<'th', DefaultTheme, BoxProps>
+    theadBox: ThemeStyledFunction<'thead', DefaultTheme, BoxProps>
+    timeBox: ThemeStyledFunction<'time', DefaultTheme, BoxProps>
+    titleBox: ThemeStyledFunction<'title', DefaultTheme, BoxProps>
+    trBox: ThemeStyledFunction<'tr', DefaultTheme, BoxProps>
+    trackBox: ThemeStyledFunction<'track', DefaultTheme, BoxProps>
+    uBox: ThemeStyledFunction<'u', DefaultTheme, BoxProps>
+    ulBox: ThemeStyledFunction<'ul', DefaultTheme, BoxProps>
+    varBox: ThemeStyledFunction<'var', DefaultTheme, BoxProps>
+    videoBox: ThemeStyledFunction<'video', DefaultTheme, BoxProps>
+    wbrBox: ThemeStyledFunction<'wbr', DefaultTheme, BoxProps>
 
     // SVG
-    circleBox: ThemedStyledFunction<'circle', DefaultTheme, BoxProps>
-    clipPathBox: ThemedStyledFunction<'clipPath', DefaultTheme, BoxProps>
-    defsBox: ThemedStyledFunction<'defs', DefaultTheme, BoxProps>
-    ellipseBox: ThemedStyledFunction<'ellipse', DefaultTheme, BoxProps>
-    foreignObjectBox: ThemedStyledFunction<
+    circleBox: ThemeStyledFunction<'circle', DefaultTheme, BoxProps>
+    clipPathBox: ThemeStyledFunction<'clipPath', DefaultTheme, BoxProps>
+    defsBox: ThemeStyledFunction<'defs', DefaultTheme, BoxProps>
+    ellipseBox: ThemeStyledFunction<'ellipse', DefaultTheme, BoxProps>
+    foreignObjectBox: ThemeStyledFunction<
       'foreignObject',
       DefaultTheme,
       BoxProps
     >
-    gBox: ThemedStyledFunction<'g', DefaultTheme, BoxProps>
-    imageBox: ThemedStyledFunction<'image', DefaultTheme, BoxProps>
-    lineBox: ThemedStyledFunction<'line', DefaultTheme, BoxProps>
-    linearGradientBox: ThemedStyledFunction<
+    gBox: ThemeStyledFunction<'g', DefaultTheme, BoxProps>
+    imageBox: ThemeStyledFunction<'image', DefaultTheme, BoxProps>
+    lineBox: ThemeStyledFunction<'line', DefaultTheme, BoxProps>
+    linearGradientBox: ThemeStyledFunction<
       'linearGradient',
       DefaultTheme,
       BoxProps
     >
-    markerBox: ThemedStyledFunction<'marker', DefaultTheme, BoxProps>
-    maskBox: ThemedStyledFunction<'mask', DefaultTheme, BoxProps>
-    pathBox: ThemedStyledFunction<'path', DefaultTheme, BoxProps>
-    patternBox: ThemedStyledFunction<'pattern', DefaultTheme, BoxProps>
-    polygonBox: ThemedStyledFunction<'polygon', DefaultTheme, BoxProps>
-    polylineBox: ThemedStyledFunction<'polyline', DefaultTheme, BoxProps>
-    radialGradientBox: ThemedStyledFunction<
+    markerBox: ThemeStyledFunction<'marker', DefaultTheme, BoxProps>
+    maskBox: ThemeStyledFunction<'mask', DefaultTheme, BoxProps>
+    pathBox: ThemeStyledFunction<'path', DefaultTheme, BoxProps>
+    patternBox: ThemeStyledFunction<'pattern', DefaultTheme, BoxProps>
+    polygonBox: ThemeStyledFunction<'polygon', DefaultTheme, BoxProps>
+    polylineBox: ThemeStyledFunction<'polyline', DefaultTheme, BoxProps>
+    radialGradientBox: ThemeStyledFunction<
       'radialGradient',
       DefaultTheme,
       BoxProps
     >
-    rectBox: ThemedStyledFunction<'rect', DefaultTheme, BoxProps>
-    stopBox: ThemedStyledFunction<'stop', DefaultTheme, BoxProps>
-    svgBox: ThemedStyledFunction<'svg', DefaultTheme, BoxProps>
-    textBox: ThemedStyledFunction<'text', DefaultTheme, BoxProps>
-    tspanBox: ThemedStyledFunction<'tspan', DefaultTheme, BoxProps>
+    rectBox: ThemeStyledFunction<'rect', DefaultTheme, BoxProps>
+    stopBox: ThemeStyledFunction<'stop', DefaultTheme, BoxProps>
+    svgBox: ThemeStyledFunction<'svg', DefaultTheme, BoxProps>
+    textBox: ThemeStyledFunction<'text', DefaultTheme, BoxProps>
+    tspanBox: ThemeStyledFunction<'tspan', DefaultTheme, BoxProps>
   }
   export default styled
 }
