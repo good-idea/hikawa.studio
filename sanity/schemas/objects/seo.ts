@@ -4,25 +4,38 @@ export const seo = {
   type: 'object',
   fields: [
     {
-      title: 'SEO: Page Title',
+      title: 'Page Title',
       name: 'name',
       type: 'string',
-      description:
-        'This will be used in addition to the main site SEO title. "About" will turn into → "About | Kame"',
+      description: 'Title for the browser window',
     },
     {
-      title: 'SEO: Description',
+      title: 'Meta Title',
+      name: 'metaTitle',
+      type: 'string',
+      description: 'title for search results (will fall back to Page title)',
+    },
+
+    {
+      title: 'Description',
       name: 'description',
       type: 'text',
       description:
         'This is the description that will appear underneath the preview link when shared in Facebook. It should be less than 200 characters',
     },
     {
-      title: 'SEO: Image',
+      title: 'Image',
       name: 'image',
       type: 'image',
       description: 'Best dimensions: 1200 x 600px',
     },
+    {
+      title: 'Keywords',
+      name: 'keywords',
+      type: 'string',
+      description: 'Comma-separated SEO keywords',
+    },
+
     {
       title: 'Accessibility: Link Label',
       type: 'string',
