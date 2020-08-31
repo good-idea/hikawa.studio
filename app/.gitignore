@@ -2,3 +2,4 @@ public/js/
 build/
 node_modules
 flow-typed
+.next

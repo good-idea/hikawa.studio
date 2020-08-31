@@ -25,6 +25,10 @@ stats.json
 .idea/
 *.iml
 
+# now
+.now
+.vercel
+
 # build
 build/
 app/public/js/app.js

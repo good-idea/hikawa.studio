@@ -1,0 +1,30 @@
+overwrite: true
+generates:
+  src/types/generated-sanity.ts:
+    schema: ${SANITY_GRAPHQL_URL}
+    plugins:
+      - 'typescript'
+      - 'fragment-matcher'
+    config:
+      nonOptionalTypename: true
+      scalars:
+        DateTime: Date
+        JSON: '{ [key: string]: any }'
+      declarationKind:
+        type: 'interface'
+  src/types/generated-shopify.ts:
+    schema:
+      - https://kame-case.myshopify.com/api/graphql:
+          headers:
+            X-Shopify-Storefront-Access-Token: '29f169ddd673015f96eb6865593e9369'
+    plugins:
+      - fragment-matcher
+      - typescript
+    config:
+      nonOptionalTypename: true
+      typesPrefix: 'ShopifyStorefront'
+      scalars:
+        DateTime: Date
+        JSON: '{ [key: string]: any }'
+      declarationKind:
+        type: 'interface'
