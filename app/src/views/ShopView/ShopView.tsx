@@ -17,10 +17,11 @@ export const ShopView = ({ activeCollectionHandle }: ShopViewProps) => {
   if (!data) throw new Error('Could not load data')
   const shopPage = data?.Shop
   const { seo, collections, hero } = shopPage
+  const defaultSeo = { title: 'Collections' }
 
   return (
     <>
-      <SEO seo={seo} />
+      <SEO seo={seo} defaultSeo={defaultSeo} path="/shop" />
       <Hero hero={hero} />
       {definitely(collections).map((collection) => (
         <CollectionBlock

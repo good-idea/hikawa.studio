@@ -304,11 +304,15 @@ export interface Seo {
   __typename: 'Seo'
   _key?: Maybe<Scalars['String']>
   _type?: Maybe<Scalars['String']>
-  /** This will be used in addition to the main site SEO title. "About" will turn into → "About | Kame" */
+  /** Title for the browser window */
   name?: Maybe<Scalars['String']>
+  /** title for search results (will fall back to Page title) */
+  metaTitle?: Maybe<Scalars['String']>
   /** This is the description that will appear underneath the preview link when shared in Facebook. It should be less than 200 characters */
   description?: Maybe<Scalars['String']>
   image?: Maybe<Image>
+  /** Comma-separated SEO keywords */
+  keywords?: Maybe<Scalars['String']>
   /** This text will be used on screen readers when this page is linked to throughout the site. This should be descriptive: "Learn about our company" is better than "About". These link labels also help with SEO. */
   linkLabel?: Maybe<Scalars['String']>
 }
@@ -693,6 +697,7 @@ export interface UrlLink {
   _type?: Maybe<Scalars['String']>
   /** Used in Navigation links as the link text. When used within a content block or page link, this text will not be visible, but will be used for accessibility. */
   label?: Maybe<Scalars['String']>
+  foo?: Maybe<Scalars['Boolean']>
   url?: Maybe<Scalars['String']>
 }
 
@@ -909,8 +914,10 @@ export type SeoFilter = {
   _key?: Maybe<StringFilter>
   _type?: Maybe<StringFilter>
   name?: Maybe<StringFilter>
+  metaTitle?: Maybe<StringFilter>
   description?: Maybe<StringFilter>
   image?: Maybe<ImageFilter>
+  keywords?: Maybe<StringFilter>
   linkLabel?: Maybe<StringFilter>
 }
 
@@ -1071,8 +1078,10 @@ export type SeoSorting = {
   _key?: Maybe<SortOrder>
   _type?: Maybe<SortOrder>
   name?: Maybe<SortOrder>
+  metaTitle?: Maybe<SortOrder>
   description?: Maybe<SortOrder>
   image?: Maybe<ImageSorting>
+  keywords?: Maybe<SortOrder>
   linkLabel?: Maybe<SortOrder>
 }
 
@@ -1891,6 +1900,7 @@ export type UrlLinkFilter = {
   _key?: Maybe<StringFilter>
   _type?: Maybe<StringFilter>
   label?: Maybe<StringFilter>
+  foo?: Maybe<BooleanFilter>
   url?: Maybe<StringFilter>
 }
 
@@ -2035,6 +2045,7 @@ export type UrlLinkSorting = {
   _key?: Maybe<SortOrder>
   _type?: Maybe<SortOrder>
   label?: Maybe<SortOrder>
+  foo?: Maybe<SortOrder>
   url?: Maybe<SortOrder>
 }
 

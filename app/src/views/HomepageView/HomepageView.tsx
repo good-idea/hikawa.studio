@@ -2,6 +2,7 @@ import * as React from 'react'
 import { useQuery } from '@apollo/client'
 import { homepageQuery, HomepageResponse } from './homepageQueries'
 import { Column } from '../../components/Layout'
+import { SEO } from '../../components/SEO'
 import { definitely } from '../../utils'
 import { Hero } from '../../components/Hero'
 import { ContentBlock } from '../../components/ContentBlocks'
@@ -13,10 +14,14 @@ export const HomepageView = () => {
   const homepage = data?.Homepage
   if (!homepage) throw new Error('No Homepage data')
   const content = definitely(homepage.content)
-  const { hero } = homepage
+  const { hero, seo } = homepage
+  const defaultSeo = {
+    title: 'Bailey Hikawa',
+  }
 
   return (
     <HomepageWrapper>
+      <SEO seo={seo} defaultSeo={defaultSeo} path="/" />
       <Hero hero={hero} />
       <Column width="wide">
         <Grid>

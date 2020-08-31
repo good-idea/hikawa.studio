@@ -28,9 +28,10 @@ export const PageView = ({ slug }: PageProps) => {
   if (!page) return <NotFound />
   const { contentRaw, gallery, seo, hero, includeInstagram } = page
   const images = definitely(gallery)
+  const seoPath = `/${slug}`
   return (
     <Wrapper>
-      {seo && <SEO seo={seo} />}
+      {seo && <SEO seo={seo} defaultSeo={{}} path={seoPath} />}
       <Hero hero={hero} view="standard" />
       <Column width="wide">
         {contentRaw && <RichText body={contentRaw} />}

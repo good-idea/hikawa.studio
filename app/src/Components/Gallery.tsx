@@ -4,17 +4,13 @@ import { RichImage } from '../types'
 import { Image } from './Image'
 
 const Grid = styled.div`
-  ${({ theme }) => `
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		grid-column-gap: ${theme.layout.spacing.single};
-	`}
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 3;
 `
 
 const ImageWrapper = styled.div`
-  ${({ theme }) => `
-		margin-bottom: ${theme.layout.spacing.single};
-	`}
+  margin-bottom: 3;
 `
 
 /**

@@ -51,7 +51,7 @@ interface ProductViewInnerProps {
 }
 
 const ProductViewInner = ({ product }: ProductViewInnerProps) => {
-  const { seo, hero, title, sourceData } = product
+  const { handle, seo, hero, title, sourceData } = product
   if (!sourceData) {
     throw new Error('No sourceData was provided')
   }
@@ -73,9 +73,17 @@ const ProductViewInner = ({ product }: ProductViewInnerProps) => {
   const [images] = unwindEdges(sourceData?.images)
   const collection = definitely(product.collections)[0]
 
+  const defaultSeo = {
+    title: product.title || '',
+    image: images ? images[0] : undefined,
+  }
+
+  if (!handle) throw new Error('No handle fetched')
+  const path = ['products', handle].join('/')
+
   return (
     <>
-      <SEO seo={seo} />
+      <SEO seo={seo} defaultSeo={defaultSeo} path={path} />
       <Hero hero={hero} />
       <Column width="wide">
         <Layout>
