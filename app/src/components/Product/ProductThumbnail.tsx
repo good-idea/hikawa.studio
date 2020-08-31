@@ -36,7 +36,7 @@ interface ProductThumbnailProps {
 }
 
 export const ProductThumbnail = ({ product }: ProductThumbnailProps) => {
-  const href = '/products/[productSlug]'
+  const href = '/products/[productHandle]'
   const as = `/products/${product.handle}`
 
   const [images] = unwindEdges(product.sourceData?.images)
