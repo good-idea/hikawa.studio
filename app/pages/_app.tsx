@@ -47,6 +47,11 @@ const App = (props: AppProps) => {
           type="text/javascript"
           src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=VLZgNL"
         />
+        <script
+          async
+          type="text/javascript"
+          src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=VLZgNL"
+        />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"

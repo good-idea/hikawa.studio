@@ -9,7 +9,6 @@ import { CheckoutProvider } from './CheckoutProvider'
 import { Announcement } from '../components/Announcement'
 import { NavMenu } from '../components/Navigation'
 import { Footer } from '../components/Footer'
-import { MailerPopup } from '../components/Mailer'
 import { CartModal } from '../components/Cart'
 
 interface AllProvidersProps {
@@ -30,7 +29,6 @@ export const AllProviders = ({
           <CheckoutProvider client={shopifyApolloClient}>
             <GlobalStyles />
             <SiteSettingsProvider>
-              <MailerPopup />
               <Announcement />
               <NavMenu />
               <CartModal />
