@@ -112,7 +112,9 @@ const ProductViewInner = ({ product }: ProductViewInnerProps) => {
           <RelatedTitle>
             <Heading level={2}>Keep Looking</Heading>
           </RelatedTitle>
-          <CollectionBlock isActive={false} collection={collection} />
+          {collection ? (
+            <CollectionBlock isActive={false} collection={collection} />
+          ) : null}
         </RelatedWrapper>
       </Column>
     </>
