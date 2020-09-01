@@ -1,4 +1,5 @@
 import * as React from 'react'
+import Link from 'next/link'
 
 import styled, { css } from '@xstyled/styled-components'
 
@@ -77,3 +78,24 @@ export const Button = ({
     </ButtonElement>
   )
 }
+
+interface LinkButtonProps extends ButtonElementProps {
+  href: string
+  as?: string
+  children: React.ReactNode
+  disabled?: boolean
+}
+
+export const LinkButton = ({
+  href,
+  as,
+  level,
+  children,
+  disabled,
+}: LinkButtonProps) => (
+  <Link href={href} as={as}>
+    <ButtonElement as="a" level={level} disabled={disabled}>
+      {children}
+    </ButtonElement>
+  </Link>
+)

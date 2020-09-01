@@ -1,4 +1,5 @@
 import * as React from 'react'
+import Link from 'next/link'
 import { unwindEdges } from '@good-idea/unwind-edges'
 import { useQuery } from '@apollo/client'
 import { useProductVariant } from 'use-shopify'
@@ -16,6 +17,7 @@ import { SEO } from '../../components/SEO'
 import { Column } from '../../components/Layout'
 import { Heading } from '../../components/Text'
 import { Image } from '../../components/Image'
+import { LinkButton } from '../../components/Button'
 import { CollectionBlock } from '../../components/Collection'
 import { ProductDescription } from './ProductDescription'
 import {
@@ -111,6 +113,10 @@ const ProductViewInner = ({ product }: ProductViewInnerProps) => {
         <RelatedWrapper>
           <RelatedTitle>
             <Heading level={2}>Keep Looking</Heading>
+            <hr />
+            <LinkButton level={1} href="shop">
+              Back to shop
+            </LinkButton>
           </RelatedTitle>
           {collection ? (
             <CollectionBlock isActive={false} collection={collection} />

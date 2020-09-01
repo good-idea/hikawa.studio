@@ -63,6 +63,16 @@ export const RelatedTitle = styled.div`
   flex-basis: 100%;
   text-align: center;
   margin-bottom: 5;
+
+  h2 {
+    margin-bottom: 3;
+  }
+
+  hr {
+    width: 50%;
+    margin: 0 auto 3;
+    border: 1px solid currentColor;
+  }
 `
 
 export const MobileTitle = styled.div`
