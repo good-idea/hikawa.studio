@@ -1,7 +1,9 @@
 import * as React from 'react'
+import { unwindEdges } from '@good-idea/unwind-edges'
 import styled, { css } from '@xstyled/styled-components'
 import NextLink from 'next/link'
 import {
+  ShopifyProduct,
   PageOrShopOrShopifyCollectionOrShopifyProductOrUrlLink,
   PageLink as PageLinkType,
 } from '../../../types'
@@ -107,6 +109,7 @@ const Link = ({ link, children }: LinkProps) => {
     </NextLink>
   )
 }
+
 /**
  * PageLink
  */
@@ -129,6 +132,11 @@ const LargeText = styled.span<LargeTextProps>`
   `}
 `
 
+const getProductImages = (link: ShopifyProduct) => {
+  const [images] = unwindEdges(link?.sourceData?.images)
+  return images.length ? images[0] : null
+}
+
 export const PageLink = ({
   item,
   imageSizes,
@@ -147,7 +155,7 @@ export const PageLink = ({
       ? link?.sourceData?.image
       : link.__typename === 'ShopifyProduct'
       ? link?.sourceData?.images
-        ? link.sourceData.images[0]
+        ? getProductImages(link)
         : null
       : null
 
@@ -157,6 +165,7 @@ export const PageLink = ({
       : fallbackImage
   const hoverImage = images && images.length > 1 ? images[1] : null
   const ratio = item.fullWidth ? 0.56 : 1.2
+
   return (
     <Link link={link}>
       <Wrapper>
