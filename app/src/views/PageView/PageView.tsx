@@ -22,7 +22,6 @@ export const PageView = ({ slug }: PageProps) => {
   const { data, loading, error } = useQuery<PageResponse, PageArgs>(pageQuery, {
     variables,
   })
-  console.log({ data, loading, error })
   if (loading || !data || !data.allPage) return null
   const page = data.allPage.length ? data.allPage[0] : null
   if (!page) return <NotFound />

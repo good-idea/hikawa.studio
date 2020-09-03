@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled, { css } from '@xstyled/styled-components'
 import { ShopifyMoneyV2 } from '../../types'
+import { Sentry } from '../../services/sentry'
 
 const { useRef, useEffect } = React
 
@@ -60,7 +61,7 @@ export const Afterpay = ({ price }: AfterpayProps) => {
       /* eslint-disable-next-line */
       new presentAfterpay(apiConfig).init()
     } catch (err) {
-      console.log(err)
+      Sentry.captureException(err)
     }
   }, [price, containerRef])
 
