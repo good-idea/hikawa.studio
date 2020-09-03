@@ -1,9 +1,9 @@
 {
-	"name": "kame-case.com",
+	"name": "baileyhikawa.com",
 	"version": "1.0.0",
 	"description": "Custom shopify storefront for Kame by Bailey Hikawa",
 	"main": "index.js",
-	"repository": "git@github.com:good-idea/kame-case",
+	"repository": "git@github.com:good-idea/hikawa.studio",
 	"author": "Joseph Thomas & Bailey Hikawa",
 	"license": "MIT",
 	"private": true,
@@ -12,10 +12,8 @@
 		"sanity"
 	],
 	"scripts": {
-		"build": "yarn workspace hikawa-app build && yarn workspace hikawa-proxy build",
-		"serve:functions": "netlify-lambda serve proxy/src/lambdas",
-		"dev:app": "yarn workspace hikawa-app dev",
-		"flow:doctor": "flow-mono install-types && flow-mono create-symlinks ./app/.flowconfig"
+		"build": "yarn workspace hikawa-app build",
+		"dev:app": "yarn workspace hikawa-app dev"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^9.1.2",

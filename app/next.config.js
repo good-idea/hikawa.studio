@@ -30,6 +30,9 @@ module.exports = withSourceMaps(
       SHOPIFY_GRAPHQL_URL: process.env.SHOPIFY_GRAPHQL_URL,
       SHOPIFY_STOREFRONT_TOKEN: process.env.SHOPIFY_STOREFRONT_TOKEN,
     },
+    serverRuntimeConfig: {
+      PROJECT_ROOT: __dirname,
+    },
     webpack: (config, { isServer, buildId }) => {
       config.plugins.push(
         new webpack.DefinePlugin({
