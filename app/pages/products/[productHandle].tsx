@@ -60,12 +60,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
     if (!product?.shopifyId)
       throw new Error('This product does not have a shopifyId')
   })
-  const paths = products.map((product) => ({
-    params: { productHandle: product.handle ? product.handle : undefined },
-  }))
+  // const paths = products.map((product) => ({
+  //   params: { productHandle: product.handle ? product.handle : undefined },
+  // }))
 
   return {
-    paths: paths,
+    paths: [],
     fallback: false,
   }
 }
