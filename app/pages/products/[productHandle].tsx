@@ -3,30 +3,40 @@ import gql from 'graphql-tag'
 import { getDataFromTree } from '@apollo/client/react/ssr'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { ShopifyProduct } from '../../src/types'
-import { definitely } from '../../src/utils'
+import { getParam, definitely } from '../../src/utils'
+import { Sentry } from '../../src/services/sentry'
 import { ssrClient, App, ProductView } from '../../src/views'
 
 interface ProductProps {
   handle: string
 }
 
-const Product = ({ handle }) => {
+const Product = ({ handle }: ProductProps) => {
   return <ProductView key={handle} handle={handle} />
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-  const productHandle = ctx.params?.productHandle
-  const handle = Array.isArray(productHandle) ? productHandle[0] : productHandle
-  if (!handle) throw new Error('No product handle was provided')
-  const StaticApp = (
-    <App>
-      <ProductView key={handle} handle={handle} />
-    </App>
-  )
+  try {
+    const { params } = ctx
 
-  await getDataFromTree(StaticApp)
-  const apolloCache = ssrClient.extract()
-  return { props: { apolloCache, handle: productHandle }, revalidate: 60 }
+    if (!params?.productHandle) {
+      throw new Error('No product handle was provided')
+    }
+    const handle = getParam(params.productHandle)
+    if (!handle) throw new Error('No product handle was provided')
+    const StaticApp = (
+      <App>
+        <ProductView key={handle} handle={handle} />
+      </App>
+    )
+
+    await getDataFromTree(StaticApp)
+    const apolloCache = ssrClient.extract()
+    return { props: { apolloCache, handle }, revalidate: 60 }
+  } catch (e) {
+    Sentry.captureException(e)
+    return { props: {}, revalidate: 1 }
+  }
 }
 
 /**
