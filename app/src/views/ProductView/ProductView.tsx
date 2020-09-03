@@ -1,5 +1,4 @@
 import * as React from 'react'
-import Link from 'next/link'
 import { unwindEdges } from '@good-idea/unwind-edges'
 import { useQuery } from '@apollo/client'
 import { useProductVariant } from 'use-shopify'
@@ -27,6 +26,7 @@ import {
   RelatedWrapper,
   RelatedTitle,
   MobileTitle,
+  LinkButtonWrapper,
 } from './styled'
 
 interface ProductViewProps {
@@ -114,13 +114,15 @@ const ProductViewInner = ({ product }: ProductViewInnerProps) => {
           <RelatedTitle>
             <Heading level={2}>Keep Looking</Heading>
             <hr />
-            <LinkButton level={1} href="shop">
-              Back to shop
-            </LinkButton>
           </RelatedTitle>
           {collection ? (
             <CollectionBlock isActive={false} collection={collection} />
           ) : null}
+          <LinkButtonWrapper>
+            <LinkButton fontSize={3} m="0 auto" level={1} href="/shop">
+              Back to shop
+            </LinkButton>
+          </LinkButtonWrapper>
         </RelatedWrapper>
       </Column>
     </>

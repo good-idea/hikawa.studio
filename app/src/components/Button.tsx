@@ -1,9 +1,8 @@
 import * as React from 'react'
 import Link from 'next/link'
+import styled, { css, BoxProps } from '@xstyled/styled-components'
 
-import styled, { css } from '@xstyled/styled-components'
-
-interface ButtonElementProps {
+interface ButtonElementProps extends BoxProps {
   level?: 1 | 2
 }
 
@@ -21,6 +20,7 @@ const ButtonElement = styled.buttonBox<ButtonElementProps>`
     text-align: center;
     opacity: ${disabled ? '0.25' : '1'};
     pointer-events: ${disabled ? 'none' : ''};
+    cursor: pointer;
 
     ${level === undefined || level === 1
       ? css`
@@ -83,19 +83,19 @@ interface LinkButtonProps extends ButtonElementProps {
   href: string
   as?: string
   children: React.ReactNode
-  disabled?: boolean
 }
 
 export const LinkButton = ({
   href,
   as,
-  level,
   children,
-  disabled,
+  ...rest
 }: LinkButtonProps) => (
   <Link href={href} as={as}>
-    <ButtonElement as="a" level={level} disabled={disabled}>
-      {children}
-    </ButtonElement>
+    <a>
+      <ButtonElement {...rest} as="span">
+        {children}
+      </ButtonElement>
+    </a>
   </Link>
 )

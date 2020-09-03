@@ -42,7 +42,7 @@ export const PageView = ({ slug }: PageProps) => {
         </Column>
       ) : null}
       {includeInstagram && (
-        <Column>
+        <Column width="medium">
           <InstagramRow />
         </Column>
       )}

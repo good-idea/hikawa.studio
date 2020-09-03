@@ -40,6 +40,12 @@ export const RelatedWrapper = styled.div`
   `}
 `
 
+export const LinkButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 export const RelatedItems = styled.div`
   ${({ theme }) => css`
     margin: 10 0;

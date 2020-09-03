@@ -6,6 +6,7 @@ import { SEO } from '../../components/SEO'
 import { definitely } from '../../utils'
 import { Hero } from '../../components/Hero'
 import { ContentBlock } from '../../components/ContentBlocks'
+import { InstagramRow } from '../../components/InstagramRow'
 import { Grid, HomepageWrapper, BlockWrapper } from './styled'
 
 export const HomepageView = () => {
@@ -31,6 +32,9 @@ export const HomepageView = () => {
             </BlockWrapper>
           ))}
         </Grid>
+      </Column>
+      <Column width="medium">
+        <InstagramRow />
       </Column>
     </HomepageWrapper>
   )

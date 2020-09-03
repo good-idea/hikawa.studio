@@ -48,9 +48,8 @@ const App = (props: AppProps) => {
           src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=VLZgNL"
         />
         <script
-          async
           type="text/javascript"
-          src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=VLZgNL"
+          src="https://static-us.afterpay.com/javascript/present-afterpay.js"
         />
         <meta
           name="viewport"
@@ -68,6 +67,7 @@ const App = (props: AppProps) => {
       >
         <Component {...pageProps} />
       </AllProviders>
+      <div id="afterpay-data" />
       <noscript>
         <iframe
           src={gtmScript.iframeSrc}

@@ -127,6 +127,33 @@ export const GlobalStyles = createGlobalStyle`
 		display: block;
 		margin: 0 auto;
 	}
+  
+  #afterpay-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99999999999;
+  }
+  #afterpay-modal-modal {
+    z-index: 9999999999999;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 50%;
+    background-color: white;
+    border-radius: 5px;
+    padding: 8px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    text-align: center;
+    border: none;
+  }
 
 `}
 

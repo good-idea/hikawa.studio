@@ -17,6 +17,10 @@ const Wrapper = styled.div`
     img {
       display: inline;
     }
+    p {
+      font-size: 5;
+      font-weight: 300;
+    }
   `}
 `
 
@@ -53,7 +57,6 @@ export const Afterpay = ({ price }: AfterpayProps) => {
           max: 100000,
         },
       }
-      //
       /* eslint-disable-next-line */
       new presentAfterpay(apiConfig).init()
     } catch (err) {
