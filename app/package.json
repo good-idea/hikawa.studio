@@ -4,6 +4,7 @@
 	"description": "Frontend app for hikawa.studio",
 	"main": "index.js",
 	"author": "Joseph Thomas / Good Idea Studio",
+  "private": true,
 	"license": "MIT",
 	"scripts": {
 		"start": "DEBUG=app* next",
