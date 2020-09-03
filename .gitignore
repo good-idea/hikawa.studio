@@ -28,6 +28,8 @@ stats.json
 # now
 .now
 .vercel
+.next
+app/.next
 
 # build
 build/
