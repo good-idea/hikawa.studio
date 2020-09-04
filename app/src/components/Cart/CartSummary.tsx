@@ -2,11 +2,14 @@ import * as React from 'react'
 import styled, { css } from '@xstyled/styled-components'
 import { ShopifyStorefrontCheckout } from '../../types'
 import { parsePrice } from '../../utils'
+import { CartSummaryWrapper } from './styled'
+import { CouponCodes } from './CouponCodes'
 import { Heading } from '../Text'
 
 const Subtotal = styled.div`
-  margin: 5 0;
-  text-align: center;
+  text-align: right;
+  margin-top: 4;
+  color: highlight;
 `
 
 /**
@@ -23,10 +26,11 @@ export const CartSummary = ({ checkout }: Props) => {
     : undefined
   if (!total) return null
   return (
-    <>
+    <CartSummaryWrapper>
+      <CouponCodes />
       <Subtotal>
         <Heading level={4}>{total}</Heading>
       </Subtotal>
-    </>
+    </CartSummaryWrapper>
   )
 }

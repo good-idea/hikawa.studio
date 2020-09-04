@@ -82,7 +82,7 @@ export const CartLineItem = ({ item, updateQuantity }: CartLineItemProps) => {
           ))}
       </MainSegment>
       <Quantity item={item} updateQuantity={updateQuantity} />
-      <CartGridSegment align="center">
+      <CartGridSegment align="flex-end">
         <Heading level={4}>{parsePrice(discountedPrice)}</Heading>
       </CartGridSegment>
     </CartLineItemWrapper>

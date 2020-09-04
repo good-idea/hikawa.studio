@@ -2,26 +2,21 @@ import * as React from 'react'
 import styled, { Box } from '@xstyled/styled-components'
 import { unwindEdges } from '@good-idea/unwind-edges'
 import {
-  ShopifyStorefrontCheckout,
   ShopifyStorefrontDiscountApplication,
   ShopifyStorefrontDiscountAllocation,
 } from '../../types'
-import { DiscountLineWrapper, CouponForm } from './styled'
+import { useCheckout } from '../../providers'
+import { DiscountTitle, DiscountLineWrapper, CouponForm } from './styled'
 import { Input } from '../Forms'
 import { Heading } from '../Text'
 import { Button } from '../Button'
+import { CouponTag } from './CouponTag'
 
 const { useState } = React
 
 type Discount =
   | ShopifyStorefrontDiscountAllocation
   | ShopifyStorefrontDiscountApplication
-
-interface CouponCodeProps {
-  checkout: ShopifyStorefrontCheckout
-  applyDiscount: (code: string) => Promise<void>
-  removeDiscount: () => Promise<void>
-}
 
 interface DiscountLineProps {
   discount: ShopifyStorefrontDiscountApplication
@@ -43,10 +38,13 @@ export const DiscountLine = ({
 
   return (
     <DiscountLineWrapper>
-      <Heading py={2} flexBasis={1} backgroundColor="offset" level={4}>
-        {/* @ts-ignore */}
-        {discount.title || discount.code} ✓
-      </Heading>
+      <DiscountTitle>
+        <Heading level={4}>
+          <CouponTag mr={3} />
+          {/* @ts-ignore */}
+          {discount.title || discount.code} ✓
+        </Heading>
+      </DiscountTitle>
       {!isAutomatic && removeDiscount ? (
         <RemoveButton pr={0} my={0} level={2} onClick={removeDiscount}>
           Remove
@@ -56,12 +54,13 @@ export const DiscountLine = ({
   )
 }
 
-export const CouponCode = ({
-  checkout,
-  applyDiscount,
-  removeDiscount,
-}: CouponCodeProps) => {
+export const CouponCodes = () => {
   const [inputValue, setInputValue] = useState('')
+  const {
+    currentCheckout: checkout,
+    applyDiscount,
+    removeDiscount,
+  } = useCheckout()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value)
@@ -87,22 +86,29 @@ export const CouponCode = ({
 
   const couponDiscount = couponCodeDiscounts[0]
 
+  const hasDiscount = Boolean(
+    otherDiscounts.length || couponCodeDiscounts.length,
+  )
+
   return (
     <Box mb={4}>
-      <CouponForm onSubmit={handleSubmit}>
-        <Heading textAlign="left" flexBasis={1} level={5}>
-          Promo Code
-        </Heading>
-        <Input
-          textTransform="uppercase"
-          color="pink"
-          value={inputValue}
-          onChange={handleChange}
-          name="coupon"
-          autoComplete="off"
-        />
-        <Button type="submit">Apply</Button>
-      </CouponForm>
+      <Heading textAlign="left" level={5}>
+        Promo Code
+      </Heading>
+
+      {!hasDiscount ? (
+        <CouponForm onSubmit={handleSubmit}>
+          <Input
+            textTransform="uppercase"
+            color="pink"
+            value={inputValue}
+            onChange={handleChange}
+            name="coupon"
+            autoComplete="off"
+          />
+          <Button type="submit">Apply</Button>
+        </CouponForm>
+      ) : null}
 
       {couponDiscount ? (
         <DiscountLine

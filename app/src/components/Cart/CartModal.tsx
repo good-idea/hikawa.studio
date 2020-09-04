@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { unwindEdges } from '@good-idea/unwind-edges'
 import { useAnalytics, useCheckout, useSiteSettings } from '../../providers'
-import { isReactProduction } from '../../utils'
 import { Heading } from '../Text'
 import { Button } from '../Button'
 import { Modal } from '../Modal'
@@ -16,7 +15,6 @@ import {
 import { CartLineItem } from './CartLineItem'
 import { CartSummary } from './CartSummary'
 import { NoteInput } from './NoteInput'
-import { CouponCode } from './CouponCode'
 
 const { useState } = React
 
@@ -40,8 +38,6 @@ export const CartModal = () => {
     closeCart,
     updateQuantity,
     loading,
-    applyDiscount,
-    removeDiscount,
     userErrors,
   } = useCheckout()
   const { sendBeginCheckout } = useAnalytics()
@@ -85,6 +81,7 @@ export const CartModal = () => {
   const updateLineItemQuantity = (lineItemId: string) => (quantity: number) =>
     updateQuantity(lineItemId, quantity)
 
+  console.log(userErrors)
   return (
     <Modal open={isOpen} onBackgroundClick={closeCart}>
       <SummaryWrapper isLoading={loading}>
@@ -102,32 +99,23 @@ export const CartModal = () => {
                 ))}
             </LineItems>
             <CartSummary checkout={currentCheckout} />
-            <Centered>
-              <ModalInputWrapper>
-                <CouponCode
-                  applyDiscount={applyDiscount}
-                  removeDiscount={removeDiscount}
-                  checkout={currentCheckout}
-                />
-                <NoteInput
-                  noteInputValue={noteInputValue}
-                  setNoteInputValue={setNoteInputValue}
-                />
-                {checkoutText ? (
-                  <CheckoutTextWrapper>
-                    <RichText
-                      body={checkoutText}
-                      blockWrapper={CheckoutRichTextWrapper}
-                    />
-                  </CheckoutTextWrapper>
-                ) : null}
-              </ModalInputWrapper>
+            <ModalInputWrapper>
+              <NoteInput
+                noteInputValue={noteInputValue}
+                setNoteInputValue={setNoteInputValue}
+              />
+              {checkoutText ? (
+                <CheckoutTextWrapper>
+                  <RichText
+                    body={checkoutText}
+                    blockWrapper={CheckoutRichTextWrapper}
+                  />
+                </CheckoutTextWrapper>
+              ) : null}
+            </ModalInputWrapper>
 
-              <Button onClick={handleCheckoutClick}>
-                Continue to Checkout
-              </Button>
-              {userErrors &&
-                userErrors.map((error) => (
+            {userErrors.length
+              ? userErrors.map((error) => (
                   <Heading
                     level={5}
                     key={error}
@@ -137,7 +125,19 @@ export const CartModal = () => {
                   >
                     {error}
                   </Heading>
-                ))}
+                ))
+              : null}
+
+            <Centered>
+              <Button
+                borderWidth="3px"
+                borderColor="offset"
+                m="0 auto"
+                disabled={Boolean(userErrors.length)}
+                onClick={handleCheckoutClick}
+              >
+                Continue to Checkout
+              </Button>
             </Centered>
           </>
         ) : (

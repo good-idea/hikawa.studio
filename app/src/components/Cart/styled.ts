@@ -15,7 +15,7 @@ export const SummaryWrapper = styled.div<WithIsLoading>`
 `
 
 export const LineItems = styled.div`
-  padding: 10px;
+  padding: 3 0;
 `
 
 export const CheckoutTextWrapper = styled.div`
@@ -119,10 +119,17 @@ export const ModalInputWrapper = styled.div`
   max-width: 300px;
 `
 
+export const CartSummaryWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 3;
+`
+
 /* Coupon */
 export const CouponForm = styled.form`
   margin: 4 0 2;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 85px;
   flex-wrap: wrap;
 
   h5 {
@@ -137,8 +144,24 @@ export const CouponForm = styled.form`
   button {
     margin-top: 0;
   }
+
+  & > *:only-child {
+    grid-column: span 2;
+  }
 `
 
 export const DiscountLineWrapper = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 85px;
+  & + & {
+    margin-top: 2;
+  }
+  & > *:only-child {
+    grid-column: span 2;
+  }
+`
+
+export const DiscountTitle = styled.div`
+  padding: 0 2;
+  background-color: offset;
 `

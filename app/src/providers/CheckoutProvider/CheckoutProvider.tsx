@@ -21,7 +21,6 @@ import {
 import { AddLineItem } from './types'
 import {
   getCookie,
-  removeCookie,
   setCookie,
   VIEWER_CART_TOKEN,
   VIEWER_EMAIL,
