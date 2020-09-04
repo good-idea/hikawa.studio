@@ -24,6 +24,7 @@ export const productPageQuery = gql`
       title
       minVariantPrice
       maxVariantPrice
+      klaviyoFormID
       hero {
         ...HeroFragment
       }

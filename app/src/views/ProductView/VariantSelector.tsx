@@ -52,7 +52,13 @@ export const VariantSelector = ({
             <Heading level={4}>{v.title}</Heading>
             <PriceWrapper active={currentVariant && v.id === currentVariant.id}>
               <PriceInner>
-                {!v.availableForSale ? <SoldOut>Unavailable</SoldOut> : null}
+                {!v.availableForSale ? (
+                  <SoldOut>
+                    <Heading my={0} level={5}>
+                      Unavailable
+                    </Heading>
+                  </SoldOut>
+                ) : null}
                 <Heading opacity={v.availableForSale ? 1 : 0} ml={3} level={4}>
                   {parsePrice(v) || 'Pick a style'}
                 </Heading>

@@ -9,7 +9,6 @@ import { Heading } from '../Text'
 const Subtotal = styled.div`
   text-align: right;
   margin-top: 4;
-  color: highlight;
 `
 
 /**
@@ -29,7 +28,7 @@ export const CartSummary = ({ checkout }: Props) => {
     <CartSummaryWrapper>
       <CouponCodes />
       <Subtotal>
-        <Heading level={4}>{total}</Heading>
+        <Heading level={3}>{total}</Heading>
       </Subtotal>
     </CartSummaryWrapper>
   )

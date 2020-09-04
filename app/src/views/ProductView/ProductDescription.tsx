@@ -10,6 +10,7 @@ import { Afterpay } from './Afterpay'
 import { VariantSelector } from './VariantSelector'
 import { SuccessMessage } from './SuccessMessage'
 import { definitely } from '../../utils'
+import { KlaviyoForm } from './KlaviyoForm'
 import {
   ProductDescriptionTitle,
   ExtraDescription,
@@ -37,10 +38,11 @@ export const ProductDescription = ({
   const [success, setSuccess] = useState(false)
   const { loading: checkoutLoading } = useCheckout()
   const extraProductText = siteSettings?.product?.textRaw
-  const { title } = product
+  const { klaviyoFormID, title } = product
 
   const [variants] = unwindEdges(product?.sourceData?.variants)
 
+  console.log(product)
   const handleClick = async () => {
     await addToCart()
     setSuccess(true)
@@ -52,9 +54,11 @@ export const ProductDescription = ({
     .map((t) => t.toLowerCase())
     .includes('comingsoon')
     ? 'Coming Soon'
-    : 'Unavailable'
+    : 'Currently Unavailable'
 
   const soldOut = product.sourceData?.availableForSale === false
+
+  const buttonText = soldOut ? soldOutText : 'Add to Tote'
 
   return (
     <ProductDescriptionWrapper>
@@ -77,12 +81,6 @@ export const ProductDescription = ({
         />
         <Afterpay price={currentVariant.priceV2} />
 
-        {soldOut ? (
-          <Heading color="pink" level={4}>
-            {soldOutText}
-          </Heading>
-        ) : null}
-
         <ButtonContainer>
           <Button
             onClick={handleClick}
@@ -92,10 +90,11 @@ export const ProductDescription = ({
               !currentVariant.availableForSale
             }
           >
-            Add To Tote
+            {buttonText}
           </Button>
           <SuccessMessage visible={success} />
         </ButtonContainer>
+        {klaviyoFormID ? <KlaviyoForm formId={klaviyoFormID} /> : null}
       </VariantWrapper>
     </ProductDescriptionWrapper>
   )

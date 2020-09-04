@@ -496,6 +496,8 @@ export interface ShopifyProduct extends Document {
   options?: Maybe<Array<Maybe<ShopifyProductOption>>>
   variants?: Maybe<Array<Maybe<ShopifyProductVariant>>>
   hero?: Maybe<Hero>
+  /** Just the id within class="..." i.e. klaviyo-form-ABC123 */
+  klaviyoFormID?: Maybe<Scalars['String']>
   related?: Maybe<Array<Maybe<PageLink>>>
   seo?: Maybe<Seo>
 }
@@ -1408,6 +1410,7 @@ export type ShopifyProductFilter = {
   archived?: Maybe<BooleanFilter>
   sourceData?: Maybe<ShopifySourceProductFilter>
   hero?: Maybe<HeroFilter>
+  klaviyoFormID?: Maybe<StringFilter>
   seo?: Maybe<SeoFilter>
 }
 
@@ -1481,6 +1484,7 @@ export type ShopifyProductSorting = {
   archived?: Maybe<SortOrder>
   sourceData?: Maybe<ShopifySourceProductSorting>
   hero?: Maybe<HeroSorting>
+  klaviyoFormID?: Maybe<SortOrder>
   seo?: Maybe<SeoSorting>
 }
 

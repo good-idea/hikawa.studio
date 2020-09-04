@@ -144,10 +144,6 @@ export const CouponForm = styled.form`
   button {
     margin-top: 0;
   }
-
-  & > *:only-child {
-    grid-column: span 2;
-  }
 `
 
 export const DiscountLineWrapper = styled.div`
@@ -155,9 +151,6 @@ export const DiscountLineWrapper = styled.div`
   grid-template-columns: 1fr 85px;
   & + & {
     margin-top: 2;
-  }
-  & > *:only-child {
-    grid-column: span 2;
   }
 `
 

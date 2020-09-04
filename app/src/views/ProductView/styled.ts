@@ -154,6 +154,15 @@ export const VariantWrapper = styled.div`
   `}
 `
 
+export const KlaviyoFormWrapper = styled.div`
+  margin-top: 5;
+
+  form {
+    margin: 0 !important;
+    opacity: 1;
+  }
+`
+
 export const ProductDescriptionWrapper = styled.div`
   text-align: left;
   padding-bottom: 6;
@@ -177,7 +186,6 @@ export const Table = styled.div`
   flex-direction: column;
   display: inline-flex;
   min-width: 200px;
-  overflow: hidden;
   flex-direction: column;
   background-color: white;
   margin-top: 1px;
@@ -264,17 +272,20 @@ export const PriceInner = styled.div`
 const VariantPrice = styled.div``
 
 export const SoldOut = styled.div`
-  color: red;
+  background-color: white;
+  border: 1px solid;
+  padding: 3px;
+  border-radius: 3px;
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 90%;
   margin: 0;
   display: flex;
   justify-content: flex-center;
   align-items: center;
   white-space: nowrap;
   font-style: italic;
-  transform: translate(-50%, -50%) skewY(-10deg);
+  transform: translate(-50%, -50%);
 
   & + ${VariantPrice} {
     opacity: 0.2;

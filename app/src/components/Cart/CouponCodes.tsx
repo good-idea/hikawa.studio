@@ -39,10 +39,10 @@ export const DiscountLine = ({
   return (
     <DiscountLineWrapper>
       <DiscountTitle>
-        <Heading level={4}>
+        <Heading level={5}>
           <CouponTag mr={3} />
           {/* @ts-ignore */}
-          {discount.title || discount.code} ✓
+          Applied: {discount.title || discount.code} ✓
         </Heading>
       </DiscountTitle>
       {!isAutomatic && removeDiscount ? (
