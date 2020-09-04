@@ -145,10 +145,9 @@ export const pageLink = {
       name: 'images',
       title: 'Alternate Images',
       description:
-        '(optional) If empty, the image of the linked collection, or product will be used. ',
+        '(optional) If empty, the image of the linked collection, or product will be used. Add a second image here to use as a hover image.',
       validation: (Rule) => Rule.max(2),
     },
-
     {
       title: 'Text',
       name: 'textPreview',
