@@ -6,6 +6,12 @@ export const product = {
       type: 'hero',
     },
     {
+      title: 'Klaviyo Form ID',
+      name: 'klaviyoFormID',
+      type: 'string',
+      description: 'Just the id within class="..." i.e. klaviyo-form-ABC123',
+    },
+    {
       title: 'Related',
       type: 'array',
       name: 'related',
