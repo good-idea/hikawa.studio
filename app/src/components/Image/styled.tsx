@@ -11,6 +11,7 @@ export const HoverImage = styled.img`
   height: 100%;
   opacity: 0;
   transition: 0.3s;
+  object-fit: cover;
 `
 
 export const Wrapper = styled.div`

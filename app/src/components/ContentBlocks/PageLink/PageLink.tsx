@@ -24,24 +24,23 @@ const HoverImage = styled.div`
 
 const Wrapper = styled.div`
   ${({ theme }) => css`
-		position: relative;
-		color: rgb(45, 45, 45);
+    position: relative;
+    color: rgb(45, 45, 45);
 
-		&:hover {
+    &:hover {
+      ${HoverImage} ~ ${PrimaryImage} {
+        opacity: 0;
+      }
 
-			${HoverImage} ~ ${PrimaryImage} {
-				opacity: 0;
-			}
+      ${HoverImage} {
+        opacity: 1;
+      }
+    }
 
-			${HoverImage} {
-				opacity: 1;
-			}
-		}
-
-		${theme.mediaQueries.mobile} {
-			padding: 0;
-		}
-	`};
+    ${theme.mediaQueries.mobile} {
+      padding: 0;
+    }
+  `};
 `
 
 const ImageWrapper = styled.div`
@@ -58,6 +57,7 @@ const TextWrapper = styled.div`
     padding: 5;
     top: 0;
     left: 0;
+    pointer-events: none;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -165,20 +165,21 @@ export const PageLink = ({
       : fallbackImage
   const hoverImage = images && images.length > 1 ? images[1] : null
   const ratio = item.fullWidth ? 0.56 : 1.2
+  console.log({ primaryImage, hoverImage })
 
   return (
     <Link link={link}>
       <Wrapper>
         {hoverImage || primaryImage ? (
           <ImageWrapper>
-            {hoverImage && showHover && (
-              <HoverImage>
-                <Image ratio={ratio} image={hoverImage} sizes={imageSizes} />
-              </HoverImage>
-            )}
             {primaryImage && (
               <PrimaryImage>
-                <Image ratio={ratio} image={primaryImage} sizes={imageSizes} />
+                <Image
+                  ratio={ratio}
+                  image={primaryImage}
+                  hoverImage={hoverImage}
+                  sizes={imageSizes}
+                />
               </PrimaryImage>
             )}
           </ImageWrapper>
