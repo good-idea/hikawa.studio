@@ -17,5 +17,10 @@
       "dest": "$1",
       "continue": true
     }
-  ]
+  ],
+  "build": {
+    "env": {
+      "FORCE_BUILDER_TAG": "canary"
+    }
+  }
 }
