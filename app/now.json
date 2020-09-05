@@ -3,7 +3,7 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@now/next"
+      "use": "@now/next@canary"
     }
   ],
   "routes": [
