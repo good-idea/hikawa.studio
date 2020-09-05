@@ -165,7 +165,6 @@ export const PageLink = ({
       : fallbackImage
   const hoverImage = images && images.length > 1 ? images[1] : null
   const ratio = item.fullWidth ? 0.56 : 1.2
-  console.log({ primaryImage, hoverImage })
 
   return (
     <Link link={link}>

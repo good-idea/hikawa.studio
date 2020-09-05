@@ -42,7 +42,6 @@ export const ProductDescription = ({
 
   const [variants] = unwindEdges(product?.sourceData?.variants)
 
-  console.log(product)
   const handleClick = async () => {
     await addToCart()
     setSuccess(true)
