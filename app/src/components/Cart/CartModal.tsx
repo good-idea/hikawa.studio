@@ -81,7 +81,6 @@ export const CartModal = () => {
   const updateLineItemQuantity = (lineItemId: string) => (quantity: number) =>
     updateQuantity(lineItemId, quantity)
 
-  console.log(userErrors)
   return (
     <Modal open={isOpen} onBackgroundClick={closeCart}>
       <SummaryWrapper isLoading={loading}>

@@ -6,6 +6,7 @@ import { Heading } from '../components/Text'
 const Wrapper = styled.div`
   min-height: 450px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -14,7 +15,7 @@ const Wrapper = styled.div`
 export const NotFound = () => {
   return (
     <Wrapper>
-      <Heading color="darkGray" level={2}>
+      <Heading color="darkGray" level={4}>
         Page Not Found
       </Heading>
       <Heading mt={5} level={3}>

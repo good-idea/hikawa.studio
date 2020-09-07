@@ -3,7 +3,7 @@ import gql from 'graphql-tag'
 import { getDataFromTree } from '@apollo/client/react/ssr'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { Page as PageType } from '../src/types'
-import { definitely } from '../src/utils'
+import { getParam, definitely } from '../src/utils'
 import { ssrClient, App, PageView } from '../src/views'
 
 interface PageProps {
@@ -15,8 +15,7 @@ const Page = ({ slug }: PageProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-  const pageSlug = ctx.params?.pageSlug
-  const slug = Array.isArray(pageSlug) ? pageSlug[0] : pageSlug
+  const slug = getParam(ctx.params?.pageSlug)
 
   if (!slug) throw new Error('No pageSlug provided')
 

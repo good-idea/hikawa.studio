@@ -45,6 +45,7 @@ export const siteSettingsQuery = gql`
         title
         handle
         images {
+          _key
           ...RichImageFragment
         }
       }

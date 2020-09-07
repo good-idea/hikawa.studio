@@ -4,21 +4,28 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import { getDataFromTree } from '@apollo/client/react/ssr'
 import { ShopifyCollection } from '../../src/types'
 import { ssrClient, App, ShopView } from '../../src/views'
-import { definitely } from '../../src/utils'
+import { getParam, definitely } from '../../src/utils'
 
 interface ShopProps {
   activeCollectionHandle: string
 }
 
 const Shop = ({ activeCollectionHandle }: ShopProps) => {
-  return <ShopView activeCollectionHandle={activeCollectionHandle} />
+  return (
+    <ShopView
+      key={activeCollectionHandle}
+      activeCollectionHandle={activeCollectionHandle}
+    />
+  )
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-  const collectionHandle = ctx.params?.collectionHandle
-  const handle = Array.isArray(collectionHandle)
-    ? collectionHandle[0]
-    : collectionHandle
+  const { params } = ctx
+  if (!params?.collectionHandle) {
+    throw new Error('No product handle was provided')
+  }
+
+  const handle = getParam(params?.collectionHandle)
   if (!handle) throw new Error('No collection handle was provided')
 
   const StaticApp = (
@@ -31,7 +38,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   const apolloCache = ssrClient.extract()
 
   return {
-    props: { activeCollectionHandle: collectionHandle, apolloCache },
+    props: { activeCollectionHandle: handle, apolloCache },
     revalidate: 60,
   }
 }
