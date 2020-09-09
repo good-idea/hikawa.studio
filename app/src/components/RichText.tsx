@@ -36,6 +36,21 @@ const RichTextWrapper = styled.div<WithArticle>`
       max-width: 80%;
       margin: 80px auto;
     }
+    h1,
+    h2,
+    h2,
+    h4,
+    h5 {
+      margin-top: 1.3em;
+      font-weight: 600;
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    p {
+      font-weight: 400;
+    }
     a {
       color: pink;
     }
