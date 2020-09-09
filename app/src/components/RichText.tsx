@@ -4,6 +4,7 @@ import * as BlockContent from '@sanity/block-content-to-react'
 import { RichTextBlock, ListBlock } from '../types'
 import { Heading, P, BlockQuote, Li, Ul, Ol } from './Text'
 import { Image } from './Image'
+import { VideoEmbed } from './VideoEmbed'
 
 interface CustomSerializerConfig {
   blockWrapper?: React.ComponentType
@@ -69,6 +70,10 @@ const serializers = ({
     if (Wrapper) return <Wrapper {...props} />
     const weight = customWeight ?? 4
 
+    if (node._type === 'videoEmbed') {
+      return <VideoEmbed video={node} />
+    }
+
     if (node._type === 'richImage') {
       return <Image image={node} sizes={imageSizes} />
     }
@@ -93,7 +98,7 @@ const serializers = ({
       case 'normal':
         return <P weight={weight} {...props} />
       default:
-        return <P {...props} />
+        throw new Error(`There is no tag set up for "${style}"`)
     }
   },
 })

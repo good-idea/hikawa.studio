@@ -1,6 +1,7 @@
 import {
   Block,
   RichImage,
+  VideoEmbed,
   SanityImageHotspot,
   SanityImageCrop,
 } from './generated-sanity'
@@ -19,7 +20,14 @@ interface ImageBlock extends Omit<RichImage, '_type'> {
   _type: 'richImage'
 }
 
-export type RichTextBlock = BlockNode<TextBlock> | BlockNode<ImageBlock>
+interface VideoBlock extends Omit<VideoEmbed, '_type'> {
+  _type: 'videoEmbed'
+}
+
+export type RichTextBlock =
+  | BlockNode<TextBlock>
+  | BlockNode<ImageBlock>
+  | BlockNode<VideoBlock>
 
 export interface SanityRawImage {
   __typename: void

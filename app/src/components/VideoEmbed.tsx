@@ -1,4 +1,5 @@
 import * as React from 'react'
+import styled, { css } from '@xstyled/styled-components'
 import ReactPlayer from 'react-player'
 import { VideoEmbed as VideoEmbedType } from '../types'
 
@@ -13,6 +14,21 @@ const getVideoUrl = (service: string, videoId: string) => {
   }
 }
 
+const VideoWrapper = styled.div`
+  position: relative;
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+`
+
+const VideoPadding = styled.div`
+  padding-bottom: 56.25%;
+`
+
 /**
  * Video
  */
@@ -25,5 +41,17 @@ export const VideoEmbed = ({ video }: VideoProps) => {
   const { service, videoId } = video
   if (!service || !videoId) return null
   const videoUrl = getVideoUrl(service, videoId)
-  return <ReactPlayer url={videoUrl} muted volume={0} width="100%" playing />
+  return (
+    <VideoWrapper>
+      <VideoPadding />
+      <ReactPlayer
+        url={videoUrl}
+        muted
+        volume={0}
+        height="100%"
+        width="100%"
+        playing
+      />
+    </VideoWrapper>
+  )
 }
