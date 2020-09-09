@@ -25,7 +25,7 @@ interface SEOProps {
   product?: ShopifyProduct
 }
 
-const BASE_URL = 'https://www.spinellikilcollin.com'
+const BASE_URL = 'https://www.baileyhikawa.com'
 
 interface ProductSEOProps {
   product: ShopifyProduct
