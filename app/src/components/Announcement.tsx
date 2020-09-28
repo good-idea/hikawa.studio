@@ -136,7 +136,7 @@ const TIME = 4500
 export const Announcement = () => {
   const { siteSettings } = useSiteSettings()
   const { announcement } = siteSettings
-  const { enabled, textRaw } = announcement || {}
+  const { enabled } = announcement || {}
   const [open, setOpen] = useState<boolean>(Boolean(enabled))
   const [currentAnnouncement, setCurrentAnnouncement] = useState<number>(0)
   const closeMenu = () => setOpen(false)

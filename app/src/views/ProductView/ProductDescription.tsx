@@ -38,7 +38,6 @@ export const ProductDescription = ({
   const [success, setSuccess] = useState(false)
   const { loading: checkoutLoading } = useCheckout()
   const extraProductText = siteSettings?.product?.textRaw
-  console.log(siteSettings?.product)
   const { klaviyoFormID, title } = product
 
   const [variants] = unwindEdges(product?.sourceData?.variants)
