@@ -2,7 +2,8 @@ import * as React from 'react'
 import Link from 'next/link'
 import HTMLParser from 'html-parser-lite'
 import { LinkInfo } from '../utils'
-import { Heading, P, Ol, Ul, Li, Span } from '../components/Text'
+import { RichTextWrapper } from './RichText'
+import { Heading, P, Ol, Ul, Li, Span } from './Text'
 
 const { useMemo } = React
 
@@ -73,6 +74,12 @@ const transform = (node, index) => {
     case 'h1':
     case 'h2':
     case 'h3':
+      return (
+        <Heading style={styles} level={3} key={index}>
+          {node.childNodes.map(transform)}
+        </Heading>
+      )
+
     case 'h4':
     case 'h5':
     case 'h6':
@@ -144,7 +151,8 @@ interface ShopifyRichTextProps {
 export const ShopifyRichText = ({ text }: ShopifyRichTextProps) => {
   if (!text) return null
 
+  console.log({ text, wrapped: wrapBareText(text) })
   const parsed = useMemo(() => parser.parse(wrapBareText(text)), [text])
   const nodes = transform(parsed, 'root')
-  return <>{nodes}</>
+  return <RichTextWrapper>{nodes}</RichTextWrapper>
 }

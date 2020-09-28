@@ -16,7 +16,7 @@ interface WithArticle {
   article?: boolean
 }
 
-const RichTextWrapper = styled.div<WithArticle>`
+export const RichTextWrapper = styled.div<WithArticle>`
   ${({ theme, article }) => css`
     ${article
       ? css`
@@ -36,15 +36,24 @@ const RichTextWrapper = styled.div<WithArticle>`
       max-width: 80%;
       margin: 80px auto;
     }
+
+    * {
+      line-height: 1.4em;
+    }
+
     h1,
     h2,
     h2,
+    h3,
     h4,
     h5 {
-      margin-top: 1.3em;
+      margin-top: 1.6em;
       font-weight: 600;
       &:first-child {
         margin-top: 0;
+      }
+      &:last-child {
+        margin-bottom: 0;
       }
     }
 

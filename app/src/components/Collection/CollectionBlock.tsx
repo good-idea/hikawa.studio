@@ -35,7 +35,7 @@ const Inner = styled.div`
 
 const Title = styled.div`
   ${({ theme }) => css`
-    text-align: right;
+    text-align: left;
     padding-right: 5;
 
     ${theme.mediaQueries.mobile} {

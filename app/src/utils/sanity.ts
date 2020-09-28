@@ -46,7 +46,7 @@ export const getLinkUrl = (
     case 'Page':
       return { href: '/[pageSlug]', as: `/${assert(link?.slug?.current)}` }
     default:
-      return { href: `/${link.url}`, external: true }
+      return { href: `${link.url}`, external: true }
   }
 }
 

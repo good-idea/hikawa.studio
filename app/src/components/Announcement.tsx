@@ -1,12 +1,14 @@
 import * as React from 'react'
+import Link from 'next/link'
 import styled, { css } from '@xstyled/styled-components'
-import { AnnouncementSettings } from '../types'
+import { Cta as CTAType, AnnouncementSettings } from '../types'
 import { sanityColorToRGBA } from '../utils'
 import { useSiteSettings } from '../providers'
 import { RichText } from './RichText'
 import { Heading } from './Text'
+import { getLinkLabel, getLinkUrl } from '../utils'
 
-const { useState } = React
+const { useState, useEffect } = React
 
 interface AnnouncementWrapperProps {
   open: boolean
@@ -24,10 +26,6 @@ const AnnouncementWrapper = styled.div<AnnouncementWrapperProps>`
     padding: 0 45px;
     position: relative;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     overflow: hidden;
     transform-origin: 0 50%;
     height: ${open ? theme.announcementHeight : '0'};
@@ -40,6 +38,36 @@ const AnnouncementWrapper = styled.div<AnnouncementWrapperProps>`
     a {
       text-decoration: underline;
     }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      margin: 0 auto;
+    }
+  `}
+`
+
+interface WithVisible {
+  visible: boolean
+}
+
+const AnnouncementInner = styled.div<WithVisible>`
+  ${({ visible }) => css`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+    opacity: ${visible ? 1 : 0};
+    pointer-events: ${visible ? 'inherit' : 'none'};
+    transition-delay: ${visible ? '0.4s' : '0s'};
   `}
 `
 
@@ -74,28 +102,73 @@ const CloseButton = styled.button`
  * Announcement
  */
 
-interface State {
-  open: boolean
-}
-
 const AnnouncementTextWrapper = (props: any) => (
   <Heading family="sans" weight={5} level={5} {...props} />
 )
 
+interface CTAProps {
+  cta?: CTAType | null
+}
+
+const CTA = ({ cta }: CTAProps) => {
+  if (!cta?.link || cta.link.length === 0) return null
+
+  const link = cta.link[0]
+  if (!link) return null
+  const defaultLabel = getLinkLabel(link)
+  const { href, as } = getLinkUrl(link)
+
+  const { label: customLabel } = cta
+  const label = customLabel || defaultLabel
+
+  if (!label) return null
+  return (
+    <Heading level={5} color="pink" my={0}>
+      <Link href={href} as={as}>
+        <a>{label}</a>
+      </Link>
+    </Heading>
+  )
+}
+
+const TIME = 4500
+
 export const Announcement = () => {
   const { siteSettings } = useSiteSettings()
   const { announcement } = siteSettings
-  if (!announcement) return null
-  const { enabled, textRaw } = announcement
+  const { enabled, textRaw } = announcement || {}
   const [open, setOpen] = useState<boolean>(Boolean(enabled))
+  const [currentAnnouncement, setCurrentAnnouncement] = useState<number>(0)
   const closeMenu = () => setOpen(false)
+  const { announcements } = announcement || {}
+  if (!announcements?.length) return null
+
+  useEffect(() => {
+    if (announcements.length < 1) return
+    const tm = setTimeout(() => {
+      setCurrentAnnouncement((currentAnnouncement + 1) % announcements.length)
+    }, TIME)
+    return () => clearTimeout(tm)
+  }, [currentAnnouncement])
+  console.log({ announcements })
+
   return (
     <AnnouncementWrapper open={open} announcement={announcement}>
-      <RichText
-        body={textRaw}
-        blockWrapper={AnnouncementTextWrapper}
-        weight={5}
-      />
+      {announcements.map((a, index) =>
+        a && a.bodyRaw ? (
+          <AnnouncementInner
+            key={index}
+            visible={index === currentAnnouncement}
+          >
+            <RichText
+              body={a.bodyRaw}
+              blockWrapper={AnnouncementTextWrapper}
+              weight={5}
+            />
+            {a.cta ? <CTA cta={a.cta} /> : null}
+          </AnnouncementInner>
+        ) : null,
+      )}
       <CloseButton onClick={closeMenu} />
     </AnnouncementWrapper>
   )

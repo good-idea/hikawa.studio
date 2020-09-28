@@ -56,7 +56,7 @@ export const ProductThumbnail = ({ product }: ProductThumbnailProps) => {
             />
           </ImageContainer>
           <Title>
-            <Heading fontFamily="serif" level={3}>
+            <Heading fontFamily="serif" fontWeight={1} level={3}>
               {product.title}
             </Heading>
           </Title>

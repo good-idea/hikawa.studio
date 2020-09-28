@@ -741,10 +741,28 @@ export interface AnnouncementSettings {
   _key?: Maybe<Scalars['String']>
   _type?: Maybe<Scalars['String']>
   enabled?: Maybe<Scalars['Boolean']>
+  announcements?: Maybe<Array<Maybe<AnnouncementText>>>
   textRaw?: Maybe<Scalars['JSON']>
   backgroundColor?: Maybe<Color>
   textColor?: Maybe<Color>
-  link?: Maybe<Array<Maybe<PageLink>>>
+}
+
+export interface AnnouncementText {
+  __typename: 'AnnouncementText'
+  _key?: Maybe<Scalars['String']>
+  _type?: Maybe<Scalars['String']>
+  bodyRaw?: Maybe<Scalars['JSON']>
+  cta?: Maybe<Cta>
+}
+
+export interface Cta {
+  __typename: 'Cta'
+  _key?: Maybe<Scalars['String']>
+  _type?: Maybe<Scalars['String']>
+  label?: Maybe<Scalars['String']>
+  link?: Maybe<
+    Array<Maybe<PageOrShopOrShopifyCollectionOrShopifyProductOrUrlLink>>
+  >
 }
 
 export interface NavigationSettings {
@@ -1869,6 +1887,12 @@ export type FileFilter = {
   asset?: Maybe<SanityFileAssetFilter>
 }
 
+export type CtaFilter = {
+  _key?: Maybe<StringFilter>
+  _type?: Maybe<StringFilter>
+  label?: Maybe<StringFilter>
+}
+
 export type RichTextFilter = {
   _key?: Maybe<StringFilter>
   _type?: Maybe<StringFilter>
@@ -1906,6 +1930,12 @@ export type UrlLinkFilter = {
   label?: Maybe<StringFilter>
   foo?: Maybe<BooleanFilter>
   url?: Maybe<StringFilter>
+}
+
+export type AnnouncementTextFilter = {
+  _key?: Maybe<StringFilter>
+  _type?: Maybe<StringFilter>
+  cta?: Maybe<CtaFilter>
 }
 
 export type ShopifyProductVariantFilter = {
@@ -2014,6 +2044,12 @@ export type FileSorting = {
   _type?: Maybe<SortOrder>
 }
 
+export type CtaSorting = {
+  _key?: Maybe<SortOrder>
+  _type?: Maybe<SortOrder>
+  label?: Maybe<SortOrder>
+}
+
 export type RichTextSorting = {
   _key?: Maybe<SortOrder>
   _type?: Maybe<SortOrder>
@@ -2051,6 +2087,12 @@ export type UrlLinkSorting = {
   label?: Maybe<SortOrder>
   foo?: Maybe<SortOrder>
   url?: Maybe<SortOrder>
+}
+
+export type AnnouncementTextSorting = {
+  _key?: Maybe<SortOrder>
+  _type?: Maybe<SortOrder>
+  cta?: Maybe<CtaSorting>
 }
 
 export type ShopifyProductVariantSorting = {

@@ -22,11 +22,60 @@ export const siteSettingsQuery = gql`
       announcement {
         enabled
         textRaw
+        announcements {
+          bodyRaw
+          cta {
+            label
+            link {
+              ... on Shop {
+                _type
+                title
+              }
+              ... on Page {
+                title
+                _type
+                slug {
+                  current
+                }
+              }
+              ... on ShopifyProduct {
+                _id
+                _type
+                shopifyId
+                handle
+                title
+                sourceData {
+                  images {
+                    edges {
+                      node {
+                        ...ShopifySourceImageFragment
+                      }
+                    }
+                  }
+                }
+              }
+              ... on ShopifyCollection {
+                _id
+                _type
+                shopifyId
+                handle
+                title
+                sourceData {
+                  image {
+                    ...ShopifySourceImageFragment
+                  }
+                }
+              }
+              ... on UrlLink {
+                _type
+                label
+                url
+              }
+            }
+          }
+        }
         backgroundColor {
           ...ColorFragment
-        }
-        link {
-          ...PageLinkFragment
         }
       }
       logo {

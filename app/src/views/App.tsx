@@ -18,6 +18,7 @@ if (!SHOPIFY_STOREFRONT_TOKEN)
   throw new Error('You must provide a SHOPIFY_STOREFRONT_TOKEN')
 
 export const ssrClient = createApolloClient({ uri: SANITY_GRAPHQL_URL })
+
 export const shopifyApolloClient = createApolloClient({
   uri: SHOPIFY_GRAPHQL_URL,
   headers: {

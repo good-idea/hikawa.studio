@@ -4,8 +4,8 @@ import { DefaultTheme } from '@xstyled/styled-components'
  * https://www.colorbox.io/#steps=5#hue_start=238#hue_end=238#hue_curve=easeInQuad#sat_start=13#sat_end=54#sat_curve=easeInSine#sat_rate=146#lum_start=100#lum_end=69#lum_curve=linear#lock_hex=5F62D1#minor_steps_map=none */
 
 const sans =
-  '"Gravity", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";'
-const serif = '"Amiri", "Palatino", Georgia, sans-serif'
+  '"Work Sans", "Helvetica", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";'
+const serif = '"Playfair Display", "Palatino", Georgia, sans-serif'
 
 export const defaultTheme: DefaultTheme = {
   radii: {
@@ -56,7 +56,7 @@ export const defaultTheme: DefaultTheme = {
     22, // h3
     18, // p,
     16, // h4
-    12, // h5
+    13, // h5
     10, // h6
   ],
   fontWeights: [0, 100, 200, 300, 400, 600, 700],

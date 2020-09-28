@@ -94,7 +94,7 @@ export const BlockQuote = styled.blockquote``
 
 const listStyles = css`
   margin: 5 0;
-  line-height: 1.1em;
+  line-height: inherit;
   padding-left: 2em;
 `
 
