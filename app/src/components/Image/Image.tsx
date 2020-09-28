@@ -10,6 +10,7 @@ import { Heading } from '../Text'
 import {
   MainImage,
   HoverImage,
+  HoverImageWrapper,
   Wrapper,
   Picture,
   RatioImageFill,
@@ -137,13 +138,28 @@ export const Image = ({
             />
           </Picture>
           {hoverDetails && hoverDetails.src ? (
-            <HoverImage
-              src={hoverDetails.src}
-              sizes={sizes}
-              srcSet={
-                hoverDetails.srcSetWebp || hoverDetails.srcSet || undefined
-              }
-            />
+            <HoverImageWrapper>
+              {hoverDetails.srcSetWebp ? (
+                <source
+                  type="image/webp"
+                  srcSet={hoverDetails.srcSetWebp}
+                  sizes={sizes}
+                />
+              ) : null}
+              {hoverDetails.srcSet ? (
+                <source
+                  type="image/jpg"
+                  srcSet={hoverDetails.srcSet}
+                  sizes={sizes}
+                />
+              ) : null}
+              <HoverImage
+                src={hoverDetails.src}
+                alt={altText || ''}
+                ref={imageRef}
+                onLoad={handleOnLoad}
+              />
+            </HoverImageWrapper>
           ) : null}
           {caption ? (
             <Heading my={0} mt="7px" level={5}>

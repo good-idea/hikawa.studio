@@ -151,7 +151,6 @@ interface ShopifyRichTextProps {
 export const ShopifyRichText = ({ text }: ShopifyRichTextProps) => {
   if (!text) return null
 
-  console.log({ text, wrapped: wrapBareText(text) })
   const parsed = useMemo(() => parser.parse(wrapBareText(text)), [text])
   const nodes = transform(parsed, 'root')
   return <RichTextWrapper>{nodes}</RichTextWrapper>

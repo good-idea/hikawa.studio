@@ -3,7 +3,7 @@ import styled, { css } from '@xstyled/styled-components'
 
 export const MainImage = styled.img``
 
-export const HoverImage = styled.img`
+export const HoverImageWrapper = styled.picture`
   position: absolute;
   top: 0;
   left: 0;
@@ -11,6 +11,14 @@ export const HoverImage = styled.img`
   height: 100%;
   opacity: 0;
   transition: 0.3s;
+`
+
+export const HoverImage = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 `
 
@@ -19,7 +27,7 @@ export const Wrapper = styled.div`
   text-align: left;
   width: 100%;
 
-  &:hover ${HoverImage} {
+  &:hover ${HoverImageWrapper} {
     opacity: 1;
   }
 `

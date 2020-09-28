@@ -95,9 +95,6 @@ const Link = ({ link, children }: LinkProps) => {
   if (!link) return null
   const { href, as } = getLinkUrl(link)
   if (!href) return null
-  if (link.__typename === 'UrlLink') {
-    console.log({ link, href })
-  }
 
   const linkIsExternal =
     link.__typename === 'UrlLink' && /^(mailto|https?):/.test(href)

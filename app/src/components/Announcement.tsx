@@ -150,7 +150,6 @@ export const Announcement = () => {
     }, TIME)
     return () => clearTimeout(tm)
   }, [currentAnnouncement])
-  console.log({ announcements })
 
   return (
     <AnnouncementWrapper open={open} announcement={announcement}>
