@@ -19,20 +19,29 @@ const MenuWrapper = styled.div`
     left: 0;
     display: grid;
     grid-template-columns: 120px 1fr 120px;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    justify-items: center;
     align-items: center;
     height: ${theme.navHeight};
     text-transform: uppercase;
     background-color: white;
     border-bottom: 1px solid rgb(100, 100, 100);
 
+    > *:first-child {
+      justify-self: flex-start;
+    }
+
+    > *:last-child {
+      justify-self: flex-end;
+    }
+
     & h3 {
       margin: 0 10px;
     }
 
     ${theme.mediaQueries.mobile} {
-      padding: 0 1;
+      padding: 1 3;
+      grid-template-columns: 45px 1fr 45px;
+
       & h3 {
         margin: 5px 0;
         font-size: 2em;
@@ -78,14 +87,9 @@ const NavLogoWrapper = styled.div`
 
 const CartWrapper = styled.div`
   ${({ theme }) => css`
-    width: 120px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-
-    ${theme.mediaQueries.mobile} {
-      flex-basis: 60px;
-    }
   `}
 `
 

@@ -57,6 +57,23 @@ export const RichTextWrapper = styled.div<WithArticle>`
       }
     }
 
+    h3 {
+      font-size: 3;
+      ${theme.mediaQueries.tablet} {
+        font-size: 3;
+      }
+      ${theme.mediaQueries.mobile} {
+        font-size: 3;
+      }
+    }
+
+    h4 {
+      font-size: 5;
+      ${theme.mediaQueries.tablet} {
+        font-size: 5;
+      }
+    }
+
     p {
       font-weight: 400;
     }

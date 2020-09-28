@@ -56,7 +56,7 @@ export const GlobalStyles = createGlobalStyle`
       font-size: calc(${theme.fontSizes[1]}px * 0.8);
     }
     ${theme.mediaQueries.mobile} {
-      font-size: calc(${theme.fontSizes[1]}px * 0.7);
+      font-size: calc(${theme.fontSizes[1]}px * 0.55);
     }
  
   }
@@ -67,7 +67,7 @@ export const GlobalStyles = createGlobalStyle`
       font-size: calc(${theme.fontSizes[2]}px * 0.8);
     }
     ${theme.mediaQueries.mobile} {
-      font-size: calc(${theme.fontSizes[2]}px * 0.7);
+      font-size: calc(${theme.fontSizes[2]}px * 0.55);
     }
  
   }
@@ -78,7 +78,7 @@ export const GlobalStyles = createGlobalStyle`
       font-size: calc(${theme.fontSizes[3]}px * 0.8);
     }
     ${theme.mediaQueries.mobile} {
-      font-size: calc(${theme.fontSizes[3]}px * 0.7);
+      font-size: calc(${theme.fontSizes[3]}px * 0.55);
     }
  
   }

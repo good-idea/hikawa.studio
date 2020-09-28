@@ -23,7 +23,6 @@ const AnnouncementWrapper = styled.div<AnnouncementWrapperProps>`
     color: ${announcement.textColor
       ? sanityColorToRGBA(announcement.textColor)
       : 'black'};
-    padding: 0 45px;
     position: relative;
     width: 100%;
     overflow: hidden;
@@ -60,6 +59,7 @@ const AnnouncementInner = styled.div<WithVisible>`
     left: 0;
     width: 100%;
     height: 100%;
+    padding: 0 45px;
     display: flex;
     flex-direction: column;
     justify-content: center;
