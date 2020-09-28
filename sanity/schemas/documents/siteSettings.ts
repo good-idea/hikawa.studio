@@ -217,6 +217,36 @@ export const navigation = {
   ],
 }
 
+export const announcementText = {
+  name: 'announcementText',
+  type: 'object',
+  fields: [
+    {
+      name: 'body',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+          styles: [],
+          lists: [],
+          marks: {
+            decorators: [
+              { title: 'Strong', value: 'strong' },
+              { title: 'Emphasis', value: 'em' },
+              { title: 'Link', value: 'link' },
+            ],
+          },
+        },
+      ],
+    },
+    {
+      name: 'cta',
+      type: 'cta',
+      title: 'CTA',
+    },
+  ],
+}
+
 export const announcementBanner = {
   name: 'announcementSettings',
   label: 'Announcement Banner',
@@ -226,6 +256,12 @@ export const announcementBanner = {
       name: 'enabled',
       title: 'Enable Announcement',
       type: 'boolean',
+    },
+    {
+      name: 'announcements',
+      title: 'Announcements',
+      type: 'array',
+      of: [{ type: 'announcementText' }],
     },
     {
       name: 'text',
@@ -245,6 +281,7 @@ export const announcementBanner = {
         },
       ],
     },
+
     {
       title: 'Background Color',
       name: 'backgroundColor',
@@ -254,18 +291,6 @@ export const announcementBanner = {
       title: 'Text Color',
       name: 'textColor',
       type: 'color',
-    },
-    {
-      title: 'Link',
-      name: 'link',
-      type: 'array',
-      description: 'Link to a Page, Product, Collection, or URL',
-      of: [
-        {
-          type: 'pageLink',
-        },
-      ],
-      validation: (Rule) => Rule.max(1),
     },
   ],
 }

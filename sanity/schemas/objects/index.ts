@@ -1,4 +1,5 @@
 export * from './mixedMedia'
+export * from './cta'
 export * from './contentBuilder'
 export * from './richText'
 export * from './gallery'
