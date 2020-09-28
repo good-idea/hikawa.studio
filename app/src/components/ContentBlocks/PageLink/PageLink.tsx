@@ -185,7 +185,12 @@ export const PageLink = ({
         ) : null}
         <TextWrapper>
           <Text>
-            <Heading level={3} fontFamily="serif" textAlign="center">
+            <Heading
+              level={3}
+              fontWeight={2}
+              fontFamily="serif"
+              textAlign="center"
+            >
               <LargeText largeText={largeText}>{headerText}</LargeText>
             </Heading>
           </Text>

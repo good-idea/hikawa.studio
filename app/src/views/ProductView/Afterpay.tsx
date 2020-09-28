@@ -10,6 +10,7 @@ const Wrapper = styled.div`
     margin-top: -${theme.space[5]}px;
     margin-bottom: 3;
     min-height: 46px;
+    color: gray;
 
     .afterpay-logo-link {
       display: block;

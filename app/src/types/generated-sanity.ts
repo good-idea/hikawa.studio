@@ -742,7 +742,6 @@ export interface AnnouncementSettings {
   _type?: Maybe<Scalars['String']>
   enabled?: Maybe<Scalars['Boolean']>
   announcements?: Maybe<Array<Maybe<AnnouncementText>>>
-  textRaw?: Maybe<Scalars['JSON']>
   backgroundColor?: Maybe<Color>
   textColor?: Maybe<Color>
 }

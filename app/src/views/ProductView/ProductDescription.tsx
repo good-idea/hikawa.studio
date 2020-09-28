@@ -3,7 +3,6 @@ import { unwindEdges } from '@good-idea/unwind-edges'
 import { ShopifyProduct, ShopifySourceProductVariant } from '../../types'
 import { Heading } from '../../components/Text'
 import { RichText } from '../../components/RichText'
-import { Button } from '../../components/Button'
 import { useCheckout, useSiteSettings } from '../../providers'
 import { ShopifyRichText } from '../../components/ShopifyRichText'
 import { Afterpay } from './Afterpay'
@@ -17,6 +16,7 @@ import {
   ButtonContainer,
   ProductDescriptionWrapper,
   VariantWrapper,
+  BuyButton,
 } from './styled'
 
 const { useState } = React
@@ -38,6 +38,7 @@ export const ProductDescription = ({
   const [success, setSuccess] = useState(false)
   const { loading: checkoutLoading } = useCheckout()
   const extraProductText = siteSettings?.product?.textRaw
+  console.log(siteSettings?.product)
   const { klaviyoFormID, title } = product
 
   const [variants] = unwindEdges(product?.sourceData?.variants)
@@ -81,8 +82,13 @@ export const ProductDescription = ({
         <Afterpay price={currentVariant.priceV2} />
 
         <ButtonContainer>
-          <Button
+          <BuyButton
             onClick={handleClick}
+            borderWidth="3px"
+            borderColor="offset"
+            height="45px"
+            padding="0 3"
+            fontSize={4}
             disabled={
               checkoutLoading ||
               !Boolean(currentVariant) ||
@@ -90,7 +96,7 @@ export const ProductDescription = ({
             }
           >
             {buttonText}
-          </Button>
+          </BuyButton>
           <SuccessMessage visible={success} />
         </ButtonContainer>
         {klaviyoFormID ? <KlaviyoForm formId={klaviyoFormID} /> : null}

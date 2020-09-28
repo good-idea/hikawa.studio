@@ -86,6 +86,7 @@ export const defaultTheme: DefaultTheme = {
     highlight: '#64daca',
     offset: 'rgb(212, 239, 133)',
     offsetLight: 'rgba(212, 239, 133, 0.3)',
+    yellow: 'rgb(248, 255, 81)',
     pink: 'rgb(244, 4, 115)',
     mint: 'rgba(193,239,188,1)',
     mintLight: 'rgba(193,239,188,0.3)',

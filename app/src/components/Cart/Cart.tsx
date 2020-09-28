@@ -2,7 +2,6 @@ import * as React from 'react'
 import { unwindEdges } from '@good-idea/unwind-edges'
 import styled from '@xstyled/styled-components'
 import { Tote } from './Tote'
-import { Button } from '../Button'
 import { useCheckout } from '../../providers'
 
 const CartButton = styled.button`

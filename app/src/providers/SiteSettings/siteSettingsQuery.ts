@@ -21,7 +21,6 @@ export const siteSettingsQuery = gql`
       }
       announcement {
         enabled
-        textRaw
         announcements {
           bodyRaw
           cta {
@@ -98,7 +97,9 @@ export const siteSettingsQuery = gql`
           ...RichImageFragment
         }
       }
-
+      product {
+        textRaw
+      }
       navigation {
         header {
           links {

@@ -35,6 +35,7 @@ declare module 'styled-components' {
 
     colors: {
       red: string
+      yellow: string
       middleGray: string
       darkGray: string
       highlight: string

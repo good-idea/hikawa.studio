@@ -1,5 +1,6 @@
 import styled, { css } from '@xstyled/styled-components'
 import { RgbaColor } from '../../types'
+import { Button } from '../../components/Button'
 
 /**
  * Main Product view
@@ -144,6 +145,19 @@ export const ButtonContainer = styled.div`
       }
     }
   `}
+`
+
+export const BuyButton = styled(Button)`
+  border-width: 3px;
+  border-color: offset;
+  height: 45px;
+  padding: 0 3;
+  font-size: 4;
+
+  &:hover {
+    background-color: yellow;
+    border-color: yellow;
+  }
 `
 
 export const VariantWrapper = styled.div`

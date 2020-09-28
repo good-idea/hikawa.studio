@@ -4,8 +4,12 @@ import { useCheckout } from '../../providers'
 
 const { useState, useEffect } = React
 
-const ShowCartButton = styled.button`
-  ${({ theme }) => css`
+interface WithVisible {
+  visible: boolean
+}
+
+const ShowCartButton = styled.button<WithVisible>`
+  ${({ theme, visible }) => css`
     margin-left: 3;
     font-size: 5;
     font-weight: 5;
@@ -14,6 +18,8 @@ const ShowCartButton = styled.button`
     position: relative;
     text-transform: initial;
     border: none;
+    opacity: ${visible ? 1 : 0};
+    pointer-events: ${visible ? 'inherit' : 'none'};
 
     &:hover {
       box-shadow: none;
@@ -31,7 +37,7 @@ interface PriceMessageProps {
 }
 
 const PriceMessage = styled.span<PriceMessageProps>`
-  ${({ visible, shift, theme }) => css`
+  ${({ shift, theme }) => css`
     position: absolute;
     left: 0;
     top: 0;
@@ -40,7 +46,6 @@ const PriceMessage = styled.span<PriceMessageProps>`
     display: flex;
     align-items: center;
 
-    opacity: ${visible ? 1 : 0};
     transition: 0.4s;
     transform: translateY(
       ${shift === 'down' ? '-15px' : shift === 'up' ? '15px' : '0'}
@@ -71,7 +76,7 @@ export const SuccessMessage = ({ visible }: SuccessMessageProps) => {
     return () => clearTimeout(timeout)
   }, [visible])
   return (
-    <ShowCartButton onClick={openCart}>
+    <ShowCartButton visible={visible} onClick={openCart}>
       <PriceMessage
         visible={visible && !showCheckoutText}
         shift={
