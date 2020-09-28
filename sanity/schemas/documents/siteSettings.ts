@@ -264,25 +264,6 @@ export const announcementBanner = {
       of: [{ type: 'announcementText' }],
     },
     {
-      name: 'text',
-      title: 'Text',
-      type: 'array',
-      of: [
-        {
-          type: 'block',
-          styles: [],
-          lists: [],
-          marks: {
-            decorators: [
-              { title: 'Strong', value: 'strong' },
-              { title: 'Emphasis', value: 'em' },
-            ],
-          },
-        },
-      ],
-    },
-
-    {
       title: 'Background Color',
       name: 'backgroundColor',
       type: 'color',
