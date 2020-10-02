@@ -35,6 +35,7 @@ export const shopPageQuery = /* GraphQL */ gql`
           title
           handle
           sourceData {
+            tags
             images {
               edges {
                 node {

@@ -79,6 +79,7 @@ export const CollectionBlock = ({
   const hiddenProducts = definitely(collection.products).filter((p) =>
     p?.sourceData?.tags?.includes('hidden'),
   )
+
   if (hiddenProducts.length) {
     console.log({ hiddenProducts })
   }
