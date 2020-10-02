@@ -73,7 +73,16 @@ export const CollectionBlock = ({
   collection,
   isActive,
 }: CollectionBlockProps) => {
-  const products = definitely(collection.products)
+  const products = definitely(collection.products).filter(
+    (p) => !p?.sourceData?.tags?.includes('hidden'),
+  )
+  const hiddenProducts = definitely(collection.products).filter((p) =>
+    p?.sourceData?.tags?.includes('hidden'),
+  )
+  if (hiddenProducts.length) {
+    console.log({ hiddenProducts })
+  }
+
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -88,6 +97,7 @@ export const CollectionBlock = ({
   }, [isActive, containerRef.current])
 
   if (!products.length) return null
+
   return (
     <Wrapper ref={containerRef}>
       <Column width="wide">
