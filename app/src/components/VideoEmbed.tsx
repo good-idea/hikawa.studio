@@ -38,7 +38,7 @@ interface VideoProps {
 }
 
 export const VideoEmbed = ({ video }: VideoProps) => {
-  const { service, videoId } = video
+  const { service, autoplay, videoId } = video
   if (!service || !videoId) return null
   const videoUrl = getVideoUrl(service, videoId)
   return (
@@ -46,11 +46,22 @@ export const VideoEmbed = ({ video }: VideoProps) => {
       <VideoPadding />
       <ReactPlayer
         url={videoUrl}
-        muted
+        muted={Boolean(autoplay)}
+        playing={Boolean(autoplay)}
+        playsinline
         volume={0}
         height="100%"
         width="100%"
-        playing
+        controls={true}
+        config={{
+          vimeo: {
+            playerOptions: {
+              autoplay: Boolean(autoplay),
+              muted: Boolean(autoplay),
+              controls: true,
+            },
+          },
+        }}
       />
     </VideoWrapper>
   )
