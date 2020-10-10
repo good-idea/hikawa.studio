@@ -9,7 +9,7 @@ import { Cart } from '../Cart'
 import { Logo } from '../Logo'
 import { useSiteSettings } from '../../providers'
 
-const { useState } = React
+const { useState, useEffect } = React
 
 const MenuWrapper = styled.div`
   ${({ theme }) => css`
@@ -190,6 +190,7 @@ export const NavMenu = () => {
   const [open, setOpen] = useState(false)
   const closeMenu = () => setOpen(false)
   const toggleMenu = () => setOpen(!open)
+
   const headerLinks = definitely(siteSettings?.navigation?.header?.links)
   return (
     <Nav>

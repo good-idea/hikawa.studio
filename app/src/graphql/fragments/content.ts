@@ -8,18 +8,6 @@ export const seoFragment = gql`
   }
 `
 
-export const heroFragment = gql`
-  fragment HeroFragment on Hero {
-    _key
-    _type
-    images {
-      _key
-      ...RichImageFragment
-    }
-  }
-  ${richImageFragment}
-`
-
 export const urlLinkFragment = gql`
   fragment UrlLinkFragment on UrlLink {
     _key
@@ -87,6 +75,79 @@ export const pageLinkFragment = gql`
     }
   }
   ${shopifySourceImageFragment}
+`
+
+export const ctaFragment = gql`
+  fragment CTAFragment on Cta {
+    _key
+    _type
+    label
+    link {
+      ... on Shop {
+        _type
+        title
+      }
+      ... on Page {
+        title
+        _type
+        slug {
+          current
+        }
+      }
+      ... on ShopifyProduct {
+        _id
+        _type
+        shopifyId
+        handle
+        title
+        sourceData {
+          images {
+            edges {
+              node {
+                ...ShopifySourceImageFragment
+              }
+            }
+          }
+        }
+      }
+      ... on ShopifyCollection {
+        _id
+        _type
+        shopifyId
+        handle
+        title
+        sourceData {
+          image {
+            ...ShopifySourceImageFragment
+          }
+        }
+      }
+      ... on UrlLink {
+        _type
+        label
+        url
+      }
+    }
+  }
+`
+
+export const heroFragment = gql`
+  fragment HeroFragment on Hero {
+    _key
+    _type
+    heroSlides {
+      _key
+      images {
+        ...RichImageFragment
+      }
+      descriptionRaw
+      cta {
+        ...CTAFragment
+      }
+    }
+  }
+  ${ctaFragment}
+  ${richImageFragment}
 `
 
 export const richTextFragment = gql`

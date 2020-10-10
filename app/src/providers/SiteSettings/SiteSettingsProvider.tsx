@@ -32,8 +32,7 @@ export const SiteSettingsProvider = ({ children }: SiteSettingsProps) => {
   )
 
   if (error) {
-    console.error(error)
-    throw new Error('!')
+    throw error
   }
   const siteSettings = data?.SiteSettings
 

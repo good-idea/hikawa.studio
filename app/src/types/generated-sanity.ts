@@ -172,7 +172,18 @@ export interface Hero {
   __typename: 'Hero'
   _key?: Maybe<Scalars['String']>
   _type?: Maybe<Scalars['String']>
+  heroSlides?: Maybe<Array<Maybe<HeroSlide>>>
   images?: Maybe<Array<Maybe<RichImage>>>
+}
+
+export interface HeroSlide {
+  __typename: 'HeroSlide'
+  _key?: Maybe<Scalars['String']>
+  _type?: Maybe<Scalars['String']>
+  images?: Maybe<Array<Maybe<RichImage>>>
+  descriptionRaw?: Maybe<Scalars['JSON']>
+  cta?: Maybe<Cta>
+  ctaPosition?: Maybe<Scalars['String']>
 }
 
 export interface RichImage {
@@ -300,65 +311,14 @@ export interface SanityImageCrop {
   right?: Maybe<Scalars['Float']>
 }
 
-export interface Seo {
-  __typename: 'Seo'
+export interface Cta {
+  __typename: 'Cta'
   _key?: Maybe<Scalars['String']>
   _type?: Maybe<Scalars['String']>
-  /** Title for the browser window */
-  name?: Maybe<Scalars['String']>
-  /** title for search results (will fall back to Page title) */
-  metaTitle?: Maybe<Scalars['String']>
-  /** This is the description that will appear underneath the preview link when shared in Facebook. It should be less than 200 characters */
-  description?: Maybe<Scalars['String']>
-  image?: Maybe<Image>
-  /** Comma-separated SEO keywords */
-  keywords?: Maybe<Scalars['String']>
-  /** This text will be used on screen readers when this page is linked to throughout the site. This should be descriptive: "Learn about our company" is better than "About". These link labels also help with SEO. */
-  linkLabel?: Maybe<Scalars['String']>
-}
-
-export interface Image {
-  __typename: 'Image'
-  _key?: Maybe<Scalars['String']>
-  _type?: Maybe<Scalars['String']>
-  asset?: Maybe<SanityImageAsset>
-  hotspot?: Maybe<SanityImageHotspot>
-  crop?: Maybe<SanityImageCrop>
-}
-
-export interface Homepage extends Document {
-  __typename: 'Homepage'
-  /** Document ID */
-  _id?: Maybe<Scalars['ID']>
-  /** Document type */
-  _type?: Maybe<Scalars['String']>
-  /** Date the document was created */
-  _createdAt?: Maybe<Scalars['DateTime']>
-  /** Date the document was last modified */
-  _updatedAt?: Maybe<Scalars['DateTime']>
-  /** Current document revision */
-  _rev?: Maybe<Scalars['String']>
-  _key?: Maybe<Scalars['String']>
-  hero?: Maybe<Hero>
-  content?: Maybe<Array<Maybe<PageLinkOrRichText>>>
-  seo?: Maybe<Seo>
-}
-
-export type PageLinkOrRichText = PageLink | RichText
-
-export interface PageLink {
-  __typename: 'PageLink'
-  _key?: Maybe<Scalars['String']>
-  _type?: Maybe<Scalars['String']>
+  label?: Maybe<Scalars['String']>
   link?: Maybe<
     Array<Maybe<PageOrShopOrShopifyCollectionOrShopifyProductOrUrlLink>>
   >
-  /** (optional) If empty, the title of the linked collection, product, or page will be used. */
-  label?: Maybe<Scalars['String']>
-  images?: Maybe<Array<Maybe<RichImage>>>
-  textPreviewRaw?: Maybe<Scalars['JSON']>
-  textOnTop?: Maybe<Scalars['Boolean']>
-  fullWidth?: Maybe<Scalars['Boolean']>
 }
 
 export type PageOrShopOrShopifyCollectionOrShopifyProductOrUrlLink =
@@ -652,6 +612,47 @@ export interface ShopifyProductVariant {
   sourceData?: Maybe<ShopifySourceProductVariant>
 }
 
+export interface PageLink {
+  __typename: 'PageLink'
+  _key?: Maybe<Scalars['String']>
+  _type?: Maybe<Scalars['String']>
+  link?: Maybe<
+    Array<Maybe<PageOrShopOrShopifyCollectionOrShopifyProductOrUrlLink>>
+  >
+  /** (optional) If empty, the title of the linked collection, product, or page will be used. */
+  label?: Maybe<Scalars['String']>
+  images?: Maybe<Array<Maybe<RichImage>>>
+  textPreviewRaw?: Maybe<Scalars['JSON']>
+  textOnTop?: Maybe<Scalars['Boolean']>
+  fullWidth?: Maybe<Scalars['Boolean']>
+}
+
+export interface Seo {
+  __typename: 'Seo'
+  _key?: Maybe<Scalars['String']>
+  _type?: Maybe<Scalars['String']>
+  /** Title for the browser window */
+  name?: Maybe<Scalars['String']>
+  /** title for search results (will fall back to Page title) */
+  metaTitle?: Maybe<Scalars['String']>
+  /** This is the description that will appear underneath the preview link when shared in Facebook. It should be less than 200 characters */
+  description?: Maybe<Scalars['String']>
+  image?: Maybe<Image>
+  /** Comma-separated SEO keywords */
+  keywords?: Maybe<Scalars['String']>
+  /** This text will be used on screen readers when this page is linked to throughout the site. This should be descriptive: "Learn about our company" is better than "About". These link labels also help with SEO. */
+  linkLabel?: Maybe<Scalars['String']>
+}
+
+export interface Image {
+  __typename: 'Image'
+  _key?: Maybe<Scalars['String']>
+  _type?: Maybe<Scalars['String']>
+  asset?: Maybe<SanityImageAsset>
+  hotspot?: Maybe<SanityImageHotspot>
+  crop?: Maybe<SanityImageCrop>
+}
+
 export interface Color {
   __typename: 'Color'
   _key?: Maybe<Scalars['String']>
@@ -703,6 +704,26 @@ export interface UrlLink {
   url?: Maybe<Scalars['String']>
 }
 
+export interface Homepage extends Document {
+  __typename: 'Homepage'
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>
+  /** Document type */
+  _type?: Maybe<Scalars['String']>
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>
+  _key?: Maybe<Scalars['String']>
+  hero?: Maybe<Hero>
+  content?: Maybe<Array<Maybe<PageLinkOrRichText>>>
+  seo?: Maybe<Seo>
+}
+
+export type PageLinkOrRichText = PageLink | RichText
+
 export interface RichText {
   __typename: 'RichText'
   _key?: Maybe<Scalars['String']>
@@ -752,16 +773,6 @@ export interface AnnouncementText {
   _type?: Maybe<Scalars['String']>
   bodyRaw?: Maybe<Scalars['JSON']>
   cta?: Maybe<Cta>
-}
-
-export interface Cta {
-  __typename: 'Cta'
-  _key?: Maybe<Scalars['String']>
-  _type?: Maybe<Scalars['String']>
-  label?: Maybe<Scalars['String']>
-  link?: Maybe<
-    Array<Maybe<PageOrShopOrShopifyCollectionOrShopifyProductOrUrlLink>>
-  >
 }
 
 export interface NavigationSettings {
@@ -1923,6 +1934,13 @@ export type SlugFilter = {
   current?: Maybe<StringFilter>
 }
 
+export type HeroSlideFilter = {
+  _key?: Maybe<StringFilter>
+  _type?: Maybe<StringFilter>
+  cta?: Maybe<CtaFilter>
+  ctaPosition?: Maybe<StringFilter>
+}
+
 export type UrlLinkFilter = {
   _key?: Maybe<StringFilter>
   _type?: Maybe<StringFilter>
@@ -2080,6 +2098,13 @@ export type SlugSorting = {
   current?: Maybe<SortOrder>
 }
 
+export type HeroSlideSorting = {
+  _key?: Maybe<SortOrder>
+  _type?: Maybe<SortOrder>
+  cta?: Maybe<CtaSorting>
+  ctaPosition?: Maybe<SortOrder>
+}
+
 export type UrlLinkSorting = {
   _key?: Maybe<SortOrder>
   _type?: Maybe<SortOrder>
@@ -2220,9 +2245,6 @@ const result: IntrospectionResultData = {
             name: 'SanityImageAsset',
           },
           {
-            name: 'Homepage',
-          },
-          {
             name: 'Shop',
           },
           {
@@ -2232,22 +2254,13 @@ const result: IntrospectionResultData = {
             name: 'ShopifyProduct',
           },
           {
+            name: 'Homepage',
+          },
+          {
             name: 'SiteSettings',
           },
           {
             name: 'SanityFileAsset',
-          },
-        ],
-      },
-      {
-        kind: 'UNION',
-        name: 'PageLinkOrRichText',
-        possibleTypes: [
-          {
-            name: 'PageLink',
-          },
-          {
-            name: 'RichText',
           },
         ],
       },
@@ -2269,6 +2282,18 @@ const result: IntrospectionResultData = {
           },
           {
             name: 'UrlLink',
+          },
+        ],
+      },
+      {
+        kind: 'UNION',
+        name: 'PageLinkOrRichText',
+        possibleTypes: [
+          {
+            name: 'PageLink',
+          },
+          {
+            name: 'RichText',
           },
         ],
       },

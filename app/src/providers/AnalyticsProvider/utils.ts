@@ -7,6 +7,7 @@ import {
   Maybe,
 } from '../../types'
 import { SelectedProduct, EcommerceObject } from './types'
+import { assertExists } from '../../utils'
 
 const getVariantSourceData = (
   variant: ShopifyProductVariant | ShopifySourceProductVariant | Variant,
@@ -50,11 +51,6 @@ const getProductSourceData = (
 interface ProductExtras {
   list?: string
   position?: number
-}
-
-const assertExists = <T>(item: Maybe<T> | undefined, label: string): T => {
-  if (!item) throw new Error(`Property "${label}" was not supplied`)
-  return item
 }
 
 export const parseProduct = (
