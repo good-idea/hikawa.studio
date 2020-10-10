@@ -1,12 +1,10 @@
-import { FaParagraph } from 'react-icons/fa'
-
 export const homepage = {
   title: 'Homepage',
   name: 'homepage',
   type: 'document',
   fields: [
     {
-      title: 'Banner',
+      title: 'Hero',
       name: 'hero',
       type: 'hero',
     },
