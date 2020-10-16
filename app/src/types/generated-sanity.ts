@@ -183,7 +183,6 @@ export interface HeroSlide {
   images?: Maybe<Array<Maybe<RichImage>>>
   descriptionRaw?: Maybe<Scalars['JSON']>
   cta?: Maybe<Cta>
-  ctaPosition?: Maybe<Scalars['String']>
 }
 
 export interface RichImage {
@@ -1938,7 +1937,6 @@ export type HeroSlideFilter = {
   _key?: Maybe<StringFilter>
   _type?: Maybe<StringFilter>
   cta?: Maybe<CtaFilter>
-  ctaPosition?: Maybe<StringFilter>
 }
 
 export type UrlLinkFilter = {
@@ -2102,7 +2100,6 @@ export type HeroSlideSorting = {
   _key?: Maybe<SortOrder>
   _type?: Maybe<SortOrder>
   cta?: Maybe<CtaSorting>
-  ctaPosition?: Maybe<SortOrder>
 }
 
 export type UrlLinkSorting = {

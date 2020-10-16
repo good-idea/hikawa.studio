@@ -81,7 +81,7 @@ export const Hero = ({ hero }: Props) => {
     <HeroOuter>
       <HeroWrapper>
         <HeroRatio>
-          {definitely(hero.heroSlides).map((heroSlide, index) => (
+          {heroSlides.map((heroSlide, index) => (
             <HeroSlide
               heroSlide={heroSlide}
               currentSlide={currentSlide}
@@ -89,19 +89,25 @@ export const Hero = ({ hero }: Props) => {
               key={heroSlide._key || 'somz-key'}
             />
           ))}
-          <SlideButton onClick={prevSlide} position="previous" />
-          <SlideButton onClick={nextSlide} position="next" />
+          {heroSlides.length > 1 ? (
+            <>
+              <SlideButton onClick={prevSlide} position="previous" />
+              <SlideButton onClick={nextSlide} position="next" />
+            </>
+          ) : null}
         </HeroRatio>
       </HeroWrapper>
-      <SlideDots>
-        {definitely(hero.heroSlides).map((heroSlide, index) => (
-          <SlideDot
-            active={currentSlide === index}
-            onClick={goToSlide(index)}
-            key={heroSlide?._key || 'some-key'}
-          />
-        ))}
-      </SlideDots>
+      {heroSlides.length > 1 ? (
+        <SlideDots>
+          {heroSlides.map((heroSlide, index) => (
+            <SlideDot
+              active={currentSlide === index}
+              onClick={goToSlide(index)}
+              key={heroSlide?._key || 'some-key'}
+            />
+          ))}
+        </SlideDots>
+      ) : null}
       {hasCtas ? (
         <HeroCTAs>
           {definitely(hero.heroSlides).map((heroSlide, index) => (

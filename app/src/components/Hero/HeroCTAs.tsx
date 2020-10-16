@@ -59,9 +59,8 @@ const emptyLink = { href: undefined, as: undefined }
 export const HeroCTA = ({ heroSlide, active }: HeroCTAProps) => {
   const { cta, descriptionRaw } = heroSlide
   const link = definitely(cta?.link)[0]
-
   const { href, as } = link ? getLinkUrl(link) : emptyLink
-  const label = getLinkLabel(link)
+  const label = link ? getLinkLabel(link) : undefined
   return (
     <HeroCTAWrapper visible={active}>
       <TextInner>

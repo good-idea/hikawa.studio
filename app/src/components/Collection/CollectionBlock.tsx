@@ -76,14 +76,6 @@ export const CollectionBlock = ({
   const products = definitely(collection.products).filter(
     (p) => !p?.sourceData?.tags?.includes('hidden'),
   )
-  const hiddenProducts = definitely(collection.products).filter((p) =>
-    p?.sourceData?.tags?.includes('hidden'),
-  )
-
-  if (hiddenProducts.length) {
-    console.log({ hiddenProducts })
-  }
-
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {

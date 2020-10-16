@@ -140,6 +140,7 @@ export const ctaFragment = gql`
       }
     }
   }
+  ${shopifySourceImageFragment}
 `
 
 export const heroFragment = gql`
