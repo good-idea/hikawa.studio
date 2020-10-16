@@ -22,7 +22,7 @@ if (!SHOPIFY_STOREFRONT_TOKEN)
   throw new Error('You must provide a SHOPIFY_STOREFRONT_TOKEN')
 
 const App = (props: AppProps) => {
-  const { Component, pageProps, router } = props
+  const { Component, pageProps } = props
   const { apolloCache } = pageProps
   const apolloClient = new ApolloClient({
     uri: SANITY_GRAPHQL_URL,

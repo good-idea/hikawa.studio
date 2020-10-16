@@ -81,6 +81,7 @@ export const richImageFragment = gql`
   fragment RichImageFragment on RichImage {
     __typename
     _type
+    _key
     altText
     asset {
       ...SanityImageAssetFragment
