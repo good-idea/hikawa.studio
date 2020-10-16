@@ -6,6 +6,7 @@ import {
   colorFragment,
   richImageFragment,
   seoFragment,
+  ctaFragment,
 } from '../../graphql'
 
 export const siteSettingsQuery = gql`
@@ -24,53 +25,7 @@ export const siteSettingsQuery = gql`
         announcements {
           bodyRaw
           cta {
-            label
-            link {
-              ... on Shop {
-                _type
-                title
-              }
-              ... on Page {
-                title
-                _type
-                slug {
-                  current
-                }
-              }
-              ... on ShopifyProduct {
-                _id
-                _type
-                shopifyId
-                handle
-                title
-                sourceData {
-                  images {
-                    edges {
-                      node {
-                        ...ShopifySourceImageFragment
-                      }
-                    }
-                  }
-                }
-              }
-              ... on ShopifyCollection {
-                _id
-                _type
-                shopifyId
-                handle
-                title
-                sourceData {
-                  image {
-                    ...ShopifySourceImageFragment
-                  }
-                }
-              }
-              ... on UrlLink {
-                _type
-                label
-                url
-              }
-            }
+            ...CTAFragment
           }
         }
         backgroundColor {
@@ -129,6 +84,7 @@ export const siteSettingsQuery = gql`
   ${colorFragment}
   ${pageLinkFragment}
   ${seoFragment}
+  ${ctaFragment}
   ${urlLinkFragment}
 `
 

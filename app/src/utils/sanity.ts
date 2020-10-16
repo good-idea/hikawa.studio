@@ -3,7 +3,7 @@ import {
   PageOrShopOrShopifyCollectionOrShopifyProductOrUrlLink,
   Image,
 } from '../types'
-import { assert } from './parsing'
+import { assertExists } from './parsing'
 
 const defaultWidths = [1800, 1400, 1200, 1000, 800, 600, 300, 100]
 
@@ -44,7 +44,10 @@ export const getLinkUrl = (
     case 'Shop':
       return { href: '/shop' }
     case 'Page':
-      return { href: '/[pageSlug]', as: `/${assert(link?.slug?.current)}` }
+      return {
+        href: '/[pageSlug]',
+        as: `/${assertExists(link?.slug?.current, 'Page link slug')}`,
+      }
     default:
       return { href: `${link.url}`, external: true }
   }
@@ -55,14 +58,14 @@ export const getLinkLabel = (
 ): string => {
   switch (link.__typename) {
     case 'ShopifyProduct':
-      return assert(link.title)
+      return assertExists(link.title, 'Link Title')
     case 'ShopifyCollection':
-      return assert(link.title)
+      return assertExists(link.title, 'Link Title')
     case 'Shop':
       return 'Shop'
     case 'Page':
-      return assert(link.title)
+      return assertExists(link.title, 'Link Title')
     default:
-      return assert(link.label)
+      return assertExists(link.label, 'Link Title')
   }
 }

@@ -35,16 +35,21 @@ export const parsePrice = (price: string | number): string => {
   return cents && /[1-9]/.test(cents) ? `$${dollars}.${cents}` : `$${dollars}`
 }
 
-export const assert = <T>(arg?: T | null): T => {
-  if (arg === undefined || arg === null) {
-    throw new Error('Property does not exist')
-  }
-  return arg
+export const assertExists = <T>(
+  item: Maybe<T> | undefined,
+  label: string,
+): T => {
+  if (!item) throw new Error(`Property "${label}" was not supplied`)
+  return item
 }
 
 export const isValidHero = (hero?: Hero | null): boolean => {
   if (!hero) return false
-  return Boolean(hero?.images && hero.images.length)
+  return Boolean(
+    hero?.heroSlides?.length &&
+      hero?.heroSlides[0] &&
+      hero?.heroSlides[0].images?.length,
+  )
 }
 
 export function arrayify<T>(i: T | T[]): T[] {
