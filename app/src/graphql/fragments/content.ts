@@ -1,11 +1,22 @@
 import gql from 'graphql-tag'
-import { shopifySourceImageFragment, richImageFragment } from './media'
+import {
+  sanityImageFragment,
+  shopifySourceImageFragment,
+  richImageFragment,
+} from './media'
 
 export const seoFragment = gql`
   fragment SEOFragment on Seo {
     name
     description
+    metaTitle
+    image {
+      ...SanityImageFragment
+    }
+    keywords
+    linkLabel
   }
+  ${sanityImageFragment}
 `
 
 export const urlLinkFragment = gql`
