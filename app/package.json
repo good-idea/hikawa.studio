@@ -15,8 +15,9 @@
 		"generate-types": "graphql-codegen -r dotenv/config --config codegen.yml && prettier ./src/types/**/* --write"
 	},
 	"dependencies": {
-		"@apollo/client": "^3.1.4",
-		"@good-idea/unwind-edges": "^1.4.0",
+		"@apollo/client": "^3.2.5",
+		"@good-idea/unwind-edges": "^1.5.2",
+		"@next/bundle-analyzer": "^10.0.0",
 		"@sane-shopify/server": "^0.17.6",
 		"@sanity/block-content-to-react": "^2.0.7",
 		"@sanity/client": "^1.150.1",
@@ -43,7 +44,7 @@
 		"js-cookie": "^2.2.1",
 		"md5": "^2.3.0",
 		"merge-deep": "^3.0.2",
-		"next": "^9.5.3",
+		"next": "^10.0.0",
 		"ramda": "^0.27.1",
 		"react": "^16.13.1",
 		"react-adopt": "^0.6.0",
