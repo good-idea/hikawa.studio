@@ -1,9 +1,12 @@
 import * as React from 'react'
+import { ApolloClient, NormalizedCacheObject } from '@apollo/client'
+import { getDataFromTree } from '@apollo/client/react/ssr'
 import { AllProviders } from '../providers'
 import { createApolloClient } from '../services'
 
 interface AppProps {
   children: React.ReactNode
+  ssrClient: ApolloClient<any>
 }
 
 const SANITY_GRAPHQL_URL = process.env.SANITY_GRAPHQL_URL
@@ -27,7 +30,7 @@ export const shopifyApolloClient = createApolloClient({
   },
 })
 
-export const App = ({ children }: AppProps) => {
+const StaticApp = ({ children, ssrClient }: AppProps) => {
   return (
     <AllProviders
       shopifyApolloClient={shopifyApolloClient}
@@ -36,4 +39,27 @@ export const App = ({ children }: AppProps) => {
       {children}
     </AllProviders>
   )
+}
+
+interface SSRProps {
+  apolloCache: NormalizedCacheObject
+}
+
+type ReactFnComponent = (props: any) => JSX.Element | null
+
+export const getApolloCache = async (
+  View: React.ComponentType | ReactFnComponent,
+  viewProps: Record<string, any> = {},
+): Promise<SSRProps> => {
+  await ssrClient.cache.reset()
+
+  const RenderedApp = (
+    <StaticApp ssrClient={ssrClient}>
+      <View {...viewProps} />
+    </StaticApp>
+  )
+
+  await getDataFromTree(RenderedApp)
+  const apolloCache = ssrClient.extract()
+  return { apolloCache }
 }

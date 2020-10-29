@@ -1,10 +1,10 @@
 import * as React from 'react'
 import gql from 'graphql-tag'
-import { getDataFromTree } from '@apollo/client/react/ssr'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { Page as PageType } from '../src/types'
 import { getParam, definitely } from '../src/utils'
-import { ssrClient, App, PageView } from '../src/views'
+import { ssrClient, getApolloCache } from '../src/utils/ssr'
+import { PageView } from '../src/views'
 
 interface PageProps {
   slug: string
@@ -18,14 +18,8 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   const slug = getParam(ctx.params?.pageSlug)
 
   if (!slug) throw new Error('No pageSlug provided')
+  const { apolloCache } = await getApolloCache(PageView, { key: slug, slug })
 
-  const StaticApp = (
-    <App>
-      <PageView key={slug} slug={slug} />
-    </App>
-  )
-  await getDataFromTree(StaticApp)
-  const apolloCache = ssrClient.extract()
   return { props: { apolloCache, slug }, revalidate: 60 }
 }
 
