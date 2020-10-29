@@ -1,25 +1,14 @@
 import * as React from 'react'
 import { GetStaticProps } from 'next'
-import { getDataFromTree } from '@apollo/client/react/ssr'
-import { ssrClient, App, ShopView } from '../../src/views'
+import { ShopView } from '../../src/views'
+import { getApolloCache } from '../../src/utils/ssr'
 
 const Shop = () => {
   return <ShopView />
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  await ssrClient.cache.reset()
-
-  console.log(new Date())
-  const StaticApp = (
-    <App>
-      <ShopView />
-    </App>
-  )
-
-  await getDataFromTree(StaticApp)
-  const apolloCache = ssrClient.extract()
-
+  const { apolloCache } = await getApolloCache(ShopView)
   return { props: { apolloCache }, revalidate: 60 }
 }
 

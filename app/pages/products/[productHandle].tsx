@@ -5,7 +5,8 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import { ShopifyProduct } from '../../src/types'
 import { getParam, definitely } from '../../src/utils'
 import { Sentry } from '../../src/services/sentry'
-import { ssrClient, App, ProductView } from '../../src/views'
+import { ProductView } from '../../src/views'
+import { ssrClient, getApolloCache } from '../../src/utils/ssr'
 
 interface ProductProps {
   handle: string
@@ -16,27 +17,18 @@ const Product = ({ handle }: ProductProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-  try {
-    const { params } = ctx
+  const { params } = ctx
 
-    if (!params?.productHandle) {
-      throw new Error('No product handle was provided')
-    }
-    const handle = getParam(params.productHandle)
-    if (!handle) throw new Error('No product handle was provided')
-    const StaticApp = (
-      <App>
-        <ProductView key={handle} handle={handle} />
-      </App>
-    )
-
-    await getDataFromTree(StaticApp)
-    const apolloCache = ssrClient.extract()
-    return { props: { apolloCache, handle }, revalidate: 60 }
-  } catch (e) {
-    Sentry.captureException(e)
-    return { props: {}, revalidate: 1 }
+  if (!params?.productHandle) {
+    throw new Error('No product handle was provided')
   }
+  const handle = getParam(params.productHandle)
+  if (!handle) throw new Error('No product handle was provided')
+  const { apolloCache } = await getApolloCache(ProductView, {
+    key: handle,
+    handle,
+  })
+  return { props: { apolloCache, handle }, revalidate: 60 }
 }
 
 /**

@@ -1,10 +1,10 @@
 import * as React from 'react'
 import gql from 'graphql-tag'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { getDataFromTree } from '@apollo/client/react/ssr'
 import { ShopifyCollection } from '../../src/types'
-import { ssrClient, App, ShopView } from '../../src/views'
+import { ShopView } from '../../src/views'
 import { getParam, definitely } from '../../src/utils'
+import { ssrClient, getApolloCache } from '../../src/utils/ssr'
 
 interface ShopProps {
   activeCollectionHandle: string
@@ -28,14 +28,9 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   const handle = getParam(params?.collectionHandle)
   if (!handle) throw new Error('No collection handle was provided')
 
-  const StaticApp = (
-    <App>
-      <ShopView activeCollectionHandle={handle} />
-    </App>
-  )
-
-  await getDataFromTree(StaticApp)
-  const apolloCache = ssrClient.extract()
+  const { apolloCache } = await getApolloCache(ShopView, {
+    activeCollectionHandle: handle,
+  })
 
   return {
     props: { activeCollectionHandle: handle, apolloCache },
