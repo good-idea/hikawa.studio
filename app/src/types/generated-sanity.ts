@@ -173,7 +173,6 @@ export interface Hero {
   _key?: Maybe<Scalars['String']>
   _type?: Maybe<Scalars['String']>
   heroSlides?: Maybe<Array<Maybe<HeroSlide>>>
-  images?: Maybe<Array<Maybe<RichImage>>>
 }
 
 export interface HeroSlide {

@@ -8,6 +8,9 @@ const Shop = () => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
+  await ssrClient.cache.reset()
+
+  console.log(new Date())
   const StaticApp = (
     <App>
       <ShopView />
