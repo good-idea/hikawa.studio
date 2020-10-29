@@ -57,16 +57,5 @@ export const hero = {
       type: 'array',
       of: [{ type: 'heroSlide' }],
     },
-    {
-      title: 'Images (deprecated, use "slides" instead)',
-      name: 'images',
-      readOnly: true,
-      type: 'array',
-      of: [
-        {
-          type: 'richImage',
-        },
-      ],
-    },
   ],
 }
