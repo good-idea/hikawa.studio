@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { unwindEdges } from '@good-idea/unwind-edges'
 import { ApolloClient, useQuery } from '@apollo/client'
 import {
   ShopifyStorefrontCheckout,
@@ -21,6 +20,7 @@ import {
 import { AddLineItem } from './types'
 import {
   getCookie,
+  removeCookie,
   setCookie,
   VIEWER_CART_TOKEN,
   VIEWER_EMAIL,
@@ -111,13 +111,18 @@ export const CheckoutProvider = ({ client, children }: CheckoutProps) => {
 
   useEffect(() => {
     if (!currentCheckout) return
-    setCheckoutId(currentCheckout.id)
-    setCookie(VIEWER_CART_TOKEN, currentCheckout.id)
+    if (currentCheckout.completedAt) {
+      setCheckoutId(null)
+      removeCookie(VIEWER_CART_TOKEN)
+    } else {
+      setCheckoutId(currentCheckout.id)
+      setCookie(VIEWER_CART_TOKEN, currentCheckout.id)
+    }
   }, [currentCheckout])
 
   /* Update cookies when the cart is updated */
   useEffect(() => {
-    if (currentCheckout) {
+    if (currentCheckout && !currentCheckout.completedAt) {
       setCookie(VIEWER_CART_TOKEN, currentCheckout.id)
     }
   }, [currentCheckout])
