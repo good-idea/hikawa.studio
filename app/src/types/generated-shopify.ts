@@ -2,145 +2,46 @@ export type Maybe<T> = T | null
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K]
 }
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
+  { [SubKey in K]?: Maybe<T[SubKey]> }
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
+  { [SubKey in K]: Maybe<T[SubKey]> }
 
-export interface IntrospectionResultData {
-  __schema: {
-    types: {
-      kind: string
-      name: string
-      possibleTypes: {
-        name: string
-      }[]
-    }[]
+export interface PossibleTypesResultData {
+  possibleTypes: {
+    [key: string]: string[]
   }
 }
-const result: IntrospectionResultData = {
-  __schema: {
-    types: [
-      {
-        kind: 'INTERFACE',
-        name: 'DiscountApplication',
-        possibleTypes: [
-          {
-            name: 'AutomaticDiscountApplication',
-          },
-          {
-            name: 'DiscountCodeApplication',
-          },
-          {
-            name: 'ManualDiscountApplication',
-          },
-          {
-            name: 'ScriptDiscountApplication',
-          },
-        ],
-      },
-      {
-        kind: 'INTERFACE',
-        name: 'DisplayableError',
-        possibleTypes: [
-          {
-            name: 'CheckoutUserError',
-          },
-          {
-            name: 'CustomerUserError',
-          },
-          {
-            name: 'UserError',
-          },
-        ],
-      },
-      {
-        kind: 'INTERFACE',
-        name: 'HasMetafields',
-        possibleTypes: [
-          {
-            name: 'Product',
-          },
-          {
-            name: 'ProductVariant',
-          },
-        ],
-      },
-      {
-        kind: 'UNION',
-        name: 'MetafieldParentResource',
-        possibleTypes: [
-          {
-            name: 'Product',
-          },
-          {
-            name: 'ProductVariant',
-          },
-        ],
-      },
-      {
-        kind: 'INTERFACE',
-        name: 'Node',
-        possibleTypes: [
-          {
-            name: 'AppliedGiftCard',
-          },
-          {
-            name: 'Article',
-          },
-          {
-            name: 'Blog',
-          },
-          {
-            name: 'Checkout',
-          },
-          {
-            name: 'CheckoutLineItem',
-          },
-          {
-            name: 'Collection',
-          },
-          {
-            name: 'Comment',
-          },
-          {
-            name: 'MailingAddress',
-          },
-          {
-            name: 'Metafield',
-          },
-          {
-            name: 'Order',
-          },
-          {
-            name: 'Page',
-          },
-          {
-            name: 'Payment',
-          },
-          {
-            name: 'Product',
-          },
-          {
-            name: 'ProductOption',
-          },
-          {
-            name: 'ProductVariant',
-          },
-          {
-            name: 'ShopPolicy',
-          },
-        ],
-      },
-      {
-        kind: 'UNION',
-        name: 'PricingValue',
-        possibleTypes: [
-          {
-            name: 'MoneyV2',
-          },
-          {
-            name: 'PricingPercentageValue',
-          },
-        ],
-      },
+const result: PossibleTypesResultData = {
+  possibleTypes: {
+    DiscountApplication: [
+      'AutomaticDiscountApplication',
+      'DiscountCodeApplication',
+      'ManualDiscountApplication',
+      'ScriptDiscountApplication',
     ],
+    DisplayableError: ['CheckoutUserError', 'CustomerUserError', 'UserError'],
+    HasMetafields: ['Product', 'ProductVariant'],
+    MetafieldParentResource: ['Product', 'ProductVariant'],
+    Node: [
+      'AppliedGiftCard',
+      'Article',
+      'Blog',
+      'Checkout',
+      'CheckoutLineItem',
+      'Collection',
+      'Comment',
+      'MailingAddress',
+      'Metafield',
+      'Order',
+      'Page',
+      'Payment',
+      'Product',
+      'ProductOption',
+      'ProductVariant',
+      'ShopPolicy',
+    ],
+    PricingValue: ['MoneyV2', 'PricingPercentageValue'],
   },
 }
 export default result
@@ -288,6 +189,7 @@ export interface ShopifyStorefrontArticleAuthor {
   name: Scalars['String']
 }
 
+/** An auto-generated type for paginating through multiple Articles. */
 export interface ShopifyStorefrontArticleConnection {
   __typename: 'ArticleConnection'
   /** A list of edges. */
@@ -296,6 +198,7 @@ export interface ShopifyStorefrontArticleConnection {
   pageInfo: ShopifyStorefrontPageInfo
 }
 
+/** An auto-generated type which holds one Article and a cursor during pagination. */
 export interface ShopifyStorefrontArticleEdge {
   __typename: 'ArticleEdge'
   /** A cursor for use in pagination. */
@@ -407,6 +310,7 @@ export type ShopifyStorefrontBlogArticlesArgs = {
   query?: Maybe<Scalars['String']>
 }
 
+/** An auto-generated type for paginating through multiple Blogs. */
 export interface ShopifyStorefrontBlogConnection {
   __typename: 'BlogConnection'
   /** A list of edges. */
@@ -415,6 +319,7 @@ export interface ShopifyStorefrontBlogConnection {
   pageInfo: ShopifyStorefrontPageInfo
 }
 
+/** An auto-generated type which holds one Blog and a cursor during pagination. */
 export interface ShopifyStorefrontBlogEdge {
   __typename: 'BlogEdge'
   /** A cursor for use in pagination. */
@@ -1015,6 +920,7 @@ export interface ShopifyStorefrontCheckoutLineItem
   variant?: Maybe<ShopifyStorefrontProductVariant>
 }
 
+/** An auto-generated type for paginating through multiple CheckoutLineItems. */
 export interface ShopifyStorefrontCheckoutLineItemConnection {
   __typename: 'CheckoutLineItemConnection'
   /** A list of edges. */
@@ -1023,6 +929,7 @@ export interface ShopifyStorefrontCheckoutLineItemConnection {
   pageInfo: ShopifyStorefrontPageInfo
 }
 
+/** An auto-generated type which holds one CheckoutLineItem and a cursor during pagination. */
 export interface ShopifyStorefrontCheckoutLineItemEdge {
   __typename: 'CheckoutLineItemEdge'
   /** A cursor for use in pagination. */
@@ -1205,6 +1112,7 @@ export type ShopifyStorefrontCollectionProductsArgs = {
   sortKey?: Maybe<ShopifyStorefrontProductCollectionSortKeys>
 }
 
+/** An auto-generated type for paginating through multiple Collections. */
 export interface ShopifyStorefrontCollectionConnection {
   __typename: 'CollectionConnection'
   /** A list of edges. */
@@ -1213,6 +1121,7 @@ export interface ShopifyStorefrontCollectionConnection {
   pageInfo: ShopifyStorefrontPageInfo
 }
 
+/** An auto-generated type which holds one Collection and a cursor during pagination. */
 export interface ShopifyStorefrontCollectionEdge {
   __typename: 'CollectionEdge'
   /** A cursor for use in pagination. */
@@ -1264,6 +1173,7 @@ export interface ShopifyStorefrontCommentAuthor {
   name: Scalars['String']
 }
 
+/** An auto-generated type for paginating through multiple Comments. */
 export interface ShopifyStorefrontCommentConnection {
   __typename: 'CommentConnection'
   /** A list of edges. */
@@ -1272,6 +1182,7 @@ export interface ShopifyStorefrontCommentConnection {
   pageInfo: ShopifyStorefrontPageInfo
 }
 
+/** An auto-generated type which holds one Comment and a cursor during pagination. */
 export interface ShopifyStorefrontCommentEdge {
   __typename: 'CommentEdge'
   /** A cursor for use in pagination. */
@@ -1474,7 +1385,7 @@ export enum ShopifyStorefrontCountryCode {
   Va = 'VA',
   /** Honduras. */
   Hn = 'HN',
-  /** Hong Kong SAR China. */
+  /** Hong Kong SAR. */
   Hk = 'HK',
   /** Hungary. */
   Hu = 'HU',
@@ -1536,7 +1447,7 @@ export enum ShopifyStorefrontCountryCode {
   Lt = 'LT',
   /** Luxembourg. */
   Lu = 'LU',
-  /** Macao SAR China. */
+  /** Macao SAR. */
   Mo = 'MO',
   /** Madagascar. */
   Mg = 'MG',
@@ -2525,6 +2436,7 @@ export enum ShopifyStorefrontDiscountApplicationAllocationMethod {
   One = 'ONE',
 }
 
+/** An auto-generated type for paginating through multiple DiscountApplications. */
 export interface ShopifyStorefrontDiscountApplicationConnection {
   __typename: 'DiscountApplicationConnection'
   /** A list of edges. */
@@ -2533,6 +2445,7 @@ export interface ShopifyStorefrontDiscountApplicationConnection {
   pageInfo: ShopifyStorefrontPageInfo
 }
 
+/** An auto-generated type which holds one DiscountApplication and a cursor during pagination. */
 export interface ShopifyStorefrontDiscountApplicationEdge {
   __typename: 'DiscountApplicationEdge'
   /** A cursor for use in pagination. */
@@ -2639,6 +2552,7 @@ export interface ShopifyStorefrontFulfillmentLineItem {
   quantity: Scalars['Int']
 }
 
+/** An auto-generated type for paginating through multiple FulfillmentLineItems. */
 export interface ShopifyStorefrontFulfillmentLineItemConnection {
   __typename: 'FulfillmentLineItemConnection'
   /** A list of edges. */
@@ -2647,6 +2561,7 @@ export interface ShopifyStorefrontFulfillmentLineItemConnection {
   pageInfo: ShopifyStorefrontPageInfo
 }
 
+/** An auto-generated type which holds one FulfillmentLineItem and a cursor during pagination. */
 export interface ShopifyStorefrontFulfillmentLineItemEdge {
   __typename: 'FulfillmentLineItemEdge'
   /** A cursor for use in pagination. */
@@ -2765,6 +2680,7 @@ export type ShopifyStorefrontImageTransformedSrcArgs = {
   preferredContentType?: Maybe<ShopifyStorefrontImageContentType>
 }
 
+/** An auto-generated type for paginating through multiple Images. */
 export interface ShopifyStorefrontImageConnection {
   __typename: 'ImageConnection'
   /** A list of edges. */
@@ -2783,6 +2699,7 @@ export enum ShopifyStorefrontImageContentType {
   Webp = 'WEBP',
 }
 
+/** An auto-generated type which holds one Image and a cursor during pagination. */
 export interface ShopifyStorefrontImageEdge {
   __typename: 'ImageEdge'
   /** A cursor for use in pagination. */
@@ -2857,6 +2774,7 @@ export type ShopifyStorefrontMailingAddressFormattedArgs = {
   withCompany?: Maybe<Scalars['Boolean']>
 }
 
+/** An auto-generated type for paginating through multiple MailingAddresses. */
 export interface ShopifyStorefrontMailingAddressConnection {
   __typename: 'MailingAddressConnection'
   /** A list of edges. */
@@ -2865,6 +2783,7 @@ export interface ShopifyStorefrontMailingAddressConnection {
   pageInfo: ShopifyStorefrontPageInfo
 }
 
+/** An auto-generated type which holds one MailingAddress and a cursor during pagination. */
 export interface ShopifyStorefrontMailingAddressEdge {
   __typename: 'MailingAddressEdge'
   /** A cursor for use in pagination. */
@@ -2941,6 +2860,7 @@ export interface ShopifyStorefrontMetafield extends ShopifyStorefrontNode {
   valueType: ShopifyStorefrontMetafieldValueType
 }
 
+/** An auto-generated type for paginating through multiple Metafields. */
 export interface ShopifyStorefrontMetafieldConnection {
   __typename: 'MetafieldConnection'
   /** A list of edges. */
@@ -2949,6 +2869,7 @@ export interface ShopifyStorefrontMetafieldConnection {
   pageInfo: ShopifyStorefrontPageInfo
 }
 
+/** An auto-generated type which holds one Metafield and a cursor during pagination. */
 export interface ShopifyStorefrontMetafieldEdge {
   __typename: 'MetafieldEdge'
   /** A cursor for use in pagination. */
@@ -3532,6 +3453,7 @@ export type ShopifyStorefrontOrderSuccessfulFulfillmentsArgs = {
   first?: Maybe<Scalars['Int']>
 }
 
+/** An auto-generated type for paginating through multiple Orders. */
 export interface ShopifyStorefrontOrderConnection {
   __typename: 'OrderConnection'
   /** A list of edges. */
@@ -3540,6 +3462,7 @@ export interface ShopifyStorefrontOrderConnection {
   pageInfo: ShopifyStorefrontPageInfo
 }
 
+/** An auto-generated type which holds one Order and a cursor during pagination. */
 export interface ShopifyStorefrontOrderEdge {
   __typename: 'OrderEdge'
   /** A cursor for use in pagination. */
@@ -3563,6 +3486,7 @@ export interface ShopifyStorefrontOrderLineItem {
   variant?: Maybe<ShopifyStorefrontProductVariant>
 }
 
+/** An auto-generated type for paginating through multiple OrderLineItems. */
 export interface ShopifyStorefrontOrderLineItemConnection {
   __typename: 'OrderLineItemConnection'
   /** A list of edges. */
@@ -3571,6 +3495,7 @@ export interface ShopifyStorefrontOrderLineItemConnection {
   pageInfo: ShopifyStorefrontPageInfo
 }
 
+/** An auto-generated type which holds one OrderLineItem and a cursor during pagination. */
 export interface ShopifyStorefrontOrderLineItemEdge {
   __typename: 'OrderLineItemEdge'
   /** A cursor for use in pagination. */
@@ -3616,6 +3541,7 @@ export interface ShopifyStorefrontPage extends ShopifyStorefrontNode {
   url: Scalars['URL']
 }
 
+/** An auto-generated type for paginating through multiple Pages. */
 export interface ShopifyStorefrontPageConnection {
   __typename: 'PageConnection'
   /** A list of edges. */
@@ -3624,6 +3550,7 @@ export interface ShopifyStorefrontPageConnection {
   pageInfo: ShopifyStorefrontPageInfo
 }
 
+/** An auto-generated type which holds one Page and a cursor during pagination. */
 export interface ShopifyStorefrontPageEdge {
   __typename: 'PageEdge'
   /** A cursor for use in pagination. */
@@ -3754,7 +3681,7 @@ export interface ShopifyStorefrontProduct
    * A value of `null` indicates that the product is not published to the Online Store sales channel.
    */
   onlineStoreUrl?: Maybe<Scalars['URL']>
-  /** List of custom product options (maximum of 3 per product). */
+  /** List of product options. */
   options: Array<ShopifyStorefrontProductOption>
   /** List of price ranges in the presentment currencies for this shop. */
   presentmentPriceRanges: ShopifyStorefrontProductPriceRangeConnection
@@ -3771,7 +3698,12 @@ export interface ShopifyStorefrontProduct
   tags: Array<Scalars['String']>
   /** The product’s title. */
   title: Scalars['String']
-  /** The date and time when the product was last modified. */
+  /**
+   * The date and time when the product was last modified.
+   * A product's `updatedAt` value can change for different reasons. For example, if an order
+   * is placed for a product that has inventory tracking set up, then the inventory adjustment
+   * is counted as an update.
+   */
   updatedAt: Scalars['DateTime']
   /**
    * Find a product’s variant based on its selected options.
@@ -3910,6 +3842,7 @@ export enum ShopifyStorefrontProductCollectionSortKeys {
   Relevance = 'RELEVANCE',
 }
 
+/** An auto-generated type for paginating through multiple Products. */
 export interface ShopifyStorefrontProductConnection {
   __typename: 'ProductConnection'
   /** A list of edges. */
@@ -3918,6 +3851,7 @@ export interface ShopifyStorefrontProductConnection {
   pageInfo: ShopifyStorefrontPageInfo
 }
 
+/** An auto-generated type which holds one Product and a cursor during pagination. */
 export interface ShopifyStorefrontProductEdge {
   __typename: 'ProductEdge'
   /** A cursor for use in pagination. */
@@ -3943,9 +3877,8 @@ export enum ShopifyStorefrontProductImageSortKeys {
 }
 
 /**
- * Custom product property names like "Size", "Color", and "Material".
- * Products are based on permutations of these options.
- * A product may have a maximum of 3 options.
+ * Product property names like "Size", "Color", and "Material" that the customers can select.
+ * Variants are selected based on permutations of these options.
  * 255 characters limit each.
  */
 export interface ShopifyStorefrontProductOption extends ShopifyStorefrontNode {
@@ -3967,6 +3900,7 @@ export interface ShopifyStorefrontProductPriceRange {
   minVariantPrice: ShopifyStorefrontMoneyV2
 }
 
+/** An auto-generated type for paginating through multiple ProductPriceRanges. */
 export interface ShopifyStorefrontProductPriceRangeConnection {
   __typename: 'ProductPriceRangeConnection'
   /** A list of edges. */
@@ -3975,6 +3909,7 @@ export interface ShopifyStorefrontProductPriceRangeConnection {
   pageInfo: ShopifyStorefrontPageInfo
 }
 
+/** An auto-generated type which holds one ProductPriceRange and a cursor during pagination. */
 export interface ShopifyStorefrontProductPriceRangeEdge {
   __typename: 'ProductPriceRangeEdge'
   /** A cursor for use in pagination. */
@@ -4095,6 +4030,7 @@ export type ShopifyStorefrontProductVariantPresentmentPricesArgs = {
   reverse?: Maybe<Scalars['Boolean']>
 }
 
+/** An auto-generated type for paginating through multiple ProductVariants. */
 export interface ShopifyStorefrontProductVariantConnection {
   __typename: 'ProductVariantConnection'
   /** A list of edges. */
@@ -4103,6 +4039,7 @@ export interface ShopifyStorefrontProductVariantConnection {
   pageInfo: ShopifyStorefrontPageInfo
 }
 
+/** An auto-generated type which holds one ProductVariant and a cursor during pagination. */
 export interface ShopifyStorefrontProductVariantEdge {
   __typename: 'ProductVariantEdge'
   /** A cursor for use in pagination. */
@@ -4120,6 +4057,7 @@ export interface ShopifyStorefrontProductVariantPricePair {
   price: ShopifyStorefrontMoneyV2
 }
 
+/** An auto-generated type for paginating through multiple ProductVariantPricePairs. */
 export interface ShopifyStorefrontProductVariantPricePairConnection {
   __typename: 'ProductVariantPricePairConnection'
   /** A list of edges. */
@@ -4128,6 +4066,7 @@ export interface ShopifyStorefrontProductVariantPricePairConnection {
   pageInfo: ShopifyStorefrontPageInfo
 }
 
+/** An auto-generated type which holds one ProductVariantPricePair and a cursor during pagination. */
 export interface ShopifyStorefrontProductVariantPricePairEdge {
   __typename: 'ProductVariantPricePairEdge'
   /** A cursor for use in pagination. */
@@ -4337,8 +4276,8 @@ export interface ShopifyStorefrontScriptDiscountApplication
 }
 
 /**
- * Custom properties that a shop owner can use to define product variants.
- * Multiple options can exist. Options are represented as: option1, option2, option3, etc.
+ * Properties used by customers to select a product variant.
+ * Products can have multiple options, like different sizes or colors.
  */
 export interface ShopifyStorefrontSelectedOption {
   __typename: 'SelectedOption'
@@ -4418,7 +4357,7 @@ export interface ShopifyStorefrontShop {
    */
   productByHandle?: Maybe<ShopifyStorefrontProduct>
   /**
-   * A comma separated list of tags that have been added to products.
+   * A list of tags that have been added to products.
    * Additional access scope required: unauthenticated_read_product_tags.
    * @deprecated Use `QueryRoot.productTags` instead.
    */
@@ -4525,6 +4464,7 @@ export interface ShopifyStorefrontShopPolicy extends ShopifyStorefrontNode {
   url: Scalars['URL']
 }
 
+/** An auto-generated type for paginating through multiple Strings. */
 export interface ShopifyStorefrontStringConnection {
   __typename: 'StringConnection'
   /** A list of edges. */
@@ -4533,6 +4473,7 @@ export interface ShopifyStorefrontStringConnection {
   pageInfo: ShopifyStorefrontPageInfo
 }
 
+/** An auto-generated type which holds one String and a cursor during pagination. */
 export interface ShopifyStorefrontStringEdge {
   __typename: 'StringEdge'
   /** A cursor for use in pagination. */

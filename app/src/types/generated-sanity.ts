@@ -2,6 +2,10 @@ export type Maybe<T> = T | null
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K]
 }
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
+  { [SubKey in K]?: Maybe<T[SubKey]> }
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
+  { [SubKey in K]: Maybe<T[SubKey]> }
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string
@@ -19,6 +23,7 @@ export type Scalars = {
 
 export interface RootQuery {
   __typename: 'RootQuery'
+  Document?: Maybe<Document>
   Page?: Maybe<Page>
   Homepage?: Maybe<Homepage>
   SiteSettings?: Maybe<SiteSettings>
@@ -35,6 +40,10 @@ export interface RootQuery {
   allShopifyCollection: Array<ShopifyCollection>
   allSanityImageAsset: Array<SanityImageAsset>
   allSanityFileAsset: Array<SanityFileAsset>
+}
+
+export type RootQueryDocumentArgs = {
+  id: Scalars['ID']
 }
 
 export type RootQueryPageArgs = {
@@ -125,6 +134,20 @@ export type RootQueryAllSanityFileAssetArgs = {
   offset?: Maybe<Scalars['Int']>
 }
 
+/** A Sanity document */
+export type Document = {
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>
+  /** Document type */
+  _type?: Maybe<Scalars['String']>
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>
+}
+
 export interface Page extends Document {
   __typename: 'Page'
   /** Document ID */
@@ -145,20 +168,6 @@ export interface Page extends Document {
   gallery?: Maybe<Array<Maybe<RichImage>>>
   includeInstagram?: Maybe<Scalars['Boolean']>
   seo?: Maybe<Seo>
-}
-
-/** A Sanity document */
-export type Document = {
-  /** Document ID */
-  _id?: Maybe<Scalars['ID']>
-  /** Document type */
-  _type?: Maybe<Scalars['String']>
-  /** Date the document was created */
-  _createdAt?: Maybe<Scalars['DateTime']>
-  /** Date the document was last modified */
-  _updatedAt?: Maybe<Scalars['DateTime']>
-  /** Current document revision */
-  _rev?: Maybe<Scalars['String']>
 }
 
 export interface PageSlug {
@@ -376,6 +385,7 @@ export interface ShopifySourceCollection {
   _key?: Maybe<Scalars['String']>
   _type?: Maybe<Scalars['String']>
   title?: Maybe<Scalars['String']>
+  updatedAt?: Maybe<Scalars['Date']>
   handle?: Maybe<Scalars['String']>
   description?: Maybe<Scalars['String']>
   descriptionHtml?: Maybe<Scalars['String']>
@@ -466,7 +476,13 @@ export interface ShopifySourceProduct {
   _type?: Maybe<Scalars['String']>
   title?: Maybe<Scalars['String']>
   availableForSale?: Maybe<Scalars['Boolean']>
+  createdAt?: Maybe<Scalars['Date']>
+  publishedAt?: Maybe<Scalars['Date']>
+  updatedAt?: Maybe<Scalars['Date']>
   priceRange?: Maybe<ShopifySourceProductPriceRange>
+  presentmentPriceRanges?: Maybe<
+    ShopifySourceProductPresentmentPriceRangeConnection
+  >
   productType?: Maybe<Scalars['String']>
   tags?: Maybe<Array<Maybe<Scalars['String']>>>
   handle?: Maybe<Scalars['String']>
@@ -494,6 +510,21 @@ export interface ShopifyMoneyV2 {
   _type?: Maybe<Scalars['String']>
   amount?: Maybe<Scalars['String']>
   currencyCode?: Maybe<Scalars['String']>
+}
+
+export interface ShopifySourceProductPresentmentPriceRangeConnection {
+  __typename: 'ShopifySourceProductPresentmentPriceRangeConnection'
+  _key?: Maybe<Scalars['String']>
+  _type?: Maybe<Scalars['String']>
+  edges?: Maybe<Array<Maybe<ShopifySourceProductPriceRangeEdge>>>
+}
+
+export interface ShopifySourceProductPriceRangeEdge {
+  __typename: 'ShopifySourceProductPriceRangeEdge'
+  _key?: Maybe<Scalars['String']>
+  _type?: Maybe<Scalars['String']>
+  cursor?: Maybe<Scalars['String']>
+  node?: Maybe<ShopifySourceProductPriceRange>
 }
 
 export interface ShopifySourceImages {
@@ -541,6 +572,7 @@ export interface ShopifySourceProductVariant {
   _key?: Maybe<Scalars['String']>
   _type?: Maybe<Scalars['String']>
   availableForSale?: Maybe<Scalars['Boolean']>
+  currentlyNotInStock?: Maybe<Scalars['Boolean']>
   id?: Maybe<Scalars['String']>
   image?: Maybe<ShopifySourceImage>
   priceV2?: Maybe<ShopifyMoneyV2>
@@ -1445,7 +1477,13 @@ export type ShopifySourceProductFilter = {
   _type?: Maybe<StringFilter>
   title?: Maybe<StringFilter>
   availableForSale?: Maybe<BooleanFilter>
+  createdAt?: Maybe<DateFilter>
+  publishedAt?: Maybe<DateFilter>
+  updatedAt?: Maybe<DateFilter>
   priceRange?: Maybe<ShopifySourceProductPriceRangeFilter>
+  presentmentPriceRanges?: Maybe<
+    ShopifySourceProductPresentmentPriceRangeConnectionFilter
+  >
   productType?: Maybe<StringFilter>
   handle?: Maybe<StringFilter>
   description?: Maybe<StringFilter>
@@ -1455,6 +1493,21 @@ export type ShopifySourceProductFilter = {
   images?: Maybe<ShopifySourceImagesFilter>
   variants?: Maybe<ShopifySourceProductVariantsConnectionFilter>
   collections?: Maybe<ShopifySourceCollectionsConnectionFilter>
+}
+
+export type DateFilter = {
+  /** Checks if the value is equal to the given input. */
+  eq?: Maybe<Scalars['Date']>
+  /** Checks if the value is not equal to the given input. */
+  neq?: Maybe<Scalars['Date']>
+  /** Checks if the value is greater than the given input. */
+  gt?: Maybe<Scalars['Date']>
+  /** Checks if the value is greater than or equal to the given input. */
+  gte?: Maybe<Scalars['Date']>
+  /** Checks if the value is lesser than the given input. */
+  lt?: Maybe<Scalars['Date']>
+  /** Checks if the value is lesser than or equal to the given input. */
+  lte?: Maybe<Scalars['Date']>
 }
 
 export type ShopifySourceProductPriceRangeFilter = {
@@ -1469,6 +1522,11 @@ export type ShopifyMoneyV2Filter = {
   _type?: Maybe<StringFilter>
   amount?: Maybe<StringFilter>
   currencyCode?: Maybe<StringFilter>
+}
+
+export type ShopifySourceProductPresentmentPriceRangeConnectionFilter = {
+  _key?: Maybe<StringFilter>
+  _type?: Maybe<StringFilter>
 }
 
 export type ShopifySourceImagesFilter = {
@@ -1519,7 +1577,13 @@ export type ShopifySourceProductSorting = {
   _type?: Maybe<SortOrder>
   title?: Maybe<SortOrder>
   availableForSale?: Maybe<SortOrder>
+  createdAt?: Maybe<SortOrder>
+  publishedAt?: Maybe<SortOrder>
+  updatedAt?: Maybe<SortOrder>
   priceRange?: Maybe<ShopifySourceProductPriceRangeSorting>
+  presentmentPriceRanges?: Maybe<
+    ShopifySourceProductPresentmentPriceRangeConnectionSorting
+  >
   productType?: Maybe<SortOrder>
   handle?: Maybe<SortOrder>
   description?: Maybe<SortOrder>
@@ -1543,6 +1607,11 @@ export type ShopifyMoneyV2Sorting = {
   _type?: Maybe<SortOrder>
   amount?: Maybe<SortOrder>
   currencyCode?: Maybe<SortOrder>
+}
+
+export type ShopifySourceProductPresentmentPriceRangeConnectionSorting = {
+  _key?: Maybe<SortOrder>
+  _type?: Maybe<SortOrder>
 }
 
 export type ShopifySourceImagesSorting = {
@@ -1594,6 +1663,7 @@ export type ShopifySourceCollectionFilter = {
   _key?: Maybe<StringFilter>
   _type?: Maybe<StringFilter>
   title?: Maybe<StringFilter>
+  updatedAt?: Maybe<DateFilter>
   handle?: Maybe<StringFilter>
   description?: Maybe<StringFilter>
   descriptionHtml?: Maybe<StringFilter>
@@ -1644,6 +1714,7 @@ export type ShopifySourceCollectionSorting = {
   _key?: Maybe<SortOrder>
   _type?: Maybe<SortOrder>
   title?: Maybe<SortOrder>
+  updatedAt?: Maybe<SortOrder>
   handle?: Maybe<SortOrder>
   description?: Maybe<SortOrder>
   descriptionHtml?: Maybe<SortOrder>
@@ -1859,6 +1930,29 @@ export interface Slug {
   current?: Maybe<Scalars['String']>
 }
 
+export interface ShopifySourceProductVariantPricePair {
+  __typename: 'ShopifySourceProductVariantPricePair'
+  _key?: Maybe<Scalars['String']>
+  _type?: Maybe<Scalars['String']>
+  compareAtPrice?: Maybe<ShopifyMoneyV2>
+  price?: Maybe<ShopifyMoneyV2>
+}
+
+export interface ShopifySourceProductPricePresentmentEdge {
+  __typename: 'ShopifySourceProductPricePresentmentEdge'
+  _key?: Maybe<Scalars['String']>
+  _type?: Maybe<Scalars['String']>
+  cursor?: Maybe<Scalars['String']>
+  node?: Maybe<ShopifySourceProductVariantPricePair>
+}
+
+export interface ShopifySourceProductVariantPricePresenentmentConnection {
+  __typename: 'ShopifySourceProductVariantPricePresenentmentConnection'
+  _key?: Maybe<Scalars['String']>
+  _type?: Maybe<Scalars['String']>
+  edges?: Maybe<Array<Maybe<ShopifySourceProductPricePresentmentEdge>>>
+}
+
 export type IntFilter = {
   /** Checks if the value is equal to the given input. */
   eq?: Maybe<Scalars['Int']>
@@ -1872,21 +1966,6 @@ export type IntFilter = {
   lt?: Maybe<Scalars['Int']>
   /** Checks if the value is lesser than or equal to the given input. */
   lte?: Maybe<Scalars['Int']>
-}
-
-export type DateFilter = {
-  /** Checks if the value is equal to the given input. */
-  eq?: Maybe<Scalars['Date']>
-  /** Checks if the value is not equal to the given input. */
-  neq?: Maybe<Scalars['Date']>
-  /** Checks if the value is greater than the given input. */
-  gt?: Maybe<Scalars['Date']>
-  /** Checks if the value is greater than or equal to the given input. */
-  gte?: Maybe<Scalars['Date']>
-  /** Checks if the value is lesser than the given input. */
-  lt?: Maybe<Scalars['Date']>
-  /** Checks if the value is lesser than or equal to the given input. */
-  lte?: Maybe<Scalars['Date']>
 }
 
 export type FileFilter = {
@@ -1964,6 +2043,7 @@ export type ShopifySourceProductVariantFilter = {
   _key?: Maybe<StringFilter>
   _type?: Maybe<StringFilter>
   availableForSale?: Maybe<BooleanFilter>
+  currentlyNotInStock?: Maybe<BooleanFilter>
   id?: Maybe<StringFilter>
   image?: Maybe<ShopifySourceImageFilter>
   priceV2?: Maybe<ShopifyMoneyV2Filter>
@@ -2002,6 +2082,13 @@ export type ShopifySourceProductOptionFilter = {
   name?: Maybe<StringFilter>
 }
 
+export type ShopifySourceProductPriceRangeEdgeFilter = {
+  _key?: Maybe<StringFilter>
+  _type?: Maybe<StringFilter>
+  cursor?: Maybe<StringFilter>
+  node?: Maybe<ShopifySourceProductPriceRangeFilter>
+}
+
 export type ShopifySourceCollectionNodeFilter = {
   _key?: Maybe<StringFilter>
   _type?: Maybe<StringFilter>
@@ -2028,6 +2115,25 @@ export type ShopifySourceSelectedOptionFilter = {
   _type?: Maybe<StringFilter>
   name?: Maybe<StringFilter>
   value?: Maybe<StringFilter>
+}
+
+export type ShopifySourceProductVariantPricePairFilter = {
+  _key?: Maybe<StringFilter>
+  _type?: Maybe<StringFilter>
+  compareAtPrice?: Maybe<ShopifyMoneyV2Filter>
+  price?: Maybe<ShopifyMoneyV2Filter>
+}
+
+export type ShopifySourceProductPricePresentmentEdgeFilter = {
+  _key?: Maybe<StringFilter>
+  _type?: Maybe<StringFilter>
+  cursor?: Maybe<StringFilter>
+  node?: Maybe<ShopifySourceProductVariantPricePairFilter>
+}
+
+export type ShopifySourceProductVariantPricePresenentmentConnectionFilter = {
+  _key?: Maybe<StringFilter>
+  _type?: Maybe<StringFilter>
 }
 
 export type ShopifySourceProductNodeFilter = {
@@ -2127,6 +2233,7 @@ export type ShopifySourceProductVariantSorting = {
   _key?: Maybe<SortOrder>
   _type?: Maybe<SortOrder>
   availableForSale?: Maybe<SortOrder>
+  currentlyNotInStock?: Maybe<SortOrder>
   id?: Maybe<SortOrder>
   image?: Maybe<ShopifySourceImageSorting>
   priceV2?: Maybe<ShopifyMoneyV2Sorting>
@@ -2165,6 +2272,13 @@ export type ShopifySourceProductOptionSorting = {
   name?: Maybe<SortOrder>
 }
 
+export type ShopifySourceProductPriceRangeEdgeSorting = {
+  _key?: Maybe<SortOrder>
+  _type?: Maybe<SortOrder>
+  cursor?: Maybe<SortOrder>
+  node?: Maybe<ShopifySourceProductPriceRangeSorting>
+}
+
 export type ShopifySourceCollectionNodeSorting = {
   _key?: Maybe<SortOrder>
   _type?: Maybe<SortOrder>
@@ -2193,6 +2307,25 @@ export type ShopifySourceSelectedOptionSorting = {
   value?: Maybe<SortOrder>
 }
 
+export type ShopifySourceProductVariantPricePairSorting = {
+  _key?: Maybe<SortOrder>
+  _type?: Maybe<SortOrder>
+  compareAtPrice?: Maybe<ShopifyMoneyV2Sorting>
+  price?: Maybe<ShopifyMoneyV2Sorting>
+}
+
+export type ShopifySourceProductPricePresentmentEdgeSorting = {
+  _key?: Maybe<SortOrder>
+  _type?: Maybe<SortOrder>
+  cursor?: Maybe<SortOrder>
+  node?: Maybe<ShopifySourceProductVariantPricePairSorting>
+}
+
+export type ShopifySourceProductVariantPricePresenentmentConnectionSorting = {
+  _key?: Maybe<SortOrder>
+  _type?: Maybe<SortOrder>
+}
+
 export type ShopifySourceProductNodeSorting = {
   _key?: Maybe<SortOrder>
   _type?: Maybe<SortOrder>
@@ -2216,141 +2349,40 @@ export type VideoEmbedSorting = {
   autoplay?: Maybe<SortOrder>
 }
 
-export interface IntrospectionResultData {
-  __schema: {
-    types: {
-      kind: string
-      name: string
-      possibleTypes: {
-        name: string
-      }[]
-    }[]
+export interface PossibleTypesResultData {
+  possibleTypes: {
+    [key: string]: string[]
   }
 }
-const result: IntrospectionResultData = {
-  __schema: {
-    types: [
-      {
-        kind: 'INTERFACE',
-        name: 'Document',
-        possibleTypes: [
-          {
-            name: 'Page',
-          },
-          {
-            name: 'SanityImageAsset',
-          },
-          {
-            name: 'Shop',
-          },
-          {
-            name: 'ShopifyCollection',
-          },
-          {
-            name: 'ShopifyProduct',
-          },
-          {
-            name: 'Homepage',
-          },
-          {
-            name: 'SiteSettings',
-          },
-          {
-            name: 'SanityFileAsset',
-          },
-        ],
-      },
-      {
-        kind: 'UNION',
-        name: 'PageOrShopOrShopifyCollectionOrShopifyProductOrUrlLink',
-        possibleTypes: [
-          {
-            name: 'Page',
-          },
-          {
-            name: 'Shop',
-          },
-          {
-            name: 'ShopifyCollection',
-          },
-          {
-            name: 'ShopifyProduct',
-          },
-          {
-            name: 'UrlLink',
-          },
-        ],
-      },
-      {
-        kind: 'UNION',
-        name: 'PageLinkOrRichText',
-        possibleTypes: [
-          {
-            name: 'PageLink',
-          },
-          {
-            name: 'RichText',
-          },
-        ],
-      },
-      {
-        kind: 'UNION',
-        name: 'PageLinkOrUrlLink',
-        possibleTypes: [
-          {
-            name: 'PageLink',
-          },
-          {
-            name: 'UrlLink',
-          },
-        ],
-      },
-      {
-        kind: 'UNION',
-        name: 'BlockOrRichImageOrVideoEmbed',
-        possibleTypes: [
-          {
-            name: 'Block',
-          },
-          {
-            name: 'RichImage',
-          },
-          {
-            name: 'VideoEmbed',
-          },
-        ],
-      },
-      {
-        kind: 'UNION',
-        name: 'PageOrShopOrShopifyCollectionOrShopifyProduct',
-        possibleTypes: [
-          {
-            name: 'Page',
-          },
-          {
-            name: 'Shop',
-          },
-          {
-            name: 'ShopifyCollection',
-          },
-          {
-            name: 'ShopifyProduct',
-          },
-        ],
-      },
-      {
-        kind: 'UNION',
-        name: 'HeaderOrPageLink',
-        possibleTypes: [
-          {
-            name: 'Header',
-          },
-          {
-            name: 'PageLink',
-          },
-        ],
-      },
+const result: PossibleTypesResultData = {
+  possibleTypes: {
+    Document: [
+      'Page',
+      'SanityImageAsset',
+      'Shop',
+      'ShopifyCollection',
+      'ShopifyProduct',
+      'Homepage',
+      'SiteSettings',
+      'SanityFileAsset',
     ],
+    PageOrShopOrShopifyCollectionOrShopifyProductOrUrlLink: [
+      'Page',
+      'Shop',
+      'ShopifyCollection',
+      'ShopifyProduct',
+      'UrlLink',
+    ],
+    PageLinkOrRichText: ['PageLink', 'RichText'],
+    PageLinkOrUrlLink: ['PageLink', 'UrlLink'],
+    BlockOrRichImageOrVideoEmbed: ['Block', 'RichImage', 'VideoEmbed'],
+    PageOrShopOrShopifyCollectionOrShopifyProduct: [
+      'Page',
+      'Shop',
+      'ShopifyCollection',
+      'ShopifyProduct',
+    ],
+    HeaderOrPageLink: ['Header', 'PageLink'],
   },
 }
 export default result
