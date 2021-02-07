@@ -24,6 +24,7 @@ export type Scalars = {
 export interface RootQuery {
   __typename: 'RootQuery'
   Document?: Maybe<Document>
+  MediaTag?: Maybe<MediaTag>
   Page?: Maybe<Page>
   Homepage?: Maybe<Homepage>
   SiteSettings?: Maybe<SiteSettings>
@@ -32,6 +33,7 @@ export interface RootQuery {
   ShopifyCollection?: Maybe<ShopifyCollection>
   SanityImageAsset?: Maybe<SanityImageAsset>
   SanityFileAsset?: Maybe<SanityFileAsset>
+  allMediaTag: Array<MediaTag>
   allPage: Array<Page>
   allHomepage: Array<Homepage>
   allSiteSettings: Array<SiteSettings>
@@ -43,6 +45,10 @@ export interface RootQuery {
 }
 
 export type RootQueryDocumentArgs = {
+  id: Scalars['ID']
+}
+
+export type RootQueryMediaTagArgs = {
   id: Scalars['ID']
 }
 
@@ -76,6 +82,13 @@ export type RootQuerySanityImageAssetArgs = {
 
 export type RootQuerySanityFileAssetArgs = {
   id: Scalars['ID']
+}
+
+export type RootQueryAllMediaTagArgs = {
+  where?: Maybe<MediaTagFilter>
+  sort?: Maybe<Array<MediaTagSorting>>
+  limit?: Maybe<Scalars['Int']>
+  offset?: Maybe<Scalars['Int']>
 }
 
 export type RootQueryAllPageArgs = {
@@ -146,6 +159,29 @@ export type Document = {
   _updatedAt?: Maybe<Scalars['DateTime']>
   /** Current document revision */
   _rev?: Maybe<Scalars['String']>
+}
+
+export interface MediaTag extends Document {
+  __typename: 'MediaTag'
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>
+  /** Document type */
+  _type?: Maybe<Scalars['String']>
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>
+  _key?: Maybe<Scalars['String']>
+  name?: Maybe<Slug>
+}
+
+export interface Slug {
+  __typename: 'Slug'
+  _key?: Maybe<Scalars['String']>
+  _type?: Maybe<Scalars['String']>
+  current?: Maybe<Scalars['String']>
 }
 
 export interface Page extends Document {
@@ -480,9 +516,7 @@ export interface ShopifySourceProduct {
   publishedAt?: Maybe<Scalars['Date']>
   updatedAt?: Maybe<Scalars['Date']>
   priceRange?: Maybe<ShopifySourceProductPriceRange>
-  presentmentPriceRanges?: Maybe<
-    ShopifySourceProductPresentmentPriceRangeConnection
-  >
+  presentmentPriceRanges?: Maybe<ShopifySourceProductPresentmentPriceRangeConnection>
   productType?: Maybe<Scalars['String']>
   tags?: Maybe<Array<Maybe<Scalars['String']>>>
   handle?: Maybe<Scalars['String']>
@@ -892,7 +926,7 @@ export interface SanityFileAsset extends Document {
   source?: Maybe<SanityAssetSourceData>
 }
 
-export type PageFilter = {
+export type MediaTagFilter = {
   /** Apply filters on document level */
   _?: Maybe<DocumentFilter>
   _id?: Maybe<IdFilter>
@@ -901,11 +935,7 @@ export type PageFilter = {
   _updatedAt?: Maybe<DatetimeFilter>
   _rev?: Maybe<StringFilter>
   _key?: Maybe<StringFilter>
-  title?: Maybe<StringFilter>
-  slug?: Maybe<PageSlugFilter>
-  hero?: Maybe<HeroFilter>
-  includeInstagram?: Maybe<BooleanFilter>
-  seo?: Maybe<SeoFilter>
+  name?: Maybe<SlugFilter>
 }
 
 export type DocumentFilter = {
@@ -950,6 +980,51 @@ export type DatetimeFilter = {
   lt?: Maybe<Scalars['DateTime']>
   /** Checks if the value is lesser than or equal to the given input. */
   lte?: Maybe<Scalars['DateTime']>
+}
+
+export type SlugFilter = {
+  _key?: Maybe<StringFilter>
+  _type?: Maybe<StringFilter>
+  current?: Maybe<StringFilter>
+}
+
+export type MediaTagSorting = {
+  _id?: Maybe<SortOrder>
+  _type?: Maybe<SortOrder>
+  _createdAt?: Maybe<SortOrder>
+  _updatedAt?: Maybe<SortOrder>
+  _rev?: Maybe<SortOrder>
+  _key?: Maybe<SortOrder>
+  name?: Maybe<SlugSorting>
+}
+
+export enum SortOrder {
+  /** Sorts on the value in ascending order. */
+  Asc = 'ASC',
+  /** Sorts on the value in descending order. */
+  Desc = 'DESC',
+}
+
+export type SlugSorting = {
+  _key?: Maybe<SortOrder>
+  _type?: Maybe<SortOrder>
+  current?: Maybe<SortOrder>
+}
+
+export type PageFilter = {
+  /** Apply filters on document level */
+  _?: Maybe<DocumentFilter>
+  _id?: Maybe<IdFilter>
+  _type?: Maybe<StringFilter>
+  _createdAt?: Maybe<DatetimeFilter>
+  _updatedAt?: Maybe<DatetimeFilter>
+  _rev?: Maybe<StringFilter>
+  _key?: Maybe<StringFilter>
+  title?: Maybe<StringFilter>
+  slug?: Maybe<PageSlugFilter>
+  hero?: Maybe<HeroFilter>
+  includeInstagram?: Maybe<BooleanFilter>
+  seo?: Maybe<SeoFilter>
 }
 
 export type PageSlugFilter = {
@@ -1114,13 +1189,6 @@ export type PageSorting = {
   hero?: Maybe<HeroSorting>
   includeInstagram?: Maybe<SortOrder>
   seo?: Maybe<SeoSorting>
-}
-
-export enum SortOrder {
-  /** Sorts on the value in ascending order. */
-  Asc = 'ASC',
-  /** Sorts on the value in descending order. */
-  Desc = 'DESC',
 }
 
 export type PageSlugSorting = {
@@ -1481,9 +1549,7 @@ export type ShopifySourceProductFilter = {
   publishedAt?: Maybe<DateFilter>
   updatedAt?: Maybe<DateFilter>
   priceRange?: Maybe<ShopifySourceProductPriceRangeFilter>
-  presentmentPriceRanges?: Maybe<
-    ShopifySourceProductPresentmentPriceRangeConnectionFilter
-  >
+  presentmentPriceRanges?: Maybe<ShopifySourceProductPresentmentPriceRangeConnectionFilter>
   productType?: Maybe<StringFilter>
   handle?: Maybe<StringFilter>
   description?: Maybe<StringFilter>
@@ -1581,9 +1647,7 @@ export type ShopifySourceProductSorting = {
   publishedAt?: Maybe<SortOrder>
   updatedAt?: Maybe<SortOrder>
   priceRange?: Maybe<ShopifySourceProductPriceRangeSorting>
-  presentmentPriceRanges?: Maybe<
-    ShopifySourceProductPresentmentPriceRangeConnectionSorting
-  >
+  presentmentPriceRanges?: Maybe<ShopifySourceProductPresentmentPriceRangeConnectionSorting>
   productType?: Maybe<SortOrder>
   handle?: Maybe<SortOrder>
   description?: Maybe<SortOrder>
@@ -1923,13 +1987,6 @@ export interface Gallery {
   images?: Maybe<Array<Maybe<RichImage>>>
 }
 
-export interface Slug {
-  __typename: 'Slug'
-  _key?: Maybe<Scalars['String']>
-  _type?: Maybe<Scalars['String']>
-  current?: Maybe<Scalars['String']>
-}
-
 export interface ShopifySourceProductVariantPricePair {
   __typename: 'ShopifySourceProductVariantPricePair'
   _key?: Maybe<Scalars['String']>
@@ -2003,12 +2060,6 @@ export type HeaderFilter = {
   _key?: Maybe<StringFilter>
   _type?: Maybe<StringFilter>
   text?: Maybe<StringFilter>
-}
-
-export type SlugFilter = {
-  _key?: Maybe<StringFilter>
-  _type?: Maybe<StringFilter>
-  current?: Maybe<StringFilter>
 }
 
 export type HeroSlideFilter = {
@@ -2195,12 +2246,6 @@ export type HeaderSorting = {
   text?: Maybe<SortOrder>
 }
 
-export type SlugSorting = {
-  _key?: Maybe<SortOrder>
-  _type?: Maybe<SortOrder>
-  current?: Maybe<SortOrder>
-}
-
 export type HeroSlideSorting = {
   _key?: Maybe<SortOrder>
   _type?: Maybe<SortOrder>
@@ -2357,6 +2402,7 @@ export interface PossibleTypesResultData {
 const result: PossibleTypesResultData = {
   possibleTypes: {
     Document: [
+      'MediaTag',
       'Page',
       'SanityImageAsset',
       'Shop',

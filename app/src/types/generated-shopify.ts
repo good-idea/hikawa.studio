@@ -1786,8 +1786,6 @@ export enum ShopifyStorefrontCurrencyCode {
   Bhd = 'BHD',
   /** Burundian Franc (BIF). */
   Bif = 'BIF',
-  /** Belarusian Ruble (BYR). */
-  Byr = 'BYR',
   /** Belize Dollar (BZD). */
   Bzd = 'BZD',
   /** Bermudian Dollar (BMD). */
@@ -2024,8 +2022,6 @@ export enum ShopifyStorefrontCurrencyCode {
   Uzs = 'UZS',
   /** Vanuatu Vatu (VUV). */
   Vuv = 'VUV',
-  /** Venezuelan Bolivares (VEF). */
-  Vef = 'VEF',
   /** Vietnamese đồng (VND). */
   Vnd = 'VND',
   /** West African CFA franc (XOF). */
@@ -2034,6 +2030,10 @@ export enum ShopifyStorefrontCurrencyCode {
   Yer = 'YER',
   /** Zambian Kwacha (ZMW). */
   Zmw = 'ZMW',
+  /** Belarusian Ruble (BYR). */
+  Byr = 'BYR',
+  /** Venezuelan Bolivares (VEF). */
+  Vef = 'VEF',
 }
 
 /** A customer represents a customer account with the shop. Customer accounts store contact information for the customer, saving logged-in customers the trouble of having to provide it at every checkout. */
@@ -2939,79 +2939,53 @@ export interface ShopifyStorefrontMutation {
    * Updates the attributes of a checkout.
    * @deprecated Use `checkoutAttributesUpdateV2` instead
    */
-  checkoutAttributesUpdate?: Maybe<
-    ShopifyStorefrontCheckoutAttributesUpdatePayload
-  >
+  checkoutAttributesUpdate?: Maybe<ShopifyStorefrontCheckoutAttributesUpdatePayload>
   /** Updates the attributes of a checkout. */
-  checkoutAttributesUpdateV2?: Maybe<
-    ShopifyStorefrontCheckoutAttributesUpdateV2Payload
-  >
+  checkoutAttributesUpdateV2?: Maybe<ShopifyStorefrontCheckoutAttributesUpdateV2Payload>
   /** Completes a checkout without providing payment information. You can use this mutation for free items or items whose purchase price is covered by a gift card. */
   checkoutCompleteFree?: Maybe<ShopifyStorefrontCheckoutCompleteFreePayload>
   /**
    * Completes a checkout using a credit card token from Shopify's Vault.
    * @deprecated Use `checkoutCompleteWithCreditCardV2` instead
    */
-  checkoutCompleteWithCreditCard?: Maybe<
-    ShopifyStorefrontCheckoutCompleteWithCreditCardPayload
-  >
+  checkoutCompleteWithCreditCard?: Maybe<ShopifyStorefrontCheckoutCompleteWithCreditCardPayload>
   /** Completes a checkout using a credit card token from Shopify's card vault. Before you can complete checkouts using CheckoutCompleteWithCreditCardV2, you need to  [_request payment processing_](https://help.shopify.com/api/guides/sales-channel-sdk/getting-started#request-payment-processing). */
-  checkoutCompleteWithCreditCardV2?: Maybe<
-    ShopifyStorefrontCheckoutCompleteWithCreditCardV2Payload
-  >
+  checkoutCompleteWithCreditCardV2?: Maybe<ShopifyStorefrontCheckoutCompleteWithCreditCardV2Payload>
   /**
    * Completes a checkout with a tokenized payment.
    * @deprecated Use `checkoutCompleteWithTokenizedPaymentV2` instead
    */
-  checkoutCompleteWithTokenizedPayment?: Maybe<
-    ShopifyStorefrontCheckoutCompleteWithTokenizedPaymentPayload
-  >
+  checkoutCompleteWithTokenizedPayment?: Maybe<ShopifyStorefrontCheckoutCompleteWithTokenizedPaymentPayload>
   /**
    * Completes a checkout with a tokenized payment.
    * @deprecated Use `checkoutCompleteWithTokenizedPaymentV3` instead
    */
-  checkoutCompleteWithTokenizedPaymentV2?: Maybe<
-    ShopifyStorefrontCheckoutCompleteWithTokenizedPaymentV2Payload
-  >
+  checkoutCompleteWithTokenizedPaymentV2?: Maybe<ShopifyStorefrontCheckoutCompleteWithTokenizedPaymentV2Payload>
   /** Creates a new checkout. */
   checkoutCreate?: Maybe<ShopifyStorefrontCheckoutCreatePayload>
   /**
    * Associates a customer to the checkout.
    * @deprecated Use `checkoutCustomerAssociateV2` instead
    */
-  checkoutCustomerAssociate?: Maybe<
-    ShopifyStorefrontCheckoutCustomerAssociatePayload
-  >
+  checkoutCustomerAssociate?: Maybe<ShopifyStorefrontCheckoutCustomerAssociatePayload>
   /** Associates a customer to the checkout. */
-  checkoutCustomerAssociateV2?: Maybe<
-    ShopifyStorefrontCheckoutCustomerAssociateV2Payload
-  >
+  checkoutCustomerAssociateV2?: Maybe<ShopifyStorefrontCheckoutCustomerAssociateV2Payload>
   /**
    * Disassociates the current checkout customer from the checkout.
    * @deprecated Use `checkoutCustomerDisassociateV2` instead
    */
-  checkoutCustomerDisassociate?: Maybe<
-    ShopifyStorefrontCheckoutCustomerDisassociatePayload
-  >
+  checkoutCustomerDisassociate?: Maybe<ShopifyStorefrontCheckoutCustomerDisassociatePayload>
   /** Disassociates the current checkout customer from the checkout. */
-  checkoutCustomerDisassociateV2?: Maybe<
-    ShopifyStorefrontCheckoutCustomerDisassociateV2Payload
-  >
+  checkoutCustomerDisassociateV2?: Maybe<ShopifyStorefrontCheckoutCustomerDisassociateV2Payload>
   /**
    * Applies a discount to an existing checkout using a discount code.
    * @deprecated Use `checkoutDiscountCodeApplyV2` instead
    */
-  checkoutDiscountCodeApply?: Maybe<
-    ShopifyStorefrontCheckoutDiscountCodeApplyPayload
-  >
+  checkoutDiscountCodeApply?: Maybe<ShopifyStorefrontCheckoutDiscountCodeApplyPayload>
   /** Applies a discount to an existing checkout using a discount code. */
-  checkoutDiscountCodeApplyV2?: Maybe<
-    ShopifyStorefrontCheckoutDiscountCodeApplyV2Payload
-  >
+  checkoutDiscountCodeApplyV2?: Maybe<ShopifyStorefrontCheckoutDiscountCodeApplyV2Payload>
   /** Removes the applied discount from an existing checkout. */
-  checkoutDiscountCodeRemove?: Maybe<
-    ShopifyStorefrontCheckoutDiscountCodeRemovePayload
-  >
+  checkoutDiscountCodeRemove?: Maybe<ShopifyStorefrontCheckoutDiscountCodeRemovePayload>
   /**
    * Updates the email on an existing checkout.
    * @deprecated Use `checkoutEmailUpdateV2` instead
@@ -3030,62 +3004,40 @@ export interface ShopifyStorefrontMutation {
    */
   checkoutGiftCardRemove?: Maybe<ShopifyStorefrontCheckoutGiftCardRemovePayload>
   /** Removes an applied gift card from the checkout. */
-  checkoutGiftCardRemoveV2?: Maybe<
-    ShopifyStorefrontCheckoutGiftCardRemoveV2Payload
-  >
+  checkoutGiftCardRemoveV2?: Maybe<ShopifyStorefrontCheckoutGiftCardRemoveV2Payload>
   /** Appends gift cards to an existing checkout. */
-  checkoutGiftCardsAppend?: Maybe<
-    ShopifyStorefrontCheckoutGiftCardsAppendPayload
-  >
+  checkoutGiftCardsAppend?: Maybe<ShopifyStorefrontCheckoutGiftCardsAppendPayload>
   /** Adds a list of line items to a checkout. */
   checkoutLineItemsAdd?: Maybe<ShopifyStorefrontCheckoutLineItemsAddPayload>
   /** Removes line items from an existing checkout. */
-  checkoutLineItemsRemove?: Maybe<
-    ShopifyStorefrontCheckoutLineItemsRemovePayload
-  >
+  checkoutLineItemsRemove?: Maybe<ShopifyStorefrontCheckoutLineItemsRemovePayload>
   /** Sets a list of line items to a checkout. */
-  checkoutLineItemsReplace?: Maybe<
-    ShopifyStorefrontCheckoutLineItemsReplacePayload
-  >
+  checkoutLineItemsReplace?: Maybe<ShopifyStorefrontCheckoutLineItemsReplacePayload>
   /** Updates line items on a checkout. */
-  checkoutLineItemsUpdate?: Maybe<
-    ShopifyStorefrontCheckoutLineItemsUpdatePayload
-  >
+  checkoutLineItemsUpdate?: Maybe<ShopifyStorefrontCheckoutLineItemsUpdatePayload>
   /**
    * Updates the shipping address of an existing checkout.
    * @deprecated Use `checkoutShippingAddressUpdateV2` instead
    */
-  checkoutShippingAddressUpdate?: Maybe<
-    ShopifyStorefrontCheckoutShippingAddressUpdatePayload
-  >
+  checkoutShippingAddressUpdate?: Maybe<ShopifyStorefrontCheckoutShippingAddressUpdatePayload>
   /** Updates the shipping address of an existing checkout. */
-  checkoutShippingAddressUpdateV2?: Maybe<
-    ShopifyStorefrontCheckoutShippingAddressUpdateV2Payload
-  >
+  checkoutShippingAddressUpdateV2?: Maybe<ShopifyStorefrontCheckoutShippingAddressUpdateV2Payload>
   /** Updates the shipping lines on an existing checkout. */
-  checkoutShippingLineUpdate?: Maybe<
-    ShopifyStorefrontCheckoutShippingLineUpdatePayload
-  >
+  checkoutShippingLineUpdate?: Maybe<ShopifyStorefrontCheckoutShippingLineUpdatePayload>
   /**
    * Creates a customer access token.
    * The customer access token is required to modify the customer object in any way.
    */
-  customerAccessTokenCreate?: Maybe<
-    ShopifyStorefrontCustomerAccessTokenCreatePayload
-  >
+  customerAccessTokenCreate?: Maybe<ShopifyStorefrontCustomerAccessTokenCreatePayload>
   /** Permanently destroys a customer access token. */
-  customerAccessTokenDelete?: Maybe<
-    ShopifyStorefrontCustomerAccessTokenDeletePayload
-  >
+  customerAccessTokenDelete?: Maybe<ShopifyStorefrontCustomerAccessTokenDeletePayload>
   /**
    * Renews a customer access token.
    *
    * Access token renewal must happen *before* a token expires.
    * If a token has already expired, a new one should be created instead via `customerAccessTokenCreate`.
    */
-  customerAccessTokenRenew?: Maybe<
-    ShopifyStorefrontCustomerAccessTokenRenewPayload
-  >
+  customerAccessTokenRenew?: Maybe<ShopifyStorefrontCustomerAccessTokenRenewPayload>
   /** Activates a customer. */
   customerActivate?: Maybe<ShopifyStorefrontCustomerActivatePayload>
   /** Creates a new address for a customer. */
@@ -3097,9 +3049,7 @@ export interface ShopifyStorefrontMutation {
   /** Creates a new customer. */
   customerCreate?: Maybe<ShopifyStorefrontCustomerCreatePayload>
   /** Updates the default address of an existing customer. */
-  customerDefaultAddressUpdate?: Maybe<
-    ShopifyStorefrontCustomerDefaultAddressUpdatePayload
-  >
+  customerDefaultAddressUpdate?: Maybe<ShopifyStorefrontCustomerDefaultAddressUpdatePayload>
   /** Sends a reset password email to the customer, as the first step in the reset password process. */
   customerRecover?: Maybe<ShopifyStorefrontCustomerRecoverPayload>
   /** Resets a customer’s password with a token received from `CustomerRecover`. */
