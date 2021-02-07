@@ -12,39 +12,38 @@
 		"sanity"
 	],
 	"scripts": {
-		"build": "yarn workspace hikawa-app build",
-		"dev:app": "yarn workspace hikawa-app start"
+		"build": "yarn workspace hikawa-app build && yarn workspace hikawa-proxy build",
+		"serve:functions": "netlify-lambda serve proxy/src/lambdas",
+		"dev:app": "yarn workspace hikawa-app dev",
+		"flow:doctor": "flow-mono install-types && flow-mono create-symlinks ./app/.flowconfig"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^11.0.0",
-		"@commitlint/config-conventional": "^11.0.0",
-		"@types/eslint": "^7.2.6",
-		"@types/prettier": "^2.2.0",
+		"@commitlint/cli": "^9.1.2",
+		"@commitlint/config-conventional": "^9.1.2",
+		"@types/eslint": "^7.2.2",
+		"@types/prettier": "^2.1.0",
 		"@types/tsc-watch": "^4.2.0",
-		"@typescript-eslint/eslint-plugin": "^4.14.2",
-		"@typescript-eslint/parser": "^4.14.2",
-		"eslint": "^7.19.0",
-		"eslint-config-airbnb": "^18.2.1",
-		"eslint-config-prettier": "^7.2.0",
+		"@typescript-eslint/eslint-plugin": "^4.0.1",
+		"@typescript-eslint/parser": "^4.0.1",
+		"eslint": "^7.8.1",
+		"eslint-config-airbnb": "^18.2.0",
+		"eslint-config-prettier": "^6.11.0",
 		"eslint-import-resolver-alias": "^1.1.2",
-		"eslint-import-resolver-babel-module": "^5.2.0",
-		"eslint-import-resolver-webpack": "^0.13.0",
-		"eslint-plugin-jsx-a11y": "^6.4.1",
-		"eslint-plugin-prettier": "^3.3.1",
-		"eslint-plugin-react": "^7.22.0",
-		"husky": "^4.3.8",
-		"prettier": "^2.2.1",
-		"pretty-quick": "^3.1.0",
+		"eslint-import-resolver-babel-module": "^5.1.2",
+		"eslint-import-resolver-webpack": "^0.12.2",
+		"eslint-plugin-jsx-a11y": "^6.3.1",
+		"eslint-plugin-prettier": "^3.1.4",
+		"eslint-plugin-react": "^7.20.6",
+		"husky": "^4.2.5",
+		"prettier": "^2.1.1",
+		"pretty-quick": "^3.0.0",
 		"tsc-watch": "^4.2.9",
-		"vercel": "^21.2.3"
+		"vercel": "^20.1.0"
 	},
 	"husky": {
 		"hooks": {
 			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
 			"pre-commit": "pretty-quick --staged"
 		}
-	},
-  "resolutions": {
-    "graphql": "<highest found version>"
-  }
+	}
 }
