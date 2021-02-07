@@ -27,13 +27,7 @@ const parser = new HTMLParser()
 
 const getLinkFromHref = (href: string): LinkInfo => {
   const { pathname } = new URL(href)
-  if (/\/products\/\w+/.test(pathname)) {
-    return { href: '/products/[productSlug]', as: pathname }
-  }
-  if (/\/collections\/\w+/.test(pathname)) {
-    return { href: '/collections/[collectionSlug]', as: pathname }
-  }
-  return { href: '/[pageSlug]', as: pathname }
+  return { href: pathname }
 }
 
 const entities = {
@@ -122,9 +116,9 @@ const transform = (node, index) => {
 
       const isInternal = internalUrlRegex.test(href)
       if (isInternal) {
-        const { href: aHref, as } = getLinkFromHref(href)
+        const { href: aHref } = getLinkFromHref(href)
         return (
-          <Link key={index} href={aHref} as={as}>
+          <Link key={index} href={aHref}>
             <a>{node.childNodes.map(transform)}</a>
           </Link>
         )

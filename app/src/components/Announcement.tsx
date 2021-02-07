@@ -116,7 +116,7 @@ const CTA = ({ cta }: CTAProps) => {
   const link = cta.link[0]
   if (!link) return null
   const defaultLabel = getLinkLabel(link)
-  const { href, as } = getLinkUrl(link)
+  const { href } = getLinkUrl(link)
 
   const { label: customLabel } = cta
   const label = customLabel || defaultLabel
@@ -124,7 +124,7 @@ const CTA = ({ cta }: CTAProps) => {
   if (!label) return null
   return (
     <Heading level={5} color="pink" my={0}>
-      <Link href={href} as={as}>
+      <Link href={href}>
         <a>{label}</a>
       </Link>
     </Heading>

@@ -40,8 +40,7 @@ interface ProductThumbnailProps {
 }
 
 export const ProductThumbnail = ({ product }: ProductThumbnailProps) => {
-  const href = '/products/[productHandle]'
-  const as = `/products/${product.handle}`
+  const href = `/products/${product.handle}`
   const { sendProductClick, sendProductImpression } = useAnalytics()
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -63,7 +62,7 @@ export const ProductThumbnail = ({ product }: ProductThumbnailProps) => {
   })
 
   return (
-    <Link href={href} as={as}>
+    <Link href={href}>
       <a onClick={handleClick}>
         <Wrapper ref={containerRef}>
           <ImageContainer key={product.handle || 'some-key'}>

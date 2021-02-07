@@ -43,9 +43,9 @@ interface MaybeLinkProps {
 }
 const MaybeLink = ({ children, link }: MaybeLinkProps) => {
   if (!link) return <>{children}</>
-  const { href, as } = getLinkUrl(link)
+  const { href } = getLinkUrl(link)
   return (
-    <Link href={href} as={as}>
+    <Link href={href}>
       <a> {children}</a>
     </Link>
   )

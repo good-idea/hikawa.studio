@@ -29,7 +29,6 @@ export const sanityColorToRGBA = (sanityColor: Color): string => {
 
 export interface LinkInfo {
   href: string
-  as?: string
   external?: boolean
 }
 
@@ -38,15 +37,14 @@ export const getLinkUrl = (
 ): LinkInfo => {
   switch (link.__typename) {
     case 'ShopifyProduct':
-      return { href: '/products/[productSlug]', as: `/products/${link.handle}` }
+      return { href: `/products/${link.handle}` }
     case 'ShopifyCollection':
-      return { href: '/shop/[collectionSlug]', as: `/shop/${link.handle}` }
+      return { href: `/shop/${link.handle}` }
     case 'Shop':
       return { href: '/shop' }
     case 'Page':
       return {
-        href: '/[pageSlug]',
-        as: `/${assertExists(link?.slug?.current, 'Page link slug')}`,
+        href: `/${assertExists(link?.slug?.current, 'Page link slug')}`,
       }
     default:
       return { href: `${link.url}`, external: true }
