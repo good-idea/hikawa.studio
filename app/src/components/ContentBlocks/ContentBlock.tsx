@@ -25,9 +25,11 @@ export const ContentBlock = ({ block, largeText }: ContentBlockProps) => {
     case 'RichText':
       return <RichText body={block.blocksRaw} />
     case 'PageLink':
-      const imageSizes = `(min-width: 600px) 90vw, ${
-        block.fullWidth ? 'calc(100vw - 80px)' : '450px'
-      }`
+      const imageSizes = [
+        '(max-width: 600px) 90vw',
+        block.fullWidth ? '900px' : '450px',
+      ].join(', ')
+
       return (
         <PageLink largeText={largeText} item={block} imageSizes={imageSizes} />
       )

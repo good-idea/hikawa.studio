@@ -30,10 +30,10 @@ const FooterLink = ({ pageLink }: FooterLinkProps) => {
       </Heading>
     )
   }
-  const { href, as } = getLinkUrl(link)
+  const { href } = getLinkUrl(link)
   return (
     <Heading level={4}>
-      <Link href={href} as={as}>
+      <Link href={href}>
         <a>{label}</a>
       </Link>
     </Heading>

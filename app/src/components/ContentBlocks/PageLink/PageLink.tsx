@@ -101,7 +101,7 @@ interface LinkProps {
 
 const Link = ({ link, children }: LinkProps) => {
   if (!link) return null
-  const { href, as } = getLinkUrl(link)
+  const { href } = getLinkUrl(link)
   if (!href) return null
 
   const linkIsExternal =
@@ -112,7 +112,7 @@ const Link = ({ link, children }: LinkProps) => {
       {children}
     </a>
   ) : (
-    <NextLink as={as} href={href}>
+    <NextLink href={href}>
       <a>{children}</a>
     </NextLink>
   )
