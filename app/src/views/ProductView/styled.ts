@@ -1,5 +1,6 @@
 import styled, { css } from '@xstyled/styled-components'
 import { RgbaColor } from '../../types'
+import { Wrapper as ImageWrapper } from '../../components/Image/styled'
 import { Button } from '../../components/Button'
 
 /**
@@ -21,8 +22,13 @@ export const Layout = styled.div`
 `
 
 export const Images = styled.div`
-  display: grid;
-  grid-row-gap: 3;
+  & > ${ImageWrapper} {
+    margin-bottom: 3;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
 `
 
 export const Description = styled.div`
