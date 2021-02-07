@@ -1409,7 +1409,7 @@
   dependencies:
     debug "^4.1.1"
 
-"@good-idea/unwind-edges@^1.5.2", "@good-idea/unwind-edges@^1.5.3":
+"@good-idea/unwind-edges@^1.4.0", "@good-idea/unwind-edges@^1.5.2", "@good-idea/unwind-edges@^1.5.3":
   version "1.5.3"
   resolved "https://registry.yarnpkg.com/@good-idea/unwind-edges/-/unwind-edges-1.5.3.tgz#d9a62318a70a49d5657774dabf593e6e6575dfdd"
   integrity sha512-kDZCC+ZwO2fI+iol55N2Yn3H28NsvNv+ocnxQ3es3wDpvlYSUuXWomTlS8Fi5E8TyBiwOv6rVgZOiL48d8OsTA==
@@ -3435,6 +3435,18 @@
     "@theme-ui/color-modes" "0.3.5"
     "@theme-ui/core" "0.3.5"
     "@theme-ui/mdx" "0.3.5"
+
+"@thi.ng/api@^6.13.6":
+  version "6.13.6"
+  resolved "https://registry.yarnpkg.com/@thi.ng/api/-/api-6.13.6.tgz#fb24ffd0fad409b2cc2c6156850b0d9829e0196d"
+  integrity sha512-r1qJR2QaODkhG0poOKAkFIaHYeGF3rYuh/eaGx+4mBjA+jUCRlqQNr/yP1DsjMEVbjlE1jqS5apQvnfSmQlOvg==
+
+"@thi.ng/memoize@^2.0.14":
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/@thi.ng/memoize/-/memoize-2.1.8.tgz#1775185613650876b69a88d71364c081a7d41b5d"
+  integrity sha512-rUzHLzTY0UpTxCKKD3hlCsY8MHQTsOrexCIhwQHvuvJX0ajlw5xQbEwvU3VL7jbd+AT091YrZzx5wt22BTVcOg==
+  dependencies:
+    "@thi.ng/api" "^6.13.6"
 
 "@tootallnate/once@1":
   version "1.1.2"
@@ -9310,7 +9322,7 @@ graphql-subscriptions@^1.0.0, graphql-subscriptions@^1.1.0:
   dependencies:
     iterall "^1.3.0"
 
-graphql-tag@^2.11.0:
+graphql-tag@^2.10.3, graphql-tag@^2.11.0:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.11.0.tgz#1deb53a01c46a7eb401d6cb59dec86fa1cccbffd"
   integrity sha512-VmsD5pJqWJnQZMUeRwrDhfgoyqcfwEkvtpANqcoUG8/tOLkwNgU9mzub/Mc78OJMhHjx7gfAMTxzdG43VGg3bA==
@@ -18016,6 +18028,16 @@ url@^0.11.0:
   dependencies:
     punycode "1.3.2"
     querystring "0.2.0"
+
+use-shopify@^0.8.3:
+  version "0.8.3"
+  resolved "https://registry.yarnpkg.com/use-shopify/-/use-shopify-0.8.3.tgz#eb9920e7a2e4fcb7d5f516ed2900bee094260035"
+  integrity sha512-FS/Lm+DTUAtHps6t4+/X4aeRGS3e9VxagNGISxkPYRfP6X7i42PwstkpN18TOB+rMBMmpCyXn6UU2JSKQoZf7A==
+  dependencies:
+    "@good-idea/unwind-edges" "^1.4.0"
+    "@thi.ng/memoize" "^2.0.14"
+    graphql-tag "^2.10.3"
+    js-cookie "^2.2.1"
 
 use-subscription@1.5.1:
   version "1.5.1"
