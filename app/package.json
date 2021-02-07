@@ -54,8 +54,7 @@
 		"react-ga": "^3.3.0",
 		"react-player": "^2.7.2",
 		"react-router": "^5.2.0",
-		"react-router-dom": "^5.2.0",
-		"use-shopify": "^0.8.3"
+		"react-router-dom": "^5.2.0"
 	},
 	"devDependencies": {
 		"@graphql-codegen/cli": "1.20.0",

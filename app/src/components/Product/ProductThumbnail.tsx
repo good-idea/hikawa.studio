@@ -2,9 +2,13 @@ import * as React from 'react'
 import { unwindEdges } from '@good-idea/unwind-edges'
 import styled, { css } from '@xstyled/styled-components'
 import Link from 'next/link'
+import { useAnalytics } from '../../providers'
 import { ShopifyProduct } from '../../types'
 import { Image } from '../Image'
 import { Heading } from '../Text'
+import { useInViewport } from '../../utils'
+
+const { useEffect, useRef } = React
 
 const Title = styled.div`
   ${({ theme }) => css`
@@ -38,15 +42,30 @@ interface ProductThumbnailProps {
 export const ProductThumbnail = ({ product }: ProductThumbnailProps) => {
   const href = '/products/[productHandle]'
   const as = `/products/${product.handle}`
+  const { sendProductClick, sendProductImpression } = useAnalytics()
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  const [variants] = unwindEdges(product?.sourceData?.variants)
+  const initialVariant = variants[0]
+  const { isInViewOnce } = useInViewport(containerRef)
 
   const [images] = unwindEdges(product.sourceData?.images)
   const mainImage = images[0]
   const hoverImage = images[1]
 
+  const handleClick = () => {
+    sendProductClick({ product, variant: initialVariant })
+  }
+
+  useEffect(() => {
+    if (!isInViewOnce) return
+    sendProductImpression({ product, variant: initialVariant })
+  })
+
   return (
     <Link href={href} as={as}>
-      <a>
-        <Wrapper>
+      <a onClick={handleClick}>
+        <Wrapper ref={containerRef}>
           <ImageContainer key={product.handle || 'some-key'}>
             <Image
               ratio={1}

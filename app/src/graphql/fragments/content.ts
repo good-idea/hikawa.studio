@@ -27,6 +27,18 @@ export const urlLinkFragment = gql`
   }
 `
 
+export const shopifySourceProductVariantFragment = gql`
+  fragment ShopifySourceProductVariantFragment on ShopifySourceProductVariant {
+    _key
+    _type
+    id
+    title
+    priceV2 {
+      amount
+    }
+  }
+`
+
 export const pageLinkFragment = gql`
   fragment PageLinkFragment on PageLink {
     _type

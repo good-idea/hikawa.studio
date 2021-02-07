@@ -68,7 +68,7 @@ export const CheckoutProvider = ({ client, children }: CheckoutProps) => {
   const variables = {
     id: checkoutId || '',
   }
-  const { data, loading: checkoutQueryLoading, ...resty } = useQuery<
+  const { data, loading: checkoutQueryLoading } = useQuery<
     CheckoutQueryResponse,
     CheckoutQueryInput
   >(checkoutQuery, { variables, skip: !Boolean(checkoutId), client })

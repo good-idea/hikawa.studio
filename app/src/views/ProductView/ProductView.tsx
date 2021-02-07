@@ -1,15 +1,14 @@
 import * as React from 'react'
 import { unwindEdges } from '@good-idea/unwind-edges'
 import { useQuery } from '@apollo/client'
-import { useProductVariant } from 'use-shopify'
-import { useCheckout } from '../../providers'
+import { useCheckout, useAnalytics } from '../../providers'
 import { ShopifyProduct } from '../../types'
 import {
   productPageQuery,
   ProductQueryResponse,
   ProductQueryInput,
 } from './productPageQuery'
-import { definitely } from '../../utils'
+import { useProductVariant, definitely } from '../../utils'
 import { NotFound } from '../NotFound'
 import { Hero } from '../../components/Hero'
 import { SEO } from '../../components/SEO'
@@ -29,6 +28,8 @@ import {
   LinkButtonWrapper,
 } from './styled'
 
+const { useEffect } = React
+
 interface ProductViewProps {
   handle: string
 }
@@ -37,10 +38,11 @@ export const ProductView = ({ handle }: ProductViewProps) => {
   const variables = {
     handle,
   }
-  const { error, loading, data } = useQuery<
-    ProductQueryResponse,
-    ProductQueryInput
-  >(productPageQuery, { variables })
+
+  const { loading, data } = useQuery<ProductQueryResponse, ProductQueryInput>(
+    productPageQuery,
+    { variables },
+  )
 
   const product = definitely(data?.allShopifyProduct)[0]
 
@@ -58,8 +60,15 @@ const ProductViewInner = ({ product }: ProductViewInnerProps) => {
   if (!sourceData) {
     throw new Error('No sourceData was provided')
   }
-  const { currentVariant, selectVariant } = useProductVariant(sourceData)
+  const { currentVariant, selectVariant } = useProductVariant(product)
   const { addLineItems } = useCheckout()
+
+  const { sendProductDetailView } = useAnalytics()
+
+  useEffect(() => {
+    if (!currentVariant) throw new Error('Could not get current variant')
+    sendProductDetailView({ product, variant: currentVariant })
+  }, [currentVariant])
 
   const addToCart = async () => {
     const variantId = currentVariant?.id

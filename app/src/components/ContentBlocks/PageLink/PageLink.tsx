@@ -7,9 +7,17 @@ import {
   PageOrShopOrShopifyCollectionOrShopifyProductOrUrlLink,
   PageLink as PageLinkType,
 } from '../../../types'
+import { useAnalytics } from '../../../providers'
 import { Heading } from '../../Text'
 import { Image } from '../../Image'
-import { definitely, getLinkLabel, getLinkUrl } from '../../../utils'
+import {
+  definitely,
+  getLinkLabel,
+  getLinkUrl,
+  useInViewport,
+} from '../../../utils'
+
+const { useEffect, useRef } = React
 
 const PrimaryImage = styled.div``
 
@@ -140,13 +148,25 @@ const getProductImages = (link: ShopifyProduct) => {
 export const PageLink = ({
   item,
   imageSizes,
-  showHover,
   useDefaultImage,
   largeText,
 }: PageLinkProps) => {
   const { link: links, images, label } = item
   const link = definitely(links)[0]
+  const containerRef = useRef<HTMLDivElement>(null)
+  const { sendProductImpression, sendProductClick } = useAnalytics()
+  const { isInViewOnce } = useInViewport(containerRef)
+
+  useEffect(() => {
+    if (!isInViewOnce || link.__typename !== 'ShopifyProduct') return
+    sendProductImpression({ product: link })
+  }, [isInViewOnce, link])
   if (!link) return null
+
+  const handleClick = () => {
+    if (link.__typename !== 'ShopifyProduct') return
+    sendProductClick({ product: link })
+  }
 
   const headerText = label || getLinkLabel(link)
 
@@ -168,7 +188,7 @@ export const PageLink = ({
 
   return (
     <Link link={link}>
-      <Wrapper>
+      <Wrapper onClick={handleClick}>
         {hoverImage || primaryImage ? (
           <ImageWrapper>
             {primaryImage && (

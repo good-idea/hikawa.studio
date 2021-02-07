@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { unwindEdges } from '@good-idea/unwind-edges'
 import { ShopifyProduct, ShopifySourceProductVariant } from '../../types'
+import { useAnalytics, useCheckout, useSiteSettings } from '../../providers'
 import { Heading } from '../../components/Text'
 import { RichText } from '../../components/RichText'
-import { useCheckout, useSiteSettings } from '../../providers'
 import { ShopifyRichText } from '../../components/ShopifyRichText'
 import { Afterpay } from './Afterpay'
 import { VariantSelector } from './VariantSelector'
@@ -34,6 +34,7 @@ export const ProductDescription = ({
   selectVariant,
   addToCart,
 }: ProductDescriptionProps) => {
+  const { sendAddToCart } = useAnalytics()
   const { siteSettings } = useSiteSettings()
   const [success, setSuccess] = useState(false)
   const { loading: checkoutLoading } = useCheckout()
@@ -44,6 +45,7 @@ export const ProductDescription = ({
 
   const handleClick = async () => {
     await addToCart()
+    sendAddToCart({ product, variant: currentVariant })
     setSuccess(true)
   }
 

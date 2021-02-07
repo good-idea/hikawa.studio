@@ -3,6 +3,7 @@ import {
   seoFragment,
   heroFragment,
   shopifySourceImageFragment,
+  shopifySourceProductVariantFragment,
 } from '../../graphql'
 import { ShopifyProduct } from '../../types'
 
@@ -42,6 +43,16 @@ export const productPageQuery = gql`
           shopifyId
           title
           sourceData {
+            title
+            id
+            variants {
+              edges {
+                node {
+                  ...ShopifySourceProductVariantFragment
+                }
+              }
+            }
+
             images {
               edges {
                 node {
@@ -56,6 +67,8 @@ export const productPageQuery = gql`
         description
         descriptionHtml
         availableForSale
+        title
+        id
         images {
           edges {
             node {
@@ -68,6 +81,7 @@ export const productPageQuery = gql`
             node {
               id
               availableForSale
+              title
               priceV2 {
                 amount
               }
@@ -85,4 +99,5 @@ export const productPageQuery = gql`
   ${shopifySourceImageFragment}
   ${seoFragment}
   ${heroFragment}
+  ${shopifySourceProductVariantFragment}
 `

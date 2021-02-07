@@ -1,4 +1,8 @@
-import { Variant, Product, CheckoutLineItem } from 'use-shopify'
+import {
+  ShopifyStorefrontProductVariant as Variant,
+  ShopifyStorefrontProduct as Product,
+  ShopifyStorefrontCheckoutLineItem as CheckoutLineItem,
+} from '../../types/generated-shopify'
 import {
   ShopifyProduct,
   ShopifyProductVariant,
@@ -14,7 +18,7 @@ declare global {
 
 export interface SelectedProduct {
   product: ShopifyProduct | ShopifySourceProduct | Product | CheckoutLineItem
-  variant: ShopifyProductVariant | ShopifySourceProductVariant | Variant
+  variant?: ShopifyProductVariant | ShopifySourceProductVariant | Variant
   quantity?: number
 }
 
@@ -23,7 +27,7 @@ export interface EcommerceObject {
   id: string
   price: string
   category?: string
-  variant: string
+  variant?: string
   list?: string
   position?: number
   quantity?: number

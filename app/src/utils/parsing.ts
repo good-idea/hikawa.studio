@@ -39,7 +39,9 @@ export const assertExists = <T>(
   item: Maybe<T> | undefined,
   label: string,
 ): T => {
-  if (!item) throw new Error(`Property "${label}" was not supplied`)
+  if (!item) {
+    throw new Error(`Property "${label}" was not supplied`)
+  }
   return item
 }
 

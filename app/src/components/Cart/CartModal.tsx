@@ -5,6 +5,7 @@ import { Heading } from '../Text'
 import { Button } from '../Button'
 import { Modal } from '../Modal'
 import { RichText } from '../RichText'
+import { definitely } from '../../utils'
 import {
   SummaryWrapper,
   LineItems,
@@ -40,7 +41,7 @@ export const CartModal = () => {
     loading,
     userErrors,
   } = useCheckout()
-  const { sendBeginCheckout } = useAnalytics()
+  const { sendRemoveFromCart, sendBeginCheckout } = useAnalytics()
 
   const [lineItems] = unwindEdges(currentCheckout?.lineItems)
 
@@ -55,8 +56,8 @@ export const CartModal = () => {
     }
     if (noteInputValue !== currentCheckout?.note) await addNote(noteInputValue)
     if (!lineItems.length) return
-    const products = lineItems
-      .map((li) => {
+    const products = definitely(
+      lineItems.map((li) => {
         const { variant, quantity } = li
         if (!variant || !variant?.product) {
           return null
@@ -68,9 +69,8 @@ export const CartModal = () => {
           product,
           quantity,
         }
-      })
-      .filter(Boolean)
-    // @ts-ignore
+      }),
+    )
     sendBeginCheckout(products)
 
     window.location = currentCheckout.webUrl
@@ -78,8 +78,18 @@ export const CartModal = () => {
 
   const checkoutText = siteSettings?.checkout?.textRaw ?? undefined
 
-  const updateLineItemQuantity = (lineItemId: string) => (quantity: number) =>
-    updateQuantity(lineItemId, quantity)
+  const updateLineItemQuantity = (lineItemId: string) => async (
+    quantity: number,
+  ) => {
+    const lineItem = lineItems.find((li) => li.id === lineItemId)
+    if (!lineItem) return
+    const { variant } = lineItem
+    if (!variant) return
+    if (quantity === 0) {
+      sendRemoveFromCart({ product: lineItem, variant, quantity })
+    }
+    return updateQuantity(lineItemId, quantity)
+  }
 
   return (
     <Modal open={isOpen} onBackgroundClick={closeCart}>

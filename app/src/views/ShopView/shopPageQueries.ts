@@ -5,6 +5,7 @@ import {
   seoFragment,
   colorFragment,
   shopifySourceImageFragment,
+  shopifySourceProductVariantFragment,
 } from '../../graphql'
 
 export interface ShopPageResponse {
@@ -35,7 +36,16 @@ export const shopPageQuery = /* GraphQL */ gql`
           title
           handle
           sourceData {
+            title
+            id
             tags
+            variants {
+              edges {
+                node {
+                  ...ShopifySourceProductVariantFragment
+                }
+              }
+            }
             images {
               edges {
                 node {
@@ -52,4 +62,5 @@ export const shopPageQuery = /* GraphQL */ gql`
   ${seoFragment}
   ${shopifySourceImageFragment}
   ${colorFragment}
+  ${shopifySourceProductVariantFragment}
 `
