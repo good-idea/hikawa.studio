@@ -3,7 +3,7 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@now/next@canary"
+      "use": "@now/next"
     }
   ],
   "routes": [
@@ -17,10 +17,5 @@
       "dest": "$1",
       "continue": true
     }
-  ],
-  "build": {
-    "env": {
-      "FORCE_BUILDER_TAG": "canary"
-    }
-  }
+  ]
 }
