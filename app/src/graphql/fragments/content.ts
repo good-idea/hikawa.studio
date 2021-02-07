@@ -69,6 +69,15 @@ export const pageLinkFragment = gql`
         handle
         title
         sourceData {
+          id
+          title
+          variants {
+            edges {
+              node {
+                ...ShopifySourceProductVariantFragment
+              }
+            }
+          }
           images {
             edges {
               node {
@@ -98,6 +107,7 @@ export const pageLinkFragment = gql`
     }
   }
   ${shopifySourceImageFragment}
+  ${shopifySourceProductVariantFragment}
 `
 
 export const ctaFragment = gql`

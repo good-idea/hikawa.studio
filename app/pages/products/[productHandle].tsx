@@ -1,10 +1,8 @@
 import * as React from 'react'
 import gql from 'graphql-tag'
-import { getDataFromTree } from '@apollo/client/react/ssr'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { ShopifyProduct } from '../../src/types'
 import { getParam, definitely } from '../../src/utils'
-import { Sentry } from '../../src/services/sentry'
 import { ProductView } from '../../src/views'
 import { ssrClient, getApolloCache } from '../../src/utils/ssr'
 
