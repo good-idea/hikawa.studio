@@ -1,4 +1,5 @@
 import imageUrlBuilder from '@sanity/image-url'
+import { definitely } from '../../utils'
 import {
   Maybe,
   SanityRawImage,
@@ -42,12 +43,40 @@ interface ImageWidth {
 const buildSrcSet = (widths: ImageWidth[]): string =>
   widths.map(({ src, width }) => `${src} ${width}w`).join(', ')
 
-interface ImageUrls {
-  src?: Maybe<string>
-  srcSet: string
+const defaultSizes = [100, 300, 600, 800, 1200, 1600]
+
+const SANITY_IMAGE_ROOT = 'https://cdn.sanity.io/images/7afit9ut/'
+const CLOUDINARY_IMAGE_ROOT =
+  'https://res.cloudinary.com/good-idea/image/upload/baileyhikawa/'
+
+const CLOUDINARY_PARAM_ROOT =
+  'https://res.cloudinary.com/good-idea/image/upload/'
+
+const replaceImageRoot = (src: string | null): string | null => {
+  if (src === null) return null
+  return src.replace(SANITY_IMAGE_ROOT, CLOUDINARY_IMAGE_ROOT)
 }
 
-const defaultSizes = [100, 300, 600, 800, 1200, 1600]
+interface CloudinaryParams {
+  width?: number
+  format?: string
+}
+
+const setCloudinaryParameters = (
+  src: string | null,
+  params: CloudinaryParams,
+): string | null => {
+  if (src === null) return null
+  const { width, format } = params
+  const urlParams = definitely([
+    width ? `w_${width}` : undefined,
+    format ? `f_${format}` : undefined,
+  ])
+    .join(',')
+    .concat('/')
+  const imagePath = src.replace(CLOUDINARY_PARAM_ROOT, '')
+  return [CLOUDINARY_PARAM_ROOT, urlParams, imagePath].join('')
+}
 
 const getSanityImageDetails = (
   image: SanityRawImage | RichImage,
@@ -55,21 +84,18 @@ const getSanityImageDetails = (
 ): ImageDetails | null => {
   if (!image?.asset) return null
   const source = builder.image(image)
-  const src = source.url()
+  const src = replaceImageRoot(source.url())
   const srcSet = buildSrcSet(
     sizes.map((width) => ({
       width,
-      src: source.width(width).url(),
+      src: setCloudinaryParameters(src, { width, format: 'webp' }),
     })),
   )
+
   const srcSetWebp = buildSrcSet(
     sizes.map((width) => ({
       width,
-      src: source
-        //
-        .width(width)
-        .format('webp')
-        .url(),
+      src: setCloudinaryParameters(src, { width, format: 'webp' }),
     })),
   )
 
