@@ -12,10 +12,8 @@
 		"sanity"
 	],
 	"scripts": {
-		"build": "yarn workspace hikawa-app build && yarn workspace hikawa-proxy build",
-		"serve:functions": "netlify-lambda serve proxy/src/lambdas",
-		"dev:app": "yarn workspace hikawa-app dev",
-		"flow:doctor": "flow-mono install-types && flow-mono create-symlinks ./app/.flowconfig"
+		"build": "yarn workspace hikawa-app build",
+		"dev:app": "yarn workspace hikawa-app start"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^11.0.0",
