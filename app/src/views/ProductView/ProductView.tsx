@@ -45,10 +45,7 @@ export const ProductView = ({ handle }: ProductViewProps) => {
   )
 
   const product = definitely(data?.allShopifyProduct)[0]
-
-  if (loading) return null
-  if (!product) return <NotFound />
-  return <ProductViewInner product={product} />
+  return null
 }
 
 interface ProductViewInnerProps {
