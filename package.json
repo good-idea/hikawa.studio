@@ -13,7 +13,9 @@
 	],
 	"scripts": {
 		"build": "yarn workspace hikawa-app build",
-		"dev:app": "yarn workspace hikawa-app start"
+		"dev:app": "yarn workspace hikawa-app start",
+		"deploy:local": "env $(cat ./app/.env | grep -v \"#\" | xargs) pm2 deploy ecosystem.config.js production",
+		"deploy": "pm2 deploy ecosystem.config.js production"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^11.0.0",
@@ -21,8 +23,8 @@
 		"@types/eslint": "^7.2.6",
 		"@types/prettier": "^2.2.0",
 		"@types/tsc-watch": "^4.2.0",
-		"@typescript-eslint/eslint-plugin": "^4.14.2",
-		"@typescript-eslint/parser": "^4.14.2",
+		"@typescript-eslint/eslint-plugin": "^4.15.0",
+		"@typescript-eslint/parser": "^4.15.0",
 		"eslint": "^7.19.0",
 		"eslint-config-airbnb": "^18.2.1",
 		"eslint-config-prettier": "^7.2.0",
@@ -32,7 +34,8 @@
 		"eslint-plugin-jsx-a11y": "^6.4.1",
 		"eslint-plugin-prettier": "^3.3.1",
 		"eslint-plugin-react": "^7.22.0",
-		"husky": "^4.3.8",
+		"husky": "^5.0.9",
+		"pm2": "^4.5.4",
 		"prettier": "^2.2.1",
 		"pretty-quick": "^3.1.0",
 		"tsc-watch": "^4.2.9",
@@ -44,7 +47,7 @@
 			"pre-commit": "pretty-quick --staged"
 		}
 	},
-  "resolutions": {
-    "graphql": "<highest found version>"
-  }
+	"resolutions": {
+		"graphql": "<highest found version>"
+	}
 }
