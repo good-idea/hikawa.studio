@@ -40,14 +40,5 @@
 		"pretty-quick": "^3.1.0",
 		"tsc-watch": "^4.2.9",
 		"vercel": "^21.2.3"
-	},
-	"husky": {
-		"hooks": {
-			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-			"pre-commit": "pretty-quick --staged"
-		}
-	},
-	"resolutions": {
-		"graphql": "<highest found version>"
 	}
 }
