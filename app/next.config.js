@@ -11,6 +11,7 @@ const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 })
 
+const NODE_ENV = process.env.NODE_ENV
 const SENTRY_DSN = process.env.SENTRY_DSN
 const SENTRY_ORG = process.env.SENTRY_ORG
 const SENTRY_PROJECT = process.env.SENTRY_PROJECT
@@ -40,6 +41,7 @@ module.exports = withSourceMaps(
       const release = VERCEL_GITHUB_COMMIT_SHA || VERCEL_URL
 
       if (
+        NODE_ENV == 'production' &&
         release &&
         SENTRY_DSN &&
         SENTRY_ORG &&

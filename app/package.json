@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "DEBUG=app*,sane-shopify* next",
-    "start:prod": "NODE_ENV=production next",
+    "start:prod": "NODE_ENV=production next start",
     "start:debug": "NODE_OPTIONS='--inspect' DEBUG=app*,sane-shopify* next dev",
     "build": "yarn build:next",
     "build:next": "NODE_ENV=production next build",
