@@ -25,7 +25,7 @@ module.exports = {
       'post-deploy':
         'yarn install && yarn build && pm2 reload ecosystem.config.js --env production',
       env: {
-        NODE_ENV: 'development',
+        NODE_ENV: 'production',
         SENTRY_DSN: process.env.SENTRY_DSN,
         SENTRY_ORG: process.env.SENTRY_ORG,
         SENTRY_PROJECT: process.env.SENTRY_PROJECT,
