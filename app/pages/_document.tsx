@@ -2,6 +2,9 @@ import * as React from 'react'
 import Document from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 
+console.log('Next running in environment:')
+console.log(process.env.NODE_ENV)
+
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet()
