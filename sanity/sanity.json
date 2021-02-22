@@ -15,6 +15,7 @@
     }
   },
   "plugins": [
+    "@sane-shopify/sanity-plugin",
     "@sanity/base",
     "@sanity/components",
     "@sanity/default-layout",
