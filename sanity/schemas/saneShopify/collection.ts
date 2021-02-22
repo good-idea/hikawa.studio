@@ -1,6 +1,11 @@
 export const collection = {
   fields: [
-    { name: 'sourceData', hidden: true },
+    {
+      type: 'shopifySourceData',
+      name: 'sourceData',
+      title: 'Shopify Source Data',
+      hidden: true,
+    },
     {
       title: 'Banner',
       name: 'hero',
@@ -24,6 +29,7 @@ export const collection = {
     },
 
     {
+      title: 'SEO',
       name: 'seo',
       type: 'seo',
       description:
