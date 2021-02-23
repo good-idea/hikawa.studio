@@ -5,7 +5,7 @@ module.exports = {
       script: 'yarn start',
       autorestart: true,
       watch: false,
-      max_memory_restart: '1G',
+      max_memory_restart: '300M',
       env: {
         NODE_ENV: 'development',
       },
