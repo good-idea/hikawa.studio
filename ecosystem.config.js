@@ -11,7 +11,7 @@ module.exports = {
       },
       env_production: {
         NODE_ENV: 'production',
-        DEBUG: 'sane-shopify:*',
+        DEBUG: 'sane-shopify:server',
       },
     },
   ],
