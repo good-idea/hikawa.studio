@@ -2298,12 +2298,12 @@
     lodash "^4.17.20"
     react-icons "^3.11.0"
 
-"@sane-shopify/server@^0.19.10":
-  version "0.19.10"
-  resolved "https://registry.yarnpkg.com/@sane-shopify/server/-/server-0.19.10.tgz#32982a90b69e478075627732db816056a5f741fb"
-  integrity sha512-TBAj9N4aselzelkzCLtHK9DfKY6v1VHXgFYJv6RBBZpnRwPrCX5myv/7vojSlKtDmNYj5ORre7v+Lnsbbqpm5Q==
+"@sane-shopify/server@^0.19.11":
+  version "0.19.11"
+  resolved "https://registry.yarnpkg.com/@sane-shopify/server/-/server-0.19.11.tgz#e9c7ecadbe63c8c6ca263c76662d8620119f6f29"
+  integrity sha512-zTs+xJ5i15qfQTsHQl/5HK7aBH2Z73XZae0slbT+8zXWDFAecvK1XSDlOdE+NaoZJqXxC03BkJTR62T6MJq9vQ==
   dependencies:
-    "@sane-shopify/sync-utils" "^0.19.10"
+    "@sane-shopify/sync-utils" "^0.19.11"
     apollo-link "^1.2.14"
     apollo-link-http "^1.5.17"
     apollo-server-lambda "^2.19.0"
@@ -2329,10 +2329,32 @@
     p-queue "^6.6.2"
     xstate "^4.14.0"
 
+"@sane-shopify/sync-utils@^0.19.11":
+  version "0.19.11"
+  resolved "https://registry.yarnpkg.com/@sane-shopify/sync-utils/-/sync-utils-0.19.11.tgz#a6ecffc4c84e7dd31b1c62a5133ad4d86d870cc0"
+  integrity sha512-UqSd8m5HyRHcHPXkzmTc2+7pXcjU/CrC/za/fsoDqsBhypWHGpW5IOIizbFszbgSFwsH5FuNljp+nDyv/4QZgg==
+  dependencies:
+    "@good-idea/leaky-bucket" "^3.1.2"
+    "@good-idea/unwind-edges" "^1.5.2"
+    "@sane-shopify/types" "^0.19.11"
+    "@sanity/client" "^2.0.9"
+    debug "^4.2.0"
+    deepmerge "^4.2.2"
+    es6-promise "^4.2.8"
+    graphql-tag "^2.11.0"
+    isomorphic-fetch "^3.0.0"
+    p-queue "^6.6.2"
+    xstate "^4.14.0"
+
 "@sane-shopify/types@^0.19.10":
   version "0.19.10"
   resolved "https://registry.yarnpkg.com/@sane-shopify/types/-/types-0.19.10.tgz#d1d212324c5aafe3a6cc529739f2515d2e18a2a1"
   integrity sha512-TFnHNoedHS9C+7eRnmervWhbEPI7v0SunMHmJHlIlwXUgRVUFmtpIvQ+Ls5pDZcKidQkrUe7LzrDlF6HJbRTjQ==
+
+"@sane-shopify/types@^0.19.11":
+  version "0.19.11"
+  resolved "https://registry.yarnpkg.com/@sane-shopify/types/-/types-0.19.11.tgz#a98f919c6b31b6392a40e83604f2d0d145499655"
+  integrity sha512-dW2Jkm+mM8PKuEN2R1v56l7UCUxEmS03QVU67m3UBnAc3yfBrbSVhFR89C4TaZ7L5VjDU8eAOe8MxhQDCyfxTg==
 
 "@sanity/asset-utils@^1.1.2":
   version "1.1.2"

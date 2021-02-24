@@ -21,7 +21,7 @@
     "sanity"
   ],
   "dependencies": {
-    "@sane-shopify/sanity-plugin": "^0.19.10",
+    "@sane-shopify/sanity-plugin": "^0.19.11",
     "@sanity/base": "^2.4.0",
     "@sanity/cli": "^2.4.0",
     "@sanity/color-input": "^2.2.6",
