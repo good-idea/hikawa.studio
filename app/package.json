@@ -10,7 +10,7 @@
     "start:prod": "NODE_ENV=production next start",
     "start:debug": "NODE_OPTIONS='--inspect' DEBUG=app*,sane-shopify* next dev",
     "build": "yarn build:next",
-    "build:next": "NODE_ENV=production next build",
+    "build:next": "NODE_OPTIONS='--max_old_space_size=1024' NODE_ENV=production next build",
     "build:analyze": "ANALYZE=true next build",
     "install-types": "typesync && yarn install",
     "generate-types": "graphql-codegen -r dotenv/config --config codegen.yml && prettier ./src/types/**/* --write"
