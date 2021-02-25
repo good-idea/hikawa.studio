@@ -20,7 +20,13 @@ if (!SHOPIFY_GRAPHQL_URL)
 if (!SHOPIFY_STOREFRONT_TOKEN)
   throw new Error('You must provide a SHOPIFY_STOREFRONT_TOKEN')
 
-export const ssrClient = createApolloClient({ uri: SANITY_GRAPHQL_URL })
+export const ssrClient = ''
+
+export const createSSRClient = () =>
+  createApolloClient({
+    uri: SANITY_GRAPHQL_URL,
+    ssrMode: true,
+  })
 
 export const shopifyApolloClient = createApolloClient({
   uri: SHOPIFY_GRAPHQL_URL,
@@ -51,6 +57,7 @@ export const getApolloCache = async (
   View: React.ComponentType | ReactFnComponent,
   viewProps: Record<string, any> = {},
 ): Promise<SSRProps> => {
+  const ssrClient = createSSRClient()
   await ssrClient.cache.reset()
 
   const RenderedApp = (

@@ -8,7 +8,8 @@
   "scripts": {
     "start": "DEBUG=app*,sane-shopify* next",
     "start:prod": "NODE_ENV=production next start",
-    "start:debug": "NODE_OPTIONS='--inspect' DEBUG=app*,sane-shopify* next dev",
+    "start:debug": "NODE_OPTIONS='--inspect' next",
+    "start:debug:prod": "NODE_ENV=production NODE_OPTIONS='--inspect' DEBUG=app*,sane-shopify* next start",
     "build": "yarn build:next",
     "build:next": "NODE_OPTIONS='--max_old_space_size=1024' NODE_ENV=production next build",
     "build:analyze": "ANALYZE=true next build",

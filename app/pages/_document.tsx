@@ -6,6 +6,7 @@ export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet()
     const originalRenderPage = ctx.renderPage
+    const initialProps = await Document.getInitialProps(ctx)
 
     try {
       ctx.renderPage = () =>
@@ -24,8 +25,11 @@ export default class MyDocument extends Document {
           </>
         ),
       }
+    } catch (error) {
+      console.error(error)
     } finally {
       sheet.seal()
+      return initialProps
     }
   }
 }

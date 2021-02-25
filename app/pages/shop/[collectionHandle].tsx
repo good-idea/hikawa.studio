@@ -4,7 +4,7 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import { ShopifyCollection } from '../../src/types'
 import { ShopView } from '../../src/views'
 import { getParam, definitely } from '../../src/utils'
-import { ssrClient, getApolloCache } from '../../src/utils/ssr'
+import { createSSRClient, getApolloCache } from '../../src/utils/ssr'
 
 interface ShopProps {
   activeCollectionHandle: string
@@ -61,7 +61,8 @@ interface CollectionsResponse {
 
 // @ts-ignore
 export const getStaticPaths: GetStaticPaths = async () => {
-  const result = await ssrClient.query<CollectionsResponse>({
+  const client = createSSRClient()
+  const result = await client.query<CollectionsResponse>({
     query: pageHandlesQuery,
   })
 

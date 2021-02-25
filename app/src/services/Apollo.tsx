@@ -11,6 +11,5 @@ interface Props extends Omit<ApolloClientOptions<any>, 'cache'> {
 export const createApolloClient = (props?: Props) =>
   new ApolloClient({
     cache: new InMemoryCache().restore(props?.initialCache || {}),
-    ssrMode: typeof window === 'undefined',
     ...props,
   })

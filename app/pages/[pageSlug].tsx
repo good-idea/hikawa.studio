@@ -3,7 +3,7 @@ import gql from 'graphql-tag'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { Page as PageType } from '../src/types'
 import { getParam, definitely } from '../src/utils'
-import { ssrClient, getApolloCache } from '../src/utils/ssr'
+import { createSSRClient, getApolloCache } from '../src/utils/ssr'
 import { PageView } from '../src/views'
 
 interface PageProps {
@@ -39,7 +39,8 @@ interface PageResponse {
 
 // @ts-ignore
 export const getStaticPaths: GetStaticPaths = async () => {
-  const result = await ssrClient.query<PageResponse>({
+  const client = createSSRClient()
+  const result = await client.query<PageResponse>({
     query: pageHandlesQuery,
   })
   const pages = definitely(result?.data?.allPage)
