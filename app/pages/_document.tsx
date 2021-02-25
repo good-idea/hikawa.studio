@@ -2,11 +2,11 @@ import * as React from 'react'
 import Document from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 
+// @ts-ignore
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet()
     const originalRenderPage = ctx.renderPage
-    const initialProps = await Document.getInitialProps(ctx)
 
     try {
       ctx.renderPage = () =>
@@ -29,7 +29,6 @@ export default class MyDocument extends Document {
       console.error(error)
     } finally {
       sheet.seal()
-      return initialProps
     }
   }
 }
