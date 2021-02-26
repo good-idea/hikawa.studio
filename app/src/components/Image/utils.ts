@@ -84,18 +84,19 @@ const getSanityImageDetails = (
 ): ImageDetails | null => {
   if (!image?.asset) return null
   const source = builder.image(image)
-  const src = replaceImageRoot(source.url())
+  const originalSrc = replaceImageRoot(source.url())
+  const src = setCloudinaryParameters(originalSrc, { width: 1600 })
   const srcSet = buildSrcSet(
     sizes.map((width) => ({
       width,
-      src: setCloudinaryParameters(src, { width, format: 'webp' }),
+      src: setCloudinaryParameters(originalSrc, { width, format: 'webp' }),
     })),
   )
 
   const srcSetWebp = buildSrcSet(
     sizes.map((width) => ({
       width,
-      src: setCloudinaryParameters(src, { width, format: 'webp' }),
+      src: setCloudinaryParameters(originalSrc, { width, format: 'webp' }),
     })),
   )
 
