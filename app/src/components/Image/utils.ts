@@ -62,6 +62,9 @@ interface CloudinaryParams {
   format?: string
 }
 
+const replaceFormat = (src: string, format?: string) =>
+  format ? src.replace(/(jpe?g|png)$/, format) : src
+
 const setCloudinaryParameters = (
   src: string | null,
   params: CloudinaryParams,
@@ -74,7 +77,10 @@ const setCloudinaryParameters = (
   ])
     .join(',')
     .concat('/')
-  const imagePath = src.replace(CLOUDINARY_PARAM_ROOT, '')
+  const imagePath = replaceFormat(
+    src.replace(CLOUDINARY_PARAM_ROOT, ''),
+    format,
+  )
   return [CLOUDINARY_PARAM_ROOT, urlParams, imagePath].join('')
 }
 
@@ -89,7 +95,7 @@ const getSanityImageDetails = (
   const srcSet = buildSrcSet(
     sizes.map((width) => ({
       width,
-      src: setCloudinaryParameters(originalSrc, { width, format: 'webp' }),
+      src: setCloudinaryParameters(originalSrc, { width }),
     })),
   )
 
