@@ -59,7 +59,7 @@ export const ProductThumbnail = ({ product }: ProductThumbnailProps) => {
   useEffect(() => {
     if (!isInViewOnce) return
     sendProductImpression({ product, variant: initialVariant })
-  })
+  }, [isInViewOnce])
 
   return (
     <Link href={href}>
