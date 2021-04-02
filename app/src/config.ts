@@ -1,7 +1,3 @@
-import dotEnv from 'dotenv'
-
-dotEnv.config()
-
 const projectId = process.env.SANITY_PROJECT_ID
 const dataset = process.env.SANITY_DATASET
 const authToken = process.env.SANITY_AUTH_TOKEN
@@ -31,5 +27,3 @@ export const config = {
     graphQLurl: shopifyGraphQLurl,
   },
 }
-
-console.log(config)
