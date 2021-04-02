@@ -5,8 +5,7 @@ const shopName = process.env.SHOPIFY_SHOP_NAME
 const accessToken = process.env.SHOPIFY_STOREFRONT_TOKEN
 
 const sanityGraphQLurl = process.env.SANITY_GRAPHQL_URL
-
-const shopifyGraphQLurl = `https://${shopName}.myshopify.com/api/2020-01/graphql`
+const shopifyGraphQLurl = process.env.SHOPIFY_GRAPHQL_URL
 
 if (!projectId) throw new Error('You must provide a sanity project ID')
 if (!dataset) throw new Error('You must provide a sanity dataset')
