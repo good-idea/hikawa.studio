@@ -28,6 +28,7 @@ module.exports = withSourceMaps(
       SANITY_READ_TOKEN: process.env.SANITY_READ_TOKEN,
       SENTRY_DSN: process.env.SENTRY_DSN,
       SANITY_GRAPHQL_URL: process.env.SANITY_GRAPHQL_URL,
+      SHOPIFY_SHOP_NAME: process.env.SHOPIFY_SHOP_NAME,
       SHOPIFY_GRAPHQL_URL: process.env.SHOPIFY_GRAPHQL_URL,
       SHOPIFY_STOREFRONT_TOKEN: process.env.SHOPIFY_STOREFRONT_TOKEN,
     },
