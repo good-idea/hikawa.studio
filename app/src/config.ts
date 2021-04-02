@@ -31,3 +31,5 @@ export const config = {
     graphQLurl: shopifyGraphQLurl,
   },
 }
+
+console.log(config)

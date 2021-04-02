@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { ApolloClient, InMemoryCache } from '@apollo/client'
 import { NextRouter } from 'next/router'
 import { AllProviders, gtmScript } from '../src/providers'
+import { config } from '../src/config'
 
 interface AppProps {
   Component: React.ComponentType
@@ -10,9 +11,9 @@ interface AppProps {
   router: NextRouter
 }
 
-const SANITY_GRAPHQL_URL = process.env.SANITY_GRAPHQL_URL
-const SHOPIFY_GRAPHQL_URL = process.env.SHOPIFY_GRAPHQL_URL
-const SHOPIFY_STOREFRONT_TOKEN = process.env.SHOPIFY_STOREFRONT_TOKEN
+const SANITY_GRAPHQL_URL = config.sanity.graphQLurl
+const SHOPIFY_GRAPHQL_URL = config.shopify.graphQLurl
+const SHOPIFY_STOREFRONT_TOKEN = config.shopify.accessToken
 
 if (!SANITY_GRAPHQL_URL)
   throw new Error('You must provide a SANITY_GRAPHQL_URL')
