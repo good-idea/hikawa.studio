@@ -24,13 +24,13 @@ const result: PossibleTypesResultData = {
     HasMetafields: ['Product', 'ProductVariant'],
     MetafieldParentResource: ['Product', 'ProductVariant'],
     Node: [
-      'AppliedGiftCard',
       'Article',
       'Blog',
       'Checkout',
       'CheckoutLineItem',
       'Collection',
       'Comment',
+      'AppliedGiftCard',
       'MailingAddress',
       'Metafield',
       'Order',
@@ -53,8 +53,6 @@ export type Scalars = {
   Boolean: boolean
   Int: number
   Float: number
-  /** An ISO-8601 encoded UTC date time string. Example value: `"2019-07-03T20:47:55Z"`. */
-  DateTime: Date
   /** A signed decimal number, which supports arbitrary precision and is serialized as a string. Example value: `"29.99"`. */
   Decimal: any
   /** A string containing HTML code. Example value: `"<p>Grey cotton knit sweater.</p>"`. */
@@ -68,6 +66,8 @@ export type Scalars = {
    *
    */
   URL: any
+  /** An ISO-8601 encoded UTC date time string. Example value: `"2019-07-03T20:47:55Z"`. */
+  DateTime: Date
 }
 
 /** A version of the API. */
@@ -79,32 +79,6 @@ export interface ShopifyStorefrontApiVersion {
   handle: Scalars['String']
   /** Whether the version is supported by Shopify. */
   supported: Scalars['Boolean']
-}
-
-/** Details about the gift card used on the checkout. */
-export interface ShopifyStorefrontAppliedGiftCard
-  extends ShopifyStorefrontNode {
-  __typename: 'AppliedGiftCard'
-  /**
-   * The amount that was taken from the gift card by applying it.
-   * @deprecated Use `amountUsedV2` instead
-   */
-  amountUsed: Scalars['Money']
-  /** The amount that was taken from the gift card by applying it. */
-  amountUsedV2: ShopifyStorefrontMoneyV2
-  /**
-   * The amount left on the gift card.
-   * @deprecated Use `balanceV2` instead
-   */
-  balance: Scalars['Money']
-  /** The amount left on the gift card. */
-  balanceV2: ShopifyStorefrontMoneyV2
-  /** Globally unique identifier. */
-  id: Scalars['ID']
-  /** The last characters of the gift card. */
-  lastCharacters: Scalars['String']
-  /** The amount that was applied to the checkout in its currency. */
-  presentmentAmountUsed: ShopifyStorefrontMoneyV2
 }
 
 /** An article in an online store blog. */
@@ -346,17 +320,17 @@ export enum ShopifyStorefrontBlogSortKeys {
 
 /** Card brand, such as Visa or Mastercard, which can be used for payments. */
 export enum ShopifyStorefrontCardBrand {
-  /** Visa */
+  /** Visa. */
   Visa = 'VISA',
-  /** Mastercard */
+  /** Mastercard. */
   Mastercard = 'MASTERCARD',
-  /** Discover */
+  /** Discover. */
   Discover = 'DISCOVER',
-  /** American Express */
+  /** American Express. */
   AmericanExpress = 'AMERICAN_EXPRESS',
-  /** Diners Club */
+  /** Diners Club. */
   DinersClub = 'DINERS_CLUB',
-  /** JCB */
+  /** JCB. */
   Jcb = 'JCB',
 }
 
@@ -1215,6 +1189,8 @@ export enum ShopifyStorefrontCountryCode {
   Am = 'AM',
   /** Aruba. */
   Aw = 'AW',
+  /** Ascension Island. */
+  Ac = 'AC',
   /** Australia. */
   Au = 'AU',
   /** Austria. */
@@ -1633,6 +1609,8 @@ export enum ShopifyStorefrontCountryCode {
   To = 'TO',
   /** Trinidad & Tobago. */
   Tt = 'TT',
+  /** Tristan da Cunha. */
+  Ta = 'TA',
   /** Tunisia. */
   Tn = 'TN',
   /** Turkey. */
@@ -1707,7 +1685,7 @@ export interface ShopifyStorefrontCreditCard {
 export type ShopifyStorefrontCreditCardPaymentInput = {
   /** The amount of the payment. */
   amount: Scalars['Money']
-  /** A unique client generated key used to avoid duplicate charges. When a duplicate payment is found, the original is returned instead of creating a new one. */
+  /** A unique client generated key used to avoid duplicate charges. When a duplicate payment is found, the original is returned instead of creating a new one. For more information, refer to [Idempotent requests](https://shopify.dev/concepts/about-apis/idempotent-requests). */
   idempotencyKey: Scalars['String']
   /** The billing address for the payment. */
   billingAddress: ShopifyStorefrontMailingAddressInput
@@ -1724,7 +1702,7 @@ export type ShopifyStorefrontCreditCardPaymentInput = {
 export type ShopifyStorefrontCreditCardPaymentInputV2 = {
   /** The amount and currency of the payment. */
   paymentAmount: ShopifyStorefrontMoneyInput
-  /** A unique client generated key used to avoid duplicate charges. When a duplicate payment is found, the original is returned instead of creating a new one. */
+  /** A unique client generated key used to avoid duplicate charges. When a duplicate payment is found, the original is returned instead of creating a new one. For more information, refer to [Idempotent requests](https://shopify.dev/concepts/about-apis/idempotent-requests). */
   idempotencyKey: Scalars['String']
   /** The billing address for the payment. */
   billingAddress: ShopifyStorefrontMailingAddressInput
@@ -2388,6 +2366,32 @@ export interface ShopifyStorefrontCustomerUserError
   field?: Maybe<Array<Scalars['String']>>
   /** The error message. */
   message: Scalars['String']
+}
+
+/** Details about the gift card used on the checkout. */
+export interface ShopifyStorefrontAppliedGiftCard
+  extends ShopifyStorefrontNode {
+  __typename: 'AppliedGiftCard'
+  /**
+   * The amount that was taken from the gift card by applying it.
+   * @deprecated Use `amountUsedV2` instead
+   */
+  amountUsed: Scalars['Money']
+  /** The amount that was taken from the gift card by applying it. */
+  amountUsedV2: ShopifyStorefrontMoneyV2
+  /**
+   * The amount left on the gift card.
+   * @deprecated Use `balanceV2` instead
+   */
+  balance: Scalars['Money']
+  /** The amount left on the gift card. */
+  balanceV2: ShopifyStorefrontMoneyV2
+  /** Globally unique identifier. */
+  id: Scalars['ID']
+  /** The last characters of the gift card. */
+  lastCharacters: Scalars['String']
+  /** The amount that was applied to the checkout in its currency. */
+  presentmentAmountUsed: ShopifyStorefrontMoneyV2
 }
 
 /** Digital wallet, such as Apple Pay, which can be used for accelerated checkouts. */
@@ -3554,7 +3558,11 @@ export interface ShopifyStorefrontPayment extends ShopifyStorefrontNode {
   errorMessage?: Maybe<Scalars['String']>
   /** Globally unique identifier. */
   id: Scalars['ID']
-  /** A client-side generated token to identify a payment and perform idempotent operations. */
+  /**
+   * A client-side generated token to identify a payment and perform idempotent operations.
+   * For more information, refer to
+   * [Idempotent requests](https://shopify.dev/concepts/about-apis/idempotent-requests).
+   */
   idempotencyKey?: Maybe<Scalars['String']>
   /** Whether or not the payment is still processing asynchronously. */
   ready: Scalars['Boolean']
@@ -4058,7 +4066,9 @@ export interface ShopifyStorefrontQueryRoot {
   collections: ShopifyStorefrontCollectionConnection
   /** Find a customer by its access token. */
   customer?: Maybe<ShopifyStorefrontCustomer>
+  /** Returns a specific node by ID. */
   node?: Maybe<ShopifyStorefrontNode>
+  /** Returns the list of nodes with the given IDs. */
   nodes: Array<Maybe<ShopifyStorefrontNode>>
   /** Find a page by its handle. */
   pageByHandle?: Maybe<ShopifyStorefrontPage>
@@ -4439,7 +4449,7 @@ export interface ShopifyStorefrontStringEdge {
 export type ShopifyStorefrontTokenizedPaymentInput = {
   /** The amount of the payment. */
   amount: Scalars['Money']
-  /** A unique client generated key used to avoid duplicate charges. When a duplicate payment is found, the original is returned instead of creating a new one. */
+  /** A unique client generated key used to avoid duplicate charges. When a duplicate payment is found, the original is returned instead of creating a new one. For more information, refer to [Idempotent requests](https://shopify.dev/concepts/about-apis/idempotent-requests). */
   idempotencyKey: Scalars['String']
   /** The billing address for the payment. */
   billingAddress: ShopifyStorefrontMailingAddressInput
@@ -4460,7 +4470,7 @@ export type ShopifyStorefrontTokenizedPaymentInput = {
 export type ShopifyStorefrontTokenizedPaymentInputV2 = {
   /** The amount and currency of the payment. */
   paymentAmount: ShopifyStorefrontMoneyInput
-  /** A unique client generated key used to avoid duplicate charges. When a duplicate payment is found, the original is returned instead of creating a new one. */
+  /** A unique client generated key used to avoid duplicate charges. When a duplicate payment is found, the original is returned instead of creating a new one. For more information, refer to [Idempotent requests](https://shopify.dev/concepts/about-apis/idempotent-requests). */
   idempotencyKey: Scalars['String']
   /** The billing address for the payment. */
   billingAddress: ShopifyStorefrontMailingAddressInput
@@ -4497,18 +4507,32 @@ export interface ShopifyStorefrontTransaction {
   test: Scalars['Boolean']
 }
 
+/** The different kinds of order transactions. */
 export enum ShopifyStorefrontTransactionKind {
+  /** An authorization and capture performed together in a single step. */
   Sale = 'SALE',
+  /** A transfer of the money that was reserved during the authorization stage. */
   Capture = 'CAPTURE',
+  /**
+   * An amount reserved against the cardholder's funding source.
+   * Money does not change hands until the authorization is captured.
+   */
   Authorization = 'AUTHORIZATION',
+  /** An authorization for a payment taken with an EMV credit card reader. */
   EmvAuthorization = 'EMV_AUTHORIZATION',
+  /** Money returned to the customer when they have paid too much. */
   Change = 'CHANGE',
 }
 
+/** Transaction statuses describe the status of a transaction. */
 export enum ShopifyStorefrontTransactionStatus {
+  /** The transaction is pending. */
   Pending = 'PENDING',
+  /** The transaction succeeded. */
   Success = 'SUCCESS',
+  /** The transaction failed. */
   Failure = 'FAILURE',
+  /** There was an error while processing the transaction. */
   Error = 'ERROR',
 }
 

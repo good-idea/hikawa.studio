@@ -95,7 +95,7 @@ const ProductViewInner = ({ product }: ProductViewInnerProps) => {
 
   return (
     <>
-      <SEO seo={seo} defaultSeo={defaultSeo} path={path} />
+      <SEO product={product} seo={seo} defaultSeo={defaultSeo} path={path} />
       <Hero hero={hero} />
       <Column width="wide">
         <Layout>

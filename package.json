@@ -19,15 +19,15 @@
 		"start": "yarn workspace hikawa-app start:prod"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^12.0.0",
-		"@commitlint/config-conventional": "^12.0.0",
-		"@types/eslint": "^7.2.6",
+		"@commitlint/cli": "^12.1.0",
+		"@commitlint/config-conventional": "^12.1.0",
+		"@types/eslint": "^7.2.8",
 		"@types/eslint-plugin-prettier": "^3.1.0",
-		"@types/prettier": "^2.2.1",
+		"@types/prettier": "^2.2.3",
 		"@types/tsc-watch": "^4.2.0",
-		"@typescript-eslint/eslint-plugin": "^4.15.2",
-		"@typescript-eslint/parser": "^4.15.2",
-		"eslint": "^7.20.0",
+		"@typescript-eslint/eslint-plugin": "^4.20.0",
+		"@typescript-eslint/parser": "^4.20.0",
+		"eslint": "^7.23.0",
 		"eslint-config-airbnb": "^18.2.1",
 		"eslint-config-prettier": "^8.1.0",
 		"eslint-import-resolver-alias": "^1.1.2",
@@ -35,12 +35,12 @@
 		"eslint-import-resolver-webpack": "^0.13.0",
 		"eslint-plugin-jsx-a11y": "^6.4.1",
 		"eslint-plugin-prettier": "^3.3.1",
-		"eslint-plugin-react": "^7.22.0",
-		"husky": "^5.1.1",
-		"pm2": "^4.5.4",
+		"eslint-plugin-react": "^7.23.1",
+		"husky": "^6.0.0",
+		"pm2": "^4.5.6",
 		"prettier": "^2.2.1",
 		"pretty-quick": "^3.1.0",
 		"tsc-watch": "^4.2.9",
-		"vercel": "^21.2.3"
+		"vercel": "^21.3.3"
 	}
 }

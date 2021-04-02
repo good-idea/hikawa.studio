@@ -20,7 +20,7 @@ const rootdir = path.resolve(__dirname || process.cwd(), '..', '..')
 
 global.__rootdir__ = rootdir
 
-const debug = Debug('dev:sentry')
+const debug = Debug('app:sentry')
 
 const ENV = process.env.NODE_ENV
 const FORCE = Boolean(process.env.FORCE_SENTRY)
@@ -30,6 +30,8 @@ const SentryInitializer =
   typeof window === 'undefined'
     ? NodeSentryInitializer
     : BrowserSentryInitializer
+
+type Event = NodeSentryInitializer.Event
 
 export let Sentry: typeof SentryInitializer
 
@@ -44,9 +46,21 @@ if (ENV === 'production' || ENV === 'staging' || FORCE) {
         root: global.__rootdir__,
       }),
     ],
+    beforeSend: (event: Event) => {
+      if (
+        /* Klaviyo errors */
+        /klaviyo/.test(event?.message || '') ||
+        /onsite\/js/.test(event?.message || '')
+      ) {
+        return null
+      }
+      return event
+    },
   })
 } else {
+  debug('Mocking local Sentry')
   const noop = () => undefined
+
   Sentry = {
     // @ts-ignore
     setUserContext: noop,
@@ -57,13 +71,13 @@ if (ENV === 'production' || ENV === 'staging' || FORCE) {
     },
     configureScope: () => undefined,
     captureException: (e: any) => {
-      debug('Captured exception:')
+      debug('[sentry mock] Captured exception:')
       debug(e)
       const randomId = Math.random().toString().replace('0.', '')
       return `mock-ref-${randomId}`
     },
     captureMessage: (m: string) => {
-      debug('Captured message:')
+      debug('[sentry mock] Captured message:')
       debug(m)
       return m
     },

@@ -76,6 +76,14 @@ export const productPageQuery = gql`
             }
           }
         }
+        compareAtPriceRange {
+          minVariantPrice {
+            amount
+          }
+          maxVariantPrice {
+            amount
+          }
+        }
         variants {
           edges {
             node {
