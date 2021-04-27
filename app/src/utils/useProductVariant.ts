@@ -15,11 +15,6 @@ interface Variant extends SourceVariant {
   __typename: any
 }
 
-export interface UseProductVariant {
-  currentVariant?: Variant
-  selectVariant: (variantId: string) => void
-}
-
 interface ReturnValue {
   currentVariant: SourceVariant | null
   selectVariant: (id: string) => void

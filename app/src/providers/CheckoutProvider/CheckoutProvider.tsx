@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { unwindEdges } from '@good-idea/unwind-edges'
 import { ApolloClient, useQuery } from '@apollo/client'
 import {
   ShopifyStorefrontCheckout,
@@ -18,12 +19,14 @@ import {
   CheckoutCreateResponse,
 } from './queries'
 import { AddLineItem } from './types'
+import { validateLineItem } from './utils'
 import {
   getCookie,
   removeCookie,
   setCookie,
   VIEWER_CART_TOKEN,
   VIEWER_EMAIL,
+  split,
 } from '../../utils'
 
 const { useState, useEffect } = React
@@ -106,23 +109,34 @@ export const CheckoutProvider = ({ client, children }: CheckoutProps) => {
   /* Load the current cart if a cookie exists */
   useEffect(() => {
     const checkoutIdCookie = getCookie(VIEWER_CART_TOKEN)
+    console.log(checkoutIdCookie)
+    /* Setting the checkoutId will fire the useQuery at the top */
     setCheckoutId(checkoutIdCookie)
   }, [])
 
   useEffect(() => {
     if (!currentCheckout) return
-    if (currentCheckout.completedAt) {
+    const [lineItems] = unwindEdges(currentCheckout.lineItems)
+    const [validLineItems, invalidLineItems] = split(
+      lineItems,
+      validateLineItem,
+    )
+
+    if (currentCheckout.completedAt || validLineItems.length === 0) {
       setCheckoutId(null)
       removeCookie(VIEWER_CART_TOKEN)
+    } else if (invalidLineItems.length) {
+      const removeArgs = invalidLineItems.map((lineItem) => ({
+        id: lineItem.id,
+        quantity: 0,
+      }))
+      // @ts-ignore
+      updateLineItems(removeArgs).then(() => {
+        setCheckoutId(currentCheckout.id)
+        setCookie(VIEWER_CART_TOKEN, currentCheckout.id)
+      })
     } else {
       setCheckoutId(currentCheckout.id)
-      setCookie(VIEWER_CART_TOKEN, currentCheckout.id)
-    }
-  }, [currentCheckout])
-
-  /* Update cookies when the cart is updated */
-  useEffect(() => {
-    if (currentCheckout && !currentCheckout.completedAt) {
       setCookie(VIEWER_CART_TOKEN, currentCheckout.id)
     }
   }, [currentCheckout])

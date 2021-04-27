@@ -17,18 +17,6 @@ export function definitely<T>(items?: Maybe<T>[] | null): T[] {
   )
 }
 
-// https://stackoverflow.com/questions/27745/getting-parts-of-a-url-regex
-export const parseUrl = (url: string): ParsedUrl | null => {
-  const matches = regEx.exec(url)
-  if (!matches) return null
-  return {
-    url,
-    origin: matches[4],
-    pathname: matches[5],
-    search: matches[6],
-  }
-}
-
 export const parsePrice = (price: string | number): string => {
   const [dollars, parsedCents] = price.toString().split('.')
   const cents = parsedCents ? `${parsedCents}0`.substr(0, 2) : false
@@ -56,4 +44,20 @@ export const isValidHero = (hero?: Hero | null): boolean => {
 
 export function arrayify<T>(i: T | T[]): T[] {
   return Array.isArray(i) ? i : [i]
+}
+
+export function split<T>(
+  arr: T[],
+  predicate: (item: T) => boolean,
+): [T[], T[]] {
+  return arr.reduce<[T[], T[]]>(
+    ([valid, invalid], currentItem) => {
+      const isValid = predicate(currentItem)
+      if (isValid) {
+        return [[...valid, currentItem], invalid]
+      }
+      return [valid, [...invalid, currentItem]]
+    },
+    [[], []],
+  )
 }
