@@ -2313,23 +2313,23 @@
   dependencies:
     any-observable "^0.3.0"
 
-"@sane-shopify/sanity-plugin@0.21.0":
-  version "0.21.0"
-  resolved "https://registry.yarnpkg.com/@sane-shopify/sanity-plugin/-/sanity-plugin-0.21.0.tgz#d384c1695ca89b3285c04e71fc5e528b127fb04d"
-  integrity sha512-NZppM8bZTbEk1I7RkpvcZLd8ofBEy3nRQW7MAspzaBZq9541ehR6I58uUBED9/xG+fwnRjjGTLvuBRi9QowB8Q==
+"@sane-shopify/sanity-plugin@0.21.1":
+  version "0.21.1"
+  resolved "https://registry.yarnpkg.com/@sane-shopify/sanity-plugin/-/sanity-plugin-0.21.1.tgz#049ca5cf59a68fcf49e39b51d72261ad8851deb4"
+  integrity sha512-dyo9U7yfCApvX58fTeHAGu6wZQ8cnEK48qmDoAwBBPcnOJcA0OW6wzWnC64RP6oQJyoTkN4lYVwg7pC3uGsHqA==
   dependencies:
     "@good-idea/unwind-edges" "^1.5.3"
-    "@sane-shopify/sync-utils" "^0.21.0"
-    "@sane-shopify/types" "^0.21.0"
+    "@sane-shopify/sync-utils" "^0.21.1"
+    "@sane-shopify/types" "^0.21.1"
     lodash "^4.17.21"
     react-icons "^4.2.0"
 
-"@sane-shopify/server@^0.21.0":
-  version "0.21.0"
-  resolved "https://registry.yarnpkg.com/@sane-shopify/server/-/server-0.21.0.tgz#0819f0f14a53837366566f481e223464515b338b"
-  integrity sha512-2EwIyC2EAwgWtSRQODseQAI7UgcOeXpfO+ixb0Jcq0z3X1KwJC3Zw8RXIJLb3BJseak3j0Q9Xcbe+OJPGCsV0Q==
+"@sane-shopify/server@^0.21.1":
+  version "0.21.1"
+  resolved "https://registry.yarnpkg.com/@sane-shopify/server/-/server-0.21.1.tgz#3d8f1a866b77b802448c636fb1651d6db319d683"
+  integrity sha512-hl/VaKJMlLZTKKUMg5UJmu4FsHDbbb/8KBEtHUFmcbp6kPvjae+nUVvar/tUSqEgSlV+tx02Xj35o/q3rBw1OA==
   dependencies:
-    "@sane-shopify/sync-utils" "^0.21.0"
+    "@sane-shopify/sync-utils" "^0.21.1"
     apollo-link "^1.2.14"
     apollo-link-http "^1.5.17"
     apollo-server-lambda "^2.23.0"
@@ -2338,27 +2338,27 @@
     node-fetch "^2.6.1"
     source-map-support "^0.5.19"
 
-"@sane-shopify/sync-utils@^0.21.0":
-  version "0.21.0"
-  resolved "https://registry.yarnpkg.com/@sane-shopify/sync-utils/-/sync-utils-0.21.0.tgz#92dde90f0173eed7b6b7f88803ff78cbf76c2169"
-  integrity sha512-ZDdjq/tPqECj/cNqwPDDxufLARmdO8DJrHr6FcGdQtkX/2nU89X01RYqzyRaQuV/sjY0pVVB58L+gHz2SBZeiw==
+"@sane-shopify/sync-utils@^0.21.1":
+  version "0.21.1"
+  resolved "https://registry.yarnpkg.com/@sane-shopify/sync-utils/-/sync-utils-0.21.1.tgz#d7ef5f32f0d17ccb343df7c42e5cc52f739a0d43"
+  integrity sha512-AyMjdTmNy9ULUNrN3GfKHrQyOo5CGh4L7IuVXtSk3Je0gJVt7daoUo9/jSrgvtlQxvE7bZi8yvFVxW+hiBGVUw==
   dependencies:
     "@good-idea/leaky-bucket" "^3.1.2"
     "@good-idea/unwind-edges" "^1.5.3"
-    "@sane-shopify/types" "^0.21.0"
+    "@sane-shopify/types" "^0.21.1"
     cross-fetch "^3.1.4"
     debug "^4.3.1"
     deepmerge "^4.2.2"
     es6-promise "^4.2.8"
     graphql-tag "^2.11.0"
     isomorphic-fetch "^3.0.0"
-    p-queue "^7.1.0"
+    p-queue "^6.6.2"
     xstate "^4.18.0"
 
-"@sane-shopify/types@^0.21.0":
-  version "0.21.0"
-  resolved "https://registry.yarnpkg.com/@sane-shopify/types/-/types-0.21.0.tgz#e4d178f777a160d205f77c03227205f41423ab22"
-  integrity sha512-jWFIwBOM+NxfVohwN2dWrkL3HZDyuf7X9aI/BnUlnlZDOnZDsRruqQKjdN43UFXun367VdBSMnIR9ZwcoPumNg==
+"@sane-shopify/types@^0.21.1":
+  version "0.21.1"
+  resolved "https://registry.yarnpkg.com/@sane-shopify/types/-/types-0.21.1.tgz#84f268a0bb0516b0f72cdb02f36d2fd7d5c9a0ec"
+  integrity sha512-hs1FJm64c15RtfKdq2j+QCtRnYLg//GtDWSlwBCTXvHp8MnmkET1+ueyIt8Kkk7uaVFiKk1Q0vClOQu+R5JfFw==
 
 "@sanity/asset-utils@^1.1.2":
   version "1.1.2"
@@ -7800,7 +7800,7 @@ eventemitter3@^3.1.0:
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-3.1.2.tgz#2d3d48f9c346698fce83a85d7d664e98535df6e7"
   integrity sha512-tvtQIeLVHjDkJYnzf2dgVMxfuSGJeM/7UCG17TT4EumTfNtF+0nebF/4zWOIkCreAbtNqhGEboB6BWrwqNaw4Q==
 
-eventemitter3@^4.0.7:
+eventemitter3@^4.0.4:
   version "4.0.7"
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-4.0.7.tgz#2de9b68f6528d5644ef5c59526a1b4a07306169f"
   integrity sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==
@@ -12845,13 +12845,13 @@ p-queue@^2.3.0:
   resolved "https://registry.yarnpkg.com/p-queue/-/p-queue-2.4.2.tgz#03609826682b743be9a22dba25051bd46724fc34"
   integrity sha512-n8/y+yDJwBjoLQe1GSJbbaYQLTI7QHNZI2+rpmCDbe++WLf9HC3gf6iqj5yfPAV71W4UF3ql5W1+UBPXoXTxng==
 
-p-queue@^7.1.0:
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/p-queue/-/p-queue-7.1.0.tgz#c2bb28f8dc0ebf3fadb985b8706cf2ce5fe5f275"
-  integrity sha512-V+0vPJbhYkBqknPp0qnaz+dWcj8cNepfXZcsVIVEHPbFQXMPwrzCNIiM4FoxGtwHXtPzVCPHDvqCr1YrOJX2Gw==
+p-queue@^6.6.2:
+  version "6.6.2"
+  resolved "https://registry.yarnpkg.com/p-queue/-/p-queue-6.6.2.tgz#2068a9dcf8e67dd0ec3e7a2bcb76810faa85e426"
+  integrity sha512-RwFpb72c/BhQLEXIZ5K2e+AhgNVmIejGlTgiB9MzZ0e93GRvqZ7uSi0dvRF7/XIXDeNkra2fNHBxTyPDGySpjQ==
   dependencies:
-    eventemitter3 "^4.0.7"
-    p-timeout "^5.0.0"
+    eventemitter3 "^4.0.4"
+    p-timeout "^3.2.0"
 
 p-some@^4.0.0:
   version "4.1.0"
@@ -12861,10 +12861,12 @@ p-some@^4.0.0:
     aggregate-error "^3.0.0"
     p-cancelable "^2.0.0"
 
-p-timeout@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/p-timeout/-/p-timeout-5.0.0.tgz#0f5dc08422e7243f8317669c461734cd1257a8dc"
-  integrity sha512-z+bU/N7L1SABsqKnQzvAnINgPX7NHdzwUV+gHyJE7VGNDZSr03rhcPODCZSWiiT9k+gf74QPmzcZzqJRvxYZow==
+p-timeout@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/p-timeout/-/p-timeout-3.2.0.tgz#c7e17abc971d2a7962ef83626b35d635acf23dfe"
+  integrity sha512-rhIwUycgwwKcP9yTOOFK/AKsAopjjCakVqLHePO3CC6Mir1Z99xT+R63jZxAT5lFZLa2inS5h+ZS2GvR99/FBg==
+  dependencies:
+    p-finally "^1.0.0"
 
 p-try@^1.0.0:
   version "1.0.0"

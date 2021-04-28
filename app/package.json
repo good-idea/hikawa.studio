@@ -19,7 +19,7 @@
   "dependencies": {
     "@apollo/client": "^3.3.15",
     "@good-idea/unwind-edges": "^1.5.3",
-    "@sane-shopify/server": "^0.21.0",
+    "@sane-shopify/server": "^0.21.1",
     "@sanity/block-content-to-react": "^2.0.7",
     "@sanity/client": "^2.8.0",
     "@sanity/image-url": "^0.140.22",

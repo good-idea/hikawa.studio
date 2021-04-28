@@ -25,13 +25,13 @@ const result: PossibleTypesResultData = {
     Media: ['ExternalVideo', 'MediaImage', 'Model3d', 'Video'],
     MetafieldParentResource: ['Product', 'ProductVariant'],
     Node: [
+      'AppliedGiftCard',
       'Article',
       'Blog',
       'Checkout',
       'CheckoutLineItem',
       'Collection',
       'Comment',
-      'AppliedGiftCard',
       'ExternalVideo',
       'MailingAddress',
       'MediaImage',
@@ -84,6 +84,32 @@ export interface ShopifyStorefrontApiVersion {
   handle: Scalars['String']
   /** Whether the version is supported by Shopify. */
   supported: Scalars['Boolean']
+}
+
+/** Details about the gift card used on the checkout. */
+export interface ShopifyStorefrontAppliedGiftCard
+  extends ShopifyStorefrontNode {
+  __typename: 'AppliedGiftCard'
+  /**
+   * The amount that was taken from the gift card by applying it.
+   * @deprecated Use `amountUsedV2` instead
+   */
+  amountUsed: Scalars['Money']
+  /** The amount that was taken from the gift card by applying it. */
+  amountUsedV2: ShopifyStorefrontMoneyV2
+  /**
+   * The amount left on the gift card.
+   * @deprecated Use `balanceV2` instead
+   */
+  balance: Scalars['Money']
+  /** The amount left on the gift card. */
+  balanceV2: ShopifyStorefrontMoneyV2
+  /** Globally unique identifier. */
+  id: Scalars['ID']
+  /** The last characters of the gift card. */
+  lastCharacters: Scalars['String']
+  /** The amount that was applied to the checkout in its currency. */
+  presentmentAmountUsed: ShopifyStorefrontMoneyV2
 }
 
 /** An article in an online store blog. */
@@ -2514,30 +2540,12 @@ export enum ShopifyStorefrontDiscountApplicationTargetSelection {
   Explicit = 'EXPLICIT',
 }
 
-/** Details about the gift card used on the checkout. */
-export interface ShopifyStorefrontAppliedGiftCard
-  extends ShopifyStorefrontNode {
-  __typename: 'AppliedGiftCard'
-  /**
-   * The amount that was taken from the gift card by applying it.
-   * @deprecated Use `amountUsedV2` instead
-   */
-  amountUsed: Scalars['Money']
-  /** The amount that was taken from the gift card by applying it. */
-  amountUsedV2: ShopifyStorefrontMoneyV2
-  /**
-   * The amount left on the gift card.
-   * @deprecated Use `balanceV2` instead
-   */
-  balance: Scalars['Money']
-  /** The amount left on the gift card. */
-  balanceV2: ShopifyStorefrontMoneyV2
-  /** Globally unique identifier. */
-  id: Scalars['ID']
-  /** The last characters of the gift card. */
-  lastCharacters: Scalars['String']
-  /** The amount that was applied to the checkout in its currency. */
-  presentmentAmountUsed: ShopifyStorefrontMoneyV2
+/** The type of line (i.e. line item or shipping line) on an order that the discount is applicable towards. */
+export enum ShopifyStorefrontDiscountApplicationTargetType {
+  /** The discount applies onto line items. */
+  LineItem = 'LINE_ITEM',
+  /** The discount applies onto shipping lines. */
+  ShippingLine = 'SHIPPING_LINE',
 }
 
 /**
@@ -5002,12 +5010,4 @@ export enum ShopifyStorefrontWeightUnit {
   Pounds = 'POUNDS',
   /** Imperial system unit of mass. */
   Ounces = 'OUNCES',
-}
-
-/** The type of line (i.e. line item or shipping line) on an order that the discount is applicable towards. */
-export enum ShopifyStorefrontDiscountApplicationTargetType {
-  /** The discount applies onto line items. */
-  LineItem = 'LINE_ITEM',
-  /** The discount applies onto shipping lines. */
-  ShippingLine = 'SHIPPING_LINE',
 }
