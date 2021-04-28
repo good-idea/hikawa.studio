@@ -3,7 +3,10 @@ import { Sentry } from './sentry'
 import { config } from '../config'
 
 const handleError = (err: Error) => {
-  Sentry.captureException(err)
+  Sentry.withScope((scope) => {
+    scope.setTag('sane-shopify', 'server-webhook')
+    Sentry.captureException(err)
+  })
 }
 
 const { projectId, dataset, authToken } = config.sanity

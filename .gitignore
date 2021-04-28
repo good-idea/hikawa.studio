@@ -1,6 +1,10 @@
 # OSX
 .DS_Store
 
+# yalc
+.yalc
+yalc.lock
+
 # node.js
 node_modules/
 npm-debug.log
