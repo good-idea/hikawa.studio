@@ -111,7 +111,9 @@ export const CheckoutProvider = ({ client, children }: CheckoutProps) => {
     const checkoutIdCookie = getCookie(VIEWER_CART_TOKEN)
     console.log(checkoutIdCookie)
     /* Setting the checkoutId will fire the useQuery at the top */
-    setCheckoutId(checkoutIdCookie)
+    if (checkoutIdCookie) {
+      setCheckoutId(checkoutIdCookie)
+    }
   }, [])
 
   useEffect(() => {
@@ -122,7 +124,10 @@ export const CheckoutProvider = ({ client, children }: CheckoutProps) => {
       validateLineItem,
     )
 
-    if (currentCheckout.completedAt || validLineItems.length === 0) {
+    if (
+      lineItems.length > 0 &&
+      (currentCheckout.completedAt || validLineItems.length === 0)
+    ) {
       setCheckoutId(null)
       removeCookie(VIEWER_CART_TOKEN)
     } else if (invalidLineItems.length) {
