@@ -109,7 +109,6 @@ export const CheckoutProvider = ({ client, children }: CheckoutProps) => {
   /* Load the current cart if a cookie exists */
   useEffect(() => {
     const checkoutIdCookie = getCookie(VIEWER_CART_TOKEN)
-    console.log(checkoutIdCookie)
     /* Setting the checkoutId will fire the useQuery at the top */
     if (checkoutIdCookie) {
       setCheckoutId(checkoutIdCookie)

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled, { css } from '@xstyled/styled-components'
-import { ShopifyCollection } from '../../types'
+import { ShopifyProduct, ShopifyCollection } from '../../types'
 import { definitely } from '../../utils'
 import { Heading } from '../Text'
 import { Column } from '../Layout'
@@ -90,6 +90,14 @@ export const CollectionBlock = ({
   }, [isActive, containerRef.current])
 
   if (!products.length) return null
+
+  // Filter out non-unique products
+  const filteredProducts = products.reduce<ShopifyProduct[]>((acc, product) => {
+    if (acc.some((p) => p.handle === product.handle)) {
+      return acc
+    }
+    return [...acc, product]
+  }, [])
 
   return (
     <Wrapper ref={containerRef}>

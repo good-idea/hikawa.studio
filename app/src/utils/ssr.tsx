@@ -10,11 +10,6 @@ interface AppProps {
   ssrClient: ApolloClient<any>
 }
 
-export const ssrClient = ''
-
-console.log(config.shopify.graphQLurl)
-console.log(config.sanity.graphQLurl)
-
 export const createSSRClient = () =>
   createApolloClient({
     uri: config.sanity.graphQLurl,
