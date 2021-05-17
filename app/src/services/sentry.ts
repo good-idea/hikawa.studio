@@ -1,5 +1,6 @@
 import * as NodeSentryInitializer from '@sentry/node'
 import * as BrowserSentryInitializer from '@sentry/browser'
+import type { Scope } from '@sentry/browser'
 import path from 'path'
 import { RewriteFrames } from '@sentry/integrations'
 import Debug from 'debug'
@@ -35,6 +36,7 @@ type Event = NodeSentryInitializer.Event
 
 export let Sentry: typeof SentryInitializer
 
+type ScopeCallback = (scope: Scope) => void
 if (ENV === 'production' || ENV === 'staging' || FORCE) {
   if (!DSN) throw new Error('No Sentry DSN supplied')
   Sentry = SentryInitializer
@@ -66,6 +68,7 @@ if (ENV === 'production' || ENV === 'staging' || FORCE) {
     setUserContext: noop,
     // @ts-ignore
     requestHandler: () => (req, res, next) => next(),
+    withScope: (cb: ScopeCallback) => undefined,
     parsers: {
       parseRequest: noop,
     },

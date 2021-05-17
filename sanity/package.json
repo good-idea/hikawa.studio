@@ -12,10 +12,12 @@
     "deploy": "yarn deploy:graphql && yarn deploy:cms",
     "deploy:cms": "yarn sanity deploy",
     "deploy:graphql": "yarn sanity graphql deploy --generation gen2 --playground && yarn workspace hikawa-app generate-types",
+    "deploy:graphql:staging": "yarn sanity graphql deploy --dataset staging --generation gen2 --playground",
     "sync:export": "sanity dataset export production",
     "sync:import": "sanity dataset import production.tar.gz staging --replace",
     "sync:cleanup": "rm production.tar.gz",
-    "sync": "yarn sync:export && yarn sync:import && yarn sync:cleanup"
+    "sync": "yarn sync:export && yarn sync:import && yarn sync:cleanup",
+    "refresh-staging": "ts-node --project tsconfig.scripts.json scripts/refreshStaging.ts --inspect"
   },
   "keywords": [
     "sanity"
@@ -37,6 +39,8 @@
     "react-icons": "^4.2.0"
   },
   "devDependencies": {
+    "@sanctucompu/sanity-graph-import": "^1.1.2",
+    "@sanity/client": "^2.8.0",
     "@types/prop-types": "^15.7.3",
     "@types/react": "^17.0.4",
     "@types/react-dom": "^17.0.3"
