@@ -107,7 +107,7 @@ export const CollectionBlock = ({
             <Heading level={2}>{collection.title}</Heading>
           </Title>
           <Products>
-            {products.map((product) => (
+            {filteredProducts.map((product) => (
               <ProductThumbnail
                 key={product.handle || 'some-key'}
                 product={product}
