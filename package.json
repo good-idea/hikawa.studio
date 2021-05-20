@@ -14,7 +14,7 @@
 	"scripts": {
 		"build": "yarn workspace hikawa-app build",
 		"dev:app": "yarn workspace hikawa-app start",
-		"deploy:local": "env $(cat ./app/.env | grep -v \"#\" | xargs) pm2 deploy ecosystem.config.js production",
+		"deploy:local": "env $(cat ./app/.env.production | grep -v \"#\" | xargs) pm2 deploy ecosystem.config.js production",
 		"deploy:prod": "pm2 deploy ecosystem.config.js production",
 		"start": "yarn workspace hikawa-app start:prod"
 	},
