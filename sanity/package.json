@@ -23,16 +23,16 @@
     "sanity"
   ],
   "dependencies": {
-    "@sane-shopify/sanity-plugin": "0.21.1",
-    "@sanity/base": "^2.9.1",
-    "@sanity/cli": "^2.9.1",
+    "@sane-shopify/sanity-plugin": "0.21.5",
+    "@sanity/base": "^2.10.5",
+    "@sanity/cli": "^2.10.5",
     "@sanity/color-input": "^2.2.6",
     "@sanity/components": "^2.2.6",
-    "@sanity/core": "^2.9.1",
-    "@sanity/default-layout": "^2.9.1",
-    "@sanity/default-login": "^2.8.0",
-    "@sanity/desk-tool": "^2.9.1",
-    "@sanity/vision": "^2.9.0",
+    "@sanity/core": "^2.10.5",
+    "@sanity/default-layout": "^2.10.5",
+    "@sanity/default-login": "^2.10.5",
+    "@sanity/desk-tool": "^2.10.5",
+    "@sanity/vision": "^2.10.5",
     "prop-types": "^15.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -40,9 +40,9 @@
   },
   "devDependencies": {
     "@sanctucompu/sanity-graph-import": "^1.1.2",
-    "@sanity/client": "^2.8.0",
+    "@sanity/client": "^2.10.5",
     "@types/prop-types": "^15.7.3",
-    "@types/react": "^17.0.4",
-    "@types/react-dom": "^17.0.3"
+    "@types/react": "^17.0.8",
+    "@types/react-dom": "^17.0.5"
   }
 }
