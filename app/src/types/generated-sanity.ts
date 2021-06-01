@@ -188,15 +188,15 @@ export type DatetimeFilter = {
 /** A Sanity document */
 export type Document = {
   /** Document ID */
-  _id: Scalars['ID']
+  _id?: Maybe<Scalars['ID']>
   /** Document type */
-  _type: Scalars['String']
+  _type?: Maybe<Scalars['String']>
   /** Date the document was created */
-  _createdAt: Scalars['DateTime']
+  _createdAt?: Maybe<Scalars['DateTime']>
   /** Date the document was last modified */
-  _updatedAt: Scalars['DateTime']
+  _updatedAt?: Maybe<Scalars['DateTime']>
   /** Current document revision */
-  _rev: Scalars['String']
+  _rev?: Maybe<Scalars['String']>
 }
 
 export type DocumentFilter = {
@@ -361,15 +361,15 @@ export type HeroSorting = {
 export interface Homepage extends Document {
   __typename: 'Homepage'
   /** Document ID */
-  _id: Scalars['ID']
+  _id?: Maybe<Scalars['ID']>
   /** Document type */
-  _type: Scalars['String']
+  _type?: Maybe<Scalars['String']>
   /** Date the document was created */
-  _createdAt: Scalars['DateTime']
+  _createdAt?: Maybe<Scalars['DateTime']>
   /** Date the document was last modified */
-  _updatedAt: Scalars['DateTime']
+  _updatedAt?: Maybe<Scalars['DateTime']>
   /** Current document revision */
-  _rev: Scalars['String']
+  _rev?: Maybe<Scalars['String']>
   _key?: Maybe<Scalars['String']>
   hero?: Maybe<Hero>
   content?: Maybe<Array<Maybe<PageLinkOrRichText>>>
@@ -599,15 +599,15 @@ export type NavigationSettingsSorting = {
 export interface Page extends Document {
   __typename: 'Page'
   /** Document ID */
-  _id: Scalars['ID']
+  _id?: Maybe<Scalars['ID']>
   /** Document type */
-  _type: Scalars['String']
+  _type?: Maybe<Scalars['String']>
   /** Date the document was created */
-  _createdAt: Scalars['DateTime']
+  _createdAt?: Maybe<Scalars['DateTime']>
   /** Date the document was last modified */
-  _updatedAt: Scalars['DateTime']
+  _updatedAt?: Maybe<Scalars['DateTime']>
   /** Current document revision */
-  _rev: Scalars['String']
+  _rev?: Maybe<Scalars['String']>
   _key?: Maybe<Scalars['String']>
   title?: Maybe<Scalars['String']>
   slug?: Maybe<PageSlug>
@@ -978,15 +978,15 @@ export type SanityAssetSourceDataSorting = {
 export interface SanityFileAsset extends Document {
   __typename: 'SanityFileAsset'
   /** Document ID */
-  _id: Scalars['ID']
+  _id?: Maybe<Scalars['ID']>
   /** Document type */
-  _type: Scalars['String']
+  _type?: Maybe<Scalars['String']>
   /** Date the document was created */
-  _createdAt: Scalars['DateTime']
+  _createdAt?: Maybe<Scalars['DateTime']>
   /** Date the document was last modified */
-  _updatedAt: Scalars['DateTime']
+  _updatedAt?: Maybe<Scalars['DateTime']>
   /** Current document revision */
-  _rev: Scalars['String']
+  _rev?: Maybe<Scalars['String']>
   _key?: Maybe<Scalars['String']>
   originalFilename?: Maybe<Scalars['String']>
   label?: Maybe<Scalars['String']>
@@ -1052,15 +1052,15 @@ export type SanityFileAssetSorting = {
 export interface SanityImageAsset extends Document {
   __typename: 'SanityImageAsset'
   /** Document ID */
-  _id: Scalars['ID']
+  _id?: Maybe<Scalars['ID']>
   /** Document type */
-  _type: Scalars['String']
+  _type?: Maybe<Scalars['String']>
   /** Date the document was created */
-  _createdAt: Scalars['DateTime']
+  _createdAt?: Maybe<Scalars['DateTime']>
   /** Date the document was last modified */
-  _updatedAt: Scalars['DateTime']
+  _updatedAt?: Maybe<Scalars['DateTime']>
   /** Current document revision */
-  _rev: Scalars['String']
+  _rev?: Maybe<Scalars['String']>
   _key?: Maybe<Scalars['String']>
   originalFilename?: Maybe<Scalars['String']>
   label?: Maybe<Scalars['String']>
@@ -1348,15 +1348,15 @@ export type SeoSorting = {
 export interface Shop extends Document {
   __typename: 'Shop'
   /** Document ID */
-  _id: Scalars['ID']
+  _id?: Maybe<Scalars['ID']>
   /** Document type */
-  _type: Scalars['String']
+  _type?: Maybe<Scalars['String']>
   /** Date the document was created */
-  _createdAt: Scalars['DateTime']
+  _createdAt?: Maybe<Scalars['DateTime']>
   /** Date the document was last modified */
-  _updatedAt: Scalars['DateTime']
+  _updatedAt?: Maybe<Scalars['DateTime']>
   /** Current document revision */
-  _rev: Scalars['String']
+  _rev?: Maybe<Scalars['String']>
   _key?: Maybe<Scalars['String']>
   title?: Maybe<Scalars['String']>
   hero?: Maybe<Hero>
@@ -1393,15 +1393,15 @@ export type ShopSorting = {
 export interface ShopifyCollection extends Document {
   __typename: 'ShopifyCollection'
   /** Document ID */
-  _id: Scalars['ID']
+  _id?: Maybe<Scalars['ID']>
   /** Document type */
-  _type: Scalars['String']
+  _type?: Maybe<Scalars['String']>
   /** Date the document was created */
-  _createdAt: Scalars['DateTime']
+  _createdAt?: Maybe<Scalars['DateTime']>
   /** Date the document was last modified */
-  _updatedAt: Scalars['DateTime']
+  _updatedAt?: Maybe<Scalars['DateTime']>
   /** Current document revision */
-  _rev: Scalars['String']
+  _rev?: Maybe<Scalars['String']>
   _key?: Maybe<Scalars['String']>
   title?: Maybe<Scalars['String']>
   handle?: Maybe<Scalars['String']>
@@ -1481,15 +1481,15 @@ export type ShopifyMoneyV2Sorting = {
 export interface ShopifyProduct extends Document {
   __typename: 'ShopifyProduct'
   /** Document ID */
-  _id: Scalars['ID']
+  _id?: Maybe<Scalars['ID']>
   /** Document type */
-  _type: Scalars['String']
+  _type?: Maybe<Scalars['String']>
   /** Date the document was created */
-  _createdAt: Scalars['DateTime']
+  _createdAt?: Maybe<Scalars['DateTime']>
   /** Date the document was last modified */
-  _updatedAt: Scalars['DateTime']
+  _updatedAt?: Maybe<Scalars['DateTime']>
   /** Current document revision */
-  _rev: Scalars['String']
+  _rev?: Maybe<Scalars['String']>
   _key?: Maybe<Scalars['String']>
   title?: Maybe<Scalars['String']>
   handle?: Maybe<Scalars['String']>
@@ -2193,15 +2193,15 @@ export type ShopifySourceSelectedOptionSorting = {
 export interface SiteSettings extends Document {
   __typename: 'SiteSettings'
   /** Document ID */
-  _id: Scalars['ID']
+  _id?: Maybe<Scalars['ID']>
   /** Document type */
-  _type: Scalars['String']
+  _type?: Maybe<Scalars['String']>
   /** Date the document was created */
-  _createdAt: Scalars['DateTime']
+  _createdAt?: Maybe<Scalars['DateTime']>
   /** Date the document was last modified */
-  _updatedAt: Scalars['DateTime']
+  _updatedAt?: Maybe<Scalars['DateTime']>
   /** Current document revision */
-  _rev: Scalars['String']
+  _rev?: Maybe<Scalars['String']>
   _key?: Maybe<Scalars['String']>
   logo?: Maybe<RichImage>
   announcement?: Maybe<AnnouncementSettings>
