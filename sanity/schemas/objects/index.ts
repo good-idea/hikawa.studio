@@ -1,3 +1,4 @@
+export * from './accordion'
 export * from './mixedMedia'
 export * from './cta'
 export * from './contentBuilder'

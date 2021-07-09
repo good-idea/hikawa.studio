@@ -21,7 +21,12 @@ export const page = {
       name: 'content',
       title: 'Text',
       type: 'array',
-      of: [{ type: 'block' }, { type: 'videoEmbed' }, { type: 'richImage' }],
+      of: [
+        { type: 'block' },
+        { type: 'accordion' },
+        { type: 'videoEmbed' },
+        { type: 'richImage' },
+      ],
     },
     {
       name: 'gallery',
