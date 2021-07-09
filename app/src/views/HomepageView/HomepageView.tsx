@@ -33,7 +33,7 @@ export const HomepageView = () => {
           ))}
         </Grid>
       </Column>
-      <Column width="medium">
+      <Column width="wide">
         <InstagramRow />
       </Column>
     </HomepageWrapper>

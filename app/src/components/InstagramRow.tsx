@@ -17,14 +17,24 @@ const Wrapper = styled.div`
 const Images = styled.div`
   ${({ theme }) => css`
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-column-gap: 5;
     grid-row-gap: 5;
     margin: 5 0;
 
+    *:nth-child(n + 6) {
+      display: none;
+    }
+
     ${theme.mediaQueries.mobile} {
+      grid-template-columns: repeat(3, 1fr);
       grid-column-gap: 3;
+      grid-row-gap: 3;
       margin: 3 0;
+
+      *:nth-child(n + 6) {
+        display: block;
+      }
     }
   `}
 `
@@ -37,7 +47,7 @@ export const InstagramRow = () => {
   return (
     <Wrapper>
       {title && (
-        <Heading level={3} textAlign="center">
+        <Heading level={2} fontFamily="sans" textAlign="center">
           <InstagramLogo />
           {title}
         </Heading>
