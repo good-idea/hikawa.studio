@@ -39,6 +39,7 @@ export const shopPageQuery = /* GraphQL */ gql`
             title
             id
             tags
+            availableForSale
             variants {
               edges {
                 node {

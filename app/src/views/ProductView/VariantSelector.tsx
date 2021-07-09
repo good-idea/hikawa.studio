@@ -8,8 +8,9 @@ import {
   PriceWrapper,
   VariantButton,
   PriceInner,
-  SoldOut,
+  SoldOutWrapper,
 } from './styled'
+import { SoldOut } from '../../components/Badges'
 
 interface VariantSelectorProps {
   variants: ShopifySourceProductVariant[]
@@ -53,11 +54,9 @@ export const VariantSelector = ({
             <PriceWrapper active={currentVariant && v.id === currentVariant.id}>
               <PriceInner>
                 {!v.availableForSale ? (
-                  <SoldOut>
-                    <Heading my={0} level={5}>
-                      Unavailable
-                    </Heading>
-                  </SoldOut>
+                  <SoldOutWrapper>
+                    <SoldOut />
+                  </SoldOutWrapper>
                 ) : null}
                 <Heading opacity={v.availableForSale ? 1 : 0} ml={3} level={4}>
                   {parsePrice(v) || 'Pick a style'}

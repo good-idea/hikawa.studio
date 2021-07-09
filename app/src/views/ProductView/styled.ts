@@ -291,20 +291,10 @@ export const PriceInner = styled.div`
 
 const VariantPrice = styled.div``
 
-export const SoldOut = styled.div`
-  background-color: white;
-  border: 1px solid;
-  padding: 3px;
-  border-radius: 3px;
+export const SoldOutWrapper = styled.div`
   position: absolute;
   top: 50%;
   left: 90%;
-  margin: 0;
-  display: flex;
-  justify-content: flex-center;
-  align-items: center;
-  white-space: nowrap;
-  font-style: italic;
   transform: translate(-50%, -50%);
 
   & + ${VariantPrice} {

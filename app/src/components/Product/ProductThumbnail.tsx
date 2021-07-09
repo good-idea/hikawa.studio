@@ -37,10 +37,15 @@ const ImageContainer = styled.div`
 
 interface ProductThumbnailProps {
   product: ShopifyProduct
+  imageRatio?: number
 }
 
-export const ProductThumbnail = ({ product }: ProductThumbnailProps) => {
+export const ProductThumbnail = ({
+  imageRatio,
+  product,
+}: ProductThumbnailProps) => {
   const href = `/products/${product.handle}`
+  const availableForSale = product?.sourceData?.availableForSale
   const { sendProductClick, sendProductImpression } = useAnalytics()
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -67,16 +72,21 @@ export const ProductThumbnail = ({ product }: ProductThumbnailProps) => {
         <Wrapper ref={containerRef}>
           <ImageContainer key={product.handle || 'some-key'}>
             <Image
-              ratio={1}
+              ratio={imageRatio || 1}
               sizes="(min-width: 600px) 500px, 250px"
               image={mainImage}
               hoverImage={hoverImage}
             />
           </ImageContainer>
           <Title>
-            <Heading fontFamily="serif" fontWeight={1} level={3}>
+            <Heading fontFamily="serif" fontWeight={1} level={4}>
               {product.title}
             </Heading>
+            {availableForSale === false ? (
+              <Heading fontFamily="sans" level={5} color="red">
+                Unavailable
+              </Heading>
+            ) : null}
           </Title>
         </Wrapper>
       </a>

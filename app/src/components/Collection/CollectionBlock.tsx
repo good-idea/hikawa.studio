@@ -104,13 +104,16 @@ export const CollectionBlock = ({
       <Column width="wide">
         <Inner>
           <Title>
-            <Heading level={2}>{collection.title}</Heading>
+            <Heading level={3} fontFamily="sans">
+              {collection.title}
+            </Heading>
           </Title>
           <Products>
             {filteredProducts.map((product) => (
               <ProductThumbnail
                 key={product.handle || 'some-key'}
                 product={product}
+                imageRatio={1.25}
               />
             ))}
           </Products>
