@@ -21,6 +21,32 @@ export type Scalars = {
   JSON: { [key: string]: any }
 }
 
+export interface Accordion {
+  __typename: 'Accordion'
+  _key?: Maybe<Scalars['String']>
+  _type?: Maybe<Scalars['String']>
+  heading?: Maybe<Scalars['String']>
+  bodyRaw?: Maybe<Scalars['JSON']>
+}
+
+export type AccordionFilter = {
+  _key?: Maybe<StringFilter>
+  _type?: Maybe<StringFilter>
+  heading?: Maybe<StringFilter>
+}
+
+export type AccordionOrBlockOrRichImageOrVideoEmbed =
+  | Accordion
+  | Block
+  | RichImage
+  | VideoEmbed
+
+export type AccordionSorting = {
+  _key?: Maybe<SortOrder>
+  _type?: Maybe<SortOrder>
+  heading?: Maybe<SortOrder>
+}
+
 export interface AnnouncementSettings {
   __typename: 'AnnouncementSettings'
   _key?: Maybe<Scalars['String']>
@@ -2359,6 +2385,12 @@ export interface PossibleTypesResultData {
 }
 const result: PossibleTypesResultData = {
   possibleTypes: {
+    AccordionOrBlockOrRichImageOrVideoEmbed: [
+      'Accordion',
+      'Block',
+      'RichImage',
+      'VideoEmbed',
+    ],
     BlockOrRichImageOrVideoEmbed: ['Block', 'RichImage', 'VideoEmbed'],
     Document: [
       'Homepage',

@@ -495,10 +495,10 @@ export interface ShopifyStorefrontCheckoutAttributesUpdatePayload {
   __typename: 'CheckoutAttributesUpdatePayload'
   /** The updated checkout object. */
   checkout: ShopifyStorefrontCheckout
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   checkoutUserErrors: Array<ShopifyStorefrontCheckoutUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `checkoutUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -523,10 +523,10 @@ export interface ShopifyStorefrontCheckoutAttributesUpdateV2Payload {
   __typename: 'CheckoutAttributesUpdateV2Payload'
   /** The updated checkout object. */
   checkout?: Maybe<ShopifyStorefrontCheckout>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   checkoutUserErrors: Array<ShopifyStorefrontCheckoutUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `checkoutUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -537,10 +537,10 @@ export interface ShopifyStorefrontCheckoutCompleteFreePayload {
   __typename: 'CheckoutCompleteFreePayload'
   /** The updated checkout object. */
   checkout?: Maybe<ShopifyStorefrontCheckout>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   checkoutUserErrors: Array<ShopifyStorefrontCheckoutUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `checkoutUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -551,12 +551,12 @@ export interface ShopifyStorefrontCheckoutCompleteWithCreditCardPayload {
   __typename: 'CheckoutCompleteWithCreditCardPayload'
   /** The checkout on which the payment was applied. */
   checkout: ShopifyStorefrontCheckout
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   checkoutUserErrors: Array<ShopifyStorefrontCheckoutUserError>
   /** A representation of the attempted payment. */
   payment?: Maybe<ShopifyStorefrontPayment>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `checkoutUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -567,12 +567,12 @@ export interface ShopifyStorefrontCheckoutCompleteWithCreditCardV2Payload {
   __typename: 'CheckoutCompleteWithCreditCardV2Payload'
   /** The checkout on which the payment was applied. */
   checkout?: Maybe<ShopifyStorefrontCheckout>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   checkoutUserErrors: Array<ShopifyStorefrontCheckoutUserError>
   /** A representation of the attempted payment. */
   payment?: Maybe<ShopifyStorefrontPayment>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `checkoutUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -583,12 +583,12 @@ export interface ShopifyStorefrontCheckoutCompleteWithTokenizedPaymentPayload {
   __typename: 'CheckoutCompleteWithTokenizedPaymentPayload'
   /** The checkout on which the payment was applied. */
   checkout: ShopifyStorefrontCheckout
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   checkoutUserErrors: Array<ShopifyStorefrontCheckoutUserError>
   /** A representation of the attempted payment. */
   payment?: Maybe<ShopifyStorefrontPayment>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `checkoutUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -599,12 +599,12 @@ export interface ShopifyStorefrontCheckoutCompleteWithTokenizedPaymentV2Payload 
   __typename: 'CheckoutCompleteWithTokenizedPaymentV2Payload'
   /** The checkout on which the payment was applied. */
   checkout?: Maybe<ShopifyStorefrontCheckout>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   checkoutUserErrors: Array<ShopifyStorefrontCheckoutUserError>
   /** A representation of the attempted payment. */
   payment?: Maybe<ShopifyStorefrontPayment>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `checkoutUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -615,12 +615,12 @@ export interface ShopifyStorefrontCheckoutCompleteWithTokenizedPaymentV3Payload 
   __typename: 'CheckoutCompleteWithTokenizedPaymentV3Payload'
   /** The checkout on which the payment was applied. */
   checkout?: Maybe<ShopifyStorefrontCheckout>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   checkoutUserErrors: Array<ShopifyStorefrontCheckoutUserError>
   /** A representation of the attempted payment. */
   payment?: Maybe<ShopifyStorefrontPayment>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `checkoutUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -657,10 +657,10 @@ export interface ShopifyStorefrontCheckoutCreatePayload {
   __typename: 'CheckoutCreatePayload'
   /** The new checkout object. */
   checkout?: Maybe<ShopifyStorefrontCheckout>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   checkoutUserErrors: Array<ShopifyStorefrontCheckoutUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `checkoutUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -673,7 +673,7 @@ export interface ShopifyStorefrontCheckoutCustomerAssociatePayload {
   checkout: ShopifyStorefrontCheckout
   /** The associated customer object. */
   customer?: Maybe<ShopifyStorefrontCustomer>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   userErrors: Array<ShopifyStorefrontUserError>
 }
 
@@ -682,12 +682,12 @@ export interface ShopifyStorefrontCheckoutCustomerAssociateV2Payload {
   __typename: 'CheckoutCustomerAssociateV2Payload'
   /** The updated checkout object. */
   checkout?: Maybe<ShopifyStorefrontCheckout>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   checkoutUserErrors: Array<ShopifyStorefrontCheckoutUserError>
   /** The associated customer object. */
   customer?: Maybe<ShopifyStorefrontCustomer>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `checkoutUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -698,10 +698,10 @@ export interface ShopifyStorefrontCheckoutCustomerDisassociatePayload {
   __typename: 'CheckoutCustomerDisassociatePayload'
   /** The updated checkout object. */
   checkout: ShopifyStorefrontCheckout
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   checkoutUserErrors: Array<ShopifyStorefrontCheckoutUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `checkoutUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -712,10 +712,10 @@ export interface ShopifyStorefrontCheckoutCustomerDisassociateV2Payload {
   __typename: 'CheckoutCustomerDisassociateV2Payload'
   /** The updated checkout object. */
   checkout?: Maybe<ShopifyStorefrontCheckout>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   checkoutUserErrors: Array<ShopifyStorefrontCheckoutUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `checkoutUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -726,10 +726,10 @@ export interface ShopifyStorefrontCheckoutDiscountCodeApplyPayload {
   __typename: 'CheckoutDiscountCodeApplyPayload'
   /** The updated checkout object. */
   checkout: ShopifyStorefrontCheckout
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   checkoutUserErrors: Array<ShopifyStorefrontCheckoutUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `checkoutUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -740,10 +740,10 @@ export interface ShopifyStorefrontCheckoutDiscountCodeApplyV2Payload {
   __typename: 'CheckoutDiscountCodeApplyV2Payload'
   /** The updated checkout object. */
   checkout?: Maybe<ShopifyStorefrontCheckout>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   checkoutUserErrors: Array<ShopifyStorefrontCheckoutUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `checkoutUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -754,10 +754,10 @@ export interface ShopifyStorefrontCheckoutDiscountCodeRemovePayload {
   __typename: 'CheckoutDiscountCodeRemovePayload'
   /** The updated checkout object. */
   checkout?: Maybe<ShopifyStorefrontCheckout>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   checkoutUserErrors: Array<ShopifyStorefrontCheckoutUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `checkoutUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -768,10 +768,10 @@ export interface ShopifyStorefrontCheckoutEmailUpdatePayload {
   __typename: 'CheckoutEmailUpdatePayload'
   /** The checkout object with the updated email. */
   checkout: ShopifyStorefrontCheckout
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   checkoutUserErrors: Array<ShopifyStorefrontCheckoutUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `checkoutUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -782,10 +782,10 @@ export interface ShopifyStorefrontCheckoutEmailUpdateV2Payload {
   __typename: 'CheckoutEmailUpdateV2Payload'
   /** The checkout object with the updated email. */
   checkout?: Maybe<ShopifyStorefrontCheckout>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   checkoutUserErrors: Array<ShopifyStorefrontCheckoutUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `checkoutUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -799,7 +799,7 @@ export enum ShopifyStorefrontCheckoutErrorCode {
   Invalid = 'INVALID',
   /** Input value is too long. */
   TooLong = 'TOO_LONG',
-  /** Input value is not present. */
+  /** Input value must be blank. */
   Present = 'PRESENT',
   /** Input value should be less than maximum allowed value. */
   LessThan = 'LESS_THAN',
@@ -867,6 +867,8 @@ export enum ShopifyStorefrontCheckoutErrorCode {
   LineItemNotFound = 'LINE_ITEM_NOT_FOUND',
   /** Unable to apply discount. */
   UnableToApply = 'UNABLE_TO_APPLY',
+  /** Discount already applied. */
+  DiscountAlreadyApplied = 'DISCOUNT_ALREADY_APPLIED',
 }
 
 /** Return type for `checkoutGiftCardApply` mutation. */
@@ -874,10 +876,10 @@ export interface ShopifyStorefrontCheckoutGiftCardApplyPayload {
   __typename: 'CheckoutGiftCardApplyPayload'
   /** The updated checkout object. */
   checkout: ShopifyStorefrontCheckout
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   checkoutUserErrors: Array<ShopifyStorefrontCheckoutUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `checkoutUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -888,10 +890,10 @@ export interface ShopifyStorefrontCheckoutGiftCardRemovePayload {
   __typename: 'CheckoutGiftCardRemovePayload'
   /** The updated checkout object. */
   checkout: ShopifyStorefrontCheckout
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   checkoutUserErrors: Array<ShopifyStorefrontCheckoutUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `checkoutUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -902,10 +904,10 @@ export interface ShopifyStorefrontCheckoutGiftCardRemoveV2Payload {
   __typename: 'CheckoutGiftCardRemoveV2Payload'
   /** The updated checkout object. */
   checkout?: Maybe<ShopifyStorefrontCheckout>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   checkoutUserErrors: Array<ShopifyStorefrontCheckoutUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `checkoutUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -916,10 +918,10 @@ export interface ShopifyStorefrontCheckoutGiftCardsAppendPayload {
   __typename: 'CheckoutGiftCardsAppendPayload'
   /** The updated checkout object. */
   checkout?: Maybe<ShopifyStorefrontCheckout>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   checkoutUserErrors: Array<ShopifyStorefrontCheckoutUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `checkoutUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -990,10 +992,10 @@ export interface ShopifyStorefrontCheckoutLineItemsAddPayload {
   __typename: 'CheckoutLineItemsAddPayload'
   /** The updated checkout object. */
   checkout?: Maybe<ShopifyStorefrontCheckout>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   checkoutUserErrors: Array<ShopifyStorefrontCheckoutUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `checkoutUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -1004,10 +1006,10 @@ export interface ShopifyStorefrontCheckoutLineItemsRemovePayload {
   __typename: 'CheckoutLineItemsRemovePayload'
   /** The updated checkout object. */
   checkout?: Maybe<ShopifyStorefrontCheckout>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   checkoutUserErrors: Array<ShopifyStorefrontCheckoutUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `checkoutUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -1018,7 +1020,7 @@ export interface ShopifyStorefrontCheckoutLineItemsReplacePayload {
   __typename: 'CheckoutLineItemsReplacePayload'
   /** The updated checkout object. */
   checkout?: Maybe<ShopifyStorefrontCheckout>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   userErrors: Array<ShopifyStorefrontCheckoutUserError>
 }
 
@@ -1027,10 +1029,10 @@ export interface ShopifyStorefrontCheckoutLineItemsUpdatePayload {
   __typename: 'CheckoutLineItemsUpdatePayload'
   /** The updated checkout object. */
   checkout?: Maybe<ShopifyStorefrontCheckout>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   checkoutUserErrors: Array<ShopifyStorefrontCheckoutUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `checkoutUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -1041,10 +1043,10 @@ export interface ShopifyStorefrontCheckoutShippingAddressUpdatePayload {
   __typename: 'CheckoutShippingAddressUpdatePayload'
   /** The updated checkout object. */
   checkout: ShopifyStorefrontCheckout
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   checkoutUserErrors: Array<ShopifyStorefrontCheckoutUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `checkoutUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -1055,10 +1057,10 @@ export interface ShopifyStorefrontCheckoutShippingAddressUpdateV2Payload {
   __typename: 'CheckoutShippingAddressUpdateV2Payload'
   /** The updated checkout object. */
   checkout?: Maybe<ShopifyStorefrontCheckout>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   checkoutUserErrors: Array<ShopifyStorefrontCheckoutUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `checkoutUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -1069,10 +1071,10 @@ export interface ShopifyStorefrontCheckoutShippingLineUpdatePayload {
   __typename: 'CheckoutShippingLineUpdatePayload'
   /** The updated checkout object. */
   checkout?: Maybe<ShopifyStorefrontCheckout>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   checkoutUserErrors: Array<ShopifyStorefrontCheckoutUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `checkoutUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -1082,9 +1084,9 @@ export interface ShopifyStorefrontCheckoutShippingLineUpdatePayload {
 export interface ShopifyStorefrontCheckoutUserError
   extends ShopifyStorefrontDisplayableError {
   __typename: 'CheckoutUserError'
-  /** Error code to uniquely identify the error. */
+  /** The error code. */
   code?: Maybe<ShopifyStorefrontCheckoutErrorCode>
-  /** Path to the input field which caused the error. */
+  /** The path to the input field that caused the error. */
   field?: Maybe<Array<Scalars['String']>>
   /** The error message. */
   message: Scalars['String']
@@ -2063,6 +2065,8 @@ export enum ShopifyStorefrontCurrencyCode {
   Byr = 'BYR',
   /** Djiboutian Franc (DJF). */
   Djf = 'DJF',
+  /** Eritrean Nakfa (ERN). */
+  Ern = 'ERN',
   /** Falkland Islands Pounds (FKP). */
   Fkp = 'FKP',
   /** Gibraltar Pounds (GIP). */
@@ -2071,18 +2075,26 @@ export enum ShopifyStorefrontCurrencyCode {
   Gnf = 'GNF',
   /** Iranian Rial (IRR). */
   Irr = 'IRR',
+  /** Kiribati Dollar (KID). */
+  Kid = 'KID',
   /** Libyan Dinar (LYD). */
   Lyd = 'LYD',
+  /** Mauritanian Ouguiya (MRU). */
+  Mru = 'MRU',
   /** Sierra Leonean Leone (SLL). */
   Sll = 'SLL',
   /** Saint Helena Pounds (SHP). */
   Shp = 'SHP',
+  /** Somali Shilling (SOS). */
+  Sos = 'SOS',
   /** Tajikistani Somoni (TJS). */
   Tjs = 'TJS',
   /** Tongan Pa'anga (TOP). */
   Top = 'TOP',
   /** Venezuelan Bolivares (VEF). */
   Vef = 'VEF',
+  /** Venezuelan Bolivares (VES). */
+  Ves = 'VES',
 }
 
 /** A customer represents a customer account with the shop. Customer accounts store contact information for the customer, saving logged-in customers the trouble of having to provide it at every checkout. */
@@ -2163,10 +2175,10 @@ export interface ShopifyStorefrontCustomerAccessTokenCreatePayload {
   __typename: 'CustomerAccessTokenCreatePayload'
   /** The newly created customer access token object. */
   customerAccessToken?: Maybe<ShopifyStorefrontCustomerAccessToken>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   customerUserErrors: Array<ShopifyStorefrontCustomerUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `customerUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -2177,7 +2189,7 @@ export interface ShopifyStorefrontCustomerAccessTokenCreateWithMultipassPayload 
   __typename: 'CustomerAccessTokenCreateWithMultipassPayload'
   /** An access token object associated with the customer. */
   customerAccessToken?: Maybe<ShopifyStorefrontCustomerAccessToken>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   customerUserErrors: Array<ShopifyStorefrontCustomerUserError>
 }
 
@@ -2188,7 +2200,7 @@ export interface ShopifyStorefrontCustomerAccessTokenDeletePayload {
   deletedAccessToken?: Maybe<Scalars['String']>
   /** ID of the destroyed customer access token. */
   deletedCustomerAccessTokenId?: Maybe<Scalars['String']>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   userErrors: Array<ShopifyStorefrontUserError>
 }
 
@@ -2197,7 +2209,7 @@ export interface ShopifyStorefrontCustomerAccessTokenRenewPayload {
   __typename: 'CustomerAccessTokenRenewPayload'
   /** The renewed customer access token object. */
   customerAccessToken?: Maybe<ShopifyStorefrontCustomerAccessToken>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   userErrors: Array<ShopifyStorefrontUserError>
 }
 
@@ -2208,7 +2220,7 @@ export interface ShopifyStorefrontCustomerActivateByUrlPayload {
   customer?: Maybe<ShopifyStorefrontCustomer>
   /** A new customer access token for the customer. */
   customerAccessToken?: Maybe<ShopifyStorefrontCustomerAccessToken>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   customerUserErrors: Array<ShopifyStorefrontCustomerUserError>
 }
 
@@ -2227,10 +2239,10 @@ export interface ShopifyStorefrontCustomerActivatePayload {
   customer?: Maybe<ShopifyStorefrontCustomer>
   /** A newly created customer access token object for the customer. */
   customerAccessToken?: Maybe<ShopifyStorefrontCustomerAccessToken>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   customerUserErrors: Array<ShopifyStorefrontCustomerUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `customerUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -2241,10 +2253,10 @@ export interface ShopifyStorefrontCustomerAddressCreatePayload {
   __typename: 'CustomerAddressCreatePayload'
   /** The new customer address object. */
   customerAddress?: Maybe<ShopifyStorefrontMailingAddress>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   customerUserErrors: Array<ShopifyStorefrontCustomerUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `customerUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -2253,12 +2265,12 @@ export interface ShopifyStorefrontCustomerAddressCreatePayload {
 /** Return type for `customerAddressDelete` mutation. */
 export interface ShopifyStorefrontCustomerAddressDeletePayload {
   __typename: 'CustomerAddressDeletePayload'
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   customerUserErrors: Array<ShopifyStorefrontCustomerUserError>
   /** ID of the deleted customer address. */
   deletedCustomerAddressId?: Maybe<Scalars['String']>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `customerUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -2269,10 +2281,10 @@ export interface ShopifyStorefrontCustomerAddressUpdatePayload {
   __typename: 'CustomerAddressUpdatePayload'
   /** The customer’s updated mailing address. */
   customerAddress?: Maybe<ShopifyStorefrontMailingAddress>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   customerUserErrors: Array<ShopifyStorefrontCustomerUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `customerUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -2303,10 +2315,10 @@ export interface ShopifyStorefrontCustomerCreatePayload {
   __typename: 'CustomerCreatePayload'
   /** The created customer object. */
   customer?: Maybe<ShopifyStorefrontCustomer>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   customerUserErrors: Array<ShopifyStorefrontCustomerUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `customerUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -2317,10 +2329,10 @@ export interface ShopifyStorefrontCustomerDefaultAddressUpdatePayload {
   __typename: 'CustomerDefaultAddressUpdatePayload'
   /** The updated customer object. */
   customer?: Maybe<ShopifyStorefrontCustomer>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   customerUserErrors: Array<ShopifyStorefrontCustomerUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `customerUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -2363,10 +2375,10 @@ export enum ShopifyStorefrontCustomerErrorCode {
 /** Return type for `customerRecover` mutation. */
 export interface ShopifyStorefrontCustomerRecoverPayload {
   __typename: 'CustomerRecoverPayload'
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   customerUserErrors: Array<ShopifyStorefrontCustomerUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `customerUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -2379,10 +2391,10 @@ export interface ShopifyStorefrontCustomerResetByUrlPayload {
   customer?: Maybe<ShopifyStorefrontCustomer>
   /** A newly created customer access token object for the customer. */
   customerAccessToken?: Maybe<ShopifyStorefrontCustomerAccessToken>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   customerUserErrors: Array<ShopifyStorefrontCustomerUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `customerUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -2403,10 +2415,10 @@ export interface ShopifyStorefrontCustomerResetPayload {
   customer?: Maybe<ShopifyStorefrontCustomer>
   /** A newly created customer access token object for the customer. */
   customerAccessToken?: Maybe<ShopifyStorefrontCustomerAccessToken>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   customerUserErrors: Array<ShopifyStorefrontCustomerUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `customerUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -2442,10 +2454,10 @@ export interface ShopifyStorefrontCustomerUpdatePayload {
    * (including the one used to perform this mutation) become invalid, and a new token is generated.
    */
   customerAccessToken?: Maybe<ShopifyStorefrontCustomerAccessToken>
-  /** List of errors that occurred executing the mutation. */
+  /** List of errors that occurred from executing the mutation. */
   customerUserErrors: Array<ShopifyStorefrontCustomerUserError>
   /**
-   * List of errors that occurred executing the mutation.
+   * List of errors that occurred from executing the mutation.
    * @deprecated Use `customerUserErrors` instead
    */
   userErrors: Array<ShopifyStorefrontUserError>
@@ -2455,9 +2467,9 @@ export interface ShopifyStorefrontCustomerUpdatePayload {
 export interface ShopifyStorefrontCustomerUserError
   extends ShopifyStorefrontDisplayableError {
   __typename: 'CustomerUserError'
-  /** Error code to uniquely identify the error. */
+  /** The error code. */
   code?: Maybe<ShopifyStorefrontCustomerErrorCode>
-  /** Path to the input field which caused the error. */
+  /** The path to the input field that caused the error. */
   field?: Maybe<Array<Scalars['String']>>
   /** The error message. */
   message: Scalars['String']
@@ -2571,7 +2583,7 @@ export interface ShopifyStorefrontDiscountCodeApplication
 
 /** Represents an error in the input of a mutation. */
 export type ShopifyStorefrontDisplayableError = {
-  /** Path to the input field which caused the error. */
+  /** The path to the input field that caused the error. */
   field?: Maybe<Array<Scalars['String']>>
   /** The error message. */
   message: Scalars['String']
@@ -2671,7 +2683,7 @@ export interface ShopifyStorefrontFulfillmentTrackingInfo {
 
 /** Represents information about the metafields associated to the specified resource. */
 export type ShopifyStorefrontHasMetafields = {
-  /** The metafield associated with the resource. */
+  /** Returns a metafield found by namespace and key. */
   metafield?: Maybe<ShopifyStorefrontMetafield>
   /** A paginated list of metafields associated with the resource. */
   metafields: ShopifyStorefrontMetafieldConnection
@@ -3007,7 +3019,10 @@ export interface ShopifyStorefrontMetafield extends ShopifyStorefrontNode {
   updatedAt: Scalars['DateTime']
   /** The value of a metafield. */
   value: Scalars['String']
-  /** Represents the metafield value type. */
+  /**
+   * Represents the metafield value type.
+   * @deprecated `valueType` is deprecated and replaced by `type` in API version 2021-07.
+   */
   valueType: ShopifyStorefrontMetafieldValueType
 }
 
@@ -3944,7 +3959,7 @@ export interface ShopifyStorefrontProduct
   images: ShopifyStorefrontImageConnection
   /** The media associated with the product. */
   media: ShopifyStorefrontMediaConnection
-  /** The metafield associated with the resource. */
+  /** Returns a metafield found by namespace and key. */
   metafield?: Maybe<ShopifyStorefrontMetafield>
   /** A paginated list of metafields associated with the resource. */
   metafields: ShopifyStorefrontMetafieldConnection
@@ -4255,7 +4270,7 @@ export interface ShopifyStorefrontProductVariant
   id: Scalars['ID']
   /** Image associated with the product variant. This field falls back to the product image if no image is available. */
   image?: Maybe<ShopifyStorefrontImage>
-  /** The metafield associated with the resource. */
+  /** Returns a metafield found by namespace and key. */
   metafield?: Maybe<ShopifyStorefrontMetafield>
   /** A paginated list of metafields associated with the resource. */
   metafields: ShopifyStorefrontMetafieldConnection
@@ -4682,6 +4697,8 @@ export interface ShopifyStorefrontShop {
   products: ShopifyStorefrontProductConnection
   /** The shop’s refund policy. */
   refundPolicy?: Maybe<ShopifyStorefrontShopPolicy>
+  /** The shop’s shipping policy. */
+  shippingPolicy?: Maybe<ShopifyStorefrontShopPolicy>
   /** Countries that the shop ships to. */
   shipsToCountries: Array<ShopifyStorefrontCountryCode>
   /**
@@ -4962,7 +4979,7 @@ export enum ShopifyStorefrontUnitPriceMeasurementMeasuredUnit {
 export interface ShopifyStorefrontUserError
   extends ShopifyStorefrontDisplayableError {
   __typename: 'UserError'
-  /** Path to the input field which caused the error. */
+  /** The path to the input field that caused the error. */
   field?: Maybe<Array<Scalars['String']>>
   /** The error message. */
   message: Scalars['String']

@@ -5,6 +5,7 @@ import { RichTextBlock, ListBlock } from '../types'
 import { Heading, P, BlockQuote, Li, Ul, Ol } from './Text'
 import { Image } from './Image'
 import { VideoEmbed } from './VideoEmbed'
+import { Accordion } from './Accordion'
 
 interface CustomSerializerConfig {
   blockWrapper?: React.ComponentType
@@ -97,6 +98,11 @@ const serializers = ({
   imageSizes,
   weight: customWeight,
 }: CustomSerializerConfig) => ({
+  types: {
+    accordion: (props: RichTextBlock) => {
+      return <p>:)</p>
+    },
+  },
   list: (props: ListBlock) => {
     if (props.type === 'number') {
       return <Ol>{props.children}</Ol>
@@ -113,6 +119,10 @@ const serializers = ({
 
     if (node._type === 'videoEmbed') {
       return <VideoEmbed video={node} />
+    }
+
+    if (node._type === 'accordion') {
+      return <Accordion accordion={node} />
     }
 
     if (node._type === 'richImage') {

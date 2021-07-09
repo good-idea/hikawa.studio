@@ -4,6 +4,7 @@ import {
   VideoEmbed,
   SanityImageHotspot,
   SanityImageCrop,
+  Accordion,
 } from './generated-sanity'
 
 interface BlockNode<T> {
@@ -24,10 +25,16 @@ interface VideoBlock extends Omit<VideoEmbed, '_type'> {
   _type: 'videoEmbed'
 }
 
+export interface AccordionBlock extends Omit<Accordion, '_type'> {
+  _type: 'accordion'
+  body: Record<string, any>[]
+}
+
 export type RichTextBlock =
   | BlockNode<TextBlock>
   | BlockNode<ImageBlock>
   | BlockNode<VideoBlock>
+  | BlockNode<AccordionBlock>
 
 export interface SanityRawImage {
   __typename: void
