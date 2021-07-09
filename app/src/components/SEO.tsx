@@ -90,19 +90,23 @@ const getImageUrl = (image?: ImageType | null): string | undefined => {
 
 export const SEO = ({ path, seo, defaultSeo, product }: SEOProps) => {
   if (!defaultSeo.title) throw new Error('No default title was supplied')
-  const { keywords, metaTitle, description, title, image } = {
+  const { keywords, metaTitle, description, name, title, image } = {
     ...defaultSeo,
     ...seo,
   }
+  const seoTitle = name || title
   const canonical = [BASE_URL, path].join('/')
   const imageUrl = getImageUrl(image)
   return (
     <>
       <Head>
-        <title key="title">{title}</title>
+        <title key="title">{seoTitle}</title>
         <meta name="description" content={description || undefined} />
         <meta name="keywords" content={keywords || undefined} />
-        <meta property="og:title" content={metaTitle || title || undefined} />
+        <meta
+          property="og:title"
+          content={metaTitle || seoTitle || undefined}
+        />
         <meta property="og:description" content={description || undefined} />
         <meta property="og:image" content={imageUrl || undefined} />
         <meta property="og:image_secure_url" content={imageUrl || undefined} />
@@ -110,7 +114,7 @@ export const SEO = ({ path, seo, defaultSeo, product }: SEOProps) => {
         <meta property="og:url" content={canonical} />
         <meta name="robots" content="index, follow" />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Smilebooth" />
+        <meta name="twitter:title" content={seoTitle || undefined} />
         <meta
           name="twitter:description"
           content={metaTitle || title || undefined}
