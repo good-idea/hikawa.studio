@@ -22,7 +22,6 @@ export const Accordion: React.FC<AccordionProps> = ({ accordion }) => {
   const { body, heading } = accordion
   const toggleAccordion = () => setIsOpen(!isOpen)
 
-  console.log(accordion)
   return (
     <AccordionWrapper mb={5}>
       <AccordionIcon>
