@@ -23,14 +23,14 @@ export const Accordion: React.FC<AccordionProps> = ({ accordion }) => {
   const toggleAccordion = () => setIsOpen(!isOpen)
 
   return (
-    <AccordionWrapper mb={5}>
-      <AccordionIcon>
-        {isOpen ? <AiOutlineMinus /> : <AiOutlinePlus />}
-      </AccordionIcon>
+    <AccordionWrapper>
       <AccordionButton onClick={toggleAccordion}>
-        <Heading level={3} fontWeight={3} mb={3}>
+        <Heading level={3} fontWeight={4} my={0}>
           {heading}
         </Heading>
+        <AccordionIcon>
+          {isOpen ? <AiOutlineMinus /> : <AiOutlinePlus />}
+        </AccordionIcon>
       </AccordionButton>
       {isOpen ? (
         <AccordionInner py={2} px={4}>

@@ -126,7 +126,11 @@ const ProductViewInner = ({ product }: ProductViewInnerProps) => {
             <hr />
           </RelatedTitle>
           {collection ? (
-            <CollectionBlock isActive={false} collection={collection} />
+            <CollectionBlock
+              hideTitle={true}
+              isActive={false}
+              collection={collection}
+            />
           ) : null}
           <LinkButtonWrapper>
             <LinkButton fontSize={3} m="0 auto" level={1} href="/shop">

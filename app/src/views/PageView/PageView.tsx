@@ -33,7 +33,7 @@ export const PageView = ({ slug }: PageProps) => {
     <Wrapper>
       {seo && <SEO seo={seo} defaultSeo={{ title }} path={seoPath} />}
       <Hero hero={hero} view="standard" />
-      <Column width="wide">
+      <Column width="wide" py={3}>
         {contentRaw && <RichText body={contentRaw} />}
       </Column>
       {images && images.length ? (

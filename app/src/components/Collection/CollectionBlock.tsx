@@ -20,10 +20,14 @@ const Wrapper = styled.div`
   `}
 `
 
+interface InnerProps {
+  hideTitle?: boolean
+}
+
 const Inner = styled.div`
-  ${({ theme }) => css`
+  ${({ theme, hideTitle }) => css`
     position: relative;
-    display: grid;
+    display: ${hideTitle ? 'flex' : 'grid'};
     grid-template-columns: 200px 1fr;
     justify-content: center;
 
@@ -45,13 +49,27 @@ const Title = styled.div`
   `}
 `
 
-const Products = styled.div`
-  ${({ theme }) => css`
-    display: grid;
+interface ProductsProps {
+  lowCount?: boolean
+}
+
+const Products = styled.div<ProductsProps>`
+  ${({ theme, lowCount }) => css`
+    display: ${lowCount ? 'flex' : 'grid'};
     flex-grow: 1;
     margin: 0 5;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 3;
+    justify-content: center;
+
+    ${lowCount
+      ? css`
+          > * {
+            flex-grow: 1;
+            max-width: 300px;
+          }
+        `
+      : ''}
 
     ${theme.mediaQueries.mobile} {
       grid-template-columns: repeat(2, 1fr);
@@ -67,11 +85,13 @@ const Products = styled.div`
 interface CollectionBlockProps {
   collection: ShopifyCollection
   isActive: boolean
+  hideTitle?: boolean
 }
 
 export const CollectionBlock = ({
   collection,
   isActive,
+  hideTitle,
 }: CollectionBlockProps) => {
   const products = definitely(collection.products).filter(
     (p) => !p?.sourceData?.tags?.includes('hidden'),
@@ -102,13 +122,15 @@ export const CollectionBlock = ({
   return (
     <Wrapper ref={containerRef}>
       <Column width="wide">
-        <Inner>
-          <Title>
-            <Heading level={3} fontFamily="sans">
-              {collection.title}
-            </Heading>
-          </Title>
-          <Products>
+        <Inner hideTitle={hideTitle}>
+          {hideTitle !== true ? (
+            <Title>
+              <Heading level={3} fontFamily="sans">
+                {collection.title}
+              </Heading>
+            </Title>
+          ) : null}
+          <Products lowCount={filteredProducts.length < 3}>
             {filteredProducts.map((product) => (
               <ProductThumbnail
                 key={product.handle || 'some-key'}
