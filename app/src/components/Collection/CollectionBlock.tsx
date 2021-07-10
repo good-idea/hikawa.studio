@@ -130,7 +130,9 @@ export const CollectionBlock = ({
               </Heading>
             </Title>
           ) : null}
-          <Products lowCount={filteredProducts.length < 3}>
+          <Products
+            lowCount={Boolean(hideTitle && filteredProducts.length < 3)}
+          >
             {filteredProducts.map((product) => (
               <ProductThumbnail
                 key={product.handle || 'some-key'}
