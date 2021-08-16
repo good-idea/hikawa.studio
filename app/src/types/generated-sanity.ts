@@ -159,6 +159,26 @@ export type ColorSorting = {
   rgb?: Maybe<RgbaColorSorting>
 }
 
+export interface CommunityPhotos {
+  __typename: 'CommunityPhotos'
+  _key?: Maybe<Scalars['String']>
+  _type?: Maybe<Scalars['String']>
+  heading?: Maybe<Scalars['String']>
+  photos?: Maybe<Array<Maybe<RichImage>>>
+}
+
+export type CommunityPhotosFilter = {
+  _key?: Maybe<StringFilter>
+  _type?: Maybe<StringFilter>
+  heading?: Maybe<StringFilter>
+}
+
+export type CommunityPhotosSorting = {
+  _key?: Maybe<SortOrder>
+  _type?: Maybe<SortOrder>
+  heading?: Maybe<SortOrder>
+}
+
 export interface Cta {
   __typename: 'Cta'
   _key?: Maybe<Scalars['String']>
@@ -1439,6 +1459,7 @@ export interface ShopifyCollection extends Document {
   backgroundColor?: Maybe<Color>
   keyColor?: Maybe<Color>
   secondaryColor?: Maybe<Color>
+  communityPhotos?: Maybe<CommunityPhotos>
   seo?: Maybe<Seo>
 }
 
@@ -1460,6 +1481,7 @@ export type ShopifyCollectionFilter = {
   backgroundColor?: Maybe<ColorFilter>
   keyColor?: Maybe<ColorFilter>
   secondaryColor?: Maybe<ColorFilter>
+  communityPhotos?: Maybe<CommunityPhotosFilter>
   seo?: Maybe<SeoFilter>
 }
 
@@ -1479,6 +1501,7 @@ export type ShopifyCollectionSorting = {
   backgroundColor?: Maybe<ColorSorting>
   keyColor?: Maybe<ColorSorting>
   secondaryColor?: Maybe<ColorSorting>
+  communityPhotos?: Maybe<CommunityPhotosSorting>
   seo?: Maybe<SeoSorting>
 }
 
