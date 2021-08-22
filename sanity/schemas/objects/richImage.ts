@@ -18,6 +18,8 @@ export const richImage = {
       name: 'credit',
       title: 'Credit',
       type: 'string',
+      description:
+        'For community photos, put the instagram handle here (including the @)',
       options: {
         isHighlighted: true,
       },

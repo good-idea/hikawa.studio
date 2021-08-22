@@ -140,10 +140,12 @@ const ProductViewInner = ({ product }: ProductViewInnerProps) => {
             </LinkButton>
           </LinkButtonWrapper>
         </RelatedWrapper>
-        {communityPhotos ? (
-          <CommunityPhotos communityPhotos={communityPhotos} />
-        ) : null}
       </Column>
+      {communityPhotos ? (
+        <Column width="xWide">
+          <CommunityPhotos communityPhotos={communityPhotos} />
+        </Column>
+      ) : null}
     </>
   )
 }

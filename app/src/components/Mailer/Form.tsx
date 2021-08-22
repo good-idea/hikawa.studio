@@ -17,10 +17,27 @@ const Form = styled.form<FormProps>`
     opacity: ${isLoading ? '0.3' : '1'};
     pointer-events: ${isLoading ? 'none' : ''};
     transition: 0.2s;
-    display: flex;
+    display: grid;
+    grid-row-gap: 2;
+    grid-template-columns: 1fr;
     justify-content: center;
     align-items: center;
     margin: 3 0;
+    > h4 {
+      background-color: white;
+      border: 1px solid black;
+      height: 35px;
+      line-height: 35px;
+    }
+    > input {
+      font-weight: 2;
+    }
+    > input,
+    > button {
+      margin-right: 0;
+      max-width: initial;
+      width: 100%;
+    }
   `}
 `
 
@@ -137,20 +154,28 @@ export const MailerForm = () => {
 
   return (
     <Form onSubmit={handleSubmit} isLoading={loading}>
-      <Input
-        disabled={Boolean(success)}
-        onChange={handleChange}
-        type="email"
-        name="email"
-        value={email}
-      />
-
-      {errorMessage ? (
-        <Heading level={5} color="red">
-          {errorMessage}
+      {success === true ? (
+        <Heading textAlign="center" level={4}>
+          Awesome!!
         </Heading>
-      ) : null}
-      {success === undefined ? <Button type="submit">Submit</Button> : null}
+      ) : (
+        <>
+          <Input
+            disabled={Boolean(success)}
+            onChange={handleChange}
+            type="email"
+            name="email"
+            value={email}
+          />
+
+          {errorMessage ? (
+            <Heading level={5} color="red">
+              {errorMessage}
+            </Heading>
+          ) : null}
+          {success === undefined ? <Button type="submit">Submit</Button> : null}
+        </>
+      )}
     </Form>
   )
 }

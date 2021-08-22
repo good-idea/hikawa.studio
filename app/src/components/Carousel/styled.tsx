@@ -21,7 +21,7 @@ export const CarouselContainer = styled.div<WithSingle>`
     }
     ${theme.mediaQueries.mobile} {
       overflow: hidden;
-      padding: ${single ? '0' : '0 32vw'};
+      padding: 0 6;
     }
   `}
 `
@@ -32,9 +32,6 @@ export const CarouselMask = styled.div<WithSingle>`
 
     ${theme.mediaQueries.mobile} {
       max-width: 100%;
-      overflow: visible;
-
-      ${single ? css`` : ''}
     }
   `}
 `
@@ -129,6 +126,9 @@ export const SlideContainer = styled.div`
             width: calc((100% + (${theme.space[3]}px * 1)) / 3);
           }
           ${theme.mediaQueries.mobile} {
+            width: calc(((100%) / 2) + ${theme.space[3]}px);
+          }
+          @media screen and (max-width: 475px) {
             width: calc(((100%) / 1) + ${theme.space[3]}px);
           }
         `}
@@ -167,7 +167,7 @@ export const ButtonWrapper = styled.div<ButtonWrapperProps>`
       width: ${theme.space[11]}px;
     }
     ${theme.mediaQueries.mobile} {
-      display: none;
+      width: ${theme.space[6]}px;
     }
   `}
 `
@@ -195,10 +195,6 @@ export const CarouselButton = styled.button<CarouselButtonProps>`
           transform: rotate(180deg);
         `}
     background: transparent;
-
-    ${theme.mediaQueries.mobile} {
-      display: none;
-    }
   `}
 `
 export const DotsWrapper = styled.div`
