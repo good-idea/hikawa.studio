@@ -5,6 +5,7 @@ import { definitely } from '../../utils'
 import { CommunityPhotosWrapper } from './styled'
 import { ImageGrid } from '../Layout/ImageGrid'
 import { CommunityPhoto } from './CommunityPhoto'
+import { Carousel } from '../Carousel'
 
 interface CommunityPhotosProps {
   communityPhotos: CommunityPhotosType
@@ -22,11 +23,11 @@ export const CommunityPhotos: React.FC<CommunityPhotosProps> = ({
           {heading}
         </Heading>
       ) : null}
-      <ImageGrid>
+      <Carousel>
         {definitely(photos).map((photo) => (
           <CommunityPhoto key={photo._key} image={photo} />
         ))}
-      </ImageGrid>
+      </Carousel>
     </CommunityPhotosWrapper>
   )
 }
