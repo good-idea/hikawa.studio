@@ -14,7 +14,14 @@ export const richImage = {
         isHighlighted: true,
       },
     },
-
+    {
+      name: 'credit',
+      title: 'Credit',
+      type: 'string',
+      options: {
+        isHighlighted: true,
+      },
+    },
     {
       name: 'altText',
       title: 'Alt Text',
@@ -30,5 +37,21 @@ export const richImage = {
     const { options } = Rule._typeDef
     if (options.required) return Rule.required()
     return Rule.custom(() => true)
+  },
+  preview: {
+    select: {
+      caption: 'caption',
+      credit: 'credit',
+      altText: 'altText',
+      asset: 'asset',
+    },
+    prepare: ({ asset, caption, credit, altText }) => {
+      const [title, subtitle] = [caption, credit, altText].filter(Boolean)
+      return {
+        title,
+        subtitle,
+        media: asset,
+      }
+    },
   },
 }
