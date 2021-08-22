@@ -85,7 +85,7 @@ const ProductViewInner = ({ product }: ProductViewInnerProps) => {
 
   const [images] = unwindEdges(sourceData?.images)
   const collection = definitely(product.collections)[0]
-  const { communityPhotos } = collection
+  const communityPhotos = collection ? collection.communityPhotos : null
 
   const defaultSeo = {
     title: product.title || '',
