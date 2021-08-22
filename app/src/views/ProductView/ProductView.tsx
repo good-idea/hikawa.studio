@@ -17,6 +17,7 @@ import { Heading } from '../../components/Text'
 import { Image } from '../../components/Image'
 import { LinkButton } from '../../components/Button'
 import { CollectionBlock } from '../../components/Collection'
+import { CommunityPhotos } from '../../components/CommunityPhotos'
 import { ProductDescription } from './ProductDescription'
 import {
   Layout,
@@ -84,6 +85,7 @@ const ProductViewInner = ({ product }: ProductViewInnerProps) => {
 
   const [images] = unwindEdges(sourceData?.images)
   const collection = definitely(product.collections)[0]
+  const { communityPhotos } = collection
 
   const defaultSeo = {
     title: product.title || '',
@@ -120,6 +122,9 @@ const ProductViewInner = ({ product }: ProductViewInnerProps) => {
             />
           </Description>
         </Layout>
+        {communityPhotos ? (
+          <CommunityPhotos communityPhotos={communityPhotos} />
+        ) : null}
         <RelatedWrapper>
           <RelatedTitle>
             <Heading level={2}>Keep Looking</Heading>

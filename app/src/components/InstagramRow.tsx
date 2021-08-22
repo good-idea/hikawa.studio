@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled, { css } from '@xstyled/styled-components'
 import { useSiteSettings } from '../providers'
+import { ImageGrid } from './Layout/ImageGrid'
 import { Image } from './Image'
 import { Heading } from './Text'
 import { InstagramLogo } from './InstagramLogo'
@@ -12,31 +13,6 @@ import { definitely } from '../utils'
 
 const Wrapper = styled.div`
   margin: 6 0;
-`
-
-const Images = styled.div`
-  ${({ theme }) => css`
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-column-gap: 5;
-    grid-row-gap: 5;
-    margin: 5 0;
-
-    *:nth-child(n + 6) {
-      display: none;
-    }
-
-    ${theme.mediaQueries.mobile} {
-      grid-template-columns: repeat(3, 1fr);
-      grid-column-gap: 3;
-      grid-row-gap: 3;
-      margin: 3 0;
-
-      *:nth-child(n + 6) {
-        display: block;
-      }
-    }
-  `}
 `
 
 export const InstagramRow = () => {
@@ -52,7 +28,7 @@ export const InstagramRow = () => {
           {title}
         </Heading>
       )}
-      <Images>
+      <ImageGrid limit={true}>
         {definitely(images).map((image) => (
           <a
             key={image?._key || 'some-key'}
@@ -63,7 +39,7 @@ export const InstagramRow = () => {
             <Image sizes="300px" ratio={1} image={image} />
           </a>
         ))}
-      </Images>
+      </ImageGrid>
       <Heading level={4} textAlign="center">
         <a
           target="_blank"

@@ -1,5 +1,6 @@
 import gql from 'graphql-tag'
 import {
+  richImageFragment,
   seoFragment,
   heroFragment,
   shopifySourceImageFragment,
@@ -36,6 +37,12 @@ export const productPageQuery = gql`
         _key
         handle
         title
+        communityPhotos {
+          heading
+          photos {
+            ...RichImageFragment
+          }
+        }
         products {
           _key
           _id
@@ -106,6 +113,7 @@ export const productPageQuery = gql`
   }
   ${shopifySourceImageFragment}
   ${seoFragment}
+  ${richImageFragment}
   ${heroFragment}
   ${shopifySourceProductVariantFragment}
 `

@@ -836,6 +836,7 @@ export interface RichImage {
   hotspot?: Maybe<SanityImageHotspot>
   crop?: Maybe<SanityImageCrop>
   caption?: Maybe<Scalars['String']>
+  credit?: Maybe<Scalars['String']>
   /** A short description of the image. Helps with accessibility and SEO */
   altText?: Maybe<Scalars['String']>
 }
@@ -847,6 +848,7 @@ export type RichImageFilter = {
   hotspot?: Maybe<SanityImageHotspotFilter>
   crop?: Maybe<SanityImageCropFilter>
   caption?: Maybe<StringFilter>
+  credit?: Maybe<StringFilter>
   altText?: Maybe<StringFilter>
 }
 
@@ -856,6 +858,7 @@ export type RichImageSorting = {
   hotspot?: Maybe<SanityImageHotspotSorting>
   crop?: Maybe<SanityImageCropSorting>
   caption?: Maybe<SortOrder>
+  credit?: Maybe<SortOrder>
   altText?: Maybe<SortOrder>
 }
 

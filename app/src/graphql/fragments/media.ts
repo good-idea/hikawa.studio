@@ -83,6 +83,8 @@ export const richImageFragment = gql`
     _type
     _key
     altText
+    caption
+    credit
     asset {
       ...SanityImageAssetFragment
     }
