@@ -122,9 +122,6 @@ const ProductViewInner = ({ product }: ProductViewInnerProps) => {
             />
           </Description>
         </Layout>
-        {communityPhotos ? (
-          <CommunityPhotos communityPhotos={communityPhotos} />
-        ) : null}
         <RelatedWrapper>
           <RelatedTitle>
             <Heading level={2}>Keep Looking</Heading>
@@ -143,6 +140,9 @@ const ProductViewInner = ({ product }: ProductViewInnerProps) => {
             </LinkButton>
           </LinkButtonWrapper>
         </RelatedWrapper>
+        {communityPhotos ? (
+          <CommunityPhotos communityPhotos={communityPhotos} />
+        ) : null}
       </Column>
     </>
   )
