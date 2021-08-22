@@ -23,7 +23,7 @@ export const InstagramRow = () => {
   return (
     <Wrapper>
       {title && (
-        <Heading level={2} fontFamily="sans" textAlign="center">
+        <Heading level={3} fontFamily="sans" textAlign="center">
           <InstagramLogo />
           {title}
         </Heading>
