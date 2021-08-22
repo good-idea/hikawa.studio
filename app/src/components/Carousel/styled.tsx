@@ -45,6 +45,7 @@ interface SlidesContainerProps {
   theme: DefaultTheme
 }
 
+// @ts-ignore
 export const SlidesContainer = styled.div.attrs<SlidesContainerProps>(
   (props) => ({
     style: {
@@ -148,7 +149,7 @@ export const ButtonWrapper = styled.div<ButtonWrapperProps>`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 77%;
+    height: 100%;
     width: ${theme.space[11]}px;
     top: 0;
     ${direction === 'next'

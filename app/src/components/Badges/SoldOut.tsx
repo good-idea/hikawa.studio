@@ -15,11 +15,7 @@ export const Wrapper = styled.div`
   font-style: italic;
 `
 
-interface SoldOutProps {
-  /* */
-}
-
-export const SoldOut: React.FC<SoldOutProps> = (props) => {
+export const SoldOut: React.FC = (props) => {
   return (
     <Wrapper>
       <Heading my={0} level={5}>
