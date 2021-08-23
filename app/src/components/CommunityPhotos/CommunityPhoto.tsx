@@ -12,7 +12,7 @@ export const CommunityPhoto: React.FC<CommunityPhotoProps> = ({ image }) => {
   const { credit } = image
   return (
     <CommunityPhotoWrapper>
-      <Image sizes="300px" ratio={1} image={image} preload={true} />
+      <Image sizes="300px" ratio={1.2} image={image} preload={true} />
       {credit ? <Handle>{credit}</Handle> : null}
     </CommunityPhotoWrapper>
   )
