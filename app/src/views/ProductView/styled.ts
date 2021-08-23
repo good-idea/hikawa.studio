@@ -39,7 +39,7 @@ export const Description = styled.div`
 
 export const RelatedWrapper = styled.div`
   ${({ theme }) => css`
-    margin: 10 0;
+    margin: 10 0 9;
 
     ${theme.mediaQueries.mobile} {
       margin: 5 0;

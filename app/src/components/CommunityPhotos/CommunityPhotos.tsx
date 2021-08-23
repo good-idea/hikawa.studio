@@ -3,7 +3,6 @@ import { Heading } from '../Text'
 import { CommunityPhotos as CommunityPhotosType } from '../../types'
 import { definitely } from '../../utils'
 import { CommunityPhotosWrapper } from './styled'
-import { ImageGrid } from '../Layout/ImageGrid'
 import { CommunityPhoto } from './CommunityPhoto'
 import { Carousel } from '../Carousel'
 

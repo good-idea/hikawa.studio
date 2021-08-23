@@ -1,7 +1,7 @@
-import styled, { css } from '@xstyled/styled-components'
+import styled from '@xstyled/styled-components'
 
 export const CommunityPhotosWrapper = styled.div`
-  margin: 6 0 4;
+  margin: 0 0 4;
 `
 
 export const CommunityPhotoWrapper = styled.div`

@@ -35,7 +35,7 @@ const Form = styled.form<FormProps>`
     > input,
     > button {
       margin-right: 0;
-      max-width: initial;
+      max-width: 500px;
       width: 100%;
     }
   `}
