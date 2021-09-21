@@ -1,5 +1,4 @@
 import imageUrlBuilder from '@sanity/image-url'
-import { definitely } from '../../utils'
 import {
   Maybe,
   SanityRawImage,
@@ -38,67 +37,51 @@ interface ImageWidth {
 const buildSrcSet = (widths: ImageWidth[]): string =>
   widths.map(({ src, width }) => `${src} ${width}w`).join(', ')
 
-const defaultSizes = [100, 300, 600, 800, 1200, 1600]
+type SrcsetWidth = number | [number, number]
 
-const SANITY_IMAGE_ROOT = 'https://cdn.sanity.io/images/7afit9ut/'
-const CLOUDINARY_IMAGE_ROOT =
-  'https://res.cloudinary.com/good-idea/image/upload/baileyhikawa/'
+const defaultSizes: SrcsetWidth[] = [100, 300, 600, 800, 1200, [1600, 2200]]
 
-const CLOUDINARY_PARAM_ROOT =
-  'https://res.cloudinary.com/good-idea/image/upload/'
-
-const replaceImageRoot = (src: string | null): string | null => {
-  if (src === null) return null
-  return src.replace(SANITY_IMAGE_ROOT, CLOUDINARY_IMAGE_ROOT)
+interface SrcsetSize {
+  width: number
+  pxWidth: number
 }
 
-interface CloudinaryParams {
-  width?: number
-  format?: string
-}
-
-const replaceFormat = (src: string, format?: string) =>
-  format ? src.replace(/(jpe?g|png)$/, format) : src
-
-const setCloudinaryParameters = (
-  src: string | null,
-  params: CloudinaryParams,
-): string | null => {
-  if (src === null) return null
-  const { width, format } = params
-  const urlParams = definitely([
-    width ? `w_${width}` : undefined,
-    format ? `f_${format}` : undefined,
-  ])
-    .join(',')
-    .concat('/')
-  const imagePath = replaceFormat(
-    src.replace(CLOUDINARY_PARAM_ROOT, ''),
-    format,
-  )
-  return [CLOUDINARY_PARAM_ROOT, urlParams, imagePath].join('')
-}
+const getSrcsetSize = (size: SrcsetWidth): SrcsetSize =>
+  Array.isArray(size)
+    ? {
+        width: size[0],
+        pxWidth: size[1],
+      }
+    : { width: size, pxWidth: size }
 
 const getSanityImageDetails = (
   image: SanityRawImage | RichImage,
-  sizes = defaultSizes,
+  sizes: SrcsetWidth[] = defaultSizes,
 ): ImageDetails | null => {
   if (!image?.asset) return null
   const source = builder.image(image)
-  const originalSrc = replaceImageRoot(source.url())
-  const src = setCloudinaryParameters(originalSrc, { width: 1600 })
+  const src = source.url()
   const srcSet = buildSrcSet(
-    sizes.map((width) => ({
-      width,
-      src: setCloudinaryParameters(originalSrc, { width }),
-    })),
+    sizes.map((size) => {
+      const { width, pxWidth } = getSrcsetSize(size)
+      return {
+        width,
+        src: source.width(pxWidth).url(),
+      }
+    }),
   )
-
   const srcSetWebp = buildSrcSet(
-    sizes.map((width) => ({
-      width,
-      src: setCloudinaryParameters(originalSrc, { width, format: 'webp' }),
-    })),
+    sizes.map((size) => {
+      const { width, pxWidth } = getSrcsetSize(size)
+      return {
+        width,
+        src: source
+          //
+          .width(pxWidth)
+          .format('webp')
+          .url(),
+      }
+    }),
   )
 
   const { altText } = image
@@ -108,8 +91,6 @@ const getSanityImageDetails = (
 
   return { caption, src, srcSet, srcSetWebp, altText }
 }
-
-const widths = [100, 300, 800, 1200, 1600]
 
 const defaultCrop = {
   bottom: 0,
@@ -151,12 +132,14 @@ export const getAspectRatio = (
   return undefined
 }
 
+const shopifyWidths = [100, 300, 800, 1200, 1600]
+
 const getShopifyImageDetails = (
   image: ShopifySourceImage,
 ): ImageDetails | null => {
   const src = image.originalSrc
   const { altText } = image
-  const srcSet = widths
+  const srcSet = shopifyWidths
     .map((width) => {
       const key = `w${width}`
       if (!image[key]) return null
