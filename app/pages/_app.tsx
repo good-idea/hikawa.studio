@@ -50,7 +50,9 @@ const App = (props: AppProps) => {
         />
         <script
           type="text/javascript"
-          src="https://static-us.afterpay.com/javascript/present-afterpay.js"
+          src="https://js.afterpay.com/afterpay-1.x.js"
+          data-analytics-enabled
+          async
         />
         <meta
           name="viewport"

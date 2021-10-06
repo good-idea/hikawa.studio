@@ -1,9 +1,6 @@
 import * as React from 'react'
 import styled, { css } from '@xstyled/styled-components'
 import { ShopifyMoneyV2 } from '../../types'
-import { Sentry } from '../../services/sentry'
-
-const { useRef, useEffect } = React
 
 const Wrapper = styled.div`
   ${({ theme }) => css`
@@ -30,45 +27,21 @@ interface AfterpayProps {
   price?: ShopifyMoneyV2 | null
 }
 
-const presentAfterpay =
-  // @ts-ignore
-  typeof window !== 'undefined' ? window.presentAfterpay : undefined
-
 export const Afterpay = ({ price }: AfterpayProps) => {
   if (!price) return null
-  const containerRef = useRef<HTMLDivElement>(null)
-  const amount = price.amount
-  if (!amount) throw new Error('No price was supplied')
-
-  useEffect(() => {
-    if (!containerRef.current || typeof presentAfterpay === 'undefined') return
-    const dataContainer = document.querySelector('#afterpay-container')
-    if (!dataContainer) return
-    const afterpayText = dataContainer.querySelector('p.afterpay-paragraph')
-    if (afterpayText) afterpayText.remove()
-
-    try {
-      const apiConfig = {
-        priceSelector: '#afterpay-container > span',
-        locale: 'en_US',
-        currency: 'USD',
-        afterpayLogoColor: 'color',
-        amount: parseFloat(amount) * 100,
-        minMaxThreshold: {
-          min: 3500,
-          max: 100000,
-        },
-      }
-      /* eslint-disable-next-line */
-      new presentAfterpay(apiConfig).init()
-    } catch (err) {
-      Sentry.captureException(err)
-    }
-  }, [price, containerRef])
+  if (!price.amount) throw new Error('No price was supplied')
+  const amount = parseFloat(price.amount).toString().padEnd(2, '0')
 
   return (
-    <Wrapper ref={containerRef} id="afterpay-container">
-      <span />
+    <Wrapper>
+      {/* @ts-ignore */}
+      <afterpay-placement
+        data-locale="en_US"
+        data-currency="USD"
+        data-amount={amount}
+        data-min="35.00"
+        data-max="1000.00"
+      />
     </Wrapper>
   )
 }
