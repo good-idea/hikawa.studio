@@ -5,7 +5,7 @@ import { Cta as CTAType, AnnouncementSettings } from '../types'
 import { sanityColorToRGBA } from '../utils'
 import { useSiteSettings } from '../providers'
 import { RichText } from './RichText'
-import { Heading } from './Text'
+import { P, Heading } from './Text'
 import { getLinkLabel, getLinkUrl } from '../utils'
 
 const { useState, useEffect } = React
@@ -31,7 +31,7 @@ const AnnouncementWrapper = styled.div<AnnouncementWrapperProps>`
     transition: 0.3s ease-out;
     text-align: center;
     font-size: 6;
-    font-weight: 4;
+    font-weight: 3;
     text-align: center;
 
     a {
@@ -61,13 +61,16 @@ const AnnouncementInner = styled.div<WithVisible>`
     height: 100%;
     padding: 0 45px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     transition: 0.3s;
     opacity: ${visible ? 1 : 0};
     pointer-events: ${visible ? 'inherit' : 'none'};
     transition-delay: ${visible ? '0.4s' : '0s'};
+
+    * > * {
+      margin-left: 2;
+    }
   `}
 `
 
@@ -102,15 +105,14 @@ const CloseButton = styled.button`
  * Announcement
  */
 
-const AnnouncementTextWrapper = (props: any) => (
-  <Heading family="sans" weight={5} level={5} {...props} />
-)
+const AnnouncementTextWrapper = (props: any) => <P fontSize={6} {...props} />
 
 interface CTAProps {
   cta?: CTAType | null
+  inline?: boolean
 }
 
-const CTA = ({ cta }: CTAProps) => {
+const CTA = ({ cta, inline }: CTAProps) => {
   if (!cta?.link || cta.link.length === 0) return null
 
   const link = cta.link[0]
@@ -123,7 +125,13 @@ const CTA = ({ cta }: CTAProps) => {
 
   if (!label) return null
   return (
-    <Heading level={5} color="pink" my={0}>
+    <Heading
+      display={inline ? 'inline-block' : undefined}
+      level={5}
+      color="pink"
+      my={0}
+      mx={inline ? 2 : undefined}
+    >
       <Link href={href}>
         <a>{label}</a>
       </Link>
@@ -131,7 +139,7 @@ const CTA = ({ cta }: CTAProps) => {
   )
 }
 
-const TIME = 4500
+const TIME = 6500
 
 export const Announcement = () => {
   const { siteSettings } = useSiteSettings()
@@ -159,11 +167,7 @@ export const Announcement = () => {
             key={index}
             visible={index === currentAnnouncement}
           >
-            <RichText
-              body={a.bodyRaw}
-              blockWrapper={AnnouncementTextWrapper}
-              weight={5}
-            />
+            <RichText body={a.bodyRaw} blockWrapper={AnnouncementTextWrapper} />
             {a.cta ? <CTA cta={a.cta} /> : null}
           </AnnouncementInner>
         ) : null,

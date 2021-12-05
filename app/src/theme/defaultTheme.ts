@@ -56,7 +56,7 @@ export const defaultTheme: DefaultTheme = {
     22, // h3
     18, // p,
     16, // h4
-    13, // h5
+    14, // h5
     10, // h6
   ],
   fontWeights: [0, 100, 200, 300, 400, 600, 700],
